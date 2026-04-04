@@ -1,0 +1,76 @@
+---
+// Persistent top navigation bar shown above Starlight's header on all doc pages.
+// Links back to the marketing pages for a consistent site-wide experience.
+---
+<div class="top-nav">
+	<div class="top-nav-inner">
+		<a href="/" class="top-nav-logo">Vectis Mail</a>
+		<nav class="top-nav-links">
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</nav>
+	</div>
+</div>
+
+<style>
+	.top-nav {
+		background: #0d1117;
+		border-bottom: 1px solid #21262d;
+		width: 100%;
+		z-index: 100;
+	}
+
+	.top-nav-inner {
+		max-width: 1400px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.6rem 1.5rem;
+	}
+
+	.top-nav-logo {
+		font-size: 1rem;
+		font-weight: 700;
+		color: #e6edf3;
+		text-decoration: none;
+	}
+
+	.top-nav-logo:hover {
+		color: #ffffff;
+	}
+
+	.top-nav-links {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.top-nav-links a {
+		color: #8b949e;
+		text-decoration: none;
+		font-size: 0.85rem;
+		font-weight: 500;
+		transition: color 0.15s;
+	}
+
+	.top-nav-links a:hover {
+		color: #e6edf3;
+	}
+
+	/* Highlight the active "Docs" link when on doc pages */
+	.top-nav-links a[href="/getting-started"] {
+		color: #58a6ff;
+	}
+
+	@media (max-width: 600px) {
+		.top-nav-links {
+			gap: 0.75rem;
+		}
+		.top-nav-links a {
+			font-size: 0.8rem;
+		}
+	}
+</style>

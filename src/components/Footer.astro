@@ -1,0 +1,53 @@
+---
+// Custom Starlight Footer override.
+// Adds a site-wide footer with links matching the marketing pages.
+import type { Props } from '@astrojs/starlight/props'
+---
+<footer class="doc-footer">
+	<div class="doc-footer-inner">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<nav>
+			<a href="/">Home</a>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+			<a href="https://github.com/Veltara-Works/vectis">GitHub</a>
+		</nav>
+	</div>
+</footer>
+
+<style>
+	.doc-footer {
+		border-top: 1px solid var(--sl-color-gray-5, #21262d);
+		margin-top: 3rem;
+		padding: 2rem 1.5rem;
+	}
+
+	.doc-footer-inner {
+		max-width: 1400px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+		font-size: 0.8rem;
+		color: var(--sl-color-gray-3, #8b949e);
+	}
+
+	.doc-footer nav {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	.doc-footer a {
+		color: var(--sl-color-gray-3, #8b949e);
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+
+	.doc-footer a:hover {
+		color: var(--sl-color-gray-1, #e6edf3);
+	}
+</style>
