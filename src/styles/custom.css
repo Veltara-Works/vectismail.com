@@ -46,7 +46,7 @@
 	justify-content: space-between;
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 1.25rem 2rem;
+	padding: 1.5rem 2rem;
 	border-bottom: 1px solid var(--vm-border);
 }
 
@@ -54,7 +54,7 @@
 	color: var(--sl-color-gray-2);
 	text-decoration: none;
 	margin-left: 2rem;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 500;
 	transition: color 0.15s;
 }
@@ -88,16 +88,16 @@
 	background: rgba(59, 130, 246, 0.1);
 	border: 1px solid rgba(59, 130, 246, 0.25);
 	color: var(--vm-blue);
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	font-weight: 600;
-	padding: 0.35rem 1rem;
+	padding: 0.4rem 1.25rem;
 	border-radius: 100px;
-	margin-bottom: 1.5rem;
+	margin-bottom: 2rem;
 	letter-spacing: 0.02em;
 }
 
 .hero h1 {
-	font-size: 3.5rem;
+	font-size: 4.2rem;
 	font-weight: 800;
 	line-height: 1.08;
 	margin-bottom: 1.5rem;
@@ -113,7 +113,7 @@
 }
 
 .hero p {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	color: var(--sl-color-gray-2);
 	max-width: 580px;
 	margin: 0 auto 2.5rem;
@@ -176,7 +176,7 @@
 }
 
 .section h2 {
-	font-size: 2.2rem;
+	font-size: 2.5rem;
 	font-weight: 700;
 	margin-bottom: 0.75rem;
 	color: var(--sl-color-white);
@@ -185,7 +185,7 @@
 
 .section .subtitle {
 	color: var(--sl-color-gray-3);
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	margin-bottom: 3rem;
 	line-height: 1.6;
 }
