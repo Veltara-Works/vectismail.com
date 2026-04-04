@@ -1,0 +1,79 @@
+---
+import "../styles/custom.css"
+const title = 'Features — Vectis Mail'
+const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, sending API, webhooks, admin dashboard, clustering, and more.'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo">Vectis Mail</a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/docs/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero" style="margin-bottom: 2rem;">
+		<h1>Every feature you need.<br/><span>Nothing you don't.</span></h1>
+		<p>Vectis Mail replaces Mailcow, iRedMail, and external email APIs with a single, declarative platform.</p>
+	</section>
+
+	<section class="section">
+		<h2>Core Mail Stack</h2>
+		<p class="subtitle">Production-grade mail delivery out of the box.</p>
+		<div class="feature-grid">
+			<div class="feature-card"><h3>Postfix MTA</h3><p>Battle-tested mail transfer agent handling inbound and outbound SMTP. Virtual domain hosting with SQL-driven lookups — no config reload needed when adding domains or mailboxes.</p></div>
+			<div class="feature-card"><h3>Dovecot IMAP/POP3</h3><p>IMAP and POP3 access with SSL/TLS, Argon2id password hashing, per-mailbox quotas, and LMTP delivery. ManageSieve for server-side filter rules.</p></div>
+			<div class="feature-card"><h3>Rspamd Spam Filtering</h3><p>ML-based spam detection with Bayes classifier, neural network training, DKIM verification, SPF checks, greylisting, and configurable score thresholds.</p></div>
+			<div class="feature-card"><h3>ClamAV Antivirus</h3><p>Optional antivirus scanning for inbound mail. Profile-gated — enable it in config.yaml when you need it, omit the container when you don't.</p></div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>Developer Platform</h2>
+		<p class="subtitle">APIs and webhooks for building on top of Vectis Mail.</p>
+		<div class="feature-grid">
+			<div class="feature-card"><h3>Sending API</h3><p>POST /api/v1/send with JSON payload. HTML + text bodies, attachments, custom headers. Domain-scoped API keys with rate limiting. Batch sending up to 100 messages per call.</p></div>
+			<div class="feature-card"><h3>Inbound Webhooks</h3><p>Email arrives, Vectis parses it, POSTs the full content to your app. Body text, HTML, attachments, SMTP envelope — HMAC-SHA256 signed with exponential backoff retry.</p></div>
+			<div class="feature-card"><h3>Message Storage API</h3><p>Query sent and received message metadata with full-text search. Filter by domain, direction, status, sender. Cursor-based pagination for large datasets.</p></div>
+			<div class="feature-card"><h3>Engagement Tracking</h3><p>Optional open and click tracking via tracking pixel and redirect URLs. HMAC-signed tokens prevent spoofing. Opt-in per message.</p></div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>Operations & Security</h2>
+		<p class="subtitle">Built for production from day one.</p>
+		<div class="feature-grid">
+			<div class="feature-card"><h3>Atomic Updates</h3><p>6-phase orchestrator: snapshot, migrate, pull, deploy, health check, complete. Automatic rollback on failure. Advisory lock prevents concurrent operations.</p></div>
+			<div class="feature-card"><h3>Backup & Restore</h3><p>Scheduled backups with AES-256-GCM encryption. Database, mail data, DKIM keys, and config archived. One-click restore from the dashboard.</p></div>
+			<div class="feature-card"><h3>RBAC + MFA</h3><p>Three-tier roles: super_admin, admin, domain_admin. TOTP multi-factor auth. OIDC SSO with Google, Azure AD, and Keycloak. API key management with domain scoping.</p></div>
+			<div class="feature-card"><h3>Observability</h3><p>Prometheus metrics, optional Grafana dashboards, Loki log aggregation, per-domain analytics, alertmanager rule templates. Everything you need to monitor at scale.</p></div>
+		</div>
+	</section>
+
+	<section class="section" style="text-align: center;">
+		<div class="hero-buttons">
+			<a href="/pricing" class="btn-primary">View Pricing</a>
+			<a href="/docs/getting-started/installation" class="btn-secondary">Install Now</a>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/docs/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>

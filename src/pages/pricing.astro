@@ -1,0 +1,123 @@
+---
+import "../styles/custom.css"
+const title = 'Pricing — Vectis Mail'
+const description = 'Simple, transparent pricing. Start free, scale to enterprise.'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo">Vectis Mail</a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/docs/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="section" style="text-align: center;">
+		<h2>Simple, transparent pricing</h2>
+		<p class="subtitle">Start free. Upgrade when you need more.</p>
+
+		<div class="pricing-grid">
+			<div class="pricing-card">
+				<div class="tier">Starter</div>
+				<div class="price">Free</div>
+				<div class="period">forever</div>
+				<ul>
+					<li>Up to 3 domains</li>
+					<li>Up to 25 mailboxes</li>
+					<li>Admin dashboard</li>
+					<li>DKIM/SPF/DMARC</li>
+					<li>Automatic TLS</li>
+					<li>Backup &amp; restore</li>
+					<li>Sending API (100/day)</li>
+					<li>Community support</li>
+				</ul>
+				<a href="/docs/getting-started/installation" class="btn-primary" style="display: block; text-align: center;">Get Started</a>
+			</div>
+
+			<div class="pricing-card featured">
+				<div class="tier">Pro</div>
+				<div class="price">$29</div>
+				<div class="period">per server / month</div>
+				<ul>
+					<li>Unlimited domains</li>
+					<li>Unlimited mailboxes</li>
+					<li>Everything in Starter, plus:</li>
+					<li>Sending API (unlimited)</li>
+					<li>Inbound webhooks (full body)</li>
+					<li>Batch sending</li>
+					<li>Per-domain analytics</li>
+					<li>Webmail (Roundcube)</li>
+					<li>Sieve filter management</li>
+					<li>Prometheus + Grafana</li>
+					<li>Loki log aggregation</li>
+					<li>IP warmup &amp; RBL monitoring</li>
+					<li>OIDC SSO</li>
+					<li>Priority email support</li>
+				</ul>
+				<a href="https://validonx.com/checkout/vectis-pro" class="btn-primary" style="display: block; text-align: center;">Start Pro Trial</a>
+			</div>
+
+			<div class="pricing-card">
+				<div class="tier">Enterprise</div>
+				<div class="price">$149</div>
+				<div class="period">per server / month</div>
+				<ul>
+					<li>Everything in Pro, plus:</li>
+					<li>Multi-node clustering</li>
+					<li>PgBouncer connection pooling</li>
+					<li>Rolling updates</li>
+					<li>Cross-node health checks</li>
+					<li>SAML &amp; Azure AD SSO</li>
+					<li>Multi-tenant architecture</li>
+					<li>Email retention &amp; legal hold</li>
+					<li>Compliance audit export</li>
+					<li>Dedicated support</li>
+					<li>SLA guarantee</li>
+				</ul>
+				<a href="/contact" class="btn-primary" style="display: block; text-align: center;">Contact Sales</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>Frequently Asked Questions</h2>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+			<div class="feature-card">
+				<h3>Do I need a license to use Vectis Mail?</h3>
+				<p>The Starter tier is free forever with no license required. Pro and Enterprise tiers are licensed through ValidonX, our licensing and billing platform.</p>
+			</div>
+			<div class="feature-card">
+				<h3>What happens if my license expires?</h3>
+				<p>Your mail server keeps running. All core mail delivery (Postfix, Dovecot) continues working. Pro/Enterprise features are gated but your data is never locked. There is a 30-day grace period.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Can I self-host without any external dependencies?</h3>
+				<p>Yes. The Starter tier works fully offline. Pro/Enterprise check ValidonX for entitlements, with a 30-day offline grace period and cached entitlements in Postgres.</p>
+			</div>
+			<div class="feature-card">
+				<h3>What server do I need?</h3>
+				<p>Minimum: 2 vCPU, 4 GB RAM, 40 GB SSD, Ubuntu 22.04+. Recommended for production: 4 vCPU, 8 GB RAM, 100 GB SSD. Any VPS provider works.</p>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/docs/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>
