@@ -14,47 +14,121 @@ const title = 'Contact — Vectis Mail'
 		<div>
 			<a href="/features">Features</a>
 			<a href="/pricing">Pricing</a>
-			<a href="/docs/getting-started">Docs</a>
+			<a href="/getting-started">Docs</a>
 			<a href="/about">About</a>
 			<a href="/contact">Contact</a>
 		</div>
 	</nav>
 
-	<section class="section" style="max-width: 600px;">
+	<section class="section" style="max-width: 640px;">
 		<h2>Get in Touch</h2>
 		<p class="subtitle">Questions about Vectis Mail? Enterprise pricing? Integration support? We'd love to hear from you.</p>
 
-		<div class="feature-card" style="margin-bottom: 2rem;">
-			<h3>General Enquiries</h3>
-			<p><a href="mailto:hello@veltaraworks.com" style="color: var(--sl-color-accent);">hello@veltaraworks.com</a></p>
-		</div>
+		<form id="contact-form" class="feature-card" style="margin-bottom: 2rem;">
+			<div style="margin-bottom: 1.25rem;">
+				<label for="department" style="display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;">Enquiry Type</label>
+				<select id="department" name="department" required style="width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;">
+					<option value="">Select a department...</option>
+					<option value="general">General Enquiries</option>
+					<option value="sales">Enterprise Sales</option>
+					<option value="support">Technical Support</option>
+				</select>
+			</div>
 
-		<div class="feature-card" style="margin-bottom: 2rem;">
-			<h3>Enterprise Sales</h3>
-			<p><a href="mailto:sales@veltaraworks.com" style="color: var(--sl-color-accent);">sales@veltaraworks.com</a></p>
-			<p>For multi-server deployments, SLA requirements, and custom integrations.</p>
-		</div>
+			<div style="margin-bottom: 1.25rem;">
+				<label for="name" style="display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;">Your Name</label>
+				<input type="text" id="name" name="name" required placeholder="Jane Smith" style="width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;" />
+			</div>
 
-		<div class="feature-card" style="margin-bottom: 2rem;">
-			<h3>Technical Support</h3>
-			<p><a href="mailto:support@vectismail.com" style="color: var(--sl-color-accent);">support@vectismail.com</a></p>
-			<p>Pro and Enterprise customers receive priority support. Community users can open issues on <a href="https://github.com/Veltara-Works/vectis/issues" style="color: var(--sl-color-accent);">GitHub</a>.</p>
-		</div>
+			<div style="margin-bottom: 1.25rem;">
+				<label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;">Email Address</label>
+				<input type="email" id="email" name="email" required placeholder="jane@example.com" style="width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;" />
+			</div>
+
+			<div style="margin-bottom: 1.25rem;">
+				<label for="message" style="display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;">Message</label>
+				<textarea id="message" name="message" required rows="5" maxlength="2000" placeholder="Tell us how we can help..." style="width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem; resize: vertical;"></textarea>
+				<div style="text-align: right; color: var(--sl-color-gray-4); font-size: 0.8rem; margin-top: 0.25rem;">
+					<span id="char-count">0</span> / 2000
+				</div>
+			</div>
+
+			<button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; font-size: 1rem;">Send Message</button>
+
+			<div id="form-status" style="margin-top: 1rem; text-align: center; display: none;"></div>
+		</form>
 
 		<div class="feature-card">
-			<h3>GitHub</h3>
-			<p><a href="https://github.com/Veltara-Works/vectis" style="color: var(--sl-color-accent);">github.com/Veltara-Works/vectis</a></p>
-			<p>Bug reports, feature requests, and contributions.</p>
+			<h3>Open Source</h3>
+			<p>Bug reports, feature requests, and contributions are welcome on <a href="https://github.com/Veltara-Works/vectis" style="color: var(--sl-color-accent);">GitHub</a>.</p>
+			<p style="margin-top: 0.5rem;">Pro and Enterprise customers receive priority support via this form.</p>
 		</div>
 	</section>
 
 	<footer class="footer">
 		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
 		<div>
-			<a href="/docs/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
 			<a href="https://github.com/Veltara-Works/vectis">GitHub</a> &nbsp;&middot;&nbsp;
 			<a href="/contact">Contact</a>
 		</div>
 	</footer>
+
+	<script>
+		// Character counter.
+		const msg = document.getElementById('message');
+		const counter = document.getElementById('char-count');
+		msg?.addEventListener('input', () => { if (counter) counter.textContent = msg.value.length.toString(); });
+
+		// Form submission — sends to Cloudflare Function (or shows a fallback).
+		document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const status = document.getElementById('form-status');
+			const form = e.target;
+			const btn = form.querySelector('button[type="submit"]');
+
+			const data = {
+				department: form.department.value,
+				name: form.name.value,
+				email: form.email.value,
+				message: form.message.value,
+			};
+
+			btn.disabled = true;
+			btn.textContent = 'Sending...';
+
+			try {
+				const res = await fetch('/api/contact', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(data),
+				});
+
+				if (res.ok) {
+					status.style.display = 'block';
+					status.style.color = '#4ade80';
+					status.textContent = 'Message sent! We\'ll get back to you soon.';
+					form.reset();
+					counter.textContent = '0';
+				} else {
+					throw new Error('Server error');
+				}
+			} catch {
+				// Fallback: construct mailto link so the message isn't lost.
+				const deptMap = { general: 'hello@veltaraworks.com', sales: 'sales@veltaraworks.com', support: 'support@vectismail.com' };
+				const to = deptMap[data.department] || deptMap.general;
+				const subject = encodeURIComponent(`[${data.department}] Contact from ${data.name}`);
+				const body = encodeURIComponent(data.message);
+				window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+				status.style.display = 'block';
+				status.style.color = '#fbbf24';
+				status.textContent = 'Opening your email client as a fallback...';
+			} finally {
+				btn.disabled = false;
+				btn.textContent = 'Send Message';
+			}
+		});
+	</script>
 </body>
 </html>
