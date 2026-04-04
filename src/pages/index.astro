@@ -1,0 +1,99 @@
+---
+import '../styles/custom.css'
+const title = 'Vectis Mail — Self-Hosted Email Platform'
+const description = 'Containerised, self-hosted email server with declarative config, sending API, admin dashboard, and enterprise features. Deploy in minutes.'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com" />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo">Vectis Mail</a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/docs/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero">
+		<h1>Your email server.<br/><span>Your rules.</span></h1>
+		<p>Vectis Mail is a containerised, self-hosted email platform with a sending API, admin dashboard, and enterprise features. Deploy a production mail server in minutes, not days.</p>
+		<div class="hero-buttons">
+			<a href="/docs/getting-started/installation" class="btn-primary">Get Started</a>
+			<a href="/docs/getting-started" class="btn-secondary">Read the Docs</a>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>Everything you need for production email</h2>
+		<p class="subtitle">Postfix, Dovecot, Rspamd, DKIM, SPF, DMARC — configured and managed through a single YAML file.</p>
+		<div class="feature-grid">
+			<div class="feature-card">
+				<h3>Declarative Configuration</h3>
+				<p>One config.yaml defines your entire mail stack. Change a setting, run apply, and Vectis generates Postfix, Dovecot, Rspamd, and Traefik configs automatically.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Sending API</h3>
+				<p>REST API for transactional email. Single and batch sending, domain-scoped API keys, webhook callbacks for delivery status. Drop-in replacement for external email services.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Admin Dashboard</h3>
+				<p>Full web UI for domains, mailboxes, aliases, deliverability, audit logs, backups, and system updates. Role-based access control with TOTP MFA and OIDC SSO.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Inbound Webhooks</h3>
+				<p>Receive email programmatically. Vectis parses inbound messages and POSTs the full content — body, attachments, headers, envelope — to your application via HMAC-signed webhooks.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Automatic TLS</h3>
+				<p>Let's Encrypt certificates provisioned and renewed automatically via acme.sh. Supports Cloudflare DNS-01 challenges. TLS 1.2+ enforced on all protocols.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Built-in Observability</h3>
+				<p>Prometheus metrics, Grafana dashboards, Loki log aggregation, per-domain analytics, IP warmup tracking, and RBL monitoring — all included.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Atomic Updates</h3>
+				<p>The orchestrator manages updates with a 6-phase pipeline: snapshot, migrate, pull, deploy, health check, complete. Automatic rollback on failure.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Webmail Included</h3>
+				<p>Roundcube webmail with ManageSieve filter rules, mobile-responsive Elastic skin, and Vectis branding. Your users get a familiar email experience out of the box.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Clustering & HA</h3>
+				<p>Multi-node clustering with leader election, rolling updates, PgBouncer connection pooling, and cross-node health checking for high-availability deployments.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="text-align: center;">
+		<h2>Trusted by the Veltara Works ecosystem</h2>
+		<p class="subtitle">Vectis Mail powers transactional email for ValidonX and other Veltara Works products.</p>
+		<div class="hero-buttons">
+			<a href="/pricing" class="btn-primary">View Pricing</a>
+			<a href="https://github.com/Veltara-Works/vectis" class="btn-secondary">GitHub</a>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/docs/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>

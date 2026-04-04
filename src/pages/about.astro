@@ -1,0 +1,57 @@
+---
+import "../styles/custom.css"
+const title = 'About — Vectis Mail'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo">Vectis Mail</a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/docs/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="section" style="max-width: 700px;">
+		<h2>About Vectis Mail</h2>
+		<p style="color: var(--sl-color-gray-2); line-height: 1.8; font-size: 1.05rem;">
+			Vectis Mail is a product of <strong style="color: var(--sl-color-white);">Veltara Works</strong>, a software company focused on building infrastructure tools that give teams full control over their technology stack.
+		</p>
+		<p style="color: var(--sl-color-gray-2); line-height: 1.8; font-size: 1.05rem; margin-top: 1.5rem;">
+			Email is critical infrastructure, yet most teams outsource it to services they can't control, can't inspect, and can't customise. Vectis Mail exists to change that — a production-grade mail server you can deploy in minutes, manage through a clean API and dashboard, and scale to enterprise needs.
+		</p>
+		<p style="color: var(--sl-color-gray-2); line-height: 1.8; font-size: 1.05rem; margin-top: 1.5rem;">
+			Vectis is part of the Veltara Works ecosystem alongside <strong style="color: var(--sl-color-white);">ValidonX</strong> (licensing, billing, and identity platform). Together, they provide a complete foundation for SaaS products that need email delivery, user authentication, and subscription management.
+		</p>
+
+		<h2 style="margin-top: 3rem;">The Veltara Works Ecosystem</h2>
+		<div class="feature-grid" style="margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3>Vectis Mail</h3>
+				<p>Self-hosted email platform. Inbound/outbound mail, sending API, webhooks, admin dashboard.</p>
+			</div>
+			<div class="feature-card">
+				<h3>ValidonX</h3>
+				<p>Licensing, billing, and identity platform. Subscription management, feature gating, usage metering.</p>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/docs/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>
