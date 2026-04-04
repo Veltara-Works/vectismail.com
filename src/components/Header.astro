@@ -1,0 +1,9 @@
+---
+// Custom Starlight Header override.
+// Adds a site-wide top navigation bar above Starlight's built-in header.
+import type { Props } from '@astrojs/starlight/props'
+import Default from '@astrojs/starlight/components/Header.astro'
+import TopNav from './TopNav.astro'
+---
+<TopNav />
+<Default {...Astro.props}><slot /></Default>
