@@ -319,6 +319,6 @@ Webhooks can be scoped to a specific domain by setting `domain_id` in the creati
 
 ## Related
 
-- [Sending Email](/docs/api/sending) -- triggers `mail.sent` events
-- [Messages & Storage API](/docs/api/messages) -- query message history
-- [Analytics API](/docs/api/analytics) -- aggregate event statistics
+- [Sending Email](/api/sending) -- triggers `mail.sent` events
+- [Messages & Storage API](/api/messages) -- query message history
+- [Analytics API](/api/analytics) -- aggregate event statistics

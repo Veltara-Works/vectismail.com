@@ -56,7 +56,7 @@ dig -x 203.0.113.10 +short
 # Should return: mail.example.com.
 ```
 
-For a detailed walkthrough, see [DKIM, SPF & DMARC configuration](/docs/guides/dkim-spf-dmarc).
+For a detailed walkthrough, see [DKIM, SPF & DMARC configuration](/guides/dkim-spf-dmarc).
 
 ### Vectis deliverability checker
 
@@ -72,7 +72,7 @@ This validates SPF, DKIM, DMARC, PTR, MX records, and TLS configuration in a sin
 
 ### New IPs need warmup
 
-If your server uses a fresh IP address, you must warm it up gradually. Vectis has a built-in 30-day warmup schedule that starts at 50 messages per day and ramps to 200,000. See [IP warmup for new servers](/docs/guides/ip-warmup) for the full guide.
+If your server uses a fresh IP address, you must warm it up gradually. Vectis has a built-in 30-day warmup schedule that starts at 50 messages per day and ramps to 200,000. See [IP warmup for new servers](/guides/ip-warmup) for the full guide.
 
 ### Volume consistency
 
@@ -278,7 +278,7 @@ Use this checklist when setting up a new domain on Vectis:
 
 ## Next steps
 
-- [DKIM, SPF & DMARC configuration](/docs/guides/dkim-spf-dmarc) for detailed authentication setup
-- [IP warmup for new servers](/docs/guides/ip-warmup) for the 30-day warmup guide
-- [Cloudflare integration](/docs/guides/cloudflare) for DNS management with Cloudflare
-- [Troubleshooting](/docs/guides/troubleshooting) for diagnosing delivery failures
+- [DKIM, SPF & DMARC configuration](/guides/dkim-spf-dmarc) for detailed authentication setup
+- [IP warmup for new servers](/guides/ip-warmup) for the 30-day warmup guide
+- [Cloudflare integration](/guides/cloudflare) for DNS management with Cloudflare
+- [Troubleshooting](/guides/troubleshooting) for diagnosing delivery failures

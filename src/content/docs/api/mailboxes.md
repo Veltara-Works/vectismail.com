@@ -238,7 +238,7 @@ Passwords are never stored in plaintext or returned in API responses.
 
 ## Related
 
-- [Domains API](/docs/api/domains) -- manage the parent domains
-- [Aliases API](/docs/api/aliases) -- forward mail to or from mailboxes
-- [Sending Email](/docs/api/sending) -- send mail from a mailbox via the API
-- [CLI mailbox commands](/docs/cli/commands#mailbox-management) -- manage mailboxes from the command line
+- [Domains API](/api/domains) -- manage the parent domains
+- [Aliases API](/api/aliases) -- forward mail to or from mailboxes
+- [Sending Email](/api/sending) -- send mail from a mailbox via the API
+- [CLI mailbox commands](/cli/commands#mailbox-management) -- manage mailboxes from the command line

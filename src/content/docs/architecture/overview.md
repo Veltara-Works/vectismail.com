@@ -238,6 +238,6 @@ The four-network design ensures that a compromise of one service limits the blas
 
 ## Related
 
-- [API Overview](/docs/api/) -- the REST API
-- [CLI Overview](/docs/cli/) -- managing Vectis from the command line
-- [CLI Commands](/docs/cli/commands) -- full command reference
+- [API Overview](/api/) -- the REST API
+- [CLI Overview](/cli/) -- managing Vectis from the command line
+- [CLI Commands](/cli/commands) -- full command reference

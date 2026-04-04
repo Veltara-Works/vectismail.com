@@ -222,6 +222,6 @@ For persistent per-domain statistics, use the main `GET /analytics` endpoint. Th
 
 ## Related
 
-- [Messages & Storage API](/docs/api/messages) -- individual message metadata
-- [Webhooks](/docs/api/webhooks) -- real-time event notifications
-- [Sending Email](/docs/api/sending) -- outbound mail that feeds analytics
+- [Messages & Storage API](/api/messages) -- individual message metadata
+- [Webhooks](/api/webhooks) -- real-time event notifications
+- [Sending Email](/api/sending) -- outbound mail that feeds analytics

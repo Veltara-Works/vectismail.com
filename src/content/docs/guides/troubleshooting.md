@@ -75,7 +75,7 @@ If the connection times out, contact your VPS provider to unblock port 25. This 
 vectis domain check example.com
 ```
 
-If SPF, DKIM, or DMARC are failing, see the [DKIM, SPF & DMARC guide](/docs/guides/dkim-spf-dmarc).
+If SPF, DKIM, or DMARC are failing, see the [DKIM, SPF & DMARC guide](/guides/dkim-spf-dmarc).
 
 ### Step 4: Check IP reputation
 
@@ -85,7 +85,7 @@ curl https://mail.example.com/api/v1/deliverability/rbl \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
-If your IP is listed on any RBL, follow the delisting process for that specific list. See [deliverability best practices](/docs/guides/deliverability) for details.
+If your IP is listed on any RBL, follow the delisting process for that specific list. See [deliverability best practices](/guides/deliverability) for details.
 
 ## Mail not delivering to your server
 
@@ -130,7 +130,7 @@ Look for `NOQUEUE: reject` lines. Common causes:
 
 ### Step 4: Check Cloudflare proxy status
 
-If you use Cloudflare, make sure the mail hostname A record is DNS-only (grey cloud, not orange). See the [Cloudflare guide](/docs/guides/cloudflare).
+If you use Cloudflare, make sure the mail hostname A record is DNS-only (grey cloud, not orange). See the [Cloudflare guide](/guides/cloudflare).
 
 ```bash
 # Verify the A record returns your IP, not Cloudflare's
@@ -166,7 +166,7 @@ Send a test to [mail-tester.com](https://www.mail-tester.com). A score below 7/1
 - DMARC policy set to `p=none`
 - HTML-only email with no plain text alternative
 - Spammy content (excessive capitalisation, multiple exclamation marks)
-- New IP without warmup (see [IP warmup guide](/docs/guides/ip-warmup))
+- New IP without warmup (see [IP warmup guide](/guides/ip-warmup))
 
 ## TLS certificate issues
 
@@ -442,7 +442,7 @@ docker stats --no-stream > /tmp/docker-stats.txt
 
 ## Next steps
 
-- [Installation guide](/docs/getting-started/installation) for initial server setup
-- [DNS setup](/docs/getting-started/dns-setup) for record configuration
-- [TLS certificates](/docs/guides/tls-certificates) for certificate management
-- [Deliverability best practices](/docs/guides/deliverability) for inbox placement
+- [Installation guide](/getting-started/installation) for initial server setup
+- [DNS setup](/getting-started/dns-setup) for record configuration
+- [TLS certificates](/guides/tls-certificates) for certificate management
+- [Deliverability best practices](/guides/deliverability) for inbox placement
