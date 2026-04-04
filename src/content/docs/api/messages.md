@@ -3,7 +3,7 @@ title: "Messages & Storage API"
 description: "Query message history with filtering, pagination, and full-text search across sent and received emails via the Vectis Mail API."
 ---
 
-The Messages API provides access to metadata for all messages that pass through your Vectis server -- both inbound and outbound. Message metadata is stored automatically when mail is sent via the [Sending API](/docs/api/sending) or received by Postfix.
+The Messages API provides access to metadata for all messages that pass through your Vectis server -- both inbound and outbound. Message metadata is stored automatically when mail is sent via the [Sending API](/api/sending) or received by Postfix.
 
 All endpoints require authentication. `domain_admin` users must specify a `domain_id` and can only access domains assigned to them.
 
@@ -183,10 +183,10 @@ curl "https://mail.example.com/api/v1/messages?domain_id=0192abc0-...&direction=
 - **Outbound:** Metadata is stored when a message is submitted via `POST /send` or `POST /send/batch`.
 - **Inbound:** Metadata is stored when Postfix delivers a message to Dovecot and sends a notification to the Vectis API.
 
-The Messages API stores metadata only, not message body content. The actual email content lives in the Dovecot Maildir storage. For full inbound message content, use the [`mail.received.full` webhook](/docs/api/webhooks).
+The Messages API stores metadata only, not message body content. The actual email content lives in the Dovecot Maildir storage. For full inbound message content, use the [`mail.received.full` webhook](/api/webhooks).
 
 ## Related
 
-- [Sending Email](/docs/api/sending) -- creates outbound message records
-- [Webhooks](/docs/api/webhooks) -- real-time notification of message events
-- [Analytics API](/docs/api/analytics) -- aggregate message statistics
+- [Sending Email](/api/sending) -- creates outbound message records
+- [Webhooks](/api/webhooks) -- real-time notification of message events
+- [Analytics API](/api/analytics) -- aggregate message statistics

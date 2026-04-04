@@ -45,7 +45,7 @@ curl https://mail.example.com/api/v1/domains \
   -H "Authorization: Bearer vectis_sk_abc123..."
 ```
 
-API keys inherit the role of the admin who created them. They can be further restricted to specific domains via `scoped_domain_ids` at creation time. See the [Admin & RBAC API](/docs/api/admin) for key management endpoints.
+API keys inherit the role of the admin who created them. They can be further restricted to specific domains via `scoped_domain_ids` at creation time. See the [Admin & RBAC API](/api/admin) for key management endpoints.
 
 ## Response format
 
@@ -185,15 +185,15 @@ The API is versioned via the URL prefix (`/api/v1`). Breaking changes will be in
 
 ## Audit trail
 
-Every mutating API call (POST, PATCH, DELETE) is recorded in the audit log with the admin ID, action, resource, IP address, and a details object capturing what changed. See the [Admin & RBAC API](/docs/api/admin) for querying the audit log.
+Every mutating API call (POST, PATCH, DELETE) is recorded in the audit log with the admin ID, action, resource, IP address, and a details object capturing what changed. See the [Admin & RBAC API](/api/admin) for querying the audit log.
 
 ## Next steps
 
-- [Domains API](/docs/api/domains) -- manage mail domains and DKIM
-- [Mailboxes API](/docs/api/mailboxes) -- create and manage mailboxes
-- [Aliases API](/docs/api/aliases) -- email forwarding and catch-all
-- [Sending Email](/docs/api/sending) -- send messages via the API
-- [Webhooks](/docs/api/webhooks) -- real-time event notifications
-- [Messages & Storage API](/docs/api/messages) -- query message history
-- [Analytics API](/docs/api/analytics) -- mail volume and deliverability stats
-- [Admin & RBAC API](/docs/api/admin) -- authentication, roles, and API keys
+- [Domains API](/api/domains) -- manage mail domains and DKIM
+- [Mailboxes API](/api/mailboxes) -- create and manage mailboxes
+- [Aliases API](/api/aliases) -- email forwarding and catch-all
+- [Sending Email](/api/sending) -- send messages via the API
+- [Webhooks](/api/webhooks) -- real-time event notifications
+- [Messages & Storage API](/api/messages) -- query message history
+- [Analytics API](/api/analytics) -- mail volume and deliverability stats
+- [Admin & RBAC API](/api/admin) -- authentication, roles, and API keys

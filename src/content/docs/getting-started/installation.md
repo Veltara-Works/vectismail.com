@@ -82,5 +82,5 @@ This regenerates all service configs and restarts affected containers.
 
 ## Next Steps
 
-- [Add your first domain](/docs/getting-started/first-domain)
-- [Configure DNS records](/docs/getting-started/dns-setup)
+- [Add your first domain](/getting-started/first-domain)
+- [Configure DNS records](/getting-started/dns-setup)

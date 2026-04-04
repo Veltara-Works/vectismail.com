@@ -123,6 +123,6 @@ Both paths can be overridden with `--config-dir`.
 
 ## Next steps
 
-- [CLI Commands](/docs/cli/commands) -- full reference for every command
-- [API Overview](/docs/api/) -- the REST API that `vectis serve` provides
-- [Architecture Overview](/docs/architecture/overview) -- how the components fit together
+- [CLI Commands](/cli/commands) -- full reference for every command
+- [API Overview](/api/) -- the REST API that `vectis serve` provides
+- [Architecture Overview](/architecture/overview) -- how the components fit together

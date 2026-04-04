@@ -267,7 +267,7 @@ After configuring everything, send a test email and verify the headers:
 
 ## Next steps
 
-- [Email deliverability best practices](/docs/guides/deliverability) for a comprehensive guide to inbox placement
-- [IP warmup for new servers](/docs/guides/ip-warmup) if this is a fresh IP address
-- [Cloudflare integration](/docs/guides/cloudflare) for managing DNS records in Cloudflare
-- [DNS setup quickstart](/docs/getting-started/dns-setup) for a condensed record reference
+- [Email deliverability best practices](/guides/deliverability) for a comprehensive guide to inbox placement
+- [IP warmup for new servers](/guides/ip-warmup) if this is a fresh IP address
+- [Cloudflare integration](/guides/cloudflare) for managing DNS records in Cloudflare
+- [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference

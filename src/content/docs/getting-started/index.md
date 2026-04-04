@@ -36,6 +36,6 @@ Vectis Mail is a containerised, self-hosted email platform. It packages Postfix,
 
 ## Next steps
 
-- [Install Vectis Mail](/docs/getting-started/installation) on your server
-- [Add your first domain](/docs/getting-started/first-domain) and mailbox
-- [Configure DNS](/docs/getting-started/dns-setup) for deliverability
+- [Install Vectis Mail](/getting-started/installation) on your server
+- [Add your first domain](/getting-started/first-domain) and mailbox
+- [Configure DNS](/getting-started/dns-setup) for deliverability

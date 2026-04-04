@@ -288,6 +288,6 @@ Common causes:
 
 ## Next steps
 
-- [Cloudflare integration](/docs/guides/cloudflare) for using Cloudflare DNS with Vectis
-- [Troubleshooting](/docs/guides/troubleshooting) for common TLS and connectivity issues
-- [Installation guide](/docs/getting-started/installation) for initial server setup
+- [Cloudflare integration](/guides/cloudflare) for using Cloudflare DNS with Vectis
+- [Troubleshooting](/guides/troubleshooting) for common TLS and connectivity issues
+- [Installation guide](/getting-started/installation) for initial server setup

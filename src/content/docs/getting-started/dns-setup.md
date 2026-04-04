@@ -96,6 +96,6 @@ Or check in the dashboard under **Deliverability** — it shows a green/yellow/r
 
 ## Next Steps
 
-- [Detailed DKIM, SPF & DMARC guide](/docs/guides/dkim-spf-dmarc)
-- [Deliverability best practices](/docs/guides/deliverability)
-- [IP warmup for new servers](/docs/guides/ip-warmup)
+- [Detailed DKIM, SPF & DMARC guide](/guides/dkim-spf-dmarc)
+- [Deliverability best practices](/guides/deliverability)
+- [IP warmup for new servers](/guides/ip-warmup)

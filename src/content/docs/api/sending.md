@@ -69,7 +69,7 @@ curl -X POST https://mail.example.com/api/v1/send \
 }
 ```
 
-The `message_id` is the RFC 5322 Message-ID assigned by Postfix. Use it to track the message in [webhooks](/docs/api/webhooks) and the [Messages API](/docs/api/messages).
+The `message_id` is the RFC 5322 Message-ID assigned by Postfix. Use it to track the message in [webhooks](/api/webhooks) and the [Messages API](/api/messages).
 
 ## Send batch messages
 
@@ -232,7 +232,7 @@ When a mailbox is auto-suspended, the API returns HTTP 429:
 
 ## Webhook events
 
-Each successfully sent message triggers a `mail.sent` [webhook event](/docs/api/webhooks). Batch messages trigger one `mail.sent` event per message.
+Each successfully sent message triggers a `mail.sent` [webhook event](/api/webhooks). Batch messages trigger one `mail.sent` event per message.
 
 ## Errors
 
@@ -254,6 +254,6 @@ Each successfully sent message triggers a `mail.sent` [webhook event](/docs/api/
 
 ## Related
 
-- [Webhooks](/docs/api/webhooks) -- receive `mail.sent` and delivery notifications
-- [Messages & Storage API](/docs/api/messages) -- query sent message history
-- [Analytics API](/docs/api/analytics) -- sending volume statistics
+- [Webhooks](/api/webhooks) -- receive `mail.sent` and delivery notifications
+- [Messages & Storage API](/api/messages) -- query sent message history
+- [Analytics API](/api/analytics) -- sending volume statistics

@@ -572,6 +572,6 @@ vectis backup restore /var/vectis/backups/vectis-20260404-120000.tar.gz --confir
 
 ## Related
 
-- [CLI Overview](/docs/cli/) -- installation and global flags
-- [API Overview](/docs/api/) -- the REST API served by `vectis serve`
-- [Architecture Overview](/docs/architecture/overview) -- system design
+- [CLI Overview](/cli/) -- installation and global flags
+- [API Overview](/api/) -- the REST API served by `vectis serve`
+- [Architecture Overview](/architecture/overview) -- system design

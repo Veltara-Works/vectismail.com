@@ -218,7 +218,7 @@ When you run `dig A mail.example.com`, a DNS-only record returns your server's a
 
 ## Next steps
 
-- [DNS setup quickstart](/docs/getting-started/dns-setup) for a condensed record reference
-- [TLS certificates](/docs/guides/tls-certificates) for DNS-01 challenge details
-- [DKIM, SPF & DMARC](/docs/guides/dkim-spf-dmarc) for authentication deep dive
-- [Troubleshooting](/docs/guides/troubleshooting) for diagnosing DNS-related issues
+- [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
+- [TLS certificates](/guides/tls-certificates) for DNS-01 challenge details
+- [DKIM, SPF & DMARC](/guides/dkim-spf-dmarc) for authentication deep dive
+- [Troubleshooting](/guides/troubleshooting) for diagnosing DNS-related issues

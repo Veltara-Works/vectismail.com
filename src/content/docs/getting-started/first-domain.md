@@ -3,7 +3,7 @@ title: Your First Domain
 description: Add a domain, create a mailbox, and send your first email with Vectis Mail.
 ---
 
-After [installing Vectis Mail](/docs/getting-started/installation), you're ready to add your first domain and mailbox.
+After [installing Vectis Mail](/getting-started/installation), you're ready to add your first domain and mailbox.
 
 ## Add a Domain
 
@@ -94,5 +94,5 @@ Configure your email client with:
 
 ## Next Steps
 
-- [Configure DNS records](/docs/getting-started/dns-setup) for full deliverability
-- [Set up DKIM, SPF, and DMARC](/docs/guides/dkim-spf-dmarc)
+- [Configure DNS records](/getting-started/dns-setup) for full deliverability
+- [Set up DKIM, SPF, and DMARC](/guides/dkim-spf-dmarc)

@@ -236,5 +236,5 @@ The `destination` field accepts several formats:
 
 ## Related
 
-- [Domains API](/docs/api/domains) -- manage the parent domains
-- [Mailboxes API](/docs/api/mailboxes) -- manage the destination mailboxes
+- [Domains API](/api/domains) -- manage the parent domains
+- [Mailboxes API](/api/mailboxes) -- manage the destination mailboxes
