@@ -1,12 +1,20 @@
 ---
 import "../styles/custom.css"
 const title = 'About — Vectis Mail'
+const description = 'Vectis Mail is built by Veltara Works — infrastructure tools that give teams full control over their technology stack.'
 ---
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/about" />
+	<link rel="canonical" href="https://vectismail.com/about/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">

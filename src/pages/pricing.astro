@@ -9,6 +9,38 @@ const description = 'Simple, transparent pricing. Start free, scale to enterpris
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/pricing" />
+	<link rel="canonical" href="https://vectismail.com/pricing/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Do I need a license to use Vectis Mail?",
+				"acceptedAnswer": { "@type": "Answer", "text": "The Starter tier is free forever with no license required. Pro and Enterprise tiers are licensed through ValidonX." }
+			},
+			{
+				"@type": "Question",
+				"name": "What happens if my license expires?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Your mail server keeps running. All core mail delivery continues. Pro/Enterprise features are gated but your data is never locked. There is a 30-day grace period." }
+			},
+			{
+				"@type": "Question",
+				"name": "Can I self-host without any external dependencies?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Yes. The Starter tier works fully offline. Pro/Enterprise check ValidonX for entitlements, with a 30-day offline grace period." }
+			},
+			{
+				"@type": "Question",
+				"name": "What server do I need?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Minimum: 2 vCPU, 4 GB RAM, 40 GB SSD, Ubuntu 22.04+. Recommended for production: 4 vCPU, 8 GB RAM, 100 GB SSD. Any VPS provider works." }
+			}
+		]
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">
