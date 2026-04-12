@@ -1,0 +1,8 @@
+# Cloudflare Pages configuration
+# Deploy: npx wrangler pages deploy dist --project-name=vectismail
+name = "vectismail"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "dist"
+
+[build]
+command = "npm run build"

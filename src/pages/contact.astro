@@ -1,12 +1,20 @@
 ---
 import "../styles/custom.css"
 const title = 'Contact — Vectis Mail'
+const description = 'Get in touch with the Vectis Mail team. Enterprise pricing, integration support, or general questions.'
 ---
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/contact" />
+	<link rel="canonical" href="https://vectismail.com/contact/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">
