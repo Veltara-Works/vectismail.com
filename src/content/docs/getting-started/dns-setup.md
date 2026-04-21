@@ -5,6 +5,12 @@ description: Configure MX, A, PTR, SPF, DKIM, and DMARC records for your Vectis 
 
 Proper DNS configuration is essential for email deliverability. This guide covers all the records you need.
 
+> **Tip:** You usually don't have to construct these by hand. When you add a domain in the [Setup Wizard](/getting-started/first-domain#step-2--publish-dns-records), Vectis generates every record below pre-filled for your domain, with a **Copy Value** button on each:
+>
+> ![Setup Wizard step 2 — DNS records with Copy Value buttons for MX, SPF, DKIM, DMARC, and Verification TXT](/screenshots/installation/03-wizard-step2-dns-records.png)
+>
+> The rest of this page explains what each record does and what the values mean — useful if you're publishing records manually or debugging deliverability.
+
 ## Required Records
 
 For a domain `example.com` on a server at `mail.example.com` (`203.0.113.10`):
