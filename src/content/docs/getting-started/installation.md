@@ -40,7 +40,7 @@ Most VPS providers block outbound port 25 by default to prevent spam abuse. With
 | **OS** | Ubuntu 24.04 LTS | Ubuntu 24.04 LTS |
 | **CPU** | 2 vCPU | 4 vCPU |
 | **RAM** | 2 GB (without ClamAV) | 4 GB+ |
-| **Disk** | 20 GB SSD | 40 GB+ SSD |
+| **Disk** | 30 GB SSD allocation (~20 GB free after OS install) | 100 GB+ SSD |
 | **Inbound ports** | 25, 80, 443, 465, 587, 993, 995 | + IPv6 |
 
 Docker is installed automatically by the script if it isn't already present.
