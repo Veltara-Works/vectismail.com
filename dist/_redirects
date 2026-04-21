@@ -1,0 +1,2 @@
+# www → apex redirect
+https://www.vectismail.com/* https://vectismail.com/:splat 301

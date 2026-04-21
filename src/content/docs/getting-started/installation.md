@@ -1,76 +1,186 @@
 ---
 title: Installation
-description: System requirements and step-by-step installation of Vectis Mail on a fresh server.
+description: Step-by-step install of Vectis Mail on a fresh Ubuntu VPS.
 ---
 
-## System Requirements
+This guide walks through a fresh install on a clean Ubuntu 24.04 VPS. The full path is **prerequisites → download → install → publish DNS records**, and the `curl | sudo bash` one-liner is interactive — you'll be prompted to confirm the hostname and admin email it auto-detects from your VPS's reverse DNS.
 
-| Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| **OS** | Ubuntu 22.04 LTS | Ubuntu 24.04 LTS |
-| **CPU** | 2 vCPU | 4 vCPU |
-| **RAM** | 4 GB | 8 GB |
-| **Disk** | 40 GB SSD | 100 GB SSD |
-| **Network** | Public IPv4, ports 25/80/443/993/995 open | + IPv6 |
-| **DNS** | MX, A, SPF, DKIM, DMARC records | + PTR (reverse DNS) |
+## Prerequisites
 
-Docker and Docker Compose are installed automatically by the Vectis installer.
+Before running the installer, make sure your VPS is in the right state.
 
-## Quick Install
+### 1. Update the OS
+
+On a fresh VPS, bring the base packages up to date:
 
 ```bash
-# Download the Vectis binary
-curl -fsSL https://get.vectismail.com | sh
+sudo apt update && sudo apt upgrade -y
+```
 
-# Run preflight checks
+If a kernel upgrade is included, **reboot before continuing**:
+
+```bash
+sudo reboot
+```
+
+### 2. Set reverse DNS (PTR) at your VPS provider
+
+The installer will look up your server's public IP and ask the provider's nameservers what hostname it points to. If reverse DNS is set, the installer pre-fills your mail-server hostname automatically — you just press Enter.
+
+Do this in your VPS provider's control panel (BinaryLane, Hetzner, DigitalOcean, etc.) — **not** at your DNS registrar. The PTR record for your server's public IPv4 should resolve to the FQDN you intend to use for mail (e.g. `mail.example.com`).
+
+### 3. Request port 25 unblock
+
+Most VPS providers block outbound port 25 by default to prevent spam abuse. Without it, your server can send to itself but not to anyone else. Check your provider's documentation for "SMTP unblock" or "port 25 unblock" — usually a one-time support request.
+
+### System requirements
+
+| Resource | Minimum | Recommended |
+|----------|---------|-------------|
+| **OS** | Ubuntu 24.04 LTS | Ubuntu 24.04 LTS |
+| **CPU** | 2 vCPU | 4 vCPU |
+| **RAM** | 2 GB (without ClamAV) | 4 GB+ |
+| **Disk** | 20 GB SSD | 40 GB+ SSD |
+| **Inbound ports** | 25, 80, 443, 465, 587, 993, 995 | + IPv6 |
+
+Docker is installed automatically by the script if it isn't already present.
+
+## Download
+
+Run the one-liner. It downloads the binary, installs Docker if needed, seeds randomly-generated secrets, and prompts you to confirm the hostname.
+
+```bash
+curl -fsSL https://get.vectismail.com | sudo bash
+```
+
+You'll see prompts like:
+
+```
+[INFO] Detected public IPv4: 203.0.113.10
+[INFO] Reverse DNS (PTR): mail.example.com
+Mail server hostname [mail.example.com]:
+TLS / admin email [admin@example.com]:
+```
+
+Press Enter to accept the defaults the script detected, or type to override. If your VPS doesn't have PTR set, the prompt defaults to a placeholder and you'll need to type your FQDN manually.
+
+When the script finishes you'll see:
+
+```
+========================================================
+ Vectis downloaded successfully
+========================================================
+
+  The binary is in place but nothing is running yet. Next steps:
+
+    1. Review /etc/vectis/config.yaml (hostname: mail.example.com)
+    2. vectis preflight    # verify system + ports + DNS
+    3. vectis install      # deploy containers, run migrations, create admin
+```
+
+This step **only puts the binary on disk** — it doesn't start anything. The next two steps do.
+
+### What if I want to run it non-interactively?
+
+Pipe the script with no TTY (e.g. unattended cloud-init), and it'll skip the prompts. It writes the detected PTR if there is one, or leaves the placeholder for you to edit `/etc/vectis/config.yaml` by hand. The next step (`vectis install`) will refuse to proceed if it finds the placeholder.
+
+## Preflight
+
+Verify the system is ready:
+
+```bash
 vectis preflight
+```
 
-# Install (interactive — prompts for hostname, admin email, passwords)
+This checks OS version, CPU/RAM, port availability (25, 80, 443, 465, 587, 993, 995), outbound port 25 reachability, Docker version. Anything red here will block install — fix and re-run.
+
+## Install
+
+```bash
 vectis install
 ```
 
-## What the installer does
+This is the heavy lift — about 11 steps over 1-3 minutes depending on your network speed. It generates service configs, writes the docker-compose file, pulls all images, brings Postgres up first and waits for it to be healthy, runs database migrations, creates the initial admin account, then starts the rest of the stack.
 
-1. **Preflight checks** — verifies OS, ports, DNS, Docker availability
-2. **Generates secrets** — database passwords, API secret, cookie key, DKIM keys
-3. **Writes config** — `config.yaml` and `secrets.yaml` to `/etc/vectis/`
-4. **Runs the config engine** — generates Postfix, Dovecot, Rspamd, Traefik configs
-5. **Starts Docker Compose** — pulls images and starts all containers
-6. **Runs migrations** — creates the database schema
-7. **Creates initial admin** — the admin account you'll use to log in
+When it finishes you'll see:
 
-## Two-Step Install (Advanced)
+```
+═══════════════════════════════════════════
+  Vectis is ready!
 
-For automated deployments, you can separate preflight from install:
+  Admin URL:      https://mail.example.com/admin
+  Admin email:    admin@example.com
+  Admin password: a3f9c2b1e5d7891f
 
-```bash
-# Step 1: Check prerequisites (exits non-zero on failure)
-vectis preflight --strict
+  !! SAVE THE PASSWORD ABOVE — it is shown only here, it is
+     not written to disk, and it will not be recoverable.
+     Change it immediately after your first login.
 
-# Step 2: Install with pre-written config files
-vectis install --config /etc/vectis/config.yaml --secrets /etc/vectis/secrets.yaml
+  DNS records you must publish now:
+    ...
 ```
 
-## Verifying the Installation
+> **Copy the admin password before closing the terminal.** It is only ever shown here. The plaintext is not written to disk anywhere — only its bcrypt hash. If you're running the installer in a VPS-provider web terminal, scrollback may be limited or absent, so copy *immediately*.
+
+### Lost the admin password?
+
+If you closed the terminal before copying it, generate a new one with:
 
 ```bash
-# Check all services are healthy
+docker compose -f /opt/vectis/docker-compose.production.yml run --rm \
+  --no-deps --entrypoint vectis api admin reset-password
+```
+
+Output includes the new password — copy it once and use it to log in.
+
+## Publish DNS records
+
+The install banner prints the records you need to publish. There are two destinations:
+
+**At your domain registrar (or Cloudflare if your nameservers point there):**
+
+```
+A     mail.example.com.   →  203.0.113.10
+```
+
+If you also have IPv6 *and* the v6 PTR matches your hostname, the banner will additionally print an `AAAA` record. If your v6 PTR isn't set or doesn't match, the banner will explicitly tell you **not** to publish AAAA — Gmail and Outlook reject IPv6 mail with mismatched PTR.
+
+**At your VPS provider's control panel (NOT the registrar):**
+
+```
+PTR   203.0.113.10   →  mail.example.com.
+```
+
+You should already have this set as a prerequisite. If you didn't, do it now — outbound mail will be rejected as spam without it.
+
+The per-domain MX, SPF, DKIM, and DMARC records come from the **Setup Wizard** in the admin UI once you log in — those are scoped to each mail-domain you add (e.g. `example.com` if you want to send `you@example.com`), not the server's hostname.
+
+## Verifying the install
+
+```bash
+# All containers healthy
 vectis status
 
-# Open the admin dashboard
-# https://your-hostname/admin
-# Log in with the admin email and password from installation
+# Admin UI loads
+# https://mail.example.com/admin
+# (allow a minute or two for Let's Encrypt to issue the cert)
 ```
 
-## Configuration Files
+If the admin URL refuses to connect from your laptop:
 
-After installation, your config lives in `/etc/vectis/`:
+- Check the public IP path: `curl -v -4 http://YOUR_IP/` should reach Traefik (a 404 with `Host: localhost` is expected)
+- If it doesn't, your VPS provider may have an inbound firewall — check their panel for any "Cloud Firewall" / "Network Firewall" / security group rules
+
+## Configuration files
+
+After install, your config lives in `/etc/vectis/`:
 
 | File | Purpose |
 |------|---------|
 | `config.yaml` | System configuration (hostname, TLS, resources, features) |
 | `secrets.yaml` | Credentials (database, API, DKIM paths, OIDC, ValidonX) |
-| `generated/` | Auto-generated service configs (do not edit manually) |
+
+The generated docker-compose file lives at `/opt/vectis/docker-compose.production.yml`, and the rendered service configs at `/var/vectis/generated/`.
 
 Changes to `config.yaml` are applied via:
 
@@ -78,9 +188,9 @@ Changes to `config.yaml` are applied via:
 vectis config apply
 ```
 
-This regenerates all service configs and restarts affected containers.
+This regenerates affected service configs and reloads the relevant containers.
 
-## Next Steps
+## Next steps
 
 - [Add your first domain](/getting-started/first-domain)
-- [Configure DNS records](/getting-started/dns-setup)
+- [Configure DNS records](/getting-started/dns-setup) — the per-mail-domain records (MX, SPF, DKIM, DMARC)
