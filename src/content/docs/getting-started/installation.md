@@ -166,6 +166,12 @@ vectis status
 # (allow a minute or two for Let's Encrypt to issue the cert)
 ```
 
+Once the cert has issued, opening the admin URL in your browser should show the login screen:
+
+![Vectis Mail admin login screen](/screenshots/installation/01-login.png)
+
+Sign in with the admin email and password from the banner. From here, the [Your First Domain](/getting-started/first-domain) guide walks through the Setup Wizard to add a domain and create your first mailbox.
+
 If the admin URL refuses to connect from your laptop:
 
 - Check the public IP path: `curl -v -4 http://YOUR_IP/` should reach Traefik (a 404 with `Host: localhost` is expected)
