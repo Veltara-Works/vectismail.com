@@ -113,25 +113,19 @@ const description = 'Get in touch with the Vectis Mail team. Enterprise pricing,
 				});
 
 				if (res.ok) {
+					form.style.display = 'none';
 					status.style.display = 'block';
 					status.style.color = '#4ade80';
-					status.textContent = 'Message sent! We\'ll get back to you soon.';
-					form.reset();
-					counter.textContent = '0';
+					status.style.padding = '1.5rem';
+					status.style.fontSize = '1.05rem';
+					status.innerHTML = '<strong>Thanks for your message.</strong><br />We\'ll be in contact shortly.';
 				} else {
 					throw new Error('Server error');
 				}
 			} catch {
-				// Fallback: construct mailto link so the message isn't lost.
-				const deptMap = { general: 'hello@veltaraworks.com', sales: 'sales@veltaraworks.com', support: 'support@vectismail.com' };
-				const to = deptMap[data.department] || deptMap.general;
-				const subject = encodeURIComponent(`[${data.department}] Contact from ${data.name}`);
-				const body = encodeURIComponent(data.message);
-				window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-
 				status.style.display = 'block';
-				status.style.color = '#fbbf24';
-				status.textContent = 'Opening your email client as a fallback...';
+				status.style.color = '#f87171';
+				status.textContent = 'Something went wrong sending your message. Please try again in a moment, or email us directly at hello@vectismail.com.';
 			} finally {
 				btn.disabled = false;
 				btn.textContent = 'Send Message';
