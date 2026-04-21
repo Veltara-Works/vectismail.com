@@ -25,9 +25,18 @@ sudo reboot
 
 ### 2. Set reverse DNS (PTR) at your VPS provider
 
-The installer will look up your server's public IP and ask the provider's nameservers what hostname it points to. If reverse DNS is set, the installer pre-fills your mail-server hostname automatically — you just press Enter.
+PTR (reverse DNS) is a **hard requirement**, not a nice-to-have. Without a matching PTR record, your outbound mail will be rejected as spam by Gmail, Outlook, and most receiving servers — *and* the deliverability check in the Setup Wizard will fail.
 
-Do this in your VPS provider's control panel (BinaryLane, Hetzner, DigitalOcean, etc.) — **not** at your DNS registrar. The PTR record for your server's public IPv4 should resolve to the FQDN you intend to use for mail (e.g. `mail.example.com`).
+Do this at your VPS provider's control panel (BinaryLane, Hetzner, DigitalOcean, etc.) — **not** at your DNS registrar. Some providers expose it as a simple field; others require a one-time support request (same channel as the port 25 unblock below). The PTR record for your server's public IPv4 should resolve to the FQDN you intend to use for mail (e.g. `mail.example.com`).
+
+Verify it from any machine once set:
+
+```bash
+# Expect output like: 203.0.113.10.in-addr.arpa name = mail.example.com.
+dig -x YOUR_SERVER_IP +short
+```
+
+The installer looks this up for you and, if it resolves, pre-fills your mail-server hostname automatically — you just press Enter. If PTR isn't set when you run the installer, you'll have to type the hostname manually and fix the PTR afterwards.
 
 ### 3. Request port 25 unblock
 
