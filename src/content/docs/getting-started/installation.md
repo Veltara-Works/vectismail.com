@@ -9,7 +9,29 @@ This guide walks through a fresh install on a clean Ubuntu 24.04 VPS. The full p
 
 Before running the installer, make sure your VPS is in the right state.
 
-### 1. Update the OS
+### 1. Enable SSH access to the VPS
+
+Many VPS providers (BinaryLane and Hetzner among them) ship Ubuntu images with password-based SSH disabled — `/etc/ssh/sshd_config` ships with `PermitRootLogin prohibit-password`, and no non-root user is created. If you try to `ssh root@your-vps` immediately after provisioning, the connection will be refused.
+
+You have two options:
+
+**(a) Add your SSH public key at the provider's panel.** Most providers let you paste a key into the VPS config before (or shortly after) it boots. With the key installed, `ssh root@your-vps` works immediately, and nothing else is needed here.
+
+**(b) Use the provider's web console to create a sudo user and enable password SSH.** Open the web console (BinaryLane calls it "VNC"; DigitalOcean "Droplet Console"), log in as root with the initial password the provider emailed you, then:
+
+```bash
+# Create a non-root user with sudo
+adduser vectis
+usermod -aG sudo vectis
+
+# Allow password-based SSH for this user (optional — key-based is preferred)
+# Edit /etc/ssh/sshd_config: set "PasswordAuthentication yes"
+sudo systemctl reload ssh
+```
+
+You only need this step once. Everything else in this guide assumes you can SSH into the box.
+
+### 2. Update the OS
 
 On a fresh VPS, bring the base packages up to date:
 
@@ -23,7 +45,7 @@ If a kernel upgrade is included, **reboot before continuing**:
 sudo reboot
 ```
 
-### 2. Set reverse DNS (PTR) at your VPS provider
+### 3. Set reverse DNS (PTR) at your VPS provider
 
 PTR (reverse DNS) is a **hard requirement**, not a nice-to-have. Without a matching PTR record, your outbound mail will be rejected as spam by Gmail, Outlook, and most receiving servers — *and* the deliverability check in the Setup Wizard will fail.
 
@@ -38,7 +60,7 @@ dig -x YOUR_SERVER_IP +short
 
 The installer looks this up for you and, if it resolves, pre-fills your mail-server hostname automatically — you just press Enter. If PTR isn't set when you run the installer, you'll have to type the hostname manually and fix the PTR afterwards.
 
-### 3. Request port 25 unblock
+### 4. Request port 25 unblock
 
 Most VPS providers block outbound port 25 by default to prevent spam abuse. Without it, your server can send to itself but not to anyone else. Check your provider's documentation for "SMTP unblock" or "port 25 unblock" — usually a one-time support request.
 
@@ -136,7 +158,7 @@ When it finishes you'll see:
 If you closed the terminal before copying it, generate a new one with:
 
 ```bash
-docker compose -f /opt/vectis/docker-compose.production.yml run --rm \
+docker compose -f /etc/vectis/docker-compose.yml run --rm \
   --no-deps --entrypoint vectis api admin reset-password
 ```
 
@@ -195,7 +217,7 @@ After install, your config lives in `/etc/vectis/`:
 | `config.yaml` | System configuration (hostname, TLS, resources, features) |
 | `secrets.yaml` | Credentials (database, API, DKIM paths, OIDC, ValidonX) |
 
-The generated docker-compose file lives at `/opt/vectis/docker-compose.production.yml`, and the rendered service configs at `/var/vectis/generated/`.
+The generated docker-compose file lives at `/etc/vectis/docker-compose.yml`, and the rendered service configs at `/var/vectis/generated/`.
 
 Changes to `config.yaml` are applied via:
 
