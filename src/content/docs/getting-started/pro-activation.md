@@ -22,17 +22,36 @@ Activating Pro:
 - Enables priority email support tickets.
 - No mail downtime — features unlock immediately, no service restart.
 
+## One subscription, many installs
+
+Pro is billed at **$29 per tenant per month**, where a tenant is your
+organisation's account on ValidonX. A single subscription authorises
+**all Vectis installs operated by your organisation** — production,
+staging, multi-region, branch deployments. You activate each Vectis
+install by pasting the same four credentials on its License page; the
+ValidonX `service_key` and `tenant_id` are shared across them.
+
+If your deployment shape is "one Vectis server", the subscription
+covers it as expected. If you run multiple Vectis installs under the
+same business, you still only pay one subscription. Per-install
+license scoping (so a single compromised install can be revoked
+without impacting the rest) is on the v0.1.x roadmap.
+
 ## Step 1 — Get your subscription details
 
 After completing checkout on ValidonX, your subscription dashboard will
 display the four fields Vectis needs:
 
 - **Subscription ID** — identifies your active Pro plan.
-- **Tenant ID** — your customer-account identifier in ValidonX.
-- **Service Key** — a per-install authentication key. Treat as a secret;
-  it grants this Vectis server the ability to identify itself to ValidonX.
-- **Server ID** *(optional)* — a unique label for this specific server.
-  If left blank, Vectis defaults to the configured hostname.
+- **Tenant ID** — your customer-account identifier in ValidonX. One
+  tenant covers every Vectis install operated by your organisation.
+- **Service Key** — a per-tenant authentication key. Treat as a secret;
+  it authenticates all your organisation's Vectis installs to
+  ValidonX. (Per-install scoping is on the v0.1.x roadmap.)
+- **Server ID** *(optional)* — a unique label for this specific
+  install, used in usage telemetry to distinguish multiple Vectis
+  installs running under the same subscription. If left blank, Vectis
+  defaults to the configured hostname.
 
 The base URL defaults to `https://api.validonx.com` and only needs to be
 overridden if Veltara Works has issued you a different endpoint.
@@ -102,9 +121,12 @@ preserved** — domains, mailboxes, and aliases beyond the Free-tier caps
 remain in place and operational. Only the *creation* of new resources
 past the Starter limits is blocked from that point.
 
-To move a subscription to a different server, run **Remove license** on
-the old server first (so ValidonX can reissue the seat) then activate
-on the new one.
+Because one tenant subscription covers all your Vectis installs, you
+do **not** need to remove the licence to bring up a second install —
+just paste the same four credentials on the new server's License page
+and it activates as Pro under the same subscription. To fully retire
+an install, run **Remove license** on the old server before
+decommissioning it.
 
 ## Activating via secrets.yaml (advanced / scripted)
 
