@@ -29,8 +29,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 		"url": "https://vectismail.com",
 		"offers": [
 			{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "description": "Up to 3 domains, 25 mailboxes. Free forever." },
-			{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "description": "Unlimited domains & mailboxes, sending API, webhooks, analytics." },
-			{ "@type": "Offer", "name": "Enterprise", "price": "149", "priceCurrency": "USD", "description": "Multi-node clustering, SAML SSO, retention policies, SLA." }
+			{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "description": "Unlimited domains & mailboxes, per-domain analytics, OIDC SSO, priority support." }
 		],
 		"publisher": {
 			"@type": "Organization",
@@ -128,8 +127,8 @@ const description = 'Containerised, self-hosted email server with declarative co
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-cyan">&#11036;</div>
-				<h3>Clustering &amp; HA</h3>
-				<p>Multi-node clustering with leader election, rolling updates, PgBouncer connection pooling, and cross-node health checking for high-availability deployments.</p>
+				<h3>Built for Operators</h3>
+				<p>Atomic updates via the orchestrator UI: plan, apply, rollback. Encrypted backups with one-click restore. Automatic TLS via acme.sh and Traefik. Full audit log.</p>
 			</div>
 		</div>
 	</section>
