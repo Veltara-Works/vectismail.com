@@ -140,7 +140,7 @@ validonx:
   tenant_id: ""
   subscription_id: ""
   server_id: ""
-  license_key: ""   # v0.1.0-beta1 only — see "About license_key" below
+  license_key: ""
 ```
 
 When the API container starts, it reads the validonx_config DB row first
@@ -150,28 +150,18 @@ populated.
 
 For most deployments the admin UI flow is the recommended path.
 
-## About `license_key` (v0.1.0-beta1 only)
+## About `license_key`
 
-The `license_key` field listed under `secrets.yaml` is a transitional
-requirement during the **v0.1.0-beta1** window only. ValidonX issues
-license keys as separate cryptographic strings under each subscription;
-during beta1 the Vectis client calls ValidonX's `/api/v1/integration/
-entitlements/check` endpoint, which requires `license_key` on the wire.
-Operators activating beta1 paste the value into `secrets.yaml` (it is
-**not** exposed via the admin UI).
+`license_key` is the ValidonX-issued license string for your install.
+ValidonX issues license keys as separate cryptographic strings under
+each subscription, and the value is sent on the wire to ValidonX's
+licensing-resolve endpoint so the server can locate the right license
+row inside your tenant.
 
-When **v0.1.0 stable** ships, ValidonX's dedicated `/v1/licensing/resolve`
-endpoint resolves `license_key` server-side from the existing
-`subscription_id` plus tenant context. At that point:
+It is **operator-only** — paste it into `/etc/vectis/secrets.yaml` once
+at install time or post-checkout, alongside the other validonx fields.
+The admin UI License page does **not** prompt for it (because it's not
+the kind of value an admin should rotate from a browser session).
 
-- The `license_key` field disappears from `secrets.yaml` and the
-  `ValidonXSecrets` struct.
-- The path-1 adapter at `internal/validonx/path1.go` is deleted.
-- Existing v0.1.0-beta1 installs upgrade through the orchestrator UI
-  with no operator action — the license_key value already in their
-  `secrets.yaml` is simply ignored after the upgrade.
-
-This is documented as `§11` in [`docs/notes/deferred-items.md`](https://github.com/Veltara-Works/vectis/blob/main/docs/notes/deferred-items.md)
-in the Vectis repo. If you're activating Pro on or after v0.1.0 stable,
-ignore the `license_key` field — your ValidonX subscription details
-won't include one.
+If you ever need to find the value again, it's available on your
+ValidonX dashboard under your subscription's "License keys" section.
