@@ -158,11 +158,17 @@ When it finishes you'll see:
 If you closed the terminal before copying it, generate a new one with:
 
 ```bash
-docker compose -f /etc/vectis/docker-compose.yml run --rm \
-  --no-deps --entrypoint vectis api admin reset-password
+docker run --rm \
+  --network vectis_vectis-data \
+  -v /etc/vectis:/etc/vectis:ro \
+  --entrypoint vectis \
+  ghcr.io/veltara-works/vectis-api:latest \
+  admin reset-password your-admin@example.com
 ```
 
 Output includes the new password — copy it once and use it to log in.
+
+> **Why not `docker compose run`?** A Compose v5.x bug silently disconnects the live `vectis-api` container from its internal Docker networks during the transient-container handoff. The plain `docker run --network` form above bypasses that interaction and is safe to repeat.
 
 ## Publish DNS records
 

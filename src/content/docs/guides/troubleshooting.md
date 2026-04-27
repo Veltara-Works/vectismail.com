@@ -241,12 +241,20 @@ vectis logs dovecot --tail 100
 vectis logs api --tail 100
 ```
 
-If you have forgotten the admin password, you can reset it:
+If you have forgotten the admin password, you can reset it. SSH into the host and run a one-shot recovery container — the host `vectis` binary cannot reach Postgres (the data network is `internal: true`), so the reset must run inside a container on that network:
 
 ```bash
-# Via CLI (if you have SSH access)
-vectis admin reset-password --email admin@example.com
+docker run --rm \
+  --network vectis_vectis-data \
+  -v /etc/vectis:/etc/vectis:ro \
+  --entrypoint vectis \
+  ghcr.io/veltara-works/vectis-api:latest \
+  admin reset-password admin@example.com
 ```
+
+The output prints the new password once. Copy it before closing the terminal.
+
+> **Avoid `docker compose run` here.** A Compose v5.x bug silently disconnects the live `vectis-api` container from its internal networks during the transient-container handoff, leaving the API unable to reach Postgres until manually reconnected. The `docker run --network` form above sidesteps that bug entirely.
 
 ### TOTP issues
 
