@@ -49,9 +49,7 @@ To create a rule:
 ## Custom branding
 
 The Roundcube install uses the **Elastic** skin with a Vectis-themed
-overlay (logos, accent colour). Operators on Pro can override the skin
-further via the Vectis admin UI's branding controls *(custom branding
-ships in v0.1.1)*.
+overlay (logos, accent colour).
 
 ## Operator notes
 
