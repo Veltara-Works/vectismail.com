@@ -1,0 +1,68 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro'
+import type { SidebarEntry, SidebarLink, SidebarGroup } from '@astrojs/starlight/schema'
+
+type FindResult = { group: SidebarGroup | null; link: SidebarLink }
+
+function findCurrent(entries: SidebarEntry[], parent: SidebarGroup | null): FindResult | null {
+	for (const entry of entries) {
+		if (entry.type === 'link' && entry.isCurrent) {
+			return { group: parent, link: entry }
+		}
+		if (entry.type === 'group') {
+			const found = findCurrent(entry.entries, entry)
+			if (found) return found
+		}
+	}
+	return null
+}
+
+function groupHref(group: SidebarGroup): string | null {
+	for (const entry of group.entries) {
+		if (entry.type === 'link') return entry.href
+		if (entry.type === 'group') {
+			const nested = groupHref(entry)
+			if (nested) return nested
+		}
+	}
+	return null
+}
+
+const SITE = 'https://vectismail.com'
+const route = Astro.locals.starlightRoute
+const found = findCurrent(route.sidebar, null)
+
+const items: { '@type': 'ListItem'; position: number; name: string; item: string }[] = [
+	{ '@type': 'ListItem', position: 1, name: 'Vectis Mail', item: SITE + '/' },
+]
+
+if (found) {
+	if (found.group) {
+		const href = groupHref(found.group)
+		if (href) {
+			items.push({
+				'@type': 'ListItem',
+				position: items.length + 1,
+				name: found.group.label,
+				item: new URL(href, SITE).toString(),
+			})
+		}
+	}
+	items.push({
+		'@type': 'ListItem',
+		position: items.length + 1,
+		name: found.link.label,
+		item: new URL(found.link.href, SITE).toString(),
+	})
+}
+
+const breadcrumb = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: items,
+}
+---
+<Default {...Astro.props}><slot /></Default>
+{items.length >= 2 && (
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+)}
