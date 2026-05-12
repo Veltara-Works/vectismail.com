@@ -26,6 +26,24 @@ const description = 'Vectis Mail is the self-hosted email platform from Veltara 
 	<link rel="canonical" href="https://vectismail.com/about/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Vectis Mail",
+		"url": "https://vectismail.com",
+		"logo": "https://vectismail.com/brand/logos/vectis-mail-logo-white.png",
+		"description": "Self-hosted email platform with declarative config, sending API, and enterprise features. A product of Veltara Works.",
+		"parentOrganization": {
+			"@type": "Organization",
+			"name": "Veltara Works",
+			"url": "https://veltaraworks.com"
+		},
+		"sameAs": [
+			"https://github.com/Veltara-Works/vectis",
+			"https://validonx.com",
+			"https://veltaraworks.com"
+		]
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">
