@@ -1,7 +1,7 @@
 ---
 import "../styles/custom.css"
 const title = 'Pricing — Vectis Mail'
-const description = 'Simple, transparent pricing. Start free, scale to enterprise.'
+const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 mailboxes), Pro at $29 per tenant/month with unlimited domains, OIDC SSO, and priority support.'
 ---
 <html lang="en">
 <head>
@@ -12,11 +12,21 @@ const description = 'Simple, transparent pricing. Start free, scale to enterpris
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://vectismail.com/pricing" />
+	<meta property="og:url" content="https://vectismail.com/pricing/" />
+	<meta property="og:image" content="https://vectismail.com/og/default.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail pricing — free Starter, $29/tenant/month Pro" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://vectismail.com/og/default.png" />
+	<meta name="theme-color" content="#0C0C0D" />
 	<link rel="canonical" href="https://vectismail.com/pricing/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
-	<script type="application/ld+json" set:html={JSON.stringify({
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		"mainEntity": [
@@ -56,8 +66,8 @@ const description = 'Simple, transparent pricing. Start free, scale to enterpris
 	</nav>
 
 	<section class="section" style="text-align: center;">
-		<h2>Simple, transparent pricing</h2>
-		<p class="subtitle">Start free. Upgrade when you need more.</p>
+		<h1>Vectis Mail pricing</h1>
+		<p class="subtitle">Self-hosted email platform — free Starter tier, $29/tenant/month Pro. Start free, upgrade when you need more.</p>
 
 		<div class="pricing-grid" style="grid-template-columns: repeat(2, minmax(280px, 380px)); justify-content: center;">
 			<div class="pricing-card">
@@ -129,6 +139,7 @@ const description = 'Simple, transparent pricing. Start free, scale to enterpris
 		</div>
 	</section>
 
+	<p class="page-meta">Last updated <time datetime="2026-05-12">12 May 2026</time></p>
 	<footer class="footer">
 		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
 		<div>

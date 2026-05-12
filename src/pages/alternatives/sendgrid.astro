@@ -1,0 +1,385 @@
+---
+import '../../styles/custom.css'
+const title = 'SendGrid Alternative — Self-Hosted with Vectis Mail'
+const description = 'Self-hosted SendGrid alternative. Same REST API, inbound webhooks, and analytics — without per-email pricing. Flat $0–29/month covers unlimited emails. When to switch from SendGrid.'
+const url = 'https://vectismail.com/alternatives/sendgrid/'
+const ogImage = 'https://vectismail.com/og/alternatives-sendgrid.png'
+const datePublished = '2026-05-12'
+const dateModified = '2026-05-12'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail vs SendGrid — self-hosted email API comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://vectismail.com/alternatives/" },
+					{ "@type": "ListItem", "position": 3, "name": "SendGrid", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Vectis Mail vs SendGrid",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/about/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.png" }
+				}
+			},
+			{
+				"@type": "Product",
+				"name": "Vectis Mail",
+				"description": "Self-hosted, declarative email platform with a SendGrid-compatible REST API. Send unlimited transactional email on your own infrastructure for a flat monthly price.",
+				"url": "https://vectismail.com/",
+				"brand": { "@type": "Brand", "name": "Vectis Mail" },
+				"offers": [
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
+					{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD" }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "What does SendGrid cost vs self-hosting Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "SendGrid's cheapest paid tier is $19.95/month for 50,000 emails (Essentials). Pro starts at $89.95/month for 100,000+ emails. At 1 million emails per month, expect $89.95+ in base fees plus dedicated IP charges ($30/month per IP). Vectis Mail self-hosted on a $20/month VPS handles the same volume for the cost of the VPS plus optionally $29/tenant/month for the Pro tier — about $49/month total at any sending volume." }
+					},
+					{
+						"@type": "Question",
+						"name": "Is Vectis Mail's API compatible with SendGrid's?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Not 1:1 — Vectis Mail has its own JSON API with the same conceptual shape (to/from/subject/body/attachments). Migration typically takes a few hours: replace the SendGrid client call with an HTTP POST to Vectis Mail's send endpoint, update webhook field-mapping for events, and re-create templates. The conceptual surface (events, webhooks, batch sending, domain authentication) is the same." }
+					},
+					{
+						"@type": "Question",
+						"name": "What about deliverability on a self-hosted server?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Deliverability on Vectis Mail is as good as the IP reputation you build. Day one on a fresh VPS IP, you'll need 2–4 weeks of IP warmup before sending bulk volume to Google/Microsoft inboxes — SendGrid hides this by pooling pre-warmed IPs. After warmup, self-hosted deliverability with DKIM/SPF/DMARC/MTA-STS properly configured typically matches managed providers. The Vectis Mail IP warmup guide walks through the calendar schedule." }
+					},
+					{
+						"@type": "Question",
+						"name": "How long does it take to migrate from SendGrid to Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Plan for about 5 weeks end-to-end: 1 week to wire up Vectis Mail and update client code, 3 weeks of dual-send (both providers in parallel while the new IP warms), 1 week to decommission SendGrid. The infrastructure work itself is small; the IP warmup calendar is the actual constraint." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Vectis Mail handle inbound email like SendGrid's Inbound Parse?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes — inbound webhooks are first-class in Vectis Mail. Configure an MX record at your domain, point inbound rules at a webhook URL, and Vectis Mail POSTs the full parsed message (body, HTML, attachments, SMTP envelope) to your application with HMAC-SHA256 signing and exponential-backoff retry. The same product handles inbound and outbound — no separate billing or integration." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" height="34" /></a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Alternatives · Transactional Email</div>
+		<h1>SendGrid alternative.<br/><span>Self-hosted, flat price.</span></h1>
+		<p class="alt-lead">
+			Vectis Mail is a self-hosted email platform with the same REST API, inbound
+			webhooks, and analytics you use SendGrid for — without per-email pricing.
+			Send unlimited transactional email for a flat $0–29/month on your own
+			infrastructure. Mailbox hosting included; no separate IMAP server to run.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>12 May 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>The cost-vs-control trade</h2>
+		<p class="subtitle">SendGrid prices per email. Vectis Mail prices per tenant. The math diverges fast.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th>Monthly volume</th><th>SendGrid (Email API)</th><th>Vectis Mail (Pro + $20/mo VPS)</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>10,000 emails</td><td>$19.95 (Essentials)</td><td><strong>$49/mo flat</strong></td></tr>
+					<tr><td>100,000 emails</td><td>$19.95–$89.95</td><td><strong>$49/mo flat</strong></td></tr>
+					<tr><td>500,000 emails</td><td>~$89.95 + dedicated IP ($30) = $120/mo</td><td><strong>$49/mo flat</strong></td></tr>
+					<tr><td>1,000,000 emails</td><td>$89.95+ base, often $150–$250 with IP + overage</td><td><strong>$49/mo flat</strong></td></tr>
+					<tr><td>5,000,000+ emails</td><td>Premier — custom, typically $2,000–$10,000+/mo</td><td><strong>$49/mo</strong> (may need larger VPS at this scale)</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
+			SendGrid pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" rel="noopener">twilio.com/en-us/products/email-api/pricing</a> retrieved 2026-05-12. Vectis Mail assumes a $20/mo VPS + Pro tier; Starter tier ($0) works for installs with up to 3 domains and 25 mailboxes per domain.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The honest verdict</h2>
+		<div class="verdict-grid">
+			<div class="verdict-card verdict-win">
+				<h3>Choose Vectis Mail when…</h3>
+				<ul>
+					<li>Your SendGrid bill is climbing past $200/month and the per-email model feels misaligned with your costs.</li>
+					<li>Data sovereignty matters — EU regulated industries, healthcare, government, sovereignty-driven sectors.</li>
+					<li>You also need to host mailboxes (e.g. <code>support@yourdomain</code>) and want one product for inbound + outbound.</li>
+					<li>You want full control over the underlying mail stack — Postfix tuning, custom Rspamd rules, custom headers.</li>
+					<li>You're building a SaaS and want predictable cost scaling instead of usage-based bills.</li>
+					<li>You distrust vendor lock-in and want your historical email data in your own Postgres.</li>
+				</ul>
+			</div>
+			<div class="verdict-card verdict-stay">
+				<h3>Stay on SendGrid when…</h3>
+				<ul>
+					<li>You have zero sysadmin capacity and "don't think about infrastructure" is worth $89.95/month.</li>
+					<li>You need pre-warmed IPs from day one — Vectis Mail on a fresh IP requires 2–4 weeks of warmup.</li>
+					<li>SOC 2 / HIPAA reports from your email provider are a procurement requirement.</li>
+					<li>You're at 100M+ emails/month and need a team watching ISP relations daily.</li>
+					<li>You use Marketing Campaigns (broadcast) — Vectis Mail is transactional + receive only.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Pricing model</h3>
+		<p>
+			SendGrid prices per email volume — tiers from Essentials ($19.95/month at 50K
+			emails) through Pro ($89.95/month at 100K–2.5M emails) to Premier (custom,
+			5M+). Overage costs run $0.0005–$0.0013 per email. Additional dedicated IPs
+			are $30/month each. The bill grows linearly with sending volume even though
+			the underlying infrastructure cost doesn't.
+		</p>
+		<p>
+			Vectis Mail prices per tenant. Starter is free forever; Pro is $29 per tenant
+			per month for unlimited domains, unlimited mailboxes, unlimited email volume.
+			Add a $20/month VPS to host it and your fully-loaded cost is $49/month whether
+			you send 10,000 or 10 million emails. One ValidonX Pro subscription covers
+			unlimited Vectis Mail installs — useful for SaaS resellers and agencies
+			running mail for client domains.
+		</p>
+
+		<h3 class="alt-h3">API surface</h3>
+		<p>
+			Conceptually similar. Both offer a REST API with single + batch sending,
+			template rendering, event webhooks (delivered, open, click, bounce), and
+			inbound parsing.
+		</p>
+		<p>
+			SendGrid's API is mature, has SDKs in every language, and has 15+ years of
+			documentation + Stack Overflow answers behind it. Vectis Mail's API is
+			younger but covers the same ground — see the <a href="/api/">API Reference</a>
+			for the full surface. Migration from SendGrid is mostly mechanical: replace
+			the <code>sg.send()</code> call with an HTTP POST, map webhook event field
+			names (the shape is similar but not identical), re-create templates.
+		</p>
+
+		<h3 class="alt-h3">Mailbox hosting + inbound</h3>
+		<p>
+			SendGrid is send-only. To host a mailbox like <code>support@yourdomain</code>
+			that receives replies, you need a separate mail server or another service.
+			SendGrid's Inbound Parse Webhook covers receiving for processing-only use
+			cases but isn't a full IMAP/POP3 mailbox.
+		</p>
+		<p>
+			Vectis Mail handles both. The same instance hosts user mailboxes (IMAP/POP3
+			with the full Roundcube webmail) and runs inbound webhooks for programmatic
+			processing. One product, one set of DNS records, one cost line.
+		</p>
+
+		<h3 class="alt-h3">Data sovereignty</h3>
+		<p>
+			SendGrid stores email content + metadata on US-primary infrastructure
+			(EU residency available on certain plans). For organisations in regulated
+			industries — healthcare, government, financial services, EU public sector —
+			that's often a non-starter.
+		</p>
+		<p>
+			With Vectis Mail, the data is wherever you host the server. Your Postgres
+			database holds the audit trail, attachments, message metadata. Your own
+			filesystem holds the IMAP storage. GDPR / data-residency / sovereignty
+			conversations become "where did you deploy the server" instead of "trust the
+			vendor's compliance statement."
+		</p>
+
+		<h3 class="alt-h3">Deliverability</h3>
+		<p>
+			This is the most honest concession: SendGrid maintains warm IP pools, has
+			ISP relations staff, and runs blocklist removal at scale. Self-hosting on a
+			fresh VPS IP means your IP has no reputation on day one — Google, Microsoft,
+			and Yahoo will throttle or spam-fold most mail until you've established a
+			pattern over 2–4 weeks.
+		</p>
+		<p>
+			The good news: once warm, a self-hosted IP with properly configured DKIM,
+			SPF, DMARC, MTA-STS, and PTR records is functionally equivalent for
+			deliverability. Vectis Mail ships with all of these configured correctly by
+			default. The <a href="/guides/ip-warmup/">IP warmup guide</a> and
+			<a href="/guides/deliverability/">deliverability guide</a> walk through the
+			calendar.
+		</p>
+
+		<h3 class="alt-h3">Compliance documentation</h3>
+		<p>
+			SendGrid hands you SOC 2 Type II reports, ISO 27001 certificates, and a
+			HIPAA-eligible BAA on Premier. Self-hosting Vectis Mail means you are the
+			data custodian; the compliance surface shifts to whoever runs the
+			infrastructure. For some procurement processes that's harder; for others
+			(especially internal audits in regulated industries) it's actually easier
+			because nothing leaves your network boundary.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Migrating from SendGrid to Vectis Mail</h2>
+		<p>
+			The biggest cost isn't the engineering — it's the IP warmup calendar. Plan
+			for 5 weeks end-to-end.
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Configure your sending domain and set up DKIM/SPF/DMARC DNS records (Vectis Mail generates the values to publish).</li>
+			<li><strong>Update client code</strong>: swap the SendGrid SDK call for an HTTP POST to Vectis Mail's send endpoint. Field names differ slightly but the shape is similar. See <a href="/api/sending/">sending API docs</a>.</li>
+			<li><strong>Map webhook event fields</strong>: SendGrid uses field names like <code>email</code>, <code>event</code>, <code>timestamp</code>; Vectis Mail uses its own shape (documented in <a href="/api/webhooks/">webhook docs</a>). One small adapter handles both during transition.</li>
+			<li><strong>Re-create templates</strong>: download HTML templates from SendGrid, store as local files or in Vectis Mail's template store, render server-side.</li>
+			<li><strong>Dual-send during warmup</strong>: keep SendGrid handling production volume; route a small percentage (start ~1%) through Vectis Mail. Follow the IP warmup schedule, doubling daily volume each day for 2 weeks.</li>
+			<li><strong>Shift production traffic</strong> once the new IP is warm. Most teams flip a percentage flag in their code week 3.</li>
+			<li><strong>Decommission SendGrid</strong> once you've watched a full week of clean deliverability on the new IP.</li>
+		</ol>
+		<p>
+			Historical analytics in SendGrid cannot be exported in bulk — most teams accept losing pre-migration history. Going forward, your data lives in your Postgres.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>What does SendGrid cost vs self-hosting Vectis Mail?</h3>
+				<p>
+					SendGrid's cheapest paid tier is $19.95/month for 50,000 emails
+					(Essentials). Pro starts at $89.95/month for 100,000+ emails. At 1 million
+					emails per month, expect $89.95+ in base fees plus dedicated IP charges
+					($30/month per IP). Vectis Mail self-hosted on a $20/month VPS handles the
+					same volume for the cost of the VPS plus optionally $29/tenant/month for
+					the Pro tier — about $49/month total at any sending volume.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Is Vectis Mail's API compatible with SendGrid's?</h3>
+				<p>
+					Not 1:1 — Vectis Mail has its own JSON API with the same conceptual shape
+					(to/from/subject/body/attachments). Migration typically takes a few hours:
+					replace the SendGrid client call with an HTTP POST to Vectis Mail's send
+					endpoint, update webhook field-mapping for events, and re-create templates.
+					The conceptual surface (events, webhooks, batch sending, domain
+					authentication) is the same.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>What about deliverability on a self-hosted server?</h3>
+				<p>
+					Deliverability on Vectis Mail is as good as the IP reputation you build.
+					Day one on a fresh VPS IP, you'll need 2–4 weeks of IP warmup before
+					sending bulk volume to Google/Microsoft inboxes — SendGrid hides this by
+					pooling pre-warmed IPs. After warmup, self-hosted deliverability with
+					DKIM/SPF/DMARC/MTA-STS properly configured typically matches managed
+					providers. The <a href="/guides/ip-warmup/">IP warmup guide</a> walks
+					through the calendar schedule.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>How long does it take to migrate from SendGrid to Vectis Mail?</h3>
+				<p>
+					Plan for about 5 weeks end-to-end: 1 week to wire up Vectis Mail and update
+					client code, 3 weeks of dual-send (both providers in parallel while the new
+					IP warms), 1 week to decommission SendGrid. The infrastructure work itself
+					is small; the IP warmup calendar is the actual constraint.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Vectis Mail handle inbound email like SendGrid's Inbound Parse?</h3>
+				<p>
+					Yes — inbound webhooks are first-class in Vectis Mail. Configure an MX
+					record at your domain, point inbound rules at a webhook URL, and Vectis Mail
+					POSTs the full parsed message (body, HTML, attachments, SMTP envelope) to
+					your application with HMAC-SHA256 signing and exponential-backoff retry.
+					The same product handles inbound and outbound — no separate billing or
+					integration.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="cta-section">
+		<h2>Try Vectis Mail</h2>
+		<p>Same API, your infrastructure, flat price.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing" class="btn-secondary">View Pricing</a>
+		</div>
+	</div>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>SendGrid pricing: <a href="https://www.twilio.com/en-us/products/email-api/pricing" rel="noopener">twilio.com/en-us/products/email-api/pricing</a> (retrieved 2026-05-12)</li>
+			<li>Vectis Mail API surface: <a href="/api/">/api</a> reference</li>
+			<li>Vectis Mail IP warmup + deliverability: <a href="/guides/ip-warmup/">/guides/ip-warmup</a> · <a href="/guides/deliverability/">/guides/deliverability</a></li>
+			<li>Vectis Mail pricing: <a href="/pricing/">/pricing</a></li>
+		</ul>
+	</aside>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>

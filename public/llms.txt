@@ -1,0 +1,74 @@
+# Vectis Mail
+
+> Self-hosted, declarative email platform. Packages Postfix, Dovecot, Rspamd, Traefik, Postgres, and Valkey into a single deployment managed through one YAML config file and a REST API. Modern alternative to Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark, and Mailgun — combines the control of self-hosting with the developer ergonomics of transactional email SaaS.
+
+## Quick facts
+
+- Open source under AGPL-3.0; Pro features gated via license key (ValidonX).
+- 14 containers by default (10 if observability and ClamAV disabled).
+- Single declarative config: `config.yaml` + `vectis apply`.
+- REST API: 60+ endpoints (sending, webhooks, domains, mailboxes, analytics, admin).
+- Inbound webhooks: HMAC-SHA256 signed, retry-with-backoff.
+- Atomic update orchestrator: 6-phase pipeline with automatic rollback.
+- Mail TLS via acme.sh + Cloudflare DNS-01.
+- Runs on any Linux VPS with Docker (2 vCPU / 4 GB RAM minimum, 4 vCPU / 8 GB RAM recommended for production).
+- Production: live at mail.vectismail.com since 2026-04-03; powers transactional email for ValidonX and other Veltara Works products.
+
+## Pricing
+
+- Starter: $0 forever — 3 domains, 25 mailboxes per domain, full mail stack, sending API, webhooks, webmail, monitoring.
+- Pro: $29 per tenant per month — unlimited domains, unlimited mailboxes, per-domain analytics, per-domain spam controls, OIDC SSO, priority support. One subscription covers unlimited Vectis Mail installs.
+
+See also: [pricing.md](https://vectismail.com/pricing.md) for machine-readable pricing.
+
+## Documentation
+
+- [Introduction](https://vectismail.com/getting-started/): what Vectis Mail is, who it's for, what you get.
+- [Installation](https://vectismail.com/getting-started/installation/): step-by-step install on a fresh Ubuntu VPS.
+- [Your First Domain](https://vectismail.com/getting-started/first-domain/): create a domain + mailbox.
+- [DNS Setup](https://vectismail.com/getting-started/dns-setup/): MX, SPF, DKIM, DMARC records.
+- [Architecture Overview](https://vectismail.com/architecture/overview/): container layout, four Docker networks, data flow, database schema, security model.
+
+## Guides
+
+- [DKIM, SPF & DMARC](https://vectismail.com/guides/dkim-spf-dmarc/): authentication primer with DNS examples.
+- [TLS Certificates](https://vectismail.com/guides/tls-certificates/): acme.sh + Cloudflare DNS-01 setup.
+- [IP Warmup](https://vectismail.com/guides/ip-warmup/): calendar schedule for new VPS IPs.
+- [Deliverability](https://vectismail.com/guides/deliverability/): inbox rate vs spam folder, end to end.
+- [Cloudflare Integration](https://vectismail.com/guides/cloudflare/): proxying and DNS via Cloudflare.
+- [Webmail](https://vectismail.com/guides/webmail/): Roundcube ManageSieve filters, Vectis-skinned UI.
+- [Troubleshooting](https://vectismail.com/guides/troubleshooting/): common operational issues.
+
+## API Reference
+
+- [Overview & Auth](https://vectismail.com/api/): API authentication, domain-scoped keys, rate limiting.
+- [Domains](https://vectismail.com/api/domains/): create, list, update, delete domains.
+- [Mailboxes](https://vectismail.com/api/mailboxes/): mailbox CRUD, password rotation, quota.
+- [Aliases](https://vectismail.com/api/aliases/): alias management with catch-all support.
+- [Sending Email](https://vectismail.com/api/sending/): single and batch sending; attachments; custom headers.
+- [Webhooks](https://vectismail.com/api/webhooks/): outbound event webhooks and inbound mail webhooks.
+- [Messages & Storage](https://vectismail.com/api/messages/): query sent/received message metadata; full-text search.
+- [Analytics](https://vectismail.com/api/analytics/): per-domain delivery, bounce, open rate (Pro).
+- [Admin & RBAC](https://vectismail.com/api/admin/): user roles, audit logs, system operations.
+
+## CLI Reference
+
+- [Overview](https://vectismail.com/cli/): vectis CLI usage patterns.
+- [Commands](https://vectismail.com/cli/commands/): full command reference.
+
+## Competitive comparisons
+
+- [vs Mailcow](https://vectismail.com/alternatives/mailcow/): same self-hosted philosophy, declarative config, REST API, atomic updates.
+- [vs SendGrid](https://vectismail.com/alternatives/sendgrid/): self-hosted with the same API, flat $0–29/month pricing instead of per-email.
+
+## Source code
+
+- GitHub: https://github.com/Veltara-Works/vectis
+- Docker images: ghcr.io/veltara-works/vectis-*
+
+## Contact
+
+- Contact form: https://vectismail.com/contact/
+- General: hello@vectismail.com
+- Sales / Enterprise: sales@vectismail.com
+- Support: support@vectismail.com

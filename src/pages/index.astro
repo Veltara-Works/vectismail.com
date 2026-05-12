@@ -12,15 +12,22 @@ const description = 'Containerised, self-hosted email server with declarative co
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://vectismail.com" />
-	<meta name="twitter:card" content="summary" />
+	<meta property="og:url" content="https://vectismail.com/" />
+	<meta property="og:image" content="https://vectismail.com/og/default.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail — self-hosted email platform" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://vectismail.com/og/default.png" />
+	<meta name="theme-color" content="#0C0C0D" />
 	<link rel="canonical" href="https://vectismail.com/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
 	<link rel="sitemap" href="/sitemap-index.xml" />
-	<script type="application/ld+json" set:html={JSON.stringify({
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
 		"name": "Vectis Mail",
@@ -162,6 +169,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 		</div>
 	</div>
 
+	<p class="page-meta">Last updated <time datetime="2026-05-12">12 May 2026</time></p>
 	<footer class="footer">
 		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
 		<div>

@@ -8,6 +8,7 @@ export default defineConfig({
 		starlight({
 			title: 'Vectis Mail',
 			description: 'Self-hosted email platform with declarative config, sending API, and enterprise features.',
+			lastUpdated: true,
 			favicon: '/favicon.svg',
 			head: [
 				{
