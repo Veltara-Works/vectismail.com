@@ -1,10 +1,20 @@
 /* Vectis Mail — Brand Design System */
 
+/* ── Brand fonts ────────────────────────────────────────────────── */
+@font-face {
+	font-family: 'Inter';
+	src: url('/brand/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 /* ── Colour Tokens ──────────────────────────────────────────────── */
 :root {
 	--sl-color-accent-low: #1a2744;
-	--sl-color-accent: #3b82f6;
-	--sl-color-accent-high: #93bbfd;
+	--sl-color-accent: #1FB7FF;
+	--sl-color-accent-high: #93dcff;
 	--sl-color-white: #ffffff;
 	--sl-color-gray-1: #eceef2;
 	--sl-color-gray-2: #c0c2c7;
@@ -12,18 +22,22 @@
 	--sl-color-gray-4: #545861;
 	--sl-color-gray-5: #353841;
 	--sl-color-gray-6: #24272f;
-	--sl-color-black: #17181c;
+	--sl-color-black: #0C0C0D;
 
-	--vm-blue: #3b82f6;
-	--vm-cyan: #06b6d4;
+	/* Brand canonical accents */
+	--vm-blue: #1FB7FF;       /* Electric Blue — primary brand */
+	--vm-cyan: #26C2F6;       /* Cyan Edge — links, glows */
+	--vm-deep-blue: #0A3A5A;
+	--vm-steel: #A7B4C2;
 	--vm-purple: #8b5cf6;
-	--vm-green: #10b981;
-	--vm-orange: #f59e0b;
-	--vm-bg-dark: #0d1117;
-	--vm-bg-card: #161b22;
-	--vm-border: #21262d;
+	--vm-green: #3BF57D;
+	--vm-orange: #F5C63B;
+	--vm-bg-dark: #0C0C0D;    /* brand black */
+	--vm-bg-card: #1A1E22;    /* graphite */
+	--vm-border: #2C3238;     /* slate divider */
 
-	--sl-font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--sl-font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--sl-font-system-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'Menlo', 'Monaco', 'Consolas', monospace;
 }
 
 /* ── Starlight Overrides ────────────────────────────────────────── */
@@ -71,9 +85,30 @@
 
 /* ── Hero ────────────────────────────────────────────────────────── */
 .hero-wrapper {
-	background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
-	            radial-gradient(ellipse 60% 40% at 80% 50%, rgba(6, 182, 212, 0.08), transparent);
+	position: relative;
+	background:
+		radial-gradient(ellipse 80% 50% at 50% -20%, rgba(31, 183, 255, 0.15), transparent),
+		radial-gradient(ellipse 60% 40% at 80% 50%, rgba(38, 194, 246, 0.08), transparent),
+		linear-gradient(180deg, rgba(12, 12, 13, 0.65) 0%, var(--vm-bg-dark) 92%),
+		url('/brand/imagery/vectis-mail-splash.jpg');
+	background-size: auto, auto, auto, cover;
+	background-position: center, center, center, center 30%;
+	background-repeat: no-repeat;
 	padding-bottom: 2rem;
+	overflow: hidden;
+}
+
+.hero-wrapper::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, transparent 55%, var(--vm-bg-dark) 100%);
+	pointer-events: none;
+}
+
+.hero-wrapper > * {
+	position: relative;
+	z-index: 1;
 }
 
 .hero {
@@ -85,8 +120,8 @@
 
 .hero-badge {
 	display: inline-block;
-	background: rgba(59, 130, 246, 0.1);
-	border: 1px solid rgba(59, 130, 246, 0.25);
+	background: rgba(31, 183, 255, 0.1);
+	border: 1px solid rgba(31, 183, 255, 0.25);
 	color: var(--vm-blue);
 	font-size: 0.9rem;
 	font-weight: 600;
@@ -129,7 +164,7 @@
 
 /* ── Buttons ────────────────────────────────────────────────────── */
 .btn-primary {
-	background: linear-gradient(135deg, var(--vm-blue), #2563eb);
+	background: linear-gradient(135deg, var(--vm-blue), var(--vm-cyan));
 	color: var(--sl-color-white);
 	padding: 0.8rem 2rem;
 	border-radius: 8px;
@@ -137,12 +172,12 @@
 	font-weight: 600;
 	font-size: 0.95rem;
 	transition: transform 0.15s, box-shadow 0.15s;
-	box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+	box-shadow: 0 0 0 1px rgba(31, 183, 255, 0.35), 0 0 24px rgba(31, 183, 255, 0.18);
 }
 
 .btn-primary:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+	box-shadow: 0 0 0 1px rgba(31, 183, 255, 0.6), 0 0 32px rgba(31, 183, 255, 0.35);
 }
 
 .btn-secondary {
@@ -206,7 +241,7 @@
 }
 
 .feature-card:hover {
-	border-color: rgba(59, 130, 246, 0.3);
+	border-color: rgba(31, 183, 255, 0.3);
 	transform: translateY(-2px);
 }
 
@@ -221,8 +256,8 @@
 	font-size: 1.2rem;
 }
 
-.icon-blue { background: rgba(59, 130, 246, 0.12); color: var(--vm-blue); }
-.icon-cyan { background: rgba(6, 182, 212, 0.12); color: var(--vm-cyan); }
+.icon-blue { background: rgba(31, 183, 255, 0.12); color: var(--vm-blue); }
+.icon-cyan { background: rgba(38, 194, 246, 0.12); color: var(--vm-cyan); }
 .icon-purple { background: rgba(139, 92, 246, 0.12); color: var(--vm-purple); }
 .icon-green { background: rgba(16, 185, 129, 0.12); color: var(--vm-green); }
 .icon-orange { background: rgba(245, 158, 11, 0.12); color: var(--vm-orange); }
@@ -259,12 +294,12 @@
 }
 
 .pricing-card:hover {
-	border-color: rgba(59, 130, 246, 0.2);
+	border-color: rgba(31, 183, 255, 0.2);
 }
 
 .pricing-card.featured {
 	border-color: var(--vm-blue);
-	background: linear-gradient(180deg, rgba(59, 130, 246, 0.06) 0%, var(--vm-bg-card) 40%);
+	background: linear-gradient(180deg, rgba(31, 183, 255, 0.06) 0%, var(--vm-bg-card) 40%);
 }
 
 .pricing-card.featured::before {
@@ -350,7 +385,7 @@
 
 /* ── CTA Section ────────────────────────────────────────────────── */
 .cta-section {
-	background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.05));
+	background: linear-gradient(135deg, rgba(31, 183, 255, 0.08), rgba(38, 194, 246, 0.05));
 	border-top: 1px solid var(--vm-border);
 	text-align: center;
 	padding: 5rem 2rem;
