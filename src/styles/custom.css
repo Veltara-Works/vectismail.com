@@ -41,8 +41,10 @@
 }
 
 /* ── Starlight Overrides ────────────────────────────────────────── */
-.site-title img {
-	height: 1.8rem;
+/* TopNav.astro already shows the wordmark; hide Starlight's duplicate
+   site-title so the sidebar starts cleanly at "Getting Started". */
+.site-title {
+	display: none;
 }
 
 /* ── Marketing Base ─────────────────────────────────────────────── */

@@ -3,15 +3,20 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-	site: 'https://new1.vectismail.com',
+	site: 'https://vectismail.com',
 	integrations: [
 		starlight({
 			title: 'Vectis Mail',
 			description: 'Self-hosted email platform with declarative config, sending API, and enterprise features.',
-			favicon: '/favicon.ico',
+			favicon: '/favicon.svg',
+			head: [
+				{
+					tag: 'link',
+					attrs: { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+				},
+			],
 			logo: {
-				src: './public/brand/logos/vectis-mail-logo-white.png',
-				replacesTitle: true,
+				src: './public/brand/logos/vectis-mail-wings.png',
 				alt: 'Vectis Mail',
 			},
 			social: [
