@@ -1,0 +1,169 @@
+---
+import '../../styles/custom.css'
+const title = 'Vectis Mail by use case — for SaaS, agencies, developers, enterprises'
+const description = 'Vectis Mail for SaaS, agencies, developers, and enterprises. Use-case-specific landing pages — what Vectis Mail does for each audience, how the pricing math works, and where it isn\'t the right fit.'
+const url = 'https://vectismail.com/for/'
+const ogImage = 'https://vectismail.com/og/default.png'
+const dateModified = '2026-05-13'
+
+type UseCase = {
+	href: string
+	title: string
+	tagline: string
+	bullets: string[]
+}
+
+const live: UseCase[] = [
+	{
+		href: '/for/saas/',
+		title: 'For SaaS founders',
+		tagline: 'Flat-priced transactional email + mailbox hosting + multi-tenancy. Per-tenant pricing, not per-email — the math compounds in your favour as you grow.',
+		bullets: [
+			'$49/mo flat from 10K to 5M+ emails/month',
+			'Multi-tenant from the database up — one install, many customer domains',
+			'One Pro subscription covers unlimited installs operated by your org',
+		],
+	},
+]
+
+const upcoming: { title: string; tagline: string }[] = [
+	{ title: 'For agencies', tagline: 'Coming soon — running mail for multiple client domains under one Pro subscription.' },
+	{ title: 'For developers', tagline: 'Coming soon — solo devs and small teams who want a real email infrastructure they own.' },
+	{ title: 'For enterprises', tagline: 'Coming soon — compliance, multi-tenancy, and data sovereignty (gated on v0.2 multi-tenancy shipping).' },
+]
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail by use case — landing pages for each audience" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Vectis Mail", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "By use case", "item": url }
+				]
+			},
+			{
+				"@type": "CollectionPage",
+				"@id": url + "#page",
+				"name": title,
+				"description": description,
+				"url": url,
+				"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+				"mainEntity": {
+					"@type": "ItemList",
+					"itemListElement": live.map((a, i) => ({
+						"@type": "ListItem",
+						"position": i + 1,
+						"url": "https://vectismail.com" + a.href,
+						"name": a.title,
+					})),
+				},
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" height="34" /></a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/alternatives">Compare</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">By use case · Audience-specific</div>
+		<h1>Vectis Mail by use case.<br/><span>What it does for your audience.</span></h1>
+		<p class="alt-lead">
+			Same product, different value props depending on who's running it. Each page below
+			leads with the pain points and use cases specific to that audience, the pricing math
+			at that audience's scale, and an honest "where Vectis Mail isn't the right fit (yet)"
+			section. For competitor-by-competitor comparisons, see <a href="/alternatives/" style="color: var(--sl-color-accent);">alternatives</a> instead.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1.5rem;">
+		<h2>Live use-case pages</h2>
+		<p class="subtitle">Each page covers the audience-specific case, pricing math, and honest gaps.</p>
+		<div class="feature-grid" style="margin-top: 1.5rem;">
+			{live.map((a) => (
+				<a href={a.href} class="feature-card alt-index-card">
+					<h3>{a.title} &rarr;</h3>
+					<p style="margin-bottom: 0.85rem;">{a.tagline}</p>
+					<ul class="alt-index-bullets">
+						{a.bullets.map((b) => (<li>{b}</li>))}
+					</ul>
+				</a>
+			))}
+		</div>
+	</section>
+
+	{upcoming.length > 0 && (
+		<section class="section" style="padding-top: 1rem;">
+			<h2>Coming soon</h2>
+			<p class="subtitle">More use-case pages being written. If there's an audience you'd like us to cover, <a href="/contact">let us know</a>.</p>
+			<div class="feature-grid" style="margin-top: 1.5rem;">
+				{upcoming.map((a) => (
+					<div class="feature-card" style="opacity: 0.7;">
+						<h3>{a.title}</h3>
+						<p>{a.tagline}</p>
+					</div>
+				))}
+			</div>
+		</section>
+	)}
+
+	<section class="section" style="text-align: center;">
+		<div class="hero-buttons">
+			<a href="/getting-started/installation" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing" class="btn-secondary">View Pricing</a>
+		</div>
+	</section>
+
+	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>
