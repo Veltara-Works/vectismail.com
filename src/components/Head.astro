@@ -28,7 +28,13 @@ function groupHref(group: SidebarGroup): string | null {
 	return null
 }
 
+function isoDay(d: Date | undefined): string {
+	const date = d instanceof Date ? d : new Date()
+	return date.toISOString().slice(0, 10)
+}
+
 const SITE = 'https://vectismail.com'
+const LAUNCH_DATE = '2026-04-03'
 const route = Astro.locals.starlightRoute
 const found = findCurrent(route.sidebar, null)
 
@@ -61,8 +67,38 @@ const breadcrumb = {
 	'@type': 'BreadcrumbList',
 	itemListElement: items,
 }
+
+const data = route.entry.data
+const pageUrl = new URL(found?.link.href ?? '/', SITE).toString()
+const techArticle = {
+	'@context': 'https://schema.org',
+	'@type': 'TechArticle',
+	headline: data.title,
+	description: data.description ?? 'Vectis Mail documentation',
+	url: pageUrl,
+	datePublished: LAUNCH_DATE,
+	dateModified: isoDay(route.lastUpdated),
+	inLanguage: 'en',
+	author: {
+		'@type': 'Organization',
+		name: 'Vectis Mail',
+		url: 'https://vectismail.com/about/',
+	},
+	publisher: {
+		'@type': 'Organization',
+		name: 'Vectis Mail',
+		logo: {
+			'@type': 'ImageObject',
+			url: 'https://vectismail.com/brand/logos/vectis-mail-logo-white.png',
+		},
+	},
+	mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+}
 ---
 <Default {...Astro.props}><slot /></Default>
 {items.length >= 2 && (
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+)}
+{found && (
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(techArticle)} />
 )}
