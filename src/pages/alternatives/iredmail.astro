@@ -1,0 +1,411 @@
+---
+import '../../styles/custom.css'
+const title = 'iRedMail Alternative — Vectis Mail vs iRedMail'
+const description = 'Honest comparison of Vectis Mail vs iRedMail. Modern surface vs the long-running OS-native open-source mail stack — REST API, inbound webhooks, declarative YAML, atomic updates with rollback. When to switch and when to stay.'
+const url = 'https://vectismail.com/alternatives/iredmail/'
+const ogImage = 'https://vectismail.com/og/default.png'
+const datePublished = '2026-05-13'
+const dateModified = '2026-05-13'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail vs iRedMail — self-hosted email platform comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://vectismail.com/alternatives/" },
+					{ "@type": "ListItem", "position": 3, "name": "iRedMail", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Vectis Mail vs iRedMail",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/about/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.png" }
+				}
+			},
+			{
+				"@type": "Product",
+				"name": "Vectis Mail",
+				"description": "Self-hosted, declarative email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
+				"url": "https://vectismail.com/",
+				"brand": { "@type": "Brand", "name": "Vectis Mail" },
+				"offers": [
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
+					{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is Vectis Mail a drop-in replacement for iRedMail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "For the mail data itself, yes — both products use Postfix and Dovecot under the hood, so mailbox migration via imapsync is straightforward. The bigger shift is operational: iRedMail installs OS-native (no Docker); Vectis Mail ships as a Docker Compose stack. If your team prohibits Docker, that's a hard blocker, not a small one." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does iRedMail have a sending API or inbound webhooks?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. iRedMail is a classic mail server — SMTP submission with mailbox credentials is the only programmatic surface, and inbound mail lands in mailboxes only. There's no REST API for sending, no inbound webhooks, no domain-scoped API keys. Vectis Mail ships 60+ REST endpoints covering sending, inbound webhooks, mailboxes, domains, analytics, and admin operations." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does iRedMail run on BSD?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes — iRedMail supports FreeBSD and OpenBSD in addition to Rocky, Alma, Debian, Ubuntu, and CentOS Stream. This is one of iRedMail's clearest wins. Vectis Mail runs on Linux only (it's a Docker Compose stack), so if BSD support is non-negotiable, stay on iRedMail." }
+					},
+					{
+						"@type": "Question",
+						"name": "What about iRedAdmin-Pro and the Enterprise edition?",
+						"acceptedAnswer": { "@type": "Answer", "text": "iRedMail open source ships a basic iRedAdmin web panel. Advanced features (mailing list management, throttling, per-domain limits, restricted admins) live behind iRedAdmin-Pro (annual subscription) and the Enterprise edition (one-time per-server payment). Pricing isn't published publicly. Vectis Mail's pricing is on the pricing page — Starter free forever, Pro at $29 per tenant per month covering unlimited installs." }
+					},
+					{
+						"@type": "Question",
+						"name": "Why would I stay on iRedMail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Four honest reasons: (1) you need OS-native install (no Docker); (2) you run BSD; (3) you need OpenLDAP as a backend; (4) your team has deep iRedMail muscle memory and the modern surface isn't worth retraining for. If none of those apply, Vectis Mail's API, declarative config, and orchestrated updates are a clear step up." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" height="34" /></a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/alternatives">Compare</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Alternatives · Self-Hosted</div>
+		<h1>iRedMail alternative.<br/><span>Modern surface, real API.</span></h1>
+		<p class="alt-lead">
+			Vectis Mail is a self-hosted email platform built on the same Postfix and Dovecot stack
+			as iRedMail — but with declarative YAML config, a 60+ endpoint REST API, inbound webhooks,
+			Rspamd by default, and atomic updates with automatic rollback. For teams who want
+			iRedMail's self-hosted control but with a modern operational surface and a programmable API.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Honest side-by-side, current as of May 2026.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Vectis Mail</th><th>iRedMail</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
+					<tr><td>Deployment model</td><td>Docker Compose</td><td><strong>OS-native</strong> (installer script, no containers)</td></tr>
+					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family)</td><td><strong>Linux + FreeBSD + OpenBSD</strong></td></tr>
+					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
+					<tr><td>REST API</td><td><strong>60+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
+					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
+					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
+					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics, better deliverability)</td><td>SpamAssassin</td></tr>
+					<tr><td>Update model</td><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Documented manual upgrade procedure</td></tr>
+					<tr><td>Backend storage</td><td>PostgreSQL only</td><td>OpenLDAP, MySQL, MariaDB, or PostgreSQL</td></tr>
+					<tr><td>Admin UI</td><td>React SPA (modern)</td><td>iRedAdmin (basic) · iRedAdmin-Pro (paid upgrade)</td></tr>
+					<tr><td>Webmail</td><td>Roundcube</td><td>Roundcube · SOGo (optional)</td></tr>
+					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
+					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
+					<tr><td>Observability built in</td><td>Prometheus · Loki · optional Grafana</td><td>Logs only — bring your own stack</td></tr>
+					<tr><td>License (core)</td><td>AGPL-3.0 (core), commercial Pro license</td><td>Mixed (upstream component licenses preserved)</td></tr>
+					<tr><td>Pricing</td><td>$0 Starter · $29/tenant/month Pro (unlimited installs)</td><td>$0 OSS · iRedAdmin-Pro + Enterprise editions priced on request</td></tr>
+					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>19 years</strong>, continuous operation since 2007</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The honest verdict</h2>
+		<div class="verdict-grid">
+			<div class="verdict-card verdict-win">
+				<h3>Choose Vectis Mail when…</h3>
+				<ul>
+					<li>You want a real REST API + inbound webhooks, not just SMTP submission.</li>
+					<li>You run a SaaS and need domain-scoped API keys with per-domain rate limits.</li>
+					<li>You're comfortable with Docker and want fewer moving parts in the host OS.</li>
+					<li>You value orchestrated updates with automatic rollback over a documented manual procedure.</li>
+					<li>You want Rspamd's modern heuristics out of the box, not SpamAssassin.</li>
+					<li>You want per-domain analytics, IP warmup tracking, and built-in observability.</li>
+					<li>You're starting fresh — the modern surface compounds over time.</li>
+				</ul>
+			</div>
+			<div class="verdict-card verdict-stay">
+				<h3>Stay on iRedMail when…</h3>
+				<ul>
+					<li>You need OS-native install (no Docker) — your environment prohibits container runtimes.</li>
+					<li>You run FreeBSD or OpenBSD — Vectis Mail is Linux-only.</li>
+					<li>You need OpenLDAP as your mail backend — Vectis Mail uses PostgreSQL only.</li>
+					<li>You need SOGo groupware (calendar/contacts) and can't migrate that out separately.</li>
+					<li>You value 19 years of continuous-operation maturity over a newer codebase.</li>
+					<li>Your team has deep institutional knowledge of iRedMail's file layout.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Deployment model</h3>
+		<p>
+			iRedMail's defining choice is <strong>OS-native</strong>. The installer script lays down
+			Postfix, Dovecot, Roundcube, Nginx, Fail2ban, SpamAssassin, and (optionally) SOGo
+			directly onto the host — no containers, no Docker daemon. That's a deliberate
+			feature for sysadmin teams who prohibit container runtimes, run on BSD, or want
+			the smallest possible runtime surface.
+		</p>
+		<p>
+			Vectis Mail ships as a Docker Compose stack — 14 services by default (10 if you
+			disable observability and ClamAV). Each component is isolated, restartable
+			independently, and version-pinned in a single <code>compose.yml</code>. If your
+			environment prohibits Docker, that's a hard blocker for Vectis Mail — there's no
+			OS-native install path planned. If Docker is acceptable, the trade-off is
+			operational ergonomics: one command rebuilds the whole stack, and the orchestrator's
+			update pipeline depends on container-level isolation.
+		</p>
+
+		<h3 class="alt-h3">API surface</h3>
+		<p>
+			This is where the products genuinely diverge. iRedMail is a classic mail server —
+			SMTP submission is the only programmatic interface for sending, and inbound mail
+			lands in mailboxes only. There's no REST API for config, no domain-scoped API keys,
+			no inbound webhooks, no per-domain rate limiting.
+		</p>
+		<p>
+			Vectis Mail has 60+ endpoints covering sending (single + batch with attachments),
+			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
+			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations.
+			Domain-scoped API keys with per-domain rate limits make it usable as a real
+			transactional service — an in-house alternative to SendGrid or Postmark that
+			happens to also host your mailboxes.
+		</p>
+		<p>
+			See the <a href="/api/">API Reference</a> for the full surface.
+		</p>
+
+		<h3 class="alt-h3">Configuration model</h3>
+		<p>
+			iRedMail's configuration is what you'd expect from a long-running Unix mail server:
+			files in <code>/etc/postfix</code>, <code>/etc/dovecot</code>, <code>/etc/nginx</code>,
+			and so on. Adding a domain, rotating a DKIM key, or changing rate limits typically
+			means editing files and restarting services, or clicking through the iRedAdmin web panel.
+			There's no config-as-code surface.
+		</p>
+		<p>
+			Vectis Mail uses a single <code>config.yaml</code> as the source of truth.
+			<code>vectis apply</code> diffs the desired state against running state, regenerates
+			affected service configs (Postfix, Dovecot, Rspamd, Traefik), and reloads only what
+			changed. The same operations are exposed via the REST API, so Terraform, Ansible,
+			or your own automation can manage Vectis Mail declaratively.
+		</p>
+
+		<h3 class="alt-h3">Antispam</h3>
+		<p>
+			iRedMail ships with SpamAssassin by default — a workhorse, but materially weaker on
+			modern spam patterns than Rspamd. Vectis Mail uses Rspamd by default, which gives
+			you better default deliverability protection, modern heuristics
+			(Bayes, fuzzy hashing, reputation), and a Lua extension surface for custom rules.
+			If you want Rspamd on iRedMail, you can wire it in manually — but it's not the default.
+		</p>
+
+		<h3 class="alt-h3">Update + rollback</h3>
+		<p>
+			iRedMail updates are a documented manual procedure — package upgrades, file diffs,
+			schema migrations applied by the operator. There's no automatic snapshot, no
+			health-check gate, no rollback. If a migration breaks, recovery is whatever you do
+			manually.
+		</p>
+		<p>
+			Vectis Mail's orchestrator runs a 6-phase pipeline:
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Snapshot</strong> — Postgres dump + Compose backup taken before any change.</li>
+			<li><strong>Migrate</strong> — forward-only SQL migrations applied with row-level locking.</li>
+			<li><strong>Pull</strong> — new container images pulled and verified.</li>
+			<li><strong>Deploy</strong> — services recreated with the new images.</li>
+			<li><strong>Health-check</strong> — Postfix, Dovecot, Rspamd, API, Traefik all probed for liveness + actual mail-handling readiness.</li>
+			<li><strong>Complete</strong> — change locked in, snapshot retained for the rollback window.</li>
+		</ol>
+		<p>
+			Any phase failure triggers automatic rollback to the snapshot. The Plan/Apply UI
+			shows the diff before you run it. See <a href="/getting-started/installation/">Installation</a>
+			for the full update model.
+		</p>
+
+		<h3 class="alt-h3">Editions + pricing</h3>
+		<p>
+			iRedMail splits across three editions — iRedMail (open source), iRedMail Enterprise
+			Edition (one-time per-server payment), and iRedAdmin-Pro (annual subscription with
+			advanced web admin features). Pricing for the paid tiers isn't published publicly —
+			you contact iRedMail for a quote.
+		</p>
+		<p>
+			Vectis Mail keeps it simple: Starter (free forever — up to 3 domains, 25 mailboxes
+			per domain, full API, webhooks, monitoring, backups) and Pro at $29/tenant/month
+			(unlimited domains and mailboxes, per-domain analytics, OIDC SSO, priority support).
+			One Pro subscription covers unlimited Vectis Mail installs operated by your organisation.
+			See <a href="/pricing/">pricing</a>.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Migrating from iRedMail to Vectis Mail</h2>
+		<p>
+			Because both products use Postfix and Dovecot under the hood, the mail data migrates
+			cleanly. The typical sequence:
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Configure your domain(s) but leave DNS pointed at iRedMail for now.</li>
+			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> or <code>doveadm backup</code> — both stacks are vanilla Dovecot underneath, so maildir transfers directly.</li>
+			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them to DNS alongside the existing iRedMail keys. Run both in parallel during the switchover.</li>
+			<li><strong>Export Sieve filters</strong> (per-user) from iRedMail Dovecot and import into Vectis Mail Dovecot — same file format.</li>
+			<li><strong>Re-create domains, mailboxes, and aliases</strong> via the Vectis Mail CLI or API. If you're scripting this, the API + domain-scoped keys make it straightforward.</li>
+			<li><strong>Export SOGo data</strong> (calendar / contacts) to iCal/vCard if you use it — Vectis Mail can't import these directly. This is the only non-trivial step.</li>
+			<li><strong>If you're on OpenLDAP</strong>, you'll need to migrate user records from OpenLDAP into Vectis Mail's PostgreSQL-backed user store. There's no automated tool for this — it's a one-off script.</li>
+			<li><strong>Cut DNS over</strong>: update MX to point at the Vectis Mail server. Mail starts flowing through Vectis Mail as DNS propagates.</li>
+			<li><strong>Verify + decommission</strong>: watch logs for a few days, then decommission iRedMail.</li>
+		</ol>
+		<p>
+			Realistic timeline: half a day for a small (&lt;50 mailbox) MySQL/MariaDB-backed
+			install, a few days of staged migration for larger installs or anything backed by
+			OpenLDAP.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is Vectis Mail a drop-in replacement for iRedMail?</h3>
+				<p>
+					For the mail data itself, yes — both products use Postfix and Dovecot under the
+					hood, so mailbox migration via imapsync is straightforward. The bigger shift is
+					operational: iRedMail installs OS-native (no Docker); Vectis Mail ships as a
+					Docker Compose stack. If your team prohibits Docker, that's a hard blocker, not
+					a small one.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does iRedMail have a sending API or inbound webhooks?</h3>
+				<p>
+					No. iRedMail is a classic mail server — SMTP submission with mailbox credentials
+					is the only programmatic surface, and inbound mail lands in mailboxes only.
+					There's no REST API for sending, no inbound webhooks, no domain-scoped API keys.
+					Vectis Mail ships 60+ REST endpoints covering sending, inbound webhooks,
+					mailboxes, domains, analytics, and admin operations.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does iRedMail run on BSD?</h3>
+				<p>
+					Yes — iRedMail supports FreeBSD and OpenBSD in addition to Rocky, Alma, Debian,
+					Ubuntu, and CentOS Stream. This is one of iRedMail's clearest wins. Vectis Mail
+					runs on Linux only (it's a Docker Compose stack), so if BSD support is
+					non-negotiable, stay on iRedMail.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>What about iRedAdmin-Pro and the Enterprise edition?</h3>
+				<p>
+					iRedMail open source ships a basic iRedAdmin web panel. Advanced features
+					(mailing list management, throttling, per-domain limits, restricted admins) live
+					behind iRedAdmin-Pro (annual subscription) and the Enterprise edition (one-time
+					per-server payment). Pricing isn't published publicly. Vectis Mail's pricing is
+					on the <a href="/pricing/">pricing page</a> — Starter free forever, Pro at $29
+					per tenant per month covering unlimited installs.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Why would I stay on iRedMail?</h3>
+				<p>
+					Four honest reasons: (1) you need OS-native install (no Docker);
+					(2) you run BSD; (3) you need OpenLDAP as a backend;
+					(4) your team has deep iRedMail muscle memory and the modern surface isn't worth
+					retraining for. If none of those apply, Vectis Mail's API, declarative config,
+					and orchestrated updates are a clear step up.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="cta-section">
+		<h2>Try Vectis Mail</h2>
+		<p>Production mail server in minutes. Modern surface, real API, same self-hosted control.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing" class="btn-secondary">View Pricing</a>
+		</div>
+	</div>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>iRedMail project: <a href="https://www.iredmail.org/" target="_blank" rel="noopener noreferrer">iredmail.org</a> (retrieved 2026-05-13)</li>
+			<li>Vectis Mail architecture + API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
+			<li>Vectis Mail installation + update model: <a href="/getting-started/installation/">/getting-started/installation</a></li>
+		</ul>
+	</aside>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>

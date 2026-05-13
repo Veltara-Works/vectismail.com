@@ -19,7 +19,7 @@ howToSteps:
 
 This guide walks through activating Pro on an installed Vectis server. You
 should have your Vectis Pro subscription details from
-[ValidonX](https://validonx.com/checkout/vectis-pro) before starting.
+[ValidonX](https://validonx.com) before starting.
 
 ## Activation at a glance
 
