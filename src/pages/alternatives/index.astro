@@ -54,11 +54,19 @@ const live: Alt[] = [
 			'CC0 public domain vs AGPL-3.0 + commercial Pro',
 		],
 	},
+	{
+		href: '/alternatives/postmark/',
+		title: 'vs Postmark',
+		tagline: 'Flat $0–49/mo self-host vs the developer-loved transactional SaaS. Same API surfaces, mailbox hosting included, cost crossover at ~30K emails/mo.',
+		bullets: [
+			'Flat-price self-host vs per-email after the 10K base bucket',
+			'Mailbox hosting included vs send + inbound parse only',
+			'No Message Streams equivalent — honest gap called out',
+		],
+	},
 ]
 
-const upcoming: { title: string; tagline: string }[] = [
-	{ title: 'vs Postmark', tagline: 'Coming soon — flat-pricing self-host vs premium transactional SaaS.' },
-]
+const upcoming: { title: string; tagline: string }[] = []
 ---
 <html lang="en">
 <head>
@@ -161,18 +169,20 @@ const upcoming: { title: string; tagline: string }[] = [
 		</div>
 	</section>
 
-	<section class="section" style="padding-top: 1rem;">
-		<h2>Coming soon</h2>
-		<p class="subtitle">More comparisons being written. If there's a specific product you'd like us to cover, <a href="/contact">let us know</a>.</p>
-		<div class="feature-grid" style="margin-top: 1.5rem;">
-			{upcoming.map((a) => (
-				<div class="feature-card" style="opacity: 0.7;">
-					<h3>{a.title}</h3>
-					<p>{a.tagline}</p>
-				</div>
-			))}
-		</div>
-	</section>
+	{upcoming.length > 0 && (
+		<section class="section" style="padding-top: 1rem;">
+			<h2>Coming soon</h2>
+			<p class="subtitle">More comparisons being written. If there's a specific product you'd like us to cover, <a href="/contact">let us know</a>.</p>
+			<div class="feature-grid" style="margin-top: 1.5rem;">
+				{upcoming.map((a) => (
+					<div class="feature-card" style="opacity: 0.7;">
+						<h3>{a.title}</h3>
+						<p>{a.tagline}</p>
+					</div>
+				))}
+			</div>
+		</section>
+	)}
 
 	<section class="section" style="text-align: center;">
 		<div class="hero-buttons">
