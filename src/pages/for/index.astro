@@ -24,13 +24,39 @@ const live: UseCase[] = [
 			'One Pro subscription covers unlimited installs operated by your org',
 		],
 	},
+	{
+		href: '/for/agencies/',
+		title: 'For agencies',
+		tagline: 'Run mail infrastructure for many client domains under one Pro subscription. Per-client branding, per-domain DKIM, programmatic provisioning, clean exit.',
+		bullets: [
+			'One Pro subscription, unlimited client installs',
+			'Per-client branding + per-domain analytics',
+			'~$49/mo for 10 client domains vs ~$500–2,100 on managed providers',
+		],
+	},
+	{
+		href: '/for/developers/',
+		title: 'For developers',
+		tagline: 'Self-hosted email infrastructure for solo developers, indie hackers, and small teams. Free Starter tier with full API. Runs on a $5 VPS. AGPL-3.0 source you can audit.',
+		bullets: [
+			'Starter tier truly free — full API + webhooks + IMAP/POP3 + monitoring',
+			'$6/mo all-in for a side project vs ~$27/mo on SendGrid + Workspace',
+			'Declarative YAML, no Postfix wizardry required',
+		],
+	},
+	{
+		href: '/for/enterprises/',
+		title: 'For enterprises',
+		tagline: 'Self-hosted, data-sovereign, source-available email infrastructure. Pro tier today; full Enterprise tier with clustering, hardened multi-tenancy, and audit-evidence packs lands later in 2026.',
+		bullets: [
+			'Run on your VPS, sovereign cloud, on-prem, or air-gapped',
+			'AGPL-3.0 source — your security team can audit',
+			'Phase 4 Enterprise tier: clustering + audit packs + SLA support',
+		],
+	},
 ]
 
-const upcoming: { title: string; tagline: string }[] = [
-	{ title: 'For agencies', tagline: 'Coming soon — running mail for multiple client domains under one Pro subscription.' },
-	{ title: 'For developers', tagline: 'Coming soon — solo devs and small teams who want a real email infrastructure they own.' },
-	{ title: 'For enterprises', tagline: 'Coming soon — compliance, multi-tenancy, and data sovereignty (gated on v0.2 multi-tenancy shipping).' },
-]
+const upcoming: { title: string; tagline: string }[] = []
 ---
 <html lang="en">
 <head>
