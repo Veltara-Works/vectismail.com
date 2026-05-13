@@ -1,0 +1,417 @@
+---
+import '../../styles/custom.css'
+const title = 'Mail-in-a-Box Alternative — Vectis Mail vs Mail-in-a-Box'
+const description = 'Honest comparison of Vectis Mail vs Mail-in-a-Box. One-command personal email sovereignty vs API-first multi-tenant infrastructure — when each is the right fit, and what migration looks like if you outgrow Mail-in-a-Box.'
+const url = 'https://vectismail.com/alternatives/mail-in-a-box/'
+const ogImage = 'https://vectismail.com/og/default.png'
+const datePublished = '2026-05-13'
+const dateModified = '2026-05-13'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail vs Mail-in-a-Box — self-hosted email platform comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://vectismail.com/alternatives/" },
+					{ "@type": "ListItem", "position": 3, "name": "Mail-in-a-Box", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Vectis Mail vs Mail-in-a-Box",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/about/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.png" }
+				}
+			},
+			{
+				"@type": "Product",
+				"name": "Vectis Mail",
+				"description": "Self-hosted, declarative email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
+				"url": "https://vectismail.com/",
+				"brand": { "@type": "Brand", "name": "Vectis Mail" },
+				"offers": [
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
+					{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is Vectis Mail a drop-in replacement for Mail-in-a-Box?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Not really — these are different products targeting different audiences. Mail-in-a-Box is single-server, single-org, one-command-install email sovereignty for individuals and families. Vectis Mail is API-first, multi-tenant, multi-domain mail + transactional sending for teams and SaaS. The mail-data layer (Postfix + Dovecot) migrates cleanly via standard IMAP sync, but the operational shape is genuinely different. If you've outgrown Mail-in-a-Box's single-tenant constraints or you now need an API, Vectis Mail is a natural next step. If you're still happy with one-command-and-done personal email, stay where you are." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Mail-in-a-Box have a sending API or inbound webhooks?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Mail-in-a-Box exposes a minimal REST API for control-panel operations (creating users, managing aliases) but not a transactional sending API and not inbound webhooks. SMTP submission with mailbox credentials is the only programmatic send path, and inbound mail lands in mailboxes only. Vectis Mail ships 60+ REST endpoints covering sending (single + batch with attachments), inbound webhooks with HMAC signatures, mailboxes, domains, analytics, and admin operations." }
+					},
+					{
+						"@type": "Question",
+						"name": "Can I run Mail-in-a-Box on something other than Ubuntu 22.04?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No — Mail-in-a-Box explicitly targets fresh Ubuntu 22.04 LTS only. No Debian, no Ubuntu 24.04, no RHEL family, no BSD. Modifying the install or running it on anything else voids the upgrade path. Vectis Mail runs on any Linux that supports Docker — Ubuntu (22.04+ or 24.04), Debian, and RHEL-family hosts are all production-tested." }
+					},
+					{
+						"@type": "Question",
+						"name": "Will I lose my calendar and contacts if I migrate?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Calendar and contacts on Mail-in-a-Box live in its bundled Nextcloud install (CalDAV/CardDAV). Vectis Mail doesn't yet ship CalDAV/CardDAV (it's on the Phase 4 roadmap), so you'd need to export to iCal/vCard before tearing Mail-in-a-Box down and re-import wherever you end up using calendar from then on. If calendar and contacts are central to your use, that's a real cost — factor it into your migration decision honestly." }
+					},
+					{
+						"@type": "Question",
+						"name": "Why would I stay on Mail-in-a-Box?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Five honest reasons: (1) you're an individual or family, not a team or SaaS; (2) you value one-command-install over anything customisable; (3) you actively use the bundled CalDAV/CardDAV (Nextcloud-based); (4) you want the CC0 public-domain license, not AGPL-3.0; (5) you specifically don't want to learn Docker or YAML config. Mail-in-a-Box is genuinely better for those use cases — there's no need to switch." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" height="34" /></a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/alternatives">Compare</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Alternatives · Self-Hosted</div>
+		<h1>Mail-in-a-Box alternative.<br/><span>When one-command-and-done isn't enough.</span></h1>
+		<p class="alt-lead">
+			Mail-in-a-Box is brilliant at what it does — one command, one Ubuntu VPS, working
+			personal email server with webmail, calendar, contacts. Vectis Mail targets a different
+			problem: API-first, multi-tenant, multi-domain mail infrastructure for teams and SaaS
+			that need a real transactional sending API alongside mailboxes. Honest comparison
+			below — including the cases where you should stay on Mail-in-a-Box.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Honest side-by-side, current as of May 2026.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Vectis Mail</th><th>Mail-in-a-Box</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>Target user</td><td>Teams, SaaS, multi-tenant operators</td><td><strong>Individuals, families, single-org</strong></td></tr>
+					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
+					<tr><td>Deployment model</td><td>Docker Compose</td><td><strong>One-command shell script</strong> (OS-native)</td></tr>
+					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family) with Docker</td><td><strong>Ubuntu 22.04 LTS only</strong> (fresh install)</td></tr>
+					<tr><td>Install difficulty</td><td>Guided installer, ~20 min</td><td><strong>One command, ~15 min</strong></td></tr>
+					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Web control panel · no config-as-code</td></tr>
+					<tr><td>REST API</td><td><strong>60+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only · no sending API</td></tr>
+					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
+					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
+					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics)</td><td>SpamAssassin</td></tr>
+					<tr><td>Multi-tenant / multi-domain</td><td><strong>First-class</strong> — many domains, many tenants</td><td>Single-org-shaped</td></tr>
+					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
+					<tr><td>Webmail</td><td>Roundcube</td><td>Roundcube</td></tr>
+					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (Nextcloud-based)</td></tr>
+					<tr><td>Update model</td><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Re-run setup script (fragile if box modified)</td></tr>
+					<tr><td>Observability built in</td><td>Prometheus · Loki · optional Grafana</td><td>Logs only · bring your own stack</td></tr>
+					<tr><td>License</td><td>AGPL-3.0 (core), commercial Pro license</td><td><strong>CC0-1.0</strong> (public domain)</td></tr>
+					<tr><td>Pricing</td><td>$0 Starter · $29/tenant/month Pro (unlimited installs)</td><td>$0 forever · donations welcome</td></tr>
+					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>13 years</strong>, v75 (2026-04-20), 15.3k GitHub stars</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The honest verdict</h2>
+		<div class="verdict-grid">
+			<div class="verdict-card verdict-win">
+				<h3>Choose Vectis Mail when…</h3>
+				<ul>
+					<li>You're a team or SaaS, not a single person or family.</li>
+					<li>You need a real REST API + inbound webhooks alongside mailboxes — a SendGrid-shape sending API that you host yourself.</li>
+					<li>You manage multiple domains and want first-class multi-tenancy.</li>
+					<li>You want declarative config — one <code>config.yaml</code> + <code>vectis apply</code>, not click-through a web panel.</li>
+					<li>You want orchestrated updates with automatic rollback, not a re-run-the-setup-script model.</li>
+					<li>You want Rspamd's modern heuristics out of the box.</li>
+					<li>You're running on something other than Ubuntu 22.04 — Debian, Ubuntu 24.04, RHEL family.</li>
+				</ul>
+			</div>
+			<div class="verdict-card verdict-stay">
+				<h3>Stay on Mail-in-a-Box when…</h3>
+				<ul>
+					<li>You're an individual or family, not a team — Mail-in-a-Box is genuinely designed for you.</li>
+					<li>You value one-command-install over anything customisable. Mail-in-a-Box wins on raw simplicity.</li>
+					<li>You actively use CalDAV/CardDAV (Nextcloud-based) and can't migrate calendar/contacts out separately.</li>
+					<li>You want the CC0 public-domain license — zero lock-in, zero strings.</li>
+					<li>You specifically don't want to learn Docker, YAML, or any config-as-code model.</li>
+					<li>You're happy on Ubuntu 22.04 LTS and don't anticipate that changing.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Different products for different audiences</h3>
+		<p>
+			Mail-in-a-Box's README is explicit: <em>"no user-configurable setup options."</em>
+			That's not a limitation — it's the value proposition. The project deliberately optimises
+			for one-command personal email sovereignty over flexibility. If you're an individual
+			reclaiming email from Gmail, that's exactly what you want.
+		</p>
+		<p>
+			Vectis Mail sits in a different category. The audience is teams, SaaS, and multi-domain
+			operators — people who need a real transactional sending API, inbound webhooks,
+			multi-tenancy, and config-as-code. Comparing the two on the same table is useful for
+			the migration question, but be honest about what each product is actually for.
+		</p>
+
+		<h3 class="alt-h3">API surface</h3>
+		<p>
+			Mail-in-a-Box exposes a minimal REST API for control-panel operations — creating users,
+			managing aliases, setting forwards. There's no transactional sending API, no inbound
+			webhooks, no domain-scoped keys, no per-domain rate limiting. SMTP submission is the
+			only programmatic send path.
+		</p>
+		<p>
+			Vectis Mail has 60+ endpoints covering sending (single + batch with attachments),
+			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
+			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations. Domain-scoped
+			API keys with per-domain rate limits make Vectis usable as a real transactional
+			service — a SendGrid-shape API that you self-host.
+		</p>
+		<p>
+			See the <a href="/api/">API Reference</a> for the full surface.
+		</p>
+
+		<h3 class="alt-h3">Multi-tenancy + multi-domain</h3>
+		<p>
+			Mail-in-a-Box is single-org-shaped. You can run multiple domains on one box, but the
+			control panel, the user model, and the operational shape all assume one organisation.
+			Vectis Mail is multi-tenant from the database up — tenants, domains, mailboxes,
+			API keys all have first-class isolation. If you're running mail infrastructure for
+			multiple brands or customer subdomains, that's a structural difference, not a config tweak.
+		</p>
+
+		<h3 class="alt-h3">Configuration model</h3>
+		<p>
+			Mail-in-a-Box's configuration lives in the web control panel and on-disk files managed
+			by the install script. There's no declarative config surface — every change is a UI
+			click or a manual file edit, and the upgrade path documented as <em>"fresh OS only"</em>
+			means modifying the box voids the supported upgrade story.
+		</p>
+		<p>
+			Vectis Mail uses a single <code>config.yaml</code> as the source of truth.
+			<code>vectis apply</code> diffs the desired state against running state, regenerates
+			affected service configs (Postfix, Dovecot, Rspamd, Traefik), and reloads only what
+			changed. Terraform, Ansible, or your own automation can manage Vectis Mail
+			declaratively via the same REST endpoints the CLI uses.
+		</p>
+
+		<h3 class="alt-h3">Update + rollback</h3>
+		<p>
+			Mail-in-a-Box upgrades by re-running the setup script — straightforward when the box
+			is unmodified, fragile when you've customised anything. There's no automatic snapshot,
+			no health-check gate, no rollback. If a release breaks something, recovery is whatever
+			you do manually.
+		</p>
+		<p>
+			Vectis Mail's orchestrator runs a 6-phase pipeline:
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Snapshot</strong> — Postgres dump + Compose backup taken before any change.</li>
+			<li><strong>Migrate</strong> — forward-only SQL migrations applied with row-level locking.</li>
+			<li><strong>Pull</strong> — new container images pulled and verified.</li>
+			<li><strong>Deploy</strong> — services recreated with the new images.</li>
+			<li><strong>Health-check</strong> — Postfix, Dovecot, Rspamd, API, Traefik all probed for liveness + actual mail-handling readiness.</li>
+			<li><strong>Complete</strong> — change locked in, snapshot retained for the rollback window.</li>
+		</ol>
+		<p>
+			Any phase failure triggers automatic rollback to the snapshot. See
+			<a href="/getting-started/installation/">Installation</a> for the full update model.
+		</p>
+
+		<h3 class="alt-h3">Calendar + contacts</h3>
+		<p>
+			Mail-in-a-Box bundles Nextcloud for CalDAV and CardDAV — calendar and contacts work
+			out of the box. Vectis Mail doesn't ship calendar/contacts yet — that's on the Phase 4
+			roadmap. If you actively use CalDAV/CardDAV, that's the most significant functional
+			gap and the strongest reason to either stay on Mail-in-a-Box or pair Vectis Mail with
+			a separate groupware deployment.
+		</p>
+
+		<h3 class="alt-h3">License + pricing</h3>
+		<p>
+			Mail-in-a-Box is CC0-1.0 — public domain, the most permissive license possible. Zero
+			lock-in, zero strings, no commercial edition, no paid support, donations welcome.
+		</p>
+		<p>
+			Vectis Mail is dual-licensed: AGPL-3.0 for the core (free Starter — up to 3 domains,
+			25 mailboxes per domain, full API, webhooks, monitoring, backups) and a commercial
+			Pro license at $29/tenant/month (unlimited domains and mailboxes, per-domain analytics,
+			OIDC SSO, priority support, one subscription covers unlimited installs). See
+			<a href="/pricing/">pricing</a>.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Migrating from Mail-in-a-Box to Vectis Mail</h2>
+		<p>
+			The mail-data layer migrates cleanly (both products are vanilla Postfix + Dovecot).
+			The calendar/contacts and control-panel-config layers need manual export.
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Configure your domain(s) but leave DNS pointed at Mail-in-a-Box for now.</li>
+			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> or <code>doveadm backup</code> — same Dovecot underneath, maildir transfers directly.</li>
+			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them to DNS alongside the existing Mail-in-a-Box keys. Run both in parallel during the switchover.</li>
+			<li><strong>Export Roundcube settings</strong> (per-user filters, signatures) from Mail-in-a-Box Roundcube and re-import into Vectis Mail Roundcube.</li>
+			<li><strong>Re-create domains, mailboxes, aliases, and forwards</strong> via Vectis Mail's CLI or API. The Mail-in-a-Box control panel doesn't export config-as-code, so this is a manual transcription.</li>
+			<li><strong>Export Nextcloud calendar + contacts</strong> to iCal/vCard if you use them. Vectis Mail can't import these — you'll need a separate CalDAV/CardDAV destination from this point. This is the most significant step if calendar is part of your daily use.</li>
+			<li><strong>Cut DNS over</strong>: update MX to point at the Vectis Mail server. Mail starts flowing through Vectis Mail as DNS propagates.</li>
+			<li><strong>Verify + decommission</strong>: watch logs for a few days, then decommission Mail-in-a-Box.</li>
+		</ol>
+		<p>
+			Realistic timeline: an afternoon for a small personal install without calendar,
+			longer if Nextcloud calendar/contacts are central to your use.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is Vectis Mail a drop-in replacement for Mail-in-a-Box?</h3>
+				<p>
+					Not really — these are different products targeting different audiences.
+					Mail-in-a-Box is single-server, single-org, one-command-install email sovereignty
+					for individuals and families. Vectis Mail is API-first, multi-tenant, multi-domain
+					mail + transactional sending for teams and SaaS. The mail-data layer
+					(Postfix + Dovecot) migrates cleanly via standard IMAP sync, but the operational
+					shape is genuinely different. If you've outgrown Mail-in-a-Box's single-tenant
+					constraints or you now need an API, Vectis Mail is a natural next step. If
+					you're still happy with one-command-and-done personal email, stay where you are.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Mail-in-a-Box have a sending API or inbound webhooks?</h3>
+				<p>
+					Mail-in-a-Box exposes a minimal REST API for control-panel operations (creating
+					users, managing aliases) but not a transactional sending API and not inbound
+					webhooks. SMTP submission with mailbox credentials is the only programmatic send
+					path, and inbound mail lands in mailboxes only. Vectis Mail ships 60+ REST
+					endpoints covering sending (single + batch with attachments), inbound webhooks
+					with HMAC signatures, mailboxes, domains, analytics, and admin operations.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Can I run Mail-in-a-Box on something other than Ubuntu 22.04?</h3>
+				<p>
+					No — Mail-in-a-Box explicitly targets fresh Ubuntu 22.04 LTS only. No Debian,
+					no Ubuntu 24.04, no RHEL family, no BSD. Modifying the install or running it on
+					anything else voids the upgrade path. Vectis Mail runs on any Linux that
+					supports Docker — Ubuntu (22.04+ or 24.04), Debian, and RHEL-family hosts are
+					all production-tested.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Will I lose my calendar and contacts if I migrate?</h3>
+				<p>
+					Calendar and contacts on Mail-in-a-Box live in its bundled Nextcloud install
+					(CalDAV/CardDAV). Vectis Mail doesn't yet ship CalDAV/CardDAV (it's on the
+					Phase 4 roadmap), so you'd need to export to iCal/vCard before tearing
+					Mail-in-a-Box down and re-import wherever you end up using calendar from then
+					on. If calendar and contacts are central to your use, that's a real cost —
+					factor it into your migration decision honestly.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Why would I stay on Mail-in-a-Box?</h3>
+				<p>
+					Five honest reasons: (1) you're an individual or family, not a team or SaaS;
+					(2) you value one-command-install over anything customisable;
+					(3) you actively use the bundled CalDAV/CardDAV (Nextcloud-based);
+					(4) you want the CC0 public-domain license, not AGPL-3.0;
+					(5) you specifically don't want to learn Docker or YAML config. Mail-in-a-Box
+					is genuinely better for those use cases — there's no need to switch.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="cta-section">
+		<h2>Try Vectis Mail</h2>
+		<p>Production mail + transactional API for teams and SaaS. Multi-tenant, declarative, observable.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing" class="btn-secondary">View Pricing</a>
+		</div>
+	</div>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>Mail-in-a-Box project: <a href="https://mailinabox.email/" target="_blank" rel="noopener noreferrer">mailinabox.email</a> · <a href="https://github.com/mail-in-a-box/mailinabox" target="_blank" rel="noopener noreferrer">github.com/mail-in-a-box/mailinabox</a> (retrieved 2026-05-13)</li>
+			<li>Vectis Mail architecture + API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
+			<li>Vectis Mail installation + update model: <a href="/getting-started/installation/">/getting-started/installation</a></li>
+		</ul>
+	</aside>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>
