@@ -450,7 +450,7 @@
 /* ── Page meta (last updated) ───────────────────────────────────── */
 .page-meta {
 	max-width: 1200px;
-	margin: 1rem auto 0;
+	margin: 0.4rem auto 0;
 	padding: 0 2rem;
 	font-size: 0.8rem;
 	color: var(--sl-color-gray-4);
@@ -459,6 +459,62 @@
 }
 .page-meta time {
 	color: var(--sl-color-gray-3);
+}
+
+/* ── Alternatives index card ────────────────────────────────────── */
+a.alt-index-card {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+}
+a.alt-index-card h3 {
+	color: var(--vm-blue);
+}
+.alt-index-bullets {
+	margin: 0;
+	padding-left: 1.1rem;
+	list-style: disc;
+	color: var(--sl-color-gray-3);
+	font-size: 0.9rem;
+	line-height: 1.55;
+}
+.alt-index-bullets li {
+	margin-bottom: 0.25rem;
+}
+
+/* ── Footer compare bar (above the main footer) ─────────────────── */
+.footer-compare {
+	max-width: 1200px;
+	margin: 2rem auto 0;
+	padding: 1rem 2rem 0;
+	border-top: 1px solid var(--vm-border);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem 0.85rem;
+	font-size: 0.85rem;
+	color: var(--sl-color-gray-3);
+}
+.footer-compare-label {
+	color: var(--sl-color-gray-4);
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+.footer-compare a {
+	color: var(--sl-color-gray-2);
+	text-decoration: none;
+	transition: color 0.15s;
+}
+.footer-compare a:hover {
+	color: var(--vm-blue);
+}
+.footer-compare-sep {
+	color: var(--sl-color-gray-5);
+}
+/* When the compare bar sits above the footer, the footer no longer
+   needs its own top border — the compare bar provides it. */
+.footer-compare + .footer {
+	border-top: none;
 }
 
 /* ── Alternative pages ──────────────────────────────────────────── */

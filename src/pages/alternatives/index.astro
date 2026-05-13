@@ -1,0 +1,186 @@
+---
+import '../../styles/custom.css'
+const title = 'Vectis Mail alternatives — honest comparisons'
+const description = 'Honest, side-by-side comparisons of Vectis Mail against Mailcow, SendGrid, and other email platforms. Self-hosted vs managed, open-source vs commercial, declarative vs ad-hoc.'
+const url = 'https://vectismail.com/alternatives/'
+const ogImage = 'https://vectismail.com/og/default.png'
+const dateModified = '2026-05-13'
+
+type Alt = {
+	href: string
+	title: string
+	tagline: string
+	bullets: string[]
+}
+
+const live: Alt[] = [
+	{
+		href: '/alternatives/mailcow/',
+		title: 'vs Mailcow',
+		tagline: 'Same self-hosted philosophy, modern surface — declarative YAML, REST API, atomic updates with rollback.',
+		bullets: [
+			'14 vs 25+ containers by default',
+			'Declarative config + 60+ endpoint REST API',
+			'Atomic 6-phase updates with auto-rollback',
+		],
+	},
+	{
+		href: '/alternatives/sendgrid/',
+		title: 'vs SendGrid',
+		tagline: 'Same API surface, no per-email pricing. Flat $0–$49/mo covers unlimited sending volume.',
+		bullets: [
+			'Flat pricing instead of per-email metered billing',
+			'Inbound webhooks + sending API in one platform',
+			'Self-hosted, your IPs, your reputation',
+		],
+	},
+]
+
+const upcoming: { title: string; tagline: string }[] = [
+	{ title: 'vs iRedMail', tagline: 'Coming soon — modern surface vs the long-running open-source mail stack.' },
+	{ title: 'vs Mail-in-a-Box', tagline: 'Coming soon — production-ready scaling vs single-VPS simplicity.' },
+	{ title: 'vs Postmark', tagline: 'Coming soon — flat-pricing self-host vs premium transactional SaaS.' },
+]
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail alternatives — honest comparisons" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Vectis Mail", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": url }
+				]
+			},
+			{
+				"@type": "CollectionPage",
+				"@id": url + "#page",
+				"name": title,
+				"description": description,
+				"url": url,
+				"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+				"mainEntity": {
+					"@type": "ItemList",
+					"itemListElement": live.map((a, i) => ({
+						"@type": "ListItem",
+						"position": i + 1,
+						"url": "https://vectismail.com" + a.href,
+						"name": a.title,
+					})),
+				},
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" height="34" /></a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/alternatives">Compare</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Compare · Honest side-by-side</div>
+		<h1>Vectis Mail alternatives.<br/><span>Honest comparisons.</span></h1>
+		<p class="alt-lead">
+			Each comparison below leads with where the other product wins, where Vectis Mail wins,
+			and a realistic migration path. No straw-man competitor framing — these are written
+			by the team that actually runs Vectis Mail in production at validonx.com,
+			pharlux.com, scrutique.com, and other Veltara Works infrastructure.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1.5rem;">
+		<h2>Direct comparisons</h2>
+		<p class="subtitle">Live, in-depth pages — each with a side-by-side table, the honest verdict, and a migration guide.</p>
+		<div class="feature-grid" style="margin-top: 1.5rem;">
+			{live.map((a) => (
+				<a href={a.href} class="feature-card alt-index-card">
+					<h3>{a.title} &rarr;</h3>
+					<p style="margin-bottom: 0.85rem;">{a.tagline}</p>
+					<ul class="alt-index-bullets">
+						{a.bullets.map((b) => (<li>{b}</li>))}
+					</ul>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Coming soon</h2>
+		<p class="subtitle">More comparisons being written. If there's a specific product you'd like us to cover, <a href="/contact">let us know</a>.</p>
+		<div class="feature-grid" style="margin-top: 1.5rem;">
+			{upcoming.map((a) => (
+				<div class="feature-card" style="opacity: 0.7;">
+					<h3>{a.title}</h3>
+					<p>{a.tagline}</p>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="section" style="text-align: center;">
+		<div class="hero-buttons">
+			<a href="/getting-started/installation" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing" class="btn-secondary">View Pricing</a>
+		</div>
+	</section>
+
+	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
+
+	<div class="footer-compare">
+		<span class="footer-compare-label">Compare:</span>
+		<a href="/alternatives/mailcow/">vs Mailcow</a>
+		<span class="footer-compare-sep">&middot;</span>
+		<a href="/alternatives/sendgrid/">vs SendGrid</a>
+		<span class="footer-compare-sep">&middot;</span>
+		<a href="/alternatives/">all alternatives</a>
+	</div>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>
