@@ -1,7 +1,7 @@
 ---
 import '../../styles/custom.css'
 const title = 'Vectis Mail for Developers — Self-Hosted Email With a Real API'
-const description = 'Vectis Mail is the self-hosted email platform built for developers. Free Starter tier with full API + webhooks, declarative YAML config, runs on a $5 VPS. Open source core (AGPL-3.0). No SaaS bill that grows with your side project.'
+const description = 'Vectis Mail is the self-hosted email platform built for developers. Free Starter tier with full API + webhooks, declarative YAML config, runs on a $20 VPS. Open source core (AGPL-3.0). No SaaS bill that grows with your side project.'
 const url = 'https://vectismail.com/for/developers/'
 const ogImage = 'https://vectismail.com/og/default.png'
 const datePublished = '2026-05-13'
@@ -68,7 +68,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "What VPS do I need for a small side project?",
-						"acceptedAnswer": { "@type": "Answer", "text": "A Hetzner CX22 ($5/mo) or DigitalOcean Basic Droplet ($6/mo) handles low-thousands of emails per day comfortably. Minimum is 2 vCPU, 4 GB RAM, 40 GB SSD on Ubuntu 22.04+. For a personal project sending password resets + newsletters under 10K emails/month, you'll never feel the limits." }
+						"acceptedAnswer": { "@type": "Answer", "text": "The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on Ubuntu 22.04+) — same spec we use for the cost math on every other page. That's the comfort zone for production-shape use, including Rspamd's memory needs and the observability stack. The hard minimum from the install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume personal use, but Pro features and the spam stack run more cleanly with the recommended spec." }
 					},
 					{
 						"@type": "Question",
@@ -110,12 +110,13 @@ const dateModified = '2026-05-13'
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">For developers · Self-hosted, AGPL-3.0, real API</div>
-		<h1>Vectis Mail for developers.<br/><span>Email infrastructure you own, on a $5 VPS.</span></h1>
+		<h1>Vectis Mail for developers.<br/><span>Email infrastructure you own, on a $20 VPS.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is the email platform for solo developers, indie hackers, and small
 			teams who want to own their infrastructure instead of paying SendGrid every month
 			for a side project. Starter is free forever — full REST API, inbound webhooks,
-			IMAP/POP3 mailboxes, monitoring. Runs on a $5 VPS. AGPL-3.0 source you can audit.
+			IMAP/POP3 mailboxes, monitoring. Runs comfortably on a $20/month VPS. AGPL-3.0
+			source you can audit.
 		</p>
 		<div class="alt-meta">
 			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
@@ -133,8 +134,8 @@ const dateModified = '2026-05-13'
 				<p>Up to 3 domains, 25 mailboxes per domain, full REST API, inbound webhooks, monitoring, backups — all in Starter. Not freemium-tease where every interesting feature is gated. The Pro tier is for scale + advanced features, not for unlocking the API.</p>
 			</div>
 			<div class="feature-card">
-				<h3>2. Runs on a $5 VPS</h3>
-				<p>Hetzner CX22, DigitalOcean Basic, Vultr Cloud Compute — any 2 vCPU / 4 GB / 40 GB Ubuntu host handles a personal project sending under 10K emails/month comfortably. The whole stack — Postfix, Dovecot, Rspamd, Traefik, the API, the dashboard — fits.</p>
+				<h3>2. Runs comfortably on a $20 VPS</h3>
+				<p>A 4 vCPU / 8 GB / 80 GB Ubuntu host (Hetzner, DigitalOcean, Vultr — all around $20/month at that spec) is the recommended baseline. The whole stack — Postfix, Dovecot, Rspamd, Traefik, the API, the React dashboard, Prometheus + Loki — fits with room for sending growth. Same spec as the recommendation on the install docs.</p>
 			</div>
 			<div class="feature-card">
 				<h3>3. One YAML config, no Postfix wizardry</h3>
@@ -168,17 +169,17 @@ const dateModified = '2026-05-13'
 					</tr>
 				</thead>
 				<tbody>
-					<tr><td>VPS (Hetzner CX22 or similar)</td><td>$5/mo</td><td>$0 (managed)</td></tr>
+					<tr><td>VPS (recommended 4 vCPU / 8 GB)</td><td>$20/mo</td><td>$0 (managed)</td></tr>
 					<tr><td>Transactional sending (under 10K emails/mo)</td><td><strong>$0 (Starter)</strong></td><td>$19.95 (Essentials)</td></tr>
 					<tr><td>Personal mailbox (<code>you@yourdomain</code>)</td><td><strong>Included</strong></td><td>$6 (Workspace Starter)</td></tr>
 					<tr><td>Inbound webhooks for support flows</td><td><strong>Included</strong></td><td>Included on SendGrid</td></tr>
 					<tr><td>Domain (~$15/yr ÷ 12)</td><td>$1.25/mo</td><td>$1.25/mo</td></tr>
-					<tr><td><strong>Total monthly</strong></td><td><strong>$6.25</strong></td><td>$27.20</td></tr>
+					<tr><td><strong>Total monthly</strong></td><td><strong>$21.25</strong></td><td>$27.20</td></tr>
 				</tbody>
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + Google Workspace + Hetzner public pricing retrieved 2026-05-13. Vectis Mail Starter covers up to 3 domains and 25 mailboxes per domain — fits the vast majority of personal projects.
+			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + Google Workspace public pricing retrieved 2026-05-13. Vectis Mail Starter covers up to 3 domains and 25 mailboxes per domain — fits the vast majority of personal projects. The $20 VPS line matches the same baseline used on every other Vectis Mail page; the install docs cite 2 vCPU / 4 GB / 40 GB as the hard minimum if you're sending very low volume and want a cheaper host.
 		</p>
 	</section>
 
@@ -265,10 +266,13 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>What VPS do I need for a small side project?</h3>
 				<p>
-					A Hetzner CX22 ($5/mo) or DigitalOcean Basic Droplet ($6/mo) handles
-					low-thousands of emails per day comfortably. Minimum is 2 vCPU, 4 GB RAM,
-					40 GB SSD on Ubuntu 22.04+. For a personal project sending password resets
-					+ newsletters under 10K emails/month, you'll never feel the limits.
+					The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on
+					Ubuntu 22.04+) — same spec we use for the cost math on every other Vectis
+					Mail page. That's the comfort zone for production-shape use, including
+					Rspamd's memory needs and the observability stack. The hard minimum from the
+					install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume
+					personal use, but Pro features and the spam stack run more cleanly with the
+					recommended spec.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -317,7 +321,7 @@ const dateModified = '2026-05-13'
 
 	<div class="cta-section">
 		<h2>Try Vectis Mail</h2>
-		<p>Starter is free forever. Spin up a $5 VPS, install in 20 minutes, send your first transactional email.</p>
+		<p>Starter is free forever. Spin up a $20 VPS, install in 20 minutes, send your first transactional email.</p>
 		<div class="hero-buttons">
 			<a href="/getting-started/installation" class="btn-primary">Install Vectis Mail</a>
 			<a href="/pricing" class="btn-secondary">View Pricing</a>
