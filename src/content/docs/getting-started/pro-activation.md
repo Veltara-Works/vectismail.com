@@ -7,6 +7,13 @@ This guide walks through activating Pro on an installed Vectis server. You
 should have your Vectis Pro subscription details from
 [ValidonX](https://validonx.com/checkout/vectis-pro) before starting.
 
+## Activation at a glance
+
+1. **[Get your subscription details](#step-1--get-your-subscription-details)** from ValidonX — license key + tenant ID.
+2. **[Open the License page](#step-2--open-the-license-page)** in the Vectis admin UI.
+3. **[Activate](#step-3--activate)** by pasting the license key and tenant ID, then clicking Activate.
+4. **[Verify the gates flipped](#step-4--verify-the-gates-flipped)** by checking that Pro features (analytics, OIDC SSO, advanced spam) are now accessible.
+
 ## What activation does
 
 By default, Vectis runs in **Starter (Free) mode** — up to 3 domains, up to

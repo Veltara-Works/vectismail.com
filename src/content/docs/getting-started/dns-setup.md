@@ -13,7 +13,16 @@ Proper DNS configuration is essential for email deliverability. This guide cover
 
 ## Required Records
 
-For a domain `example.com` on a server at `mail.example.com` (`203.0.113.10`):
+For a domain `example.com` on a server at `mail.example.com` (`203.0.113.10`), publish these in order:
+
+1. **[MX record](#mx-record)** — points your domain at the mail server hostname.
+2. **[A record](#a-record)** — points the mail server hostname at your VPS's IPv4.
+3. **[PTR record (reverse DNS)](#ptr-record-reverse-dns)** — set at your VPS provider, **not** your registrar.
+4. **[SPF record](#spf-record)** — authorises your mail server's IP to send for the domain.
+5. **[DKIM record](#dkim-record)** — published from the public key the admin UI prints when you add the domain.
+6. **[DMARC record](#dmarc-record)** — policy + reporting address.
+
+After publishing all records, [verify them](#verification) and address any issues from [common pitfalls](#common-issues).
 
 ### MX Record
 

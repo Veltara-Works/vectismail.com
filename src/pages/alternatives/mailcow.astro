@@ -145,7 +145,7 @@ const dateModified = '2026-05-12'
 				</thead>
 				<tbody>
 					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
-					<tr><td>Container count (default)</td><td><strong>14</strong></td><td>25+</td></tr>
+					<tr><td>Container count (default)</td><td><strong>14</strong></td><td>25+ <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent); font-size: 0.85em;">[1]</a></td></tr>
 					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
 					<tr><td>REST API</td><td><strong>60+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
 					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
@@ -313,9 +313,10 @@ const dateModified = '2026-05-12'
 				<h3>How do Vectis Mail and Mailcow compare on container count?</h3>
 				<p>
 					Vectis Mail ships 14 containers by default (10 if you disable observability
-					and ClamAV). Mailcow's compose stack includes 25+ services. Fewer containers
-					means less coordination overhead during updates and a smaller blast radius
-					when something breaks.
+					and ClamAV). Mailcow's compose stack includes 25+ services
+					(<a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer">mailcow-dockerized/docker-compose.yml</a>,
+					retrieved 12 May 2026). Fewer containers means less coordination overhead during
+					updates and a smaller blast radius when something breaks.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -361,7 +362,7 @@ const dateModified = '2026-05-12'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Mailcow project + community: <a href="https://mailcow.email/" rel="noopener">mailcow.email</a> · <a href="https://github.com/mailcow/mailcow-dockerized" rel="noopener">github.com/mailcow/mailcow-dockerized</a> (retrieved 2026-05-12)</li>
+			<li>Mailcow project + community: <a href="https://mailcow.email/" target="_blank" rel="noopener noreferrer">mailcow.email</a> · <a href="https://github.com/mailcow/mailcow-dockerized" target="_blank" rel="noopener noreferrer">github.com/mailcow/mailcow-dockerized</a> (retrieved 2026-05-12)</li>
 			<li>Vectis Mail architecture, container count, API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
 			<li>Vectis Mail installation + update model: <a href="/getting-started/installation/">/getting-started/installation</a></li>
 		</ul>
