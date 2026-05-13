@@ -37,6 +37,7 @@ export default defineConfig({
 						{ label: 'Installation', slug: 'getting-started/installation' },
 						{ label: 'Your First Domain', slug: 'getting-started/first-domain' },
 						{ label: 'DNS Setup', slug: 'getting-started/dns-setup' },
+						{ label: 'Activating Pro', slug: 'getting-started/pro-activation' },
 					],
 				},
 				{
