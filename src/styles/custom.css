@@ -450,7 +450,7 @@
 /* ── Page meta (last updated) ───────────────────────────────────── */
 .page-meta {
 	max-width: 1200px;
-	margin: 0.4rem auto 0;
+	margin: 0.7rem auto 0;
 	padding: 0 2rem;
 	font-size: 0.8rem;
 	color: var(--sl-color-gray-4);
