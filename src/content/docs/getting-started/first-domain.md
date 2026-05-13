@@ -1,6 +1,29 @@
 ---
 title: Your First Domain
 description: Walk through the Setup Wizard to add a domain, publish DNS records, verify ownership, and create your first mailbox.
+howToName: Add your first domain in Vectis Mail
+howToSteps:
+  - name: Log in to the admin UI
+    url: "#log-in"
+    text: Open https://your-hostname/admin and sign in with the admin email and password printed at the end of vectis install.
+  - name: Add your domain
+    url: "#step-1--add-your-domain"
+    text: Open the Setup Wizard and add the mail domain (e.g. example.com) you want to send and receive for.
+  - name: Publish DNS records
+    url: "#step-2--publish-dns-records"
+    text: Copy the MX, SPF, DKIM, and DMARC records the wizard generates and publish them at your domain registrar.
+  - name: Verify domain ownership
+    url: "#step-3--verify-domain-ownership"
+    text: Publish the verification TXT record the wizard prints, then click Verify in the wizard.
+  - name: Create your first mailbox
+    url: "#step-4--create-your-first-mailbox"
+    text: Create a mailbox on the new domain (for example, you@example.com) so you have something to send from and receive into.
+  - name: Deliverability review
+    url: "#step-5--deliverability-review"
+    text: Run the built-in deliverability check (or a free GlockApps test) to confirm authentication is passing and the IP is in good standing.
+  - name: Connect your mail app
+    url: "#connect-your-mail-app"
+    text: Configure your IMAP / SMTP client with the settings the wizard prints to start using the mailbox.
 ---
 
 After [installing Vectis Mail](/getting-started/installation), open the admin URL in your browser. The **Setup Wizard** will walk you through five steps: add domain → DNS records → verify → create mailbox → deliverability review.

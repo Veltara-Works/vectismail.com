@@ -1,6 +1,10 @@
 ---
 import Default from '@astrojs/starlight/components/Head.astro'
-import type { SidebarEntry, SidebarLink, SidebarGroup } from '@astrojs/starlight/schema'
+
+type SidebarLink = { type: 'link'; label: string; href: string; isCurrent: boolean }
+type SidebarGroup = { type: 'group'; label: string; entries: SidebarEntry[] }
+type SidebarEntry = SidebarLink | SidebarGroup
+type HowToStep = { name: string; url: string; text?: string }
 
 type FindResult = { group: SidebarGroup | null; link: SidebarLink }
 
@@ -68,8 +72,12 @@ const breadcrumb = {
 	itemListElement: items,
 }
 
-const data = route.entry.data
+const data = route.entry.data as typeof route.entry.data & {
+	howToName?: string
+	howToSteps?: Array<{ name: string; url: string; text?: string }>
+}
 const pageUrl = new URL(found?.link.href ?? '/', SITE).toString()
+
 const techArticle = {
 	'@context': 'https://schema.org',
 	'@type': 'TechArticle',
@@ -94,11 +102,45 @@ const techArticle = {
 	},
 	mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
 }
+
+const howTo = data.howToSteps && data.howToSteps.length > 0 ? {
+	'@context': 'https://schema.org',
+	'@type': 'HowTo',
+	name: data.howToName ?? data.title,
+	description: data.description ?? '',
+	url: pageUrl,
+	datePublished: LAUNCH_DATE,
+	dateModified: isoDay(route.lastUpdated),
+	inLanguage: 'en',
+	author: {
+		'@type': 'Organization',
+		name: 'Vectis Mail',
+		url: 'https://vectismail.com/about/',
+	},
+	publisher: {
+		'@type': 'Organization',
+		name: 'Vectis Mail',
+		logo: {
+			'@type': 'ImageObject',
+			url: 'https://vectismail.com/brand/logos/vectis-mail-logo-white.png',
+		},
+	},
+	step: data.howToSteps.map((s: HowToStep, i: number) => ({
+		'@type': 'HowToStep',
+		position: i + 1,
+		name: s.name,
+		url: pageUrl + s.url,
+		text: s.text ?? s.name,
+	})),
+} : null
 ---
 <Default {...Astro.props}><slot /></Default>
 {items.length >= 2 && (
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
 )}
-{found && (
+{found && howTo === null && (
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(techArticle)} />
+)}
+{howTo && (
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(howTo)} />
 )}

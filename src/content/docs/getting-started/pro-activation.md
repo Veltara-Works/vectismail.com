@@ -1,6 +1,20 @@
 ---
 title: Activating Pro
 description: How to activate your Pro subscription on a Vectis install after purchasing through ValidonX.
+howToName: Activate Vectis Mail Pro
+howToSteps:
+  - name: Get your subscription details
+    url: "#step-1--get-your-subscription-details"
+    text: Sign in to validonx.com and copy your Vectis Pro license key and tenant ID from the subscription page.
+  - name: Open the License page
+    url: "#step-2--open-the-license-page"
+    text: In the Vectis admin UI, go to Settings → License (or /admin/license) to open the activation form.
+  - name: Activate
+    url: "#step-3--activate"
+    text: Paste the license key and tenant ID into the form and click Activate. Vectis verifies the license against ValidonX and stores entitlements.
+  - name: Verify the gates flipped
+    url: "#step-4--verify-the-gates-flipped"
+    text: Confirm the tier shows as Pro on /admin and that Pro features (per-domain analytics, OIDC SSO, advanced spam controls) are now accessible.
 ---
 
 This guide walks through activating Pro on an installed Vectis server. You

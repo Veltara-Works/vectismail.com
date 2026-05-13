@@ -1,6 +1,26 @@
 ---
 title: Installation
 description: Step-by-step install of Vectis Mail on a fresh Ubuntu VPS.
+howToName: Install Vectis Mail on a fresh Ubuntu VPS
+howToSteps:
+  - name: Prerequisites
+    url: "#prerequisites"
+    text: Enable SSH on the VPS, update Ubuntu, set reverse DNS (PTR), and request port 25 unblock from your VPS provider.
+  - name: Download
+    url: "#download"
+    text: "Run curl -fsSL https://get.vectismail.com | sudo bash. The script places the binary, installs Docker if missing, and seeds secrets."
+  - name: Preflight
+    url: "#preflight"
+    text: Run vectis preflight to confirm OS version, ports, and Docker are ready.
+  - name: Install
+    url: "#install"
+    text: Run vectis install to deploy the stack, run database migrations, and create the admin account.
+  - name: Publish DNS records
+    url: "#publish-dns-records"
+    text: Publish the A record at your domain registrar and the PTR record at your VPS provider.
+  - name: Verify the install
+    url: "#verifying-the-install"
+    text: Run vectis status and log into the admin UI at https://your-mail-host/admin to confirm the install is healthy.
 ---
 
 This guide walks through a fresh install on a clean Ubuntu 24.04 VPS. The full path is **prerequisites → download → install → publish DNS records**, and the `curl | sudo bash` one-liner is interactive — you'll be prompted to confirm the hostname and admin email it auto-detects from your VPS's reverse DNS.

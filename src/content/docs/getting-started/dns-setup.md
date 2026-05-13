@@ -1,6 +1,26 @@
 ---
 title: DNS Setup
 description: Configure MX, A, PTR, SPF, DKIM, and DMARC records for your Vectis Mail server.
+howToName: Configure DNS records for a Vectis Mail server
+howToSteps:
+  - name: MX record
+    url: "#mx-record"
+    text: Publish an MX record at your domain registrar pointing your mail domain at the mail server hostname (e.g. mail.example.com) with priority 10.
+  - name: A record
+    url: "#a-record"
+    text: Publish an A record at your domain registrar pointing the mail server hostname at your VPS's public IPv4 address.
+  - name: PTR record (reverse DNS)
+    url: "#ptr-record-reverse-dns"
+    text: Set the PTR record at your VPS provider's control panel (not your registrar) so your IP resolves back to the mail server hostname.
+  - name: SPF record
+    url: "#spf-record"
+    text: Publish a TXT SPF record authorising your mail server's IP to send email for the domain.
+  - name: DKIM record
+    url: "#dkim-record"
+    text: Publish a TXT DKIM record using the public key the Vectis Mail admin UI prints when you add the domain.
+  - name: DMARC record
+    url: "#dmarc-record"
+    text: Publish a TXT DMARC record with your enforcement policy and a reporting address.
 ---
 
 Proper DNS configuration is essential for email deliverability. This guide covers all the records you need.
