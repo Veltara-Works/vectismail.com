@@ -24,14 +24,13 @@ interface Env {
 const RETURN_URL = "https://vectismail.com/account/billing/done";
 const SUPPORT_MAILTO = "mailto:support@vectismail.com";
 
-// ValidonX `tenants.id` is a UUID (confirmed 2026-05-16). ULID kept as a
-// secondary acceptable shape so we don't have to redeploy if they ever
-// switch identifier scheme. Real validation is at Vx's endpoint — this is
-// just a cheap shape check to bounce obvious tampering before a network hop.
+// ValidonX `tenants.id` is a strict UUID (their schema confirmed
+// 2026-05-16; they don't issue ULIDs anywhere). Any other shape (including
+// ULID) is rejected at the edge with a branded 400 — saves a Vx round-trip
+// for inputs that would only get 422 from them anyway.
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const ULID_RE = /^[0-9A-HJKMNP-TV-Z]{26}$/i;
 function isValidTenant(s: string): boolean {
-  return UUID_RE.test(s) || ULID_RE.test(s);
+  return UUID_RE.test(s);
 }
 
 export const onRequestGet: PagesFunction<Env> = async (ctx) => {
@@ -196,12 +195,23 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
 // Branded HTML error page — matches the marketing-site dark theme without
 // pulling in the Starlight/Astro layout chain (this is a Worker, not a build
 // step). Inline CSS only, no external assets except the logo.
+//
+// IMPORTANT: status is clamped to non-5xx. Cloudflare intercepts 5xx Worker
+// responses on this zone and replaces them with its own default error page,
+// so a Worker returning 502 with our branded HTML reached the customer as
+// the 15-byte text/plain "error code: 502" Cloudflare default. Root-caused
+// from deployment tail logs 2026-05-16 16:00 AEST. The branded HTML *is*
+// the actual customer-facing UX; status code is irrelevant for humans, and
+// headers (`noindex`, `Cache-Control: no-store`) handle the SEO/cache
+// concerns that status code would otherwise express. Any caller asking for
+// a 5xx gets silently downgraded to 200.
 function errorPage(
   status: number,
   heading: string,
   body: string,
   followUp: string,
 ): Response {
+  if (status >= 500) status = 200;
   const html = `<!doctype html>
 <html lang="en">
 <head>
