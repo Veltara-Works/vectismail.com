@@ -24,10 +24,15 @@ interface Env {
 const RETURN_URL = "https://vectismail.com/account/billing/done";
 const SUPPORT_MAILTO = "mailto:support@vectismail.com";
 
-// Accept either UUID (8-4-4-4-12 hex) or ULID (26-char Crockford base32).
-// Both are used by ValidonX for tenant identifiers; future-proofs against
-// either format being passed.
-const TENANT_RE = /^[0-9a-zA-Z-]{20,40}$/;
+// ValidonX `tenants.id` is a UUID (confirmed 2026-05-16). ULID kept as a
+// secondary acceptable shape so we don't have to redeploy if they ever
+// switch identifier scheme. Real validation is at Vx's endpoint — this is
+// just a cheap shape check to bounce obvious tampering before a network hop.
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const ULID_RE = /^[0-9A-HJKMNP-TV-Z]{26}$/i;
+function isValidTenant(s: string): boolean {
+  return UUID_RE.test(s) || ULID_RE.test(s);
+}
 
 export const onRequestGet: PagesFunction<Env> = async (ctx) => {
   const url = new URL(ctx.request.url);
@@ -41,7 +46,7 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
       "If you've lost the email or the link looks broken, contact us and we'll send a fresh portal link.",
     );
   }
-  if (!TENANT_RE.test(tenant)) {
+  if (!isValidTenant(tenant)) {
     return errorPage(
       400,
       "Invalid tenant identifier",
@@ -86,10 +91,16 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
     );
   }
 
-  if (res.status === 404 || res.status === 422) {
-    // Tenant unknown / wrong format on ValidonX's side.
+  // Error contract per Vx 2026-05-16:
+  //   404 LICENSING.TENANT_NOT_FOUND   — body tenant_id doesn't resolve
+  //   409 BILLING.PORTAL_SESSION_NO_STRIPE_CUSTOMER — pre-live or free
+  //   422 VALIDATION.FAILED            — bad request shape (OUR bug)
+  //   401 AUTH.INVALID_API_KEY         — partner key revoked
+  //   403 AUTH.SCOPE_INSUFFICIENT      — key scope wrong
+  //   other 5xx                        — transient / unknown
+  if (res.status === 404) {
     const detail = await res.text().catch(() => "");
-    console.error("validonx portal-session rejected tenant", res.status, detail);
+    console.error("validonx portal-session tenant not found", detail);
     return errorPage(
       404,
       "Subscription not found",
@@ -99,8 +110,6 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
   }
 
   if (res.status === 409) {
-    // BILLING.PORTAL_SESSION_NO_STRIPE_CUSTOMER — pre-live-billing or
-    // legacy account with no Stripe customer record.
     const detail = await res.text().catch(() => "");
     console.error("validonx portal-session no stripe customer", detail);
     return errorPage(
@@ -108,6 +117,34 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
       "Billing portal not yet available for this account",
       "Your account doesn't have a billing portal set up yet. This usually means your subscription was created before our self-service billing went live.",
       "Please contact us and we'll handle any subscription changes for you directly.",
+    );
+  }
+
+  if (res.status === 401 || res.status === 403) {
+    // Partner key revoked or scope insufficient. This is a Vectis-side
+    // operational issue (key rotation / scope misconfiguration), not a
+    // customer-facing one — show generic "temporarily unavailable" and
+    // log loudly so we know to rotate.
+    const detail = await res.text().catch(() => "");
+    console.error("validonx portal-session AUTH FAILURE — key needs rotation", res.status, detail);
+    return errorPage(
+      502,
+      "Billing portal temporarily unavailable",
+      "We couldn't load your billing portal right now due to a temporary issue on our side.",
+      "Please try clicking the link from your welcome email again in a few minutes, or contact us if it keeps failing.",
+    );
+  }
+
+  if (res.status === 422) {
+    // Vx 422 = malformed request body. Means OUR Pages Function is sending
+    // a shape they don't accept — code bug, not a customer-facing issue.
+    const detail = await res.text().catch(() => "");
+    console.error("validonx portal-session 422 VALIDATION.FAILED — request shape bug", detail);
+    return errorPage(
+      502,
+      "Billing portal temporarily unavailable",
+      "We couldn't load your billing portal right now due to a temporary issue on our side.",
+      "Please try again in a few minutes, or contact us if it keeps failing.",
     );
   }
 
