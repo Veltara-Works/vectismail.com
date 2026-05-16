@@ -21,7 +21,7 @@ interface Env {
   VALIDONX_API_BASE: string;
 }
 
-const RETURN_URL = "https://vectismail.com/account/billing/done";
+const RETURN_URL = "https://vectismail.com/account/billing/done/";
 const SUPPORT_MAILTO = "mailto:support@vectismail.com";
 
 // ValidonX `tenants.id` is a strict UUID (their schema confirmed

@@ -1,0 +1,61 @@
+---
+import "../../../styles/custom.css"
+const title = 'Subscription updated — Vectis Mail'
+const description = 'Your Vectis Mail subscription changes have been saved.'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta name="robots" content="noindex" />
+	<meta name="theme-color" content="#0C0C0D" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" height="34" /></a>
+		<div>
+			<a href="/features">Features</a>
+			<a href="/pricing">Pricing</a>
+			<a href="/alternatives">Compare</a>
+			<a href="/getting-started">Docs</a>
+			<a href="/about">About</a>
+			<a href="/contact">Contact</a>
+		</div>
+	</nav>
+
+	<section class="section" style="max-width: 640px;">
+		<h1>You're all set</h1>
+		<p class="subtitle">Your subscription changes have been saved.</p>
+
+		<div class="feature-card" style="margin-bottom: 1.5rem;">
+			<p style="margin: 0 0 0.75rem;">Any updates you made — payment method, plan, invoices, cancellation — are now in effect. You'll receive an email confirmation from Stripe with the details.</p>
+			<p style="margin: 0; color: var(--sl-color-gray-2); font-size: 0.95rem;">If you changed your plan, your Vectis Mail installation will pick up the new tier automatically within a few minutes.</p>
+		</div>
+
+		<div class="feature-card" style="margin-bottom: 1.5rem;">
+			<h3 style="margin-top: 0;">Need to make more changes?</h3>
+			<p style="margin: 0;">Use the <strong>Manage subscription</strong> link from your original welcome email to return to the billing portal at any time. If you've lost that email, <a href="/contact" style="color: var(--sl-color-accent);">contact us</a> and we'll send a fresh link.</p>
+		</div>
+
+		<div class="feature-card">
+			<h3 style="margin-top: 0;">What's next</h3>
+			<p style="margin: 0 0 0.5rem;">&middot; <a href="/getting-started" style="color: var(--sl-color-accent);">Documentation</a> — installation guides and operator reference</p>
+			<p style="margin: 0 0 0.5rem;">&middot; <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">GitHub</a> — issues, releases, and source</p>
+			<p style="margin: 0;">&middot; <a href="/contact" style="color: var(--sl-color-accent);">Contact support</a> — for anything else</p>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<span>&copy; 2026 Veltara Works. All rights reserved.</span>
+		<div>
+			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
+			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
+			<a href="/contact">Contact</a>
+		</div>
+	</footer>
+</body>
+</html>
