@@ -1,5 +1,6 @@
 ---
 import "../styles/custom.css"
+import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Terms of Service — Vectis Mail'
 const description = 'Terms governing your use of vectismail.com and your subscription to Vectis Mail Pro. Plain-language, BSL-aware, Australian law.'
 ---
@@ -171,25 +172,8 @@ const description = 'Terms governing your use of vectismail.com and your subscri
 	</section>
 
 	<p class="page-meta">Last updated <time datetime="2026-05-17">17 May 2026</time></p>
-	<div class="footer-compare">
-		<span class="footer-compare-label">Related:</span>
-		<a href="/privacy/">Privacy Policy</a>
-		<span class="footer-compare-sep">&middot;</span>
-		<a href="https://github.com/Veltara-Works/vectis/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">BSL (source licence)</a>
-		<span class="footer-compare-sep">&middot;</span>
-		<a href="/about/">About Veltara Works</a>
-	</div>
 
-	<footer class="footer">
-		<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
-		<div>
-			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
-			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
-			<a href="/contact">Contact</a> &nbsp;&middot;&nbsp;
-			<a href="/privacy/">Privacy</a> &nbsp;&middot;&nbsp;
-			<a href="/terms/">Terms</a>
-		</div>
-	</footer>
+	<SiteFooter />
 
 	<style>
 		.policy-section {

@@ -1,5 +1,6 @@
 ---
 import "../styles/custom.css"
+import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Contact — Vectis Mail'
 const description = 'Contact the Vectis Mail team about enterprise pricing, integration help, or general questions. Email and GitHub support channels for the self-hosted email platform.'
 ---
@@ -87,25 +88,8 @@ const description = 'Contact the Vectis Mail team about enterprise pricing, inte
 	</section>
 
 	<p class="page-meta">Last updated <time datetime="2026-05-12">12 May 2026</time></p>
-	<div class="footer-compare">
-		<span class="footer-compare-label">Compare:</span>
-		<a href="/alternatives/mailcow/">vs Mailcow</a>
-		<span class="footer-compare-sep">&middot;</span>
-		<a href="/alternatives/sendgrid/">vs SendGrid</a>
-		<span class="footer-compare-sep">&middot;</span>
-		<a href="/alternatives/">all alternatives</a>
-	</div>
 
-	<footer class="footer">
-		<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
-		<div>
-			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
-			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
-			<a href="/contact">Contact</a> &nbsp;&middot;&nbsp;
-			<a href="/privacy/">Privacy</a> &nbsp;&middot;&nbsp;
-			<a href="/terms/">Terms</a>
-		</div>
-	</footer>
+	<SiteFooter />
 
 	<script>
 		// Character counter.

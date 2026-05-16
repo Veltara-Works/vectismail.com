@@ -1,5 +1,6 @@
 ---
 import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
 const title = 'Vectis Mail by use case — for SaaS, agencies, developers, enterprises'
 const description = 'Vectis Mail for SaaS, agencies, developers, and enterprises. Use-case-specific landing pages — what Vectis Mail does for each audience, how the pricing math works, and where it isn\'t the right fit.'
 const url = 'https://vectismail.com/for/'
@@ -183,15 +184,6 @@ const upcoming: { title: string; tagline: string }[] = []
 
 	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
 
-	<footer class="footer">
-		<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
-		<div>
-			<a href="/getting-started">Docs</a> &nbsp;&middot;&nbsp;
-			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;&middot;&nbsp;
-			<a href="/contact">Contact</a> &nbsp;&middot;&nbsp;
-			<a href="/privacy/">Privacy</a> &nbsp;&middot;&nbsp;
-			<a href="/terms/">Terms</a>
-		</div>
-	</footer>
+	<SiteFooter />
 </body>
 </html>
