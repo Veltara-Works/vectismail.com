@@ -18,12 +18,14 @@ const DEPARTMENT_TO: Record<string, string> = {
   general: "hello@vectismail.com",
   sales: "sales@vectismail.com",
   support: "support@vectismail.com",
+  privacy: "privacy@vectismail.com",
 };
 
 const DEPARTMENT_LABEL: Record<string, string> = {
   general: "General Enquiries",
   sales: "Enterprise Sales",
   support: "Technical Support",
+  privacy: "Privacy / Data Request",
 };
 
 const FROM_EMAIL = "contact@vectismail.com";
