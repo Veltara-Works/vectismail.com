@@ -27,6 +27,54 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 	<link rel="canonical" href="https://vectismail.com/features/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "Vectis Mail",
+		"applicationCategory": "CommunicationApplication",
+		"applicationSubCategory": "Email Server",
+		"operatingSystem": "Linux",
+		"description": description,
+		"url": "https://vectismail.com/features/",
+		"softwareVersion": "0.1.12",
+		"offers": [
+			{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "description": "Up to 3 domains, 25 mailboxes per domain. Free forever." },
+			{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "description": "Unlimited domains and mailboxes, per-domain analytics, OIDC SSO, priority support." }
+		],
+		"publisher": {
+			"@type": "Organization",
+			"name": "Veltara Works",
+			"url": "https://veltaraworks.com"
+		},
+		"featureList": [
+			"Postfix MTA (inbound + outbound SMTP)",
+			"Dovecot IMAP/POP3/LMTP with ManageSieve",
+			"Rspamd spam filtering (Bayes + neural)",
+			"ClamAV antivirus (optional, profile-gated)",
+			"REST sending API + batch sending (up to 100 messages per call)",
+			"Inbound webhooks (HMAC-SHA256 signed, exponential-backoff retry)",
+			"Message storage API with full-text search",
+			"Engagement tracking (opens, clicks; opt-in per message)",
+			"Atomic 6-phase updates with automatic rollback",
+			"Backup and restore (AES-256-GCM encrypted)",
+			"Three-tier RBAC (super_admin, admin, domain_admin) + TOTP MFA",
+			"OIDC SSO (Google, Azure AD, Keycloak) — Pro",
+			"Prometheus + Grafana + Loki observability stack",
+			"DKIM, SPF, DMARC automated",
+			"Automatic TLS via Let's Encrypt or bring your own certs",
+			"IP warmup + RBL monitoring",
+			"Per-domain analytics dashboard — Pro",
+			"Per-domain spam controls (thresholds, greylisting, allow/block lists) — Pro",
+			"Roundcube webmail with Vectis skin"
+		],
+		"additionalProperty": [
+			{ "@type": "PropertyValue", "name": "Container count", "value": "14 by default (10 without observability and ClamAV)" },
+			{ "@type": "PropertyValue", "name": "API endpoints", "value": "60+ REST endpoints across sending, mailboxes, domains, analytics, admin" },
+			{ "@type": "PropertyValue", "name": "Configuration model", "value": "Declarative single-file YAML (config.yaml) + Postgres-backed domain/mailbox catalog" },
+			{ "@type": "PropertyValue", "name": "Update model", "value": "Atomic orchestrator with snapshot + rollback; cross-version self-heal" },
+			{ "@type": "PropertyValue", "name": "License", "value": "Business Source License 1.1; each version converts to Apache 2.0 four years after release" }
+		]
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">

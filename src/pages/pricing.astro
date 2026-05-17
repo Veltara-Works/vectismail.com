@@ -29,6 +29,52 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
 	<script is:inline type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "Vectis Mail",
+		"applicationCategory": "CommunicationApplication",
+		"applicationSubCategory": "Email Server",
+		"operatingSystem": "Linux",
+		"description": description,
+		"url": "https://vectismail.com/pricing/",
+		"softwareVersion": "0.1.12",
+		"publisher": {
+			"@type": "Organization",
+			"name": "Veltara Works",
+			"url": "https://veltaraworks.com"
+		},
+		"offers": [
+			{
+				"@type": "Offer",
+				"name": "Starter",
+				"price": "0",
+				"priceCurrency": "USD",
+				"availability": "https://schema.org/InStock",
+				"description": "Free forever. Up to 3 domains, 25 mailboxes per domain, sending API, inbound webhooks, admin dashboard, Roundcube webmail, DKIM/SPF/DMARC, automatic TLS, backup and restore, RBAC + TOTP MFA, atomic updates, IP warmup, RBL monitoring, Prometheus + Grafana + Loki observability, community support.",
+				"category": "free",
+				"url": "https://vectismail.com/getting-started/installation"
+			},
+			{
+				"@type": "Offer",
+				"name": "Pro",
+				"price": "29",
+				"priceCurrency": "USD",
+				"availability": "https://schema.org/InStock",
+				"description": "Per tenant per month. Everything in Starter plus unlimited domains, unlimited mailboxes per domain, per-domain analytics dashboard, per-domain spam controls (reject thresholds, greylisting, allow/block lists), OIDC SSO (Google, Azure AD, Keycloak), priority email support, 30-day offline license grace period. One subscription covers unlimited Vectis Mail installs.",
+				"category": "subscription",
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": "29",
+					"priceCurrency": "USD",
+					"unitText": "per tenant per month",
+					"billingIncrement": "1",
+					"billingDuration": "P1M"
+				},
+				"url": "https://vectismail.com/contact?reason=pro"
+			}
+		]
+	})} />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		"mainEntity": [
 			{

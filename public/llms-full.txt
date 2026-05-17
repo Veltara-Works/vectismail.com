@@ -1,0 +1,426 @@
+# Vectis Mail — Complete Reference
+
+> Self-hosted, declarative email platform. Packages Postfix, Dovecot, Rspamd,
+> Traefik, Postgres, and Valkey into a single deployment managed through one
+> YAML config file and a REST API. Modern alternative to Mailcow, iRedMail,
+> Mail-in-a-Box, SendGrid, Postmark, and Mailgun — combines the control of
+> self-hosting with the developer ergonomics of transactional email SaaS.
+
+This is the long-form, full-content reference for LLMs and AI assistants.
+For the concise summary with links, see https://vectismail.com/llms.txt.
+
+---
+
+## What Vectis Mail is
+
+A production-grade mail server you deploy on your own VPS, run with one
+binary, and manage through a clean REST API and admin dashboard. It packages
+all the standard mail components (Postfix MTA, Dovecot IMAP, Rspamd spam
+filtering, ClamAV antivirus, Traefik reverse proxy, Postgres, Valkey) plus a
+Go-based control plane and a React admin UI into a coherent platform with:
+
+- **Declarative configuration.** A single `config.yaml` describes the server.
+  Domains and mailboxes live in Postgres, not config files — no Postfix or
+  Dovecot reload is needed when you add a domain or rotate a password.
+- **REST API and webhooks.** Sending API for outbound mail, inbound webhooks
+  for received mail (HMAC-signed, retry-with-backoff), full message storage
+  with search, per-domain analytics, admin and RBAC endpoints.
+- **Atomic update orchestrator.** A 6-phase pipeline (snapshot, migrate,
+  pull, deploy, health-check, complete) with automatic rollback on failure
+  and an advisory lock that prevents concurrent operations.
+- **Self-healing.** Cross-version startup self-heal detects compose drift,
+  refuses Apply on legacy installs with remediation, and rewrites configs
+  in place when needed.
+
+Live in production at `mail.vectismail.com` since 2026-04-03; powers
+transactional email for ValidonX and other Veltara Works products.
+
+---
+
+## Who builds it
+
+Vectis Mail is a product of **Veltara Works** (Australian company, wholly
+AU-owned). Veltara Works also operates **ValidonX**, its licensing and
+billing platform — which is both used by Vectis Mail (as the Pro license
+backend) and sold separately to third-party developers. Merchant of record
+for all transactions is Veltara Works. ValidonX is not a separate company;
+it is a Veltara Works platform.
+
+Sister product: **Pharlux** (single-binary OpenTelemetry observability —
+replaces the LGTM stack with one Rust binary, metrics and logs on a single
+VPS, no Docker, no ClickHouse).
+
+---
+
+## Architecture (high level)
+
+**Containers.** 14 by default; 10 if observability and ClamAV are disabled:
+
+- `traefik` — reverse proxy + TLS termination (Let's Encrypt or custom certs)
+- `api` — Go binary, the REST API + admin UI server
+- `orchestrator` — Go binary, the update orchestrator (holds Docker socket)
+- `postfix` — MTA (inbound + outbound SMTP)
+- `dovecot` — IMAP/POP3/LMTP + ManageSieve
+- `rspamd` — spam filtering with Bayes + neural ML
+- `clamav` — antivirus (optional; profile-gated)
+- `postgres` — main database (domains, mailboxes, messages, audit log)
+- `valkey` — cache + session store (Redis-compatible fork)
+- `webmail` — Roundcube with Vectis skin (optional)
+- `loki` + `promtail` + `grafana` — observability stack (optional)
+- `cert-extractor` — mirrors Let's Encrypt cert from Traefik into the mail
+  TLS volume (replaces the old acme.sh sidecar)
+- `pgbouncer` — Postgres connection pooler (cluster mode only)
+
+**Four Docker networks.** `vectis-frontend` (public-facing), `vectis-mail`
+(SMTP/IMAP traffic, external), `vectis-data` (Postgres + Valkey, internal),
+`vectis-orchestrator` (control-plane only, internal).
+
+**Three Postgres roles.** `vectis_postfix` (read-only on virtual_*),
+`vectis_dovecot` (read-only on mailboxes/authentication tables),
+`vectis_api` (full CRUD on everything except audit_log integrity columns).
+
+**Storage.** Mail is stored as Maildir under `/var/vectis/mail/<domain>/<user>/Maildir`.
+DKIM keys live in a named volume; configs are bind-mounted from
+`/var/vectis/generated/<service>/` (named volumes are intentionally never
+used for service configs — they start empty and hide the upstream defaults).
+
+**TLS.** Traefik provisions Let's Encrypt certificates via HTTP-01 challenge.
+A sidecar (`cert-extractor`) mirrors the cert from Traefik's acme.json into
+the mail-certs volume and SIGHUPs Postfix and Dovecot on rotation. Custom
+certificates (bring your own) are also supported via `tls.provider: custom`.
+
+---
+
+## Features
+
+### Core mail stack (Starter + Pro)
+
+- **Postfix MTA** — Battle-tested mail transfer agent handling inbound and
+  outbound SMTP. Virtual domain hosting with SQL-driven lookups — no config
+  reload when adding domains or mailboxes.
+- **Dovecot IMAP/POP3** — IMAP and POP3 access with SSL/TLS, Argon2id
+  password hashing, per-mailbox quotas, and LMTP delivery. ManageSieve for
+  server-side filter rules.
+- **Rspamd spam filtering** — ML-based detection with Bayes classifier,
+  neural network training, DKIM verification, SPF checks, greylisting, and
+  configurable score thresholds.
+- **ClamAV antivirus** — Optional. Profile-gated: enable in `config.yaml`
+  when needed, omit the container when you don't.
+
+### Developer platform (Starter + Pro)
+
+- **Sending API** — `POST /api/v1/send` with JSON payload. HTML + text
+  bodies, attachments, custom headers. Domain-scoped API keys with rate
+  limiting. Batch sending up to 100 messages per call.
+- **Inbound webhooks** — Email arrives, Vectis parses it, POSTs the full
+  content to your URL. Body text, HTML, attachments, SMTP envelope —
+  HMAC-SHA256 signed with exponential-backoff retry. Configurable per domain.
+- **Message storage API** — Query sent and received message metadata with
+  full-text search. Filter by domain, direction, status, sender.
+  Cursor-based pagination for large datasets.
+- **Engagement tracking** — Optional open and click tracking via tracking
+  pixel and redirect URLs. HMAC-signed tokens prevent spoofing. Opt-in per
+  message.
+
+### Operations and security (Starter + Pro)
+
+- **Atomic updates** — 6-phase orchestrator: snapshot, migrate, pull, deploy,
+  health-check, complete. Automatic rollback on failure. Advisory lock
+  prevents concurrent operations.
+- **Backup and restore** — Scheduled backups with AES-256-GCM encryption.
+  Database, mail data, DKIM keys, and config archived. One-click restore
+  from the dashboard.
+- **RBAC + MFA** — Three-tier roles: `super_admin`, `admin`, `domain_admin`.
+  TOTP multi-factor auth. OIDC SSO with Google, Azure AD, and Keycloak
+  (Pro). API key management with domain scoping.
+- **Observability** — Prometheus metrics, optional Grafana dashboards, Loki
+  log aggregation, per-domain analytics, alertmanager rule templates.
+
+### Pro-only features
+
+- **Unlimited domains and mailboxes.** Starter caps at 3 domains × 25
+  mailboxes per domain.
+- **Per-domain analytics dashboard.** Per-domain delivery, bounce, complaint,
+  and engagement metrics with daily/weekly aggregates.
+- **Per-domain spam controls** — override Rspamd reject thresholds per
+  domain; toggle greylisting per domain; per-domain allow/block lists at
+  both email-address and sender-domain scope. Edits take effect in seconds
+  with no restart.
+- **OIDC SSO** — Google, Azure AD, Keycloak.
+- **Priority email support** with target response times.
+
+---
+
+## Pricing
+
+### Tiers
+
+| | Starter | Pro |
+|---|---|---|
+| Price | Free forever | $29 / tenant / month |
+| Domains | Up to 3 | Unlimited |
+| Mailboxes / domain | Up to 25 | Unlimited |
+| Sending API + batch | Yes | Yes |
+| Inbound webhooks | Yes | Yes |
+| Admin dashboard | Yes | Yes |
+| Webmail (Roundcube) | Yes | Yes |
+| DKIM / SPF / DMARC | Yes | Yes |
+| Automatic TLS | Yes | Yes |
+| Monitoring (Prometheus/Grafana/Loki) | Yes | Yes |
+| IP warmup + RBL monitoring | Yes | Yes |
+| Backup + restore | Yes | Yes |
+| RBAC + TOTP MFA | Yes | Yes |
+| Atomic updates with auto-rollback | Yes | Yes |
+| Per-domain analytics | — | Yes |
+| Per-domain spam controls | — | Yes |
+| OIDC SSO | — | Yes |
+| Support | Community | Priority email |
+| Offline grace period (Pro license) | n/a | 30 days |
+
+**One Pro subscription covers unlimited Vectis installs across one tenant.**
+This is the per-tenant pricing model — multi-server, multi-customer
+deployments under one organisation all use one Pro subscription.
+
+### Common questions
+
+**Do I need a license?** Starter is free forever with no license required.
+Pro is licensed through ValidonX.
+
+**What happens if my Pro license expires?** Mail keeps flowing. Postfix and
+Dovecot continue. Pro-only features (analytics, advanced spam, OIDC SSO,
+unlimited domains/mailboxes) revert to Starter limits. Data is never locked.
+30-day offline grace period.
+
+**Can I self-host with no external dependencies?** Yes for Starter. Pro
+checks ValidonX for entitlements, with a 30-day offline grace period and
+cached entitlements in Postgres.
+
+**Can I resell Vectis Mail as a hosted service?** No, not under the default
+BSL 1.1 license. You may operate it for your own organisation and your own
+end users (including running mail for your customers as a feature of your
+own product). You may not offer Vectis Mail itself to third parties on a
+hosted, embedded, or managed-service basis in a way that competes with
+Veltara Works's paid versions. For resale or hosted-platform licensing,
+contact licensing@veltaraworks.com.
+
+**When does Vectis Mail become Apache 2.0?** Each *version* converts to
+Apache License 2.0 four years after that version's first public release —
+not a single repo-wide flip. v0.1.0-beta1 (released 2026-04-25) converts
+on 2030-04-25; v0.1.12 (released 2026-05-10) converts on 2030-05-10.
+Source is available throughout. Once a version reaches its Change Date,
+anyone can fork, host, or relicense that specific version under Apache 2.0.
+
+---
+
+## Installation
+
+Vectis Mail installs on a clean Ubuntu 24.04 VPS via a single shell command.
+
+### System requirements
+
+| Resource | Minimum | Recommended |
+|---|---|---|
+| OS | Ubuntu 24.04 LTS | Ubuntu 24.04 LTS |
+| CPU | 2 vCPU | 4 vCPU |
+| RAM | 2 GB (without ClamAV) | 4 GB+ |
+| Disk | 30 GB SSD (~20 GB free after OS install) | 100 GB+ SSD |
+| Inbound ports | 25, 80, 443, 465, 587, 993, 995 | + IPv6 |
+
+Docker is installed automatically by the script if not present.
+
+### Pre-install requirements (must be in place before running the installer)
+
+1. **SSH access to the VPS.** Most VPS providers ship Ubuntu images with
+   password-based SSH disabled. Add an SSH key in the provider panel before
+   provisioning, or use the provider's web console to create a sudo user.
+2. **OS up to date.** `sudo apt update && sudo apt upgrade -y` and reboot if
+   the kernel was bumped.
+3. **PTR (reverse DNS).** Hard requirement — without a matching PTR record,
+   Gmail/Outlook will reject outbound mail as spam. Set at your VPS provider
+   panel (not at your DNS registrar). Some providers require a one-time
+   support request.
+4. **Port 25 unblock.** Most VPS providers block outbound port 25 by default.
+   One-time provider support request.
+
+### Install flow
+
+1. **Download.** `curl -fsSL https://get.vectismail.com | sudo bash`. Places
+   the binary, installs Docker if missing, seeds randomly-generated secrets,
+   prompts to confirm the hostname (auto-detected from PTR).
+2. **Preflight.** `vectis preflight` — verifies OS, CPU/RAM, port
+   availability, outbound port 25 reachability, Docker version.
+3. **Install.** `vectis install` — deploys the container stack, runs database
+   migrations, creates the admin account. ~3 minutes on a 4-vCPU VPS.
+4. **Publish DNS records.** A record at your DNS registrar; PTR already set
+   in step 3 of pre-install.
+5. **Verify.** `vectis status` plus a login at `https://mail.your-domain/admin`.
+
+### Resource profile (v0.1.13+)
+
+A `resources.profile` knob in `/etc/vectis/config.yaml` picks per-container
+memory ceilings. Limits are hard cgroup ceilings — a service exceeding its
+limit is OOM-killed by its own cgroup, never the whole host.
+
+| Profile | Base | + Webmail+Obs | + ClamAV small | Suits |
+|---|---|---|---|---|
+| dev | ~1.8 GB | ~2.6 GB | ~3.6 GB | Laptop / 2 GB VPS |
+| **small (default)** | ~3.5 GB | ~4.6 GB | ~6.1 GB | Single-domain 4 GB VPS |
+| production | ~6.7 GB | ~8.0 GB | ~10 GB | Multi-domain 8 GB VPS |
+| enterprise | ~13.5 GB | ~16.5 GB | ~19.5 GB | High-volume 16 GB+ |
+
+To change: edit `resources.profile` in `/etc/vectis/config.yaml`, then
+`vectis update apply`. Brief container restart picks up the new ceilings.
+
+---
+
+## REST API (overview)
+
+Base URL: `https://mail.your-domain/api/v1`. Authentication is via
+domain-scoped API keys (header `X-API-Key: <key>`) for the sending and
+mailbox-CRUD paths; admin endpoints use a session cookie or super-admin
+bearer token.
+
+Endpoint groups (~60 endpoints total):
+
+- **Domains** — `GET/POST/PATCH/DELETE /domains` — create, list, update,
+  delete domains. DKIM key generation on create.
+- **Mailboxes** — `GET/POST/PATCH/DELETE /mailboxes` — mailbox CRUD,
+  password rotation, quota.
+- **Aliases** — `GET/POST/PATCH/DELETE /aliases` — alias management with
+  catch-all support.
+- **Send** — `POST /send` — single send. `POST /send/batch` — batch send
+  up to 100 messages.
+- **Webhooks** — `GET/POST/PATCH/DELETE /webhooks` — outbound event webhooks.
+  `GET /webhooks/deliveries` — delivery history.
+- **Messages** — `GET /messages` — query metadata with filters; full-text
+  search via `?q=`.
+- **Analytics** (Pro) — `GET /analytics/{domain}` — per-domain delivery,
+  bounce, complaint, engagement metrics.
+- **Admin** — `GET /admin/users`, `POST /admin/users`, role management,
+  audit log (`/audit`, super-admin only as of v0.1.13).
+- **Health** — `GET /health` — container + dependency health.
+- **License** — `GET /license` — current tier and entitlements.
+- **Account** — `GET /account/billing` — generates a one-shot signed URL to
+  the ValidonX billing portal.
+
+### Sending example
+
+```bash
+curl -X POST https://mail.example.com/api/v1/send \
+  -H "X-API-Key: $VECTIS_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from": "alerts@example.com",
+    "to": ["user@destination.example"],
+    "subject": "Order confirmed",
+    "text": "Plain-text body",
+    "html": "<p>HTML body</p>"
+  }'
+```
+
+### Inbound webhook example
+
+Configure a webhook URL per domain. When mail arrives, Vectis POSTs:
+
+```json
+{
+  "id": "msg_01HZ...",
+  "received_at": "2026-05-17T10:00:00Z",
+  "to": "support@example.com",
+  "from": "customer@example.org",
+  "subject": "Help needed",
+  "text": "...",
+  "html": "...",
+  "attachments": [
+    { "filename": "screenshot.png", "content_type": "image/png", "size": 12345, "url": "https://..." }
+  ]
+}
+```
+
+With header `X-Vectis-Signature: sha256=<HMAC of body>`. Retry policy:
+exponential backoff up to 24 hours, then dead-letter to the messages table.
+
+---
+
+## CLI
+
+The `vectis` command-line tool. Key commands:
+
+- `vectis preflight` — pre-install system checks
+- `vectis install` — initial deployment
+- `vectis status` — current state (containers, version, license tier)
+- `vectis update plan` — preview pending updates (image bumps, config diffs)
+- `vectis update apply` — atomic apply with rollback on failure
+- `vectis backup create` / `vectis backup restore` — manual backup/restore
+- `vectis admin reset-password` — reset super-admin password from CLI
+  (uses CLI auth, not API session)
+- `vectis preflight cert-rotation` — verify cert-extractor reload pipeline
+  before a renewal window
+
+The CLI talks to the orchestrator on `http://localhost:8081` (bound to
+127.0.0.1 only). No external port is exposed.
+
+---
+
+## License model
+
+Vectis Mail is licensed under **Business Source License (BSL) 1.1** with a
+4-year convert-to-Apache-2.0 clause per version. The full LICENSE file
+lives at https://github.com/Veltara-Works/vectis/blob/main/LICENSE.
+
+Key terms:
+
+- **Source available immediately.** All code is in the public repository
+  from day one.
+- **Allowed use:** running Vectis Mail for your own organisation and your
+  own end users, including operating mail for customers of your
+  organisation as a feature of your own product.
+- **Restricted use:** offering Vectis Mail itself as a hosted, embedded, or
+  managed service to third parties in a way that competes with Veltara
+  Works's paid versions. For this, contact licensing@veltaraworks.com.
+- **Automatic Apache 2.0 conversion:** each version converts to Apache
+  License 2.0 four years after its first public release. After a version's
+  Change Date, anyone may fork, host, or relicense that version under
+  Apache 2.0 — even for competing hosted offerings.
+
+Pro features are gated by a license key issued by ValidonX. License
+verification is offline-tolerant (30-day grace period; entitlements cached
+in Postgres).
+
+---
+
+## Vs alternatives — when to pick what
+
+| Vs | Pick Vectis Mail when |
+|---|---|
+| **Mailcow** | You want the same self-hosted mail stack but with a declarative YAML config, REST API, and atomic update orchestrator instead of edit-files-and-pray + manual `mailcow.sh update`. |
+| **iRedMail** | You want a modern Go control plane + React admin UI instead of the legacy PHP admin and shell-script management surface. |
+| **Mail-in-a-Box** | You want production-shaped infrastructure (Docker, RBAC, atomic updates, MFA) instead of a single-script home-server setup. |
+| **SendGrid / Postmark / Mailgun** | Your monthly bill is climbing past $200 and the per-email model feels misaligned with your costs. Vectis ships the same sending API and inbound webhook flow at a flat $0–29/month. |
+| **Postal** | You want the same self-hosted SMTP-API split but with built-in webmail, IMAP/POP3, inbound email parsing, and one tool that does the whole mail server (not just outbound). |
+
+---
+
+## Source and contact
+
+- **GitHub:** https://github.com/Veltara-Works/vectis (private during the
+  beta period; opens up at v0.2.0)
+- **Docker images:** `ghcr.io/veltara-works/vectis-*` (api, orchestrator,
+  postfix, dovecot, rspamd, clamav, cert-extractor, webmail)
+- **Releases:** https://dl.vectismail.com/releases-stable.json (stable)
+  and https://dl.vectismail.com/releases-rc.json (release candidates)
+- **Contact form:** https://vectismail.com/contact/
+- **General:** hello@vectismail.com
+- **Sales / Enterprise:** sales@vectismail.com
+- **Support:** support@vectismail.com
+- **Privacy:** privacy@vectismail.com
+- **Licensing (resale / hosted platform):** licensing@veltaraworks.com
+
+---
+
+## Linked references
+
+Concise index: https://vectismail.com/llms.txt
+Per-page docs: https://vectismail.com/getting-started/, /api/, /architecture/,
+/guides/, /alternatives/
+Pricing (machine-readable): https://vectismail.com/pricing.md
