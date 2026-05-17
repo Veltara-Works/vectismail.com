@@ -2,6 +2,8 @@
 
 > Self-hosted, declarative email platform. Packages Postfix, Dovecot, Rspamd, Traefik, Postgres, and Valkey into a single deployment managed through one YAML config file and a REST API. Modern alternative to Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark, and Mailgun — combines the control of self-hosting with the developer ergonomics of transactional email SaaS.
 
+For the long-form, full-content reference (architecture, features, pricing, install flow, REST API examples, license model, vs-alternatives matrix, all inlined for LLM context windows), see [llms-full.txt](https://vectismail.com/llms-full.txt).
+
 ## Quick facts
 
 - Open source under AGPL-3.0; Pro features gated via license key (ValidonX).
