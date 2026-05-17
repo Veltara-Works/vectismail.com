@@ -215,7 +215,7 @@ const description = 'How Vectis Mail and Veltara Works handle your personal info
 		<h2>11. How we protect your information</h2>
 		<p>The technical baseline we operate to:</p>
 		<ul>
-			<li>All traffic to and from vectismail.com runs over TLS 1.2 or higher, with HSTS preload.</li>
+			<li>All traffic to and from vectismail.com runs over TLS 1.3, with HSTS preload (max-age 2 years, includeSubDomains, preload).</li>
 			<li>The mail server that handles our internal correspondence (<code>mail.vectismail.com</code>) is itself a Vectis Mail Pro install, kept on the current stable release.</li>
 			<li>Passwords (for our own admin accounts) are hashed with Argon2id.</li>
 			<li>TOTP secrets and backup material are encrypted at rest with AES-256-GCM.</li>
