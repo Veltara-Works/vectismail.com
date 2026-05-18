@@ -138,6 +138,48 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 	</section>
 
 	<section class="section">
+		<h2>Vectis Mail vs typical mail-server setups</h2>
+		<p class="subtitle">How Vectis Mail compares to the three things people actually choose between when they need email: a raw Postfix install, a self-hosted stack like Mailcow/iRedMail, or transactional SaaS like SendGrid/Postmark.</p>
+		<div class="compare-table-wrap" style="margin-top: 1.25rem;">
+			<table class="compare-table">
+				<thead>
+					<tr>
+						<th scope="col">Capability</th>
+						<th scope="col">Vectis Mail</th>
+						<th scope="col">Raw Postfix / Dovecot</th>
+						<th scope="col">Mailcow / iRedMail</th>
+						<th scope="col">SendGrid / Postmark</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>Time to production</td><td>Minutes (single command)</td><td>Days to weeks</td><td>Hours</td><td>Minutes</td></tr>
+					<tr><td>Configuration model</td><td>Declarative YAML + REST API</td><td>Manual config files</td><td>Web UI</td><td>Dashboard + API</td></tr>
+					<tr><td>REST API for sending</td><td>Yes — 60+ endpoints</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
+					<tr><td>Inbound webhooks (parsed)</td><td>Yes — HMAC-signed</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
+					<tr><td>Mailbox hosting (IMAP/POP3)</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No (transactional only)</td></tr>
+					<tr><td>Per-domain analytics dashboard</td><td>Yes (Pro)</td><td>No</td><td>Limited</td><td>Yes</td></tr>
+					<tr><td>Atomic updates with rollback</td><td>Yes — 6-phase pipeline</td><td>Manual</td><td>Manual</td><td>n/a (vendor managed)</td></tr>
+					<tr><td>Self-hosted on your VPS</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+					<tr><td>Data sovereignty</td><td>Full — your server</td><td>Full</td><td>Full</td><td>None — vendor controls</td></tr>
+					<tr><td>Cost at 100K emails/mo</td><td>$49 flat (Pro + VPS)</td><td>VPS only ($5–20) + your time</td><td>VPS + your time</td><td>$20–90 metered</td></tr>
+					<tr><td>Cost at 1M emails/mo</td><td>$49 flat</td><td>VPS only + your time</td><td>VPS + your time</td><td>$90–200+</td></tr>
+					<tr><td>Source available</td><td>Yes — AGPL-3.0 + BSL Pro</td><td>Yes — GPL/IBM</td><td>Yes</td><td>No</td></tr>
+					<tr><td>License model</td><td>Source-available; auto-Apache 2.0 after 4y</td><td>Open source</td><td>Open source</td><td>Proprietary SaaS</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="subtitle" style="margin-top: 1rem; font-size: 0.95rem;">
+			For deep, per-product comparisons see the
+			<a href="/alternatives/">alternatives index</a> &mdash;
+			<a href="/alternatives/mailcow/">vs Mailcow</a>,
+			<a href="/alternatives/iredmail/">vs iRedMail</a>,
+			<a href="/alternatives/mail-in-a-box/">vs Mail-in-a-Box</a>,
+			<a href="/alternatives/sendgrid/">vs SendGrid</a>,
+			<a href="/alternatives/postmark/">vs Postmark</a>.
+		</p>
+	</section>
+
+	<section class="section">
 		<h2>Starter vs Pro &mdash; full comparison</h2>
 		<p class="subtitle">Every feature, side by side. Everything below the divider is Pro-only.</p>
 		<div class="compare-table-wrap" style="margin-top: 1.25rem;">
