@@ -92,7 +92,7 @@
 		radial-gradient(ellipse 80% 50% at 50% -20%, rgba(31, 183, 255, 0.15), transparent),
 		radial-gradient(ellipse 60% 40% at 80% 50%, rgba(38, 194, 246, 0.08), transparent),
 		linear-gradient(180deg, rgba(12, 12, 13, 0.65) 0%, var(--vm-bg-dark) 92%),
-		url('/brand/imagery/vectis-mail-splash.jpg');
+		url('/brand/imagery/vectis-mail-splash.webp');
 	background-size: auto, auto, auto, cover;
 	background-position: center, center, center, center 30%;
 	background-repeat: no-repeat;
