@@ -34,17 +34,17 @@ OUT_DIR="docs/audits/pagespeed"
 
 URLS=(
   "https://vectismail.com/"
-  "https://vectismail.com/features"
-  "https://vectismail.com/pricing"
-  "https://vectismail.com/about"
-  "https://vectismail.com/contact"
-  "https://vectismail.com/alternatives"
-  "https://vectismail.com/alternatives/mailcow"
-  "https://vectismail.com/alternatives/iredmail"
-  "https://vectismail.com/alternatives/mail-in-a-box"
-  "https://vectismail.com/alternatives/sendgrid"
-  "https://vectismail.com/alternatives/postmark"
-  "https://vectismail.com/getting-started"
+  "https://vectismail.com/features/"
+  "https://vectismail.com/pricing/"
+  "https://vectismail.com/about/"
+  "https://vectismail.com/contact/"
+  "https://vectismail.com/alternatives/"
+  "https://vectismail.com/alternatives/mailcow/"
+  "https://vectismail.com/alternatives/iredmail/"
+  "https://vectismail.com/alternatives/mail-in-a-box/"
+  "https://vectismail.com/alternatives/sendgrid/"
+  "https://vectismail.com/alternatives/postmark/"
+  "https://vectismail.com/getting-started/"
 )
 
 # ---- arg parse --------------------------------------------------------

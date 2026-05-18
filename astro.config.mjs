@@ -4,6 +4,12 @@ import starlight from '@astrojs/starlight';
 
 export default defineConfig({
 	site: 'https://vectismail.com',
+	// CF Pages enforces trailing-slash with a 308 redirect. Match that
+	// here so the build emits trailing-slash canonicals and the dev
+	// server's behaviour matches prod. Internal href="" links across
+	// src/ must use the trailing-slash form to avoid the 308 round-trip
+	// (PSI mobile penalty ~750ms per click before this was set).
+	trailingSlash: 'always',
 	integrations: [
 		starlight({
 			title: 'Vectis Mail',
