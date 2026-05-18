@@ -71,7 +71,7 @@ const dateModified = '2026-05-12'
 				"brand": { "@type": "Brand", "name": "Vectis Mail" },
 				"offers": [
 					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
-					{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD" }
+					{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
 				]
 			},
 			{
@@ -364,6 +364,29 @@ const dateModified = '2026-05-12'
 			<a href="/pricing/" class="btn-secondary">View Pricing</a>
 		</div>
 	</div>
+
+	<section class="section other-alts">
+		<h2>Other Vectis Mail alternatives</h2>
+		<p class="subtitle">Coming from a different stack? Read the comparison that matches it.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
+				<h3>vs Mailcow &rarr;</h3>
+				<p>Same self-hosted philosophy, modern surface — declarative YAML, REST API, atomic updates with rollback.</p>
+			</a>
+			<a href="/alternatives/iredmail/" class="feature-card alt-index-card">
+				<h3>vs iRedMail &rarr;</h3>
+				<p>Modern surface vs the long-running OS-native open-source mail stack — REST API, declarative YAML, Rspamd by default.</p>
+			</a>
+			<a href="/alternatives/mail-in-a-box/" class="feature-card alt-index-card">
+				<h3>vs Mail-in-a-Box &rarr;</h3>
+				<p>One-command personal email sovereignty vs API-first multi-tenant infrastructure — when each is the right fit.</p>
+			</a>
+			<a href="/alternatives/postmark/" class="feature-card alt-index-card">
+				<h3>vs Postmark &rarr;</h3>
+				<p>Flat $0–$49/mo self-host vs the developer-loved transactional SaaS — same API, mailboxes included.</p>
+			</a>
+		</div>
+	</section>
 
 	<aside class="alt-sources">
 		<h3>Sources</h3>

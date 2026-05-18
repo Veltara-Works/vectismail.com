@@ -123,6 +123,31 @@ const upcoming: { title: string; tagline: string }[] = []
 						"name": a.title,
 					})),
 				},
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Which Vectis Mail alternative comparison should I read first?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Start with the comparison that matches what you're running today. If you operate a Mailcow stack and want a more declarative surface, read /alternatives/mailcow/. If you're paying SendGrid or Postmark per email and want flat pricing on a self-hosted stack, read /alternatives/sendgrid/ or /alternatives/postmark/. If you outgrew Mail-in-a-Box's single-server model and need multi-tenant + API, read /alternatives/mail-in-a-box/. If iRedMail's OS-native install feels dated and you want REST API + atomic updates, read /alternatives/iredmail/." }
+					},
+					{
+						"@type": "Question",
+						"name": "Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what is the difference?",
+						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are mature multi-domain mail servers — Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is one-command personal email sovereignty on a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 60+ endpoint REST API designed for agencies, SaaS, and multi-tenant operators." }
+					},
+					{
+						"@type": "Question",
+						"name": "Vectis Mail vs SendGrid vs Postmark — are these comparable products?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Comparable on the transactional API surface — sending API, inbound webhooks, analytics, domain-scoped keys all match. Not comparable on the operational model. SendGrid and Postmark are managed SaaS billed per email; Vectis Mail is self-hosted on your own VPS billed flat ($0 Starter / $29 Pro per tenant per month, unlimited volume). Cost crossover for Postmark vs Vectis Pro is around 30K emails/month on the Postmark side. Vectis Mail also includes full IMAP/POP3 mailbox hosting; SendGrid and Postmark do not." }
+					},
+					{
+						"@type": "Question",
+						"name": "Is there a Vectis Mail alternative for Mailu, Modoboa, docker-mailserver, Mailgun, AWS SES, or Resend?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Not yet. The current five comparisons cover the highest-search-volume products in our market. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the public roadmap for the next batch of comparison pages. If you want one prioritised, contact us — we sequence the next set based on real reader demand." }
+					}
+				]
 			}
 		]
 	})} />
@@ -184,6 +209,28 @@ const upcoming: { title: string; tagline: string }[] = []
 			</div>
 		</section>
 	)}
+
+	<section class="section">
+		<h2>Frequently asked questions</h2>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+			<div class="feature-card">
+				<h3>Which comparison should I read first?</h3>
+				<p>Start with the page that matches what you're running today. Coming from Mailcow → <a href="/alternatives/mailcow/">vs Mailcow</a>. Paying SendGrid or Postmark per email → <a href="/alternatives/sendgrid/">vs SendGrid</a> or <a href="/alternatives/postmark/">vs Postmark</a>. Outgrew Mail-in-a-Box → <a href="/alternatives/mail-in-a-box/">vs Mail-in-a-Box</a>. iRedMail feels dated → <a href="/alternatives/iredmail/">vs iRedMail</a>.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what's different?</h3>
+				<p>All four are self-hosted email platforms targeting different operators. Mailcow ships as Docker Compose, iRedMail installs OS-native, Mail-in-a-Box is one-command personal sovereignty on a single VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML, atomic updates with rollback, and a 60+ endpoint REST API for agencies, SaaS, and multi-tenant operators.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Vectis Mail vs SendGrid vs Postmark — are these even comparable?</h3>
+				<p>On the API surface, yes — sending API, inbound webhooks, analytics, domain-scoped keys all match. On the operational model, no. SendGrid and Postmark are managed SaaS billed per email; Vectis Mail is self-hosted on your own VPS, billed flat ($0 Starter / $29 Pro per tenant per month, unlimited volume). Cost crossover with Postmark sits around 30K emails/month. Vectis Mail also includes full IMAP/POP3 mailbox hosting; SendGrid and Postmark do not.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Is there a comparison for Mailu, docker-mailserver, Mailgun, AWS SES, or Resend?</h3>
+				<p>Not yet. The current five cover the highest-search-volume products. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the roadmap for the next batch. Want one prioritised? <a href="/contact/">Contact us</a> — we sequence the next set based on real reader demand.</p>
+			</div>
+		</div>
+	</section>
 
 	<section class="section" style="text-align: center;">
 		<div class="hero-buttons">
