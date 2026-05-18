@@ -1,6 +1,7 @@
 ---
 title: "Should You Self-Host Email? The 2026 Decision Guide"
 description: "An honest 2026 decision guide for self-hosting email. TCO math vs SendGrid, Postmark, Mailgun and Google Workspace; the real deliverability bar; when SaaS still wins; when self-hosting wins; and the minimum viable self-host stack."
+lastUpdated: 2026-05-14
 ---
 
 **Short answer.** Self-host email in 2026 if you (a) send under ~500k transactional emails/month and want flat pricing, (b) need mailbox hosting *and* a transactional API on one stack, (c) have data-residency or sovereignty constraints, or (d) are paying enough to a SaaS provider that the engineering time pays back inside a year. Stay on SaaS if you send cold outreach at scale, lack any Linux operations capacity, or your business literally cannot tolerate a 4-hour mail outage during a learning curve.

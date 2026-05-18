@@ -46,6 +46,27 @@ const description = 'Containerised, self-hosted email server with declarative co
 			"url": "https://veltaraworks.com"
 		}
 	})} />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "What's the best alternative to Mailcow or iRedMail?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Same self-hosted philosophy with a modern surface — declarative YAML config, REST API with domain-scoped keys, atomic 6-phase updates with automatic rollback, and clustering for HA. Mailcow's strength is maturity; Vectis Mail's is developer ergonomics. See the side-by-side comparison at vectismail.com/alternatives/mailcow/." }
+			},
+			{
+				"@type": "Question",
+				"name": "What's the best self-hosted alternative to SendGrid, Postmark, or SES?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Self-hosted on your own VPS — your data stays on your server. No per-email pricing. Flat $0–29/tenant/month covers unlimited volume. Same REST API surface as SendGrid for sending, plus full IMAP/POP3 mailbox hosting, inbound webhooks, spam filtering, and webmail out of the box. See vectismail.com/alternatives/sendgrid/." }
+			},
+			{
+				"@type": "Question",
+				"name": "Should I use Vectis Mail instead of setting up Postfix manually?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Yes, in almost every case. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs from a single YAML file with one apply command. Atomic updates with automatic rollback, built-in observability (Prometheus + Grafana + Loki), and a 60+ endpoint REST API ship in the box. Skip weeks of config tuning; production-ready in minutes." }
+			}
+		]
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">
@@ -64,7 +85,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 		<section class="hero">
 			<div class="hero-badge">Open Source &middot; Self-Hosted &middot; API-First</div>
 			<h1>Self-hosted email server.<br/><span>Your rules.</span></h1>
-			<p>Deploy a production mail server in minutes. Declarative config, transactional sending API, inbound webhooks, and a full admin dashboard — all in one platform.</p>
+			<p>Vectis Mail is a self-hosted email server with the developer experience of SendGrid and the control of Postfix. Declarative YAML config, 60+ endpoint REST API, atomic updates with rollback. Free for 3 domains; $29/tenant/month unlocks unlimited.</p>
 			<div class="hero-buttons">
 				<a href="/getting-started/installation/" class="btn-primary">Get Started Free</a>
 				<a href="/getting-started/" class="btn-secondary">Read the Docs</a>

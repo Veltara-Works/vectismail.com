@@ -28,6 +28,16 @@ const description = 'Terms governing your use of vectismail.com and your subscri
 	<link rel="canonical" href="https://vectismail.com/terms/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"name": title,
+		"description": description,
+		"url": "https://vectismail.com/terms/",
+		"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+		"publisher": { "@type": "Organization", "name": "Veltara Works", "url": "https://veltaraworks.com" },
+		"inLanguage": "en"
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">

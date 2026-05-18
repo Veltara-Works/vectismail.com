@@ -61,7 +61,10 @@ See also: [pricing.md](https://vectismail.com/pricing.md) for machine-readable p
 ## Competitive comparisons
 
 - [vs Mailcow](https://vectismail.com/alternatives/mailcow/): same self-hosted philosophy, declarative config, REST API, atomic updates.
+- [vs iRedMail](https://vectismail.com/alternatives/iredmail/): modern declarative surface vs the long-running OS-native open-source mail stack.
+- [vs Mail-in-a-Box](https://vectismail.com/alternatives/mail-in-a-box/): one-command personal email sovereignty vs API-first multi-tenant infrastructure.
 - [vs SendGrid](https://vectismail.com/alternatives/sendgrid/): self-hosted with the same API, flat $0–29/month pricing instead of per-email.
+- [vs Postmark](https://vectismail.com/alternatives/postmark/): self-hosted transactional API with mailboxes included, flat pricing instead of per-email.
 
 ## Source code
 

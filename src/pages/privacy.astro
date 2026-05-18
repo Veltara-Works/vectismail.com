@@ -2,7 +2,7 @@
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Privacy Policy — Vectis Mail'
-const description = 'How Vectis Mail and Veltara Works handle your personal information when you visit vectismail.com, contact us, or buy a Vectis Pro subscription. Plain-language, OAIC-aligned, GDPR-aware.'
+const description = 'How Vectis Mail and Veltara Works handle personal information when you visit, contact us, or buy a Pro subscription. OAIC-aligned, GDPR-aware.'
 ---
 <html lang="en">
 <head>
@@ -28,6 +28,17 @@ const description = 'How Vectis Mail and Veltara Works handle your personal info
 	<link rel="canonical" href="https://vectismail.com/privacy/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"name": title,
+		"description": description,
+		"url": "https://vectismail.com/privacy/",
+		"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+		"publisher": { "@type": "Organization", "name": "Veltara Works", "url": "https://veltaraworks.com" },
+		"dateModified": "2026-05-17",
+		"inLanguage": "en"
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">

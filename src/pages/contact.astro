@@ -2,7 +2,7 @@
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Contact — Vectis Mail'
-const description = 'Contact the Vectis Mail team about enterprise pricing, integration help, or general questions. Email and GitHub support channels for the self-hosted email platform.'
+const description = 'Contact the Vectis Mail team about Pro pricing, integration help, or general questions. Email + GitHub support for the self-hosted email platform.'
 ---
 <html lang="en">
 <head>
@@ -27,6 +27,26 @@ const description = 'Contact the Vectis Mail team about enterprise pricing, inte
 	<link rel="canonical" href="https://vectismail.com/contact/" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		"name": title,
+		"description": description,
+		"url": "https://vectismail.com/contact/",
+		"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+		"publisher": {
+			"@type": "Organization",
+			"name": "Veltara Works",
+			"url": "https://veltaraworks.com",
+			"contactPoint": [
+				{ "@type": "ContactPoint", "contactType": "customer support", "email": "support@vectismail.com", "availableLanguage": "English" },
+				{ "@type": "ContactPoint", "contactType": "sales", "email": "sales@vectismail.com", "availableLanguage": "English" },
+				{ "@type": "ContactPoint", "contactType": "general", "email": "hello@vectismail.com", "availableLanguage": "English" },
+				{ "@type": "ContactPoint", "contactType": "privacy", "email": "contact@vectismail.com", "availableLanguage": "English" }
+			]
+		},
+		"inLanguage": "en"
+	})} />
 </head>
 <body class="marketing-page">
 	<nav class="marketing-nav">

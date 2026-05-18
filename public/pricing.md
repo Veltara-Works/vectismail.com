@@ -2,7 +2,7 @@
 
 Machine-readable pricing for AI agents and programmatic buyers.
 Source of truth: https://vectismail.com/pricing/
-Last updated: 2026-05-12
+Last updated: 2026-05-18
 
 ---
 
