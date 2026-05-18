@@ -8,6 +8,17 @@
 	font-style: normal;
 	font-display: swap;
 }
+/* Metric-adjusted fallback to eliminate CLS when Inter swaps in.
+   Values are Next.js's battle-tested overrides for Inter→Arial. */
+@font-face {
+	font-family: 'Inter Fallback';
+	src: local('Arial');
+	font-weight: 100 900;
+	size-adjust: 107.4%;
+	ascent-override: 90%;
+	descent-override: 22.43%;
+	line-gap-override: 0%;
+}
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* ── Colour Tokens ──────────────────────────────────────────────── */
@@ -36,7 +47,7 @@
 	--vm-bg-card: #1A1E22;    /* graphite */
 	--vm-border: #2C3238;     /* slate divider */
 
-	--sl-font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--sl-font-system: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	--sl-font-system-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'Menlo', 'Monaco', 'Consolas', monospace;
 }
 

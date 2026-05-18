@@ -285,7 +285,7 @@ function errorPage(
 </head>
 <body>
 <header>
-  <a href="https://vectismail.com/"><img src="/brand/logos/vectis-mail-logo-white.png" alt="Vectis Mail" /></a>
+  <a href="https://vectismail.com/"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" /></a>
 </header>
 <main>
   <div class="card">
