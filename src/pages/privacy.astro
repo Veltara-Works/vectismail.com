@@ -100,8 +100,8 @@ const description = 'How Vectis Mail and Veltara Works handle personal informati
 		</ul>
 		<p>That form posts to a small Cloudflare Pages Function, which forwards your message into the Vectis Mail server that runs <code>mail.vectismail.com</code>. From there it lands in the appropriate internal inbox depending on the department you chose. The data path is: <em>your browser &rarr; Cloudflare edge &rarr; mail.vectismail.com &rarr; mailbox</em>. We use this information to reply to your enquiry and keep an internal record of the conversation so we can pick up where we left off if you write again. We don't add you to a marketing list off the back of a support enquiry.</p>
 
-		<h3>3c. Buying a Vectis Pro subscription</h3>
-		<p>Vectis Pro is sold by Veltara Works through ValidonX, our own licensing and subscription platform. Card payments are processed by Stripe, and Veltara Works is the merchant of record &mdash; the entity on your statement and on the receipt. We do not see, store, or process your payment card details; they go directly from your browser to Stripe.</p>
+		<h3>3c. Buying a Vectis Mail Pro subscription</h3>
+		<p>Vectis Mail Pro is sold by Veltara Works through ValidonX, our own licensing and subscription platform. Card payments are processed by Stripe, and Veltara Works is the merchant of record &mdash; the entity on your statement and on the receipt. We do not see, store, or process your payment card details; they go directly from your browser to Stripe.</p>
 		<p>After payment, ValidonX issues you a tenant identifier, a licence key, and a service key, and emails them to you so you can paste them into the admin UI of your Vectis Mail install. Because ValidonX is operated by Veltara Works (not a separate company), no third-party transfer of personal data is involved between Vectis Mail and ValidonX &mdash; both are run by the same controller. Stripe is a separate processor; see section 6 for the details we share with them.</p>
 
 		<h3>3d. Email correspondence</h3>
@@ -157,7 +157,7 @@ const description = 'How Vectis Mail and Veltara Works handle personal informati
 		<p>We do not share your information with anyone else for marketing, profiling, or any other purpose. If a court of competent jurisdiction served us with a valid legal demand we would comply with our obligations, document it, and (where lawful) notify the affected person.</p>
 
 		<h2>7. International data transfers</h2>
-		<p>Veltara Works operates from Australia, and ValidonX (our own licensing platform) is operated within the same Australian jurisdiction. Our third-party processors are international, however: by using vectismail.com or by buying a Vectis Pro subscription, your information may be transferred to or stored in jurisdictions outside Australia, including the United States (Stripe, Cloudflare, GitHub) and the global edge networks operated by Cloudflare. For transfers from the EU, UK, or Switzerland, the relevant safeguards are:</p>
+		<p>Veltara Works operates from Australia, and ValidonX (our own licensing platform) is operated within the same Australian jurisdiction. Our third-party processors are international, however: by using vectismail.com or by buying a Vectis Mail Pro subscription, your information may be transferred to or stored in jurisdictions outside Australia, including the United States (Stripe, Cloudflare, GitHub) and the global edge networks operated by Cloudflare. For transfers from the EU, UK, or Switzerland, the relevant safeguards are:</p>
 		<ul>
 			<li><strong>Stripe</strong> &mdash; EU&ndash;US Data Privacy Framework (DPF) plus Standard Contractual Clauses for transfers not covered by DPF.</li>
 			<li><strong>Cloudflare</strong> &mdash; EU&ndash;US DPF certification plus Standard Contractual Clauses; transfer-impact-assessment documentation is publicly maintained.</li>

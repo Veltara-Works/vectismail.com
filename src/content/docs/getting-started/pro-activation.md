@@ -5,7 +5,7 @@ howToName: Activate Vectis Mail Pro
 howToSteps:
   - name: Get your subscription details
     url: "#step-1--get-your-subscription-details"
-    text: Sign in to validonx.com and copy your Vectis Pro license key and tenant ID from the subscription page.
+    text: Sign in to validonx.com and copy your Vectis Mail Pro license key and tenant ID from the subscription page.
   - name: Open the License page
     url: "#step-2--open-the-license-page"
     text: In the Vectis admin UI, go to Settings → License (or /admin/license) to open the activation form.
@@ -18,7 +18,7 @@ howToSteps:
 ---
 
 This guide walks through activating Pro on an installed Vectis server. You
-should have your Vectis Pro subscription details from
+should have your Vectis Mail Pro subscription details from
 [ValidonX](https://validonx.com) before starting.
 
 ## Activation at a glance
