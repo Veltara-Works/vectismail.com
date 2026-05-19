@@ -80,7 +80,8 @@
 .marketing-nav a {
 	color: var(--sl-color-gray-2);
 	text-decoration: none;
-	margin-left: 2rem;
+	margin-left: 1rem;
+	padding: 0.5rem 0.75rem;
 	font-size: 1rem;
 	font-weight: 500;
 	transition: color 0.15s;
@@ -444,18 +445,18 @@
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 1rem;
-	color: var(--sl-color-gray-4);
+	color: var(--sl-color-gray-2);
 	font-size: 0.8rem;
 }
 
 .footer a {
-	color: var(--sl-color-gray-3);
+	color: var(--sl-color-gray-2);
 	text-decoration: none;
 	transition: color 0.15s;
 }
 
 .footer a:hover {
-	color: var(--sl-color-gray-1);
+	color: var(--sl-color-white);
 }
 
 /* ── Page meta (last updated) ───────────────────────────────────── */
@@ -464,12 +465,12 @@
 	margin: 0.7rem auto 0;
 	padding: 0 2rem;
 	font-size: 0.8rem;
-	color: var(--sl-color-gray-4);
+	color: var(--sl-color-gray-2);
 	text-align: center;
 	letter-spacing: 0.02em;
 }
 .page-meta time {
-	color: var(--sl-color-gray-3);
+	color: var(--sl-color-gray-2);
 }
 
 /* ── Alternatives index card ────────────────────────────────────── */
