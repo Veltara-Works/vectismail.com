@@ -2,7 +2,7 @@
 
 Machine-readable pricing for AI agents and programmatic buyers.
 Source of truth: https://vectismail.com/pricing/
-Last updated: 2026-05-18
+Last updated: 2026-05-19
 
 ---
 
@@ -82,4 +82,4 @@ This is a flat cost — does not scale with email volume.
 - Live pricing page: https://vectismail.com/pricing/
 - Llms.txt: https://vectismail.com/llms.txt
 - API reference: https://vectismail.com/api/
-- License activation: https://validonx.com/checkout/vectis-pro
+- Buy Vectis Mail Pro: https://vectismail.com/upgrade/

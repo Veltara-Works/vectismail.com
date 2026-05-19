@@ -1,0 +1,75 @@
+---
+import "../../styles/custom.css"
+import SiteFooter from "../../components/SiteFooter.astro"
+const title = 'Welcome to Vectis Mail Pro'
+const description = 'Thanks for upgrading to Vectis Mail Pro. Your license key is on its way to your email.'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/upgrade/success/" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="theme-color" content="#0C0C0D" />
+	<meta name="robots" content="noindex, follow" />
+	<link rel="canonical" href="https://vectismail.com/upgrade/success/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
+		<div>
+			<a href="/features/">Features</a>
+			<a href="/pricing/">Pricing</a>
+			<a href="/alternatives/">Compare</a>
+			<a href="/getting-started/">Docs</a>
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+		</div>
+	</nav>
+
+	<main>
+
+	<section class="section" style="max-width: 640px;">
+		<h1>Welcome to Pro 🎉</h1>
+		<p class="subtitle">Your subscription is active. Your license key and full receipt are on their way to the email address you used at checkout.</p>
+
+		<div class="feature-card" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+			<h3 style="margin-top: 0;">What happens next</h3>
+			<ol style="margin-top: 0.75rem; padding-left: 1.25rem;">
+				<li><strong>Check your inbox</strong> — within a few minutes you'll receive a "Welcome to Vectis Mail Pro" email containing your license key (a JWT).</li>
+				<li><strong>Activate your install</strong> — paste the license key into your Vectis Mail admin UI's <code>License</code> page. If you don't have an install yet, follow the install guide and paste the key during first-run setup.</li>
+				<li><strong>Manage your subscription anytime</strong> — the welcome email also contains a link to your billing portal (Stripe-hosted) where you can update payment methods, view invoices, or cancel.</li>
+			</ol>
+		</div>
+
+		<div class="feature-card" style="margin-bottom: 1.5rem;">
+			<h3 style="margin-top: 0;">Quick links</h3>
+			<ul style="margin-top: 0.75rem; padding-left: 1.25rem;">
+				<li><a href="/getting-started/installation/" style="color: var(--sl-color-accent);">Install Vectis Mail on a fresh VPS</a></li>
+				<li><a href="/getting-started/pro-activation/" style="color: var(--sl-color-accent);">Activate Pro on an existing install</a></li>
+				<li><a href="/getting-started/" style="color: var(--sl-color-accent);">Full getting-started guide</a></li>
+				<li><a href="/account/billing/" style="color: var(--sl-color-accent);">Manage subscription</a></li>
+			</ul>
+		</div>
+
+		<p style="margin-top: 1.5rem; color: var(--sl-color-gray-3); font-size: 0.9rem;">
+			<strong>Don't see the email after 10 minutes?</strong> Check spam, then <a href="/contact/?reason=support" style="color: var(--sl-color-accent);">contact support</a> with the email address you used at checkout — we'll resend the license key.
+		</p>
+
+		<p style="margin-top: 1rem; color: var(--sl-color-gray-3); font-size: 0.85rem;">
+			Receipt and tax invoice are emailed separately by Stripe on behalf of Veltara Works.
+		</p>
+	</section>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>

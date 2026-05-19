@@ -1,0 +1,135 @@
+---
+import "../styles/custom.css"
+import SiteFooter from "../components/SiteFooter.astro"
+const title = 'Buy Vectis Mail Pro — $29/mo'
+const description = 'Upgrade to Vectis Mail Pro for $29/month. Unlimited domains, unlimited mailboxes per domain, per-domain analytics, OIDC SSO, priority email support, 30-day offline license grace.'
+
+// Error messages keyed by ?error=... query param. Returned from our
+// /api/checkout/vectis-pro proxy when the form fails validation or the
+// upstream rejects. Plain English; no scary system speak.
+const ERROR_MESSAGES: Record<string, string> = {
+	"invalid-email": "That email doesn't look right. Please check it and try again.",
+	"invalid-name": "Please enter your name (or your company's name).",
+	"malformed-body": "Something went wrong reading your details. Please try again.",
+	"validation-failed": "Our billing system rejected the details. Please double-check your email and try again.",
+}
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/upgrade/" />
+	<meta property="og:image" content="https://vectismail.com/og/default.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Buy Vectis Mail Pro" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://vectismail.com/og/default.png" />
+	<meta name="theme-color" content="#0C0C0D" />
+	<meta name="robots" content="noindex, follow" />
+	<link rel="canonical" href="https://vectismail.com/upgrade/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
+		<div>
+			<a href="/features/">Features</a>
+			<a href="/pricing/">Pricing</a>
+			<a href="/alternatives/">Compare</a>
+			<a href="/getting-started/">Docs</a>
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+		</div>
+	</nav>
+
+	<main>
+
+	<section class="section" style="max-width: 640px;">
+		<h1>Buy Vectis Mail Pro</h1>
+		<p class="subtitle">$29 per tenant per month. One subscription covers every Vectis Mail install you operate. Cancel any time from your billing portal.</p>
+
+		<div class="feature-card" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+			<h3 style="margin-top: 0;">What's included</h3>
+			<ul style="margin-top: 0.75rem; padding-left: 1.25rem;">
+				<li>Unlimited domains</li>
+				<li>Unlimited mailboxes per domain</li>
+				<li>Per-domain analytics dashboard</li>
+				<li>Per-domain spam controls — thresholds, greylisting, allow/block lists</li>
+				<li>OIDC SSO (Google, Azure AD, Keycloak)</li>
+				<li>Priority email support</li>
+				<li>30-day offline license grace period</li>
+			</ul>
+		</div>
+
+		<div id="error-banner" class="feature-card" style="margin-bottom: 1.5rem; display: none; border-color: #b91c1c;">
+			<p id="error-text" style="margin: 0; color: #fca5a5;"></p>
+		</div>
+
+		<form id="upgrade-form" method="POST" action="/api/checkout/vectis-pro" class="feature-card">
+			<div style="margin-bottom: 1.25rem;">
+				<label for="owner_name" style="display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;">Your name (or company name)</label>
+				<input type="text" id="owner_name" name="owner_name" required maxlength="200" autocomplete="name" placeholder="Jane Smith" style="width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;" />
+			</div>
+
+			<div style="margin-bottom: 1.5rem;">
+				<label for="owner_email" style="display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;">Email address</label>
+				<input type="email" id="owner_email" name="owner_email" required maxlength="254" autocomplete="email" placeholder="you@example.com" style="width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;" />
+				<p style="margin-top: 0.5rem; color: var(--sl-color-gray-3); font-size: 0.85rem;">We'll send your license key and receipt to this address. You can change billing details on Stripe's checkout page in a moment.</p>
+			</div>
+
+			<button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; font-size: 1rem;">Continue to checkout — $29/mo</button>
+
+			<p style="margin-top: 1.25rem; color: var(--sl-color-gray-3); font-size: 0.85rem; text-align: center;">
+				Secure checkout hosted by Stripe. Merchant of record: <strong>Veltara Works</strong>.
+			</p>
+		</form>
+
+		<p style="margin-top: 2rem; color: var(--sl-color-gray-3); font-size: 0.9rem;">
+			<strong>New to Vectis Mail?</strong> The Starter tier is free forever — install on a VPS, run up to 3 domains and 25 mailboxes per domain, then upgrade here whenever you're ready. <a href="/getting-started/" style="color: var(--sl-color-accent);">See install guide</a>.
+		</p>
+
+		<p style="margin-top: 1rem; color: var(--sl-color-gray-3); font-size: 0.9rem;">
+			Already a Pro customer? <a href="/account/billing/" style="color: var(--sl-color-accent);">Manage your subscription</a>.
+		</p>
+	</section>
+
+	</main>
+
+	<SiteFooter />
+
+	<script is:inline define:vars={{ ERROR_MESSAGES }}>
+		// Show error banner if our proxy redirected here with ?error=...
+		const params = new URLSearchParams(window.location.search);
+		const errorCode = params.get('error');
+		if (errorCode && ERROR_MESSAGES[errorCode]) {
+			const banner = document.getElementById('error-banner');
+			const text = document.getElementById('error-text');
+			if (banner && text) {
+				text.textContent = ERROR_MESSAGES[errorCode];
+				banner.style.display = 'block';
+				banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
+		}
+
+		// Disable submit button on form submission to prevent double-submits
+		// while the browser navigates to Stripe Checkout.
+		document.getElementById('upgrade-form')?.addEventListener('submit', (e) => {
+			const btn = e.target.querySelector('button[type="submit"]');
+			if (btn) {
+				btn.disabled = true;
+				btn.textContent = 'Redirecting to Stripe…';
+			}
+		});
+	</script>
+</body>
+</html>
