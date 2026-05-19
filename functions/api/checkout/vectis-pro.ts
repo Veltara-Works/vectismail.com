@@ -7,17 +7,17 @@
 //   the customer to /upgrade/success?session=cs_live_... (assuming Vx
 //   honours the success_url we pass; if not, Vx's default kicks in).
 //
-// Upstream contract observed via probe 2026-05-19 14:55 AEST:
+// Upstream contract observed via probe 2026-05-19 14:55 AEST,
+// re-verified post Vx hotfix (commit 139a8b9) on 2026-05-19 20:37 AEST:
 //   - Required body fields: owner_email, owner_name
 //   - 201 Created → { data: { checkout_url, session_id }, meta: {...} }
 //   - 422 Unprocessable Content with Laravel `{ message, errors: { field: [...] } }`
-//     when validation fails
+//     when validation fails (e.g. off-allowlist success_url host)
 //   - 6/min rate limit per IP, exposed via X-RateLimit-* headers
 //   - No CORS Access-Control-Allow-Origin → browsers must call this proxy
 //     instead of the upstream directly
-//   - Whether success_url / cancel_url / allow_promotion_codes are honoured
-//     by the upstream is being confirmed with Vx; we pass them anyway so
-//     they take effect as soon as that confirmation lands.
+//   - success_url / cancel_url now honoured + validated against Vx's
+//     return-URL allowlist (vectismail.com is allowlisted).
 //
 // Env vars (set in Cloudflare Pages project settings):
 //   VALIDONX_API_BASE — e.g. https://validonx.com (no trailing slash)
@@ -105,6 +105,20 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
         success_url: SUCCESS_URL,
         cancel_url: CANCEL_URL,
         allow_promotion_codes: true,
+        locale: "en",
+        // Forces buyer to enter billing address — needed for AU GST + clean
+        // tax-invoice generation into our finance pipeline.
+        billing_address_collection: "required",
+        // Optional ABN / VAT / GST-number field for B2B buyers. Stripe handles
+        // validation natively. Zero friction for B2C.
+        tax_id_collection: { enabled: true },
+        // Stripe shows a "I agree to the Terms of Service" checkbox tied to the
+        // terms_of_service_url configured at the Stripe account level. BSL
+        // licence-acceptance matters for a source-available product.
+        consent_collection: { terms_of_service: "required" },
+        // Threaded through to checkout.session.completed handler for our
+        // own attribution / cohorting. Pure pass-through on Vx's side.
+        metadata: { vm_source: "vectismail.com/upgrade" },
       }),
     });
   } catch (err) {
