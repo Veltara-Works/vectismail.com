@@ -82,4 +82,4 @@ This is a flat cost — does not scale with email volume.
 - Live pricing page: https://vectismail.com/pricing/
 - Llms.txt: https://vectismail.com/llms.txt
 - API reference: https://vectismail.com/api/
-- Buy Vectis Mail Pro: https://vectismail.com/upgrade/
+- Pro purchase: https://vectismail.com/contact/?reason=pro (temporary while upstream hotfix lands)
