@@ -45,7 +45,7 @@ Activating Pro:
 
 ## One subscription, many installs
 
-Pro is billed at **$29 per tenant per month**, where a tenant is your
+Pro is billed at **$29 USD per tenant per month**, where a tenant is your
 organisation's account on ValidonX. A single subscription authorises
 **all Vectis installs operated by your organisation** — production,
 staging, multi-region, branch deployments. You activate each Vectis

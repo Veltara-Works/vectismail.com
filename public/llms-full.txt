@@ -157,7 +157,7 @@ certificates (bring your own) are also supported via `tls.provider: custom`.
 
 | | Starter | Pro |
 |---|---|---|
-| Price | Free forever | $29 / tenant / month |
+| Price | Free forever | $29 USD / tenant / month |
 | Domains | Up to 3 | Unlimited |
 | Mailboxes / domain | Up to 25 | Unlimited |
 | Sending API + batch | Yes | Yes |

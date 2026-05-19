@@ -33,7 +33,7 @@ Last updated: 2026-05-19
 
 ## Pro
 
-- **Price:** $29 per tenant per month
+- **Price:** $29 USD per tenant per month
 - **Volume:** Unlimited emails, unlimited domains, unlimited mailboxes
 - **Subscription model:** One subscription covers unlimited Vectis Mail installs (single tenant identity).
 - **Features included:**

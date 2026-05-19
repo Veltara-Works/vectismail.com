@@ -85,7 +85,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "How do the costs compare at scale?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's base plans start at $15–18/month for 10,000 emails, with overages at $1.20–1.80 per thousand depending on tier. At 100,000 emails/month you're paying roughly $134/month on Pro; at 1 million you're around $1,200/month on Platform. Vectis Mail is $49/month flat regardless of volume (Pro tier at $29/tenant + a $20 VPS to host it). The cost crossover happens around 30,000 emails/month — past that, every email Postmark sends costs you something, while every email Vectis Mail sends costs nothing additional." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's base plans start at $15–18/month for 10,000 emails, with overages at $1.20–1.80 per thousand depending on tier. At 100,000 emails/month you're paying roughly $134/month on Pro; at 1 million you're around $1,200/month on Platform. Vectis Mail is $49/month flat regardless of volume (Pro tier at $29 USD/tenant + a $20 VPS to host it). The cost crossover happens around 30,000 emails/month — past that, every email Postmark sends costs you something, while every email Vectis Mail sends costs nothing additional." }
 					},
 					{
 						"@type": "Question",
@@ -173,7 +173,7 @@ const dateModified = '2026-05-13'
 				</thead>
 				<tbody>
 					<tr><td>Hosting model</td><td><strong>Self-hosted</strong> (your VPS, your IPs)</td><td>Managed SaaS (US-primary)</td></tr>
-					<tr><td>Pricing model</td><td><strong>Flat per-tenant</strong> ($29/tenant/mo Pro, unlimited installs)</td><td>Per-email after the 10K base bucket</td></tr>
+					<tr><td>Pricing model</td><td><strong>Flat per-tenant</strong> ($29 USD/tenant/mo Pro, unlimited installs)</td><td>Per-email after the 10K base bucket</td></tr>
 					<tr><td>Effective cost @ 100K emails/mo</td><td><strong>$49/mo</strong> (Pro + VPS)</td><td>~$134/mo</td></tr>
 					<tr><td>Effective cost @ 1M emails/mo</td><td><strong>$49/mo</strong> (Pro + VPS)</td><td>~$1,200/mo</td></tr>
 					<tr><td>Transactional sending API</td><td>REST + SMTP, domain-scoped keys, batch, attachments</td><td>REST + SMTP, mature SDKs</td></tr>
@@ -237,7 +237,7 @@ const dateModified = '2026-05-13'
 			100,000 emails/month you're at roughly $134; at 1M, roughly $1,200.
 		</p>
 		<p>
-			Vectis Mail prices per tenant. Starter is free forever; Pro is $29/tenant/month
+			Vectis Mail prices per tenant. Starter is free forever; Pro is $29 USD/tenant/month
 			for unlimited domains, unlimited mailboxes, unlimited email volume. Add a $20/month
 			VPS and your fully-loaded cost is $49/month whether you send 10,000 or 10 million
 			emails. One Pro subscription covers unlimited Vectis Mail installs — useful for SaaS
@@ -370,7 +370,7 @@ const dateModified = '2026-05-13'
 					Postmark's base plans start at $15–18/month for 10,000 emails, with overages
 					at $1.20–$1.80 per thousand depending on tier. At 100,000 emails/month you're
 					paying roughly $134/month on Pro; at 1 million you're around $1,200/month on
-					Platform. Vectis Mail is $49/month flat regardless of volume (Pro at $29/tenant
+					Platform. Vectis Mail is $49/month flat regardless of volume (Pro at $29 USD/tenant
 					+ a $20 VPS to host it). The cost crossover happens around 30,000 emails/month
 					— past that, every email Postmark sends costs you something, while every email
 					Vectis Mail sends costs nothing additional.

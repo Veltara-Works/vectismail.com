@@ -19,7 +19,7 @@ For the long-form, full-content reference (architecture, features, pricing, inst
 ## Pricing
 
 - Starter: $0 forever — 3 domains, 25 mailboxes per domain, full mail stack, sending API, webhooks, webmail, monitoring.
-- Pro: $29 per tenant per month — unlimited domains, unlimited mailboxes, per-domain analytics, per-domain spam controls, OIDC SSO, priority support. One subscription covers unlimited Vectis Mail installs.
+- Pro: $29 USD per tenant per month — unlimited domains, unlimited mailboxes, per-domain analytics, per-domain spam controls, OIDC SSO, priority support. One subscription covers unlimited Vectis Mail installs.
 
 See also (machine-readable files for AI agents and programmatic buyers):
 - [pricing.md](https://vectismail.com/pricing.md) — pricing tiers, cost comparison at scale, what is NOT included

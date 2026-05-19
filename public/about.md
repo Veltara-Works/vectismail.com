@@ -46,7 +46,7 @@ Last updated: 2026-05-18
 ## Pricing model
 
 - **Starter:** $0/month forever — 3 domains, 25 mailboxes per domain, full mail stack, sending API, webhooks, webmail, monitoring
-- **Pro:** $29 per tenant per month — unlimited domains, unlimited mailboxes, per-domain analytics, per-domain spam controls, OIDC SSO, priority support. One subscription covers unlimited installs your organisation operates.
+- **Pro:** $29 USD per tenant per month — unlimited domains, unlimited mailboxes, per-domain analytics, per-domain spam controls, OIDC SSO, priority support. One subscription covers unlimited installs your organisation operates.
 - **Enterprise:** in development; targeted for Phase 4 (later 2026)
 - **No per-email pricing.** Cost is flat regardless of volume.
 

@@ -150,7 +150,7 @@ check_page "page /upgrade/ loads"                          "${BASE}/upgrade/"   
 check_page "page /upgrade/ has form posting to proxy"      "${BASE}/upgrade/"            "200" "action=\"/api/checkout/vectis-pro\""
 check_page "page /upgrade/success/ loads"                  "${BASE}/upgrade/success/"    "200" "Welcome to Pro"
 check_page "page /upgrade/cancelled/ loads"                "${BASE}/upgrade/cancelled/"  "200" "Checkout cancelled"
-check_page "/pricing CTA now points to /upgrade"           "${BASE}/pricing/"            "200" "Buy Pro — \$29/mo"
+check_page "/pricing CTA now points to /upgrade"           "${BASE}/pricing/"            "200" "Buy Pro — \$29 USD/mo"
 
 # Proxy validation paths
 check_proxy_validation "proxy rejects empty body"          ""                                              "invalid-email"
