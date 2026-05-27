@@ -66,32 +66,32 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Will my transactional email cost scale linearly with my SaaS growth?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Not on Vectis Mail. Pro is $29 USD per tenant per month for unlimited domains, unlimited mailboxes, and unlimited email volume. Add a $20/month VPS to host it and your fully-loaded cost is $49/month whether you send 10,000 or 10 million emails. The same subscription covers unlimited Vectis Mail installs operated by your organisation — useful if you run separate instances per geo or per customer segment. Compare to SendGrid (~$90–250+/mo at 1M emails) or Postmark (~$1,200/mo at 1M emails)." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Not on Vectis Mail. Pro is $29 USD per tenant per month for unlimited domains, unlimited mailboxes, and unlimited email volume. Add a $20/month VPS to host it and your fully-loaded cost is $49/month whether you send 10,000 or 10 million emails. The same subscription covers unlimited Vectis Mail installs operated by your organisation, useful if you run separate instances per geo or per customer segment. Compare to SendGrid (~$90–250+/mo at 1M emails) or Postmark (~$1,200/mo at 1M emails)." }
 					},
 					{
 						"@type": "Question",
 						"name": "How does Vectis Mail handle multi-tenancy for a SaaS with many customer domains?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is multi-tenant from the database up — tenants, domains, mailboxes, and API keys all have first-class isolation. You can run one install hosting many customer domains with per-domain DKIM keys, per-domain analytics, and per-domain spam controls. Agencies and white-label operators can run a single Pro subscription across multiple Vectis Mail installs (one per geo, per customer, or per environment) without paying again. For the architecture, see the overview at /architecture/overview/." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is multi-tenant from the database up: tenants, domains, mailboxes, and API keys are isolated at the database row level. You can run one install hosting many customer domains with per-domain DKIM keys, per-domain analytics, and per-domain spam controls. Agencies and white-label operators can run a single Pro subscription across multiple Vectis Mail installs (one per geo, per customer, or per environment) without paying again. For the architecture, see the overview at /architecture/overview/." }
 					},
 					{
 						"@type": "Question",
 						"name": "Can I host mailboxes (e.g. support@) and run a transactional API on the same product?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Yes — that's a core design decision. The same Vectis Mail instance hosts user mailboxes (IMAP/POP3 + the Roundcube webmail) and exposes 40+ REST API endpoints for transactional sending, inbound webhooks, mailbox CRUD, analytics, and admin operations. You don't need to pay for a SendGrid alongside a Google Workspace. One product, one set of DNS records, one cost line." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes, that's a core design decision. The same Vectis Mail instance hosts user mailboxes (IMAP/POP3 + the Roundcube webmail) and exposes 40+ REST API endpoints for transactional sending, inbound webhooks, mailbox CRUD, analytics, and admin operations. You don't need to pay for a SendGrid alongside a Google Workspace. One product, one set of DNS records, one cost line." }
 					},
 					{
 						"@type": "Question",
 						"name": "What about data sovereignty for selling to regulated buyers?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail runs on your VPS. Email content, metadata, and analytics live in your Postgres. You choose where that data resides — EU VPS, sovereign cloud, on-prem, whatever fits your jurisdiction — and who has access. For SaaS selling into healthcare, government, financial services, or EU public sector, that's often the deal-maker. Managed providers (SendGrid, Postmark, AWS SES) put your customer email content on their US-primary infrastructure regardless of where your customers are." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail runs on your VPS. Email content, metadata, and analytics live in your Postgres. You choose where that data resides (EU VPS, sovereign cloud, on-prem, whatever fits your jurisdiction) and who has access. For SaaS selling into healthcare, government, financial services, or EU public sector, that's often the deal-maker. Managed providers (SendGrid, Postmark, AWS SES) put your customer email content on their US-primary infrastructure regardless of where your customers are." }
 					},
 					{
 						"@type": "Question",
 						"name": "How do I separate transactional reputation from marketing/broadcast?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's Message Streams is an architectural feature Vectis Mail doesn't replicate cleanly. The pattern that works on Vectis Mail is to run separate sending domains (e.g. notifications.yourapp.com for transactional, mail.yourapp.com for broadcast) with separate DKIM keys, so reputation builds independently. For very high-volume SaaS, you can also run two Vectis Mail installs under one Pro subscription. See the deliverability guide at /guides/deliverability/." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's Message Streams isn't replicated in Vectis Mail. The pattern that works on Vectis Mail is to run separate sending domains (e.g. notifications.yourapp.com for transactional, mail.yourapp.com for broadcast) with separate DKIM keys, so reputation builds independently. For very high-volume SaaS, you can also run two Vectis Mail installs under one Pro subscription. See the deliverability guide at /guides/deliverability/." }
 					},
 					{
 						"@type": "Question",
 						"name": "What's the migration path from SendGrid or Postmark?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Mechanical for the API code — swap the SDK call for an HTTP POST, re-map webhook field names, re-create templates locally. The gating factor is IP warmup: 2–4 weeks of gradual volume ramp before your new IP has reputation equivalent to a pre-warmed shared pool. Run dual-send during the warmup window — most teams find a clean cutover takes around 5 weeks total. See the SendGrid alternative page or Postmark alternative page for the full sequence." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Mechanical for the API code: swap the SDK call for an HTTP POST, re-map webhook field names, re-create templates locally. The gating factor is IP warmup: 2–4 weeks of gradual volume ramp before your new IP has reputation equivalent to a pre-warmed shared pool. Run dual-send during the warmup window, and most teams find a clean cutover takes around 5 weeks total. See the SendGrid alternative page or Postmark alternative page for the full sequence." }
 					}
 				]
 			}
@@ -120,7 +120,7 @@ const dateModified = '2026-05-13'
 		<p class="alt-lead">
 			Vectis Mail is what you get when transactional sending, inbound webhooks, mailbox
 			hosting, and multi-tenancy ship as one self-hosted product instead of three
-			separate SaaS bills. Pro is $29 USD per tenant per month — unlimited domains,
+			separate SaaS bills. Pro is $29 USD per tenant per month: unlimited domains,
 			unlimited volume, unlimited installs operated by your organisation. The math
 			compounds in your favour as you grow.
 		</p>
@@ -137,7 +137,7 @@ const dateModified = '2026-05-13'
 		<div class="feature-grid" style="margin-top: 1.5rem;">
 			<div class="feature-card">
 				<h3>1. Per-email pricing kills unit economics</h3>
-				<p>SendGrid, Postmark, SES, Resend — all price per email past a base bucket. As your sending volume grows linearly with customer count, your email cost grows linearly with your cost-of-revenue. Vectis Mail charges per tenant, not per email. <a href="/alternatives/sendgrid/" style="color: var(--sl-color-accent);">SendGrid math</a> · <a href="/alternatives/postmark/" style="color: var(--sl-color-accent);">Postmark math</a>.</p>
+				<p>SendGrid, Postmark, SES, and Resend all price per email past a base bucket. As your sending volume grows linearly with customer count, your email cost grows linearly with your cost-of-revenue. Vectis Mail charges per tenant, not per email. <a href="/alternatives/sendgrid/" style="color: var(--sl-color-accent);">SendGrid math</a> · <a href="/alternatives/postmark/" style="color: var(--sl-color-accent);">Postmark math</a>.</p>
 			</div>
 			<div class="feature-card">
 				<h3>2. You shouldn't pay for mailboxes twice</h3>
@@ -145,11 +145,11 @@ const dateModified = '2026-05-13'
 			</div>
 			<div class="feature-card">
 				<h3>3. Multi-tenant SaaS needs multi-tenant infrastructure</h3>
-				<p>Tenants, domains, mailboxes, API keys all have first-class isolation in Vectis Mail. Per-domain DKIM, per-domain analytics, per-domain spam controls. One Pro subscription covers <strong>unlimited installs</strong> operated by your org — useful for per-geo deployment, per-customer-segment isolation, or white-labelling for resellers.</p>
+				<p>Tenants, domains, mailboxes, and API keys are isolated at the database row level in Vectis Mail. Per-domain DKIM, per-domain analytics, per-domain spam controls. One Pro subscription covers <strong>unlimited installs</strong> operated by your org, useful for per-geo deployment, per-customer-segment isolation, or white-labelling for resellers.</p>
 			</div>
 			<div class="feature-card">
 				<h3>4. Data sovereignty closes deals</h3>
-				<p>Selling into healthcare, government, financial services, or EU public sector? Buyers increasingly require email content + metadata to stay in their jurisdiction. Vectis Mail runs on your VPS — you choose where the data lives. Managed providers can't make that promise cleanly.</p>
+				<p>Selling into healthcare, government, financial services, or EU public sector? Buyers increasingly require email content + metadata to stay in their jurisdiction. Vectis Mail runs on your VPS, so you choose where the data lives. Managed providers can't make that promise.</p>
 			</div>
 			<div class="feature-card">
 				<h3>5. Reply-handling is part of the product</h3>
@@ -185,7 +185,7 @@ const dateModified = '2026-05-13'
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			*At 5M+ emails/mo, you may want a larger VPS — but the Pro tier itself stays flat. Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> retrieved 2026-05-13.
+			*At 5M+ emails/mo, you may want a larger VPS, but the Pro tier itself stays flat. Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> retrieved 2026-05-13.
 		</p>
 		<p style="margin-top: 1.25rem;">
 			The exact crossover depends on which provider you're comparing against, but the
@@ -197,7 +197,7 @@ const dateModified = '2026-05-13'
 
 	<section class="section">
 		<h2>What you build on Vectis Mail</h2>
-		<p class="subtitle">Concrete SaaS-shape patterns that Vectis Mail handles cleanly.</p>
+		<p class="subtitle">Concrete SaaS patterns that Vectis Mail handles cleanly.</p>
 
 		<h3 class="alt-h3">Multi-tenant transactional email</h3>
 		<p>
@@ -210,7 +210,7 @@ const dateModified = '2026-05-13'
 		<h3 class="alt-h3">White-label reseller / agency</h3>
 		<p>
 			Running mail infrastructure for client domains under your brand? Run multiple
-			Vectis Mail installs — one per geo, per customer tier, or per major client — all
+			Vectis Mail installs (one per geo, per customer tier, or per major client) all
 			under a single Pro subscription. The "unlimited Vectis installs per organisation"
 			policy is built for this. <a href="/alternatives/" style="color: var(--sl-color-accent);">Compare to the per-instance pricing on managed providers</a>.
 		</p>
@@ -227,14 +227,14 @@ const dateModified = '2026-05-13'
 		<h3 class="alt-h3">Compliance-grade audit + retention</h3>
 		<p>
 			Every send + receive + admin operation lands in the audit log table (your
-			Postgres). Retention is your call — keep 30 days, keep 7 years, keep forever.
+			Postgres). Retention is your call: keep 30 days, keep 7 years, keep forever.
 			Useful for SOC 2 readiness on your side, and for the "we have your data in our
 			region" answer to enterprise procurement.
 		</p>
 
 		<h3 class="alt-h3">Per-tenant analytics for white-label transparency</h3>
 		<p>
-			Pro ships a per-domain analytics dashboard — delivery rates, bounce rates, IP warmup
+			Pro ships a per-domain analytics dashboard: delivery rates, bounce rates, IP warmup
 			progress, RBL status. If you white-label, you can surface those metrics to your
 			customers in their own admin UI via the analytics API. They see "your delivery rate
 			this week" without ever seeing the underlying provider.
@@ -243,11 +243,11 @@ const dateModified = '2026-05-13'
 
 	<section class="section">
 		<h2>Where Vectis Mail isn't the right fit (yet)</h2>
-		<p class="subtitle">Honest about what we don't do. If any of these is critical, factor it in.</p>
+		<p class="subtitle">What we don't yet do. If any of these is critical, factor it in.</p>
 		<div class="feature-grid" style="margin-top: 1.25rem;">
 			<div class="feature-card">
 				<h3>Message Streams</h3>
-				<p>Postmark's first-class transactional/broadcast reputation separation has no exact Vectis Mail equivalent. The workaround — separate sending domains — works but isn't a built-in feature. If multi-stream reputation is load-bearing for your business, factor that in. <a href="/alternatives/postmark/" style="color: var(--sl-color-accent);">Detail on the Postmark comparison &rarr;</a></p>
+				<p>Postmark's built-in transactional/broadcast reputation separation has no exact Vectis Mail equivalent. The workaround (separate sending domains) works but isn't a built-in feature in Vectis Mail. If multi-stream reputation is load-bearing for your business, factor that in. <a href="/alternatives/postmark/" style="color: var(--sl-color-accent);">Detail on the Postmark comparison &rarr;</a></p>
 			</div>
 			<div class="feature-card">
 				<h3>Marketing campaigns + broadcasts</h3>
@@ -274,7 +274,7 @@ const dateModified = '2026-05-13'
 					unlimited mailboxes, and unlimited email volume. Add a $20/month VPS and your
 					fully-loaded cost is $49/month whether you send 10,000 or 10 million emails.
 					The same subscription covers unlimited installs operated by your organisation
-					— useful for running separate instances per geo or per customer segment.
+					, useful for running separate instances per geo or per customer segment.
 					Compare: SendGrid at ~$90–250+/mo at 1M emails, Postmark at ~$1,200/mo at the
 					same volume.
 				</p>
@@ -283,7 +283,7 @@ const dateModified = '2026-05-13'
 				<h3>How does Vectis Mail handle multi-tenancy for a SaaS with many customer domains?</h3>
 				<p>
 					Multi-tenant from the database up. Tenants, domains, mailboxes, and API keys
-					all have first-class isolation. One install can host many customer domains with
+					are isolated at the database row level. One install can host many customer domains with
 					per-domain DKIM keys, per-domain analytics, and per-domain spam controls.
 					Agencies and white-label operators can run a single Pro subscription across
 					multiple Vectis Mail installs (one per geo, per customer, or per environment)
@@ -293,7 +293,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>Can I host mailboxes and run a transactional API on the same product?</h3>
 				<p>
-					Yes — that's a core design decision. The same Vectis Mail instance hosts user
+					Yes, that's a core design decision. The same Vectis Mail instance hosts user
 					mailboxes (IMAP/POP3 + the Roundcube webmail) and exposes 40+ REST API
 					endpoints for transactional sending, inbound webhooks, mailbox CRUD, analytics,
 					and admin operations. You don't need to pay for SendGrid alongside a Google
@@ -304,8 +304,8 @@ const dateModified = '2026-05-13'
 				<h3>What about data sovereignty for selling to regulated buyers?</h3>
 				<p>
 					Vectis Mail runs on your VPS. Email content, metadata, and analytics live in
-					your Postgres. You choose where that data resides — EU VPS, sovereign cloud,
-					on-prem, whatever fits your jurisdiction — and who has access. For SaaS
+					your Postgres. You choose where that data resides (EU VPS, sovereign cloud,
+					on-prem, whatever fits your jurisdiction) and who has access. For SaaS
 					selling into healthcare, government, financial services, or EU public sector,
 					that's often the deal-maker. Managed providers put customer email content on
 					their US-primary infrastructure regardless of where your customers are.
@@ -326,7 +326,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>What's the migration path from SendGrid or Postmark?</h3>
 				<p>
-					Mechanical for the API code — swap the SDK call for an HTTP POST, re-map
+					Mechanical for the API code: swap the SDK call for an HTTP POST, re-map
 					webhook field names, re-create templates locally. The gating factor is IP
 					warmup: 2–4 weeks of gradual volume ramp before your new IP has reputation
 					equivalent to a pre-warmed shared pool. Run dual-send during the warmup
