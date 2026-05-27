@@ -80,7 +80,7 @@ const dateModified = '2026-05-12'
 					{
 						"@type": "Question",
 						"name": "Is Vectis Mail a drop-in replacement for Mailcow?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Mostly yes for the mail stack itself — both use Postfix, Dovecot, and Rspamd under the hood, so mail data migrates cleanly via standard IMAP-to-IMAP sync. Vectis Mail doesn't ship SOGo groupware (CalDAV/CardDAV), so calendar and contacts data needs to be exported separately if you use those features in Mailcow." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Mostly yes for the mail stack itself. Both use Postfix, Dovecot, and Rspamd under the hood, so mail data migrates cleanly via standard IMAP-to-IMAP sync. Vectis Mail doesn't ship SOGo groupware (CalDAV/CardDAV), so calendar and contacts data needs to be exported separately if you use those features in Mailcow." }
 					},
 					{
 						"@type": "Question",
@@ -100,7 +100,7 @@ const dateModified = '2026-05-12'
 					{
 						"@type": "Question",
 						"name": "Why would I stay on Mailcow?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Three honest reasons: (1) you need SOGo groupware (calendar/contacts) and can't move that out separately; (2) you value 12 years of production maturity over Vectis Mail's newer codebase; (3) you already have a ServerCow support contract that's working for you. If none of those apply, the modern-surface case for Vectis Mail is strong." }
+						"acceptedAnswer": { "@type": "Answer", "text": "You need SOGo groupware (calendar/contacts) and can't move that out separately. You value 12 years of production maturity over Vectis Mail's newer codebase. You already have a ServerCow support contract that's working for you. If none of those apply, Vectis Mail's modern surface is the better call." }
 					}
 				]
 			}
@@ -127,8 +127,8 @@ const dateModified = '2026-05-12'
 		<div class="hero-badge">Alternatives · Self-Hosted</div>
 		<h1>Mailcow alternative.<br/><span>Modern surface, same control.</span></h1>
 		<p class="alt-lead">
-			Vectis Mail is a self-hosted email platform built on the same Postfix/Dovecot/Rspamd
-			stack as Mailcow — but with declarative YAML config, a 40+ endpoint REST API,
+			Vectis Mail uses the same Postfix/Dovecot/Rspamd
+			stack as Mailcow. The differences: declarative YAML config, a 40+ endpoint REST API,
 			inbound webhooks, and atomic updates with automatic rollback.
 			Half the containers, none of the bash. A modern alternative to Mailcow for teams
 			who want the same self-hosted control with developer-friendly ergonomics.
@@ -136,13 +136,13 @@ const dateModified = '2026-05-12'
 		<div class="alt-meta">
 			<span>Last updated <time datetime={dateModified}>12 May 2026</time></span>
 			<span>·</span>
-			<span>By the Vectis Mail team</span>
+			<span>Written by Ian Holt</span>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Honest side-by-side, current as of May 2026.</p>
+		<p class="subtitle">Side-by-side, current as of May 2026.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -169,7 +169,7 @@ const dateModified = '2026-05-12'
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>The honest verdict</h2>
+		<h2>The verdict</h2>
 		<div class="verdict-grid">
 			<div class="verdict-card verdict-win">
 				<h3>Choose Vectis Mail when…</h3>
@@ -224,7 +224,7 @@ const dateModified = '2026-05-12'
 			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
 			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations.
 			Domain-scoped API keys with per-domain rate limits make it usable as a real
-			transactional service — a SendGrid replacement that you host yourself.
+			transactional service: a SendGrid replacement that you host yourself.
 		</p>
 		<p>
 			See the <a href="/api/">API Reference</a> for the full surface.
@@ -264,9 +264,9 @@ const dateModified = '2026-05-12'
 		<h3 class="alt-h3">Webmail + groupware</h3>
 		<p>
 			Mailcow ships SOGo, which includes CalDAV/CardDAV and ActiveSync. That makes
-			Mailcow a credible Exchange replacement for orgs that genuinely use the calendar
+			Mailcow a credible Exchange replacement for orgs that actively use the calendar
 			and contacts features. Vectis Mail ships Roundcube webmail with ManageSieve filters
-			but doesn't yet ship calendar/contacts — that's on the Phase 4 roadmap. If
+			but doesn't yet ship calendar/contacts; that's on the Phase 4 roadmap. If
 			groupware is a hard requirement, this is the biggest functional gap.
 		</p>
 
@@ -275,7 +275,7 @@ const dateModified = '2026-05-12'
 			Both are free to self-host. Mailcow's revenue comes from optional ServerCow support
 			contracts. Vectis Mail's Starter tier is free; Pro adds unlimited domains,
 			per-domain analytics, advanced spam controls, OIDC SSO, and priority support for
-			$29 USD/tenant/month — one subscription covers unlimited Vectis Mail installs.
+			$29 USD/tenant/month, with one subscription covering unlimited Vectis Mail installs.
 			See <a href="/pricing/">pricing</a>.
 		</p>
 	</section>
@@ -288,10 +288,10 @@ const dateModified = '2026-05-12'
 		</p>
 		<ol class="alt-steps">
 			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Configure your domain(s) but leave DNS pointed at Mailcow for now.</li>
-			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> or <code>doveadm backup</code> — both Mailcow and Vectis Mail are vanilla Dovecot underneath, so the maildir structure transfers directly.</li>
+			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> or <code>doveadm backup</code>: both Mailcow and Vectis Mail are vanilla Dovecot underneath, so the maildir structure transfers directly.</li>
 			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them to DNS alongside the existing Mailcow keys. Run both in parallel during the switchover.</li>
-			<li><strong>Export Sieve filters</strong> (per-user) from Mailcow Dovecot and import into Vectis Mail Dovecot — same file format.</li>
-			<li><strong>Export SOGo data</strong> (calendar / contacts) to iCal/vCard if needed — Vectis Mail can't import these directly. This is the only non-trivial step.</li>
+			<li><strong>Export Sieve filters</strong> (per-user) from Mailcow Dovecot and import into Vectis Mail Dovecot (same file format).</li>
+			<li><strong>Export SOGo data</strong> (calendar / contacts) to iCal/vCard if needed. Vectis Mail can't import these directly. This is the only non-trivial step.</li>
 			<li><strong>Cut DNS over</strong>: update MX to point at the Vectis Mail server. Mail starts flowing through Vectis Mail as DNS propagates.</li>
 			<li><strong>Verify + decommission</strong>: watch logs for a few days, then decommission Mailcow.</li>
 		</ol>
@@ -307,7 +307,7 @@ const dateModified = '2026-05-12'
 			<div class="alt-faq-q">
 				<h3>Is Vectis Mail a drop-in replacement for Mailcow?</h3>
 				<p>
-					Mostly yes for the mail stack itself — both use Postfix, Dovecot, and Rspamd
+					Mostly yes for the mail stack itself. Both use Postfix, Dovecot, and Rspamd
 					under the hood, so mail data migrates cleanly via standard IMAP-to-IMAP sync.
 					Vectis Mail doesn't ship SOGo groupware (CalDAV/CardDAV), so calendar and
 					contacts data needs to be exported separately if you use those features in
@@ -346,10 +346,10 @@ const dateModified = '2026-05-12'
 			<div class="alt-faq-q">
 				<h3>Why would I stay on Mailcow?</h3>
 				<p>
-					Three honest reasons: (1) you need SOGo groupware and can't move calendar/contacts out separately;
-					(2) you value 12 years of production maturity over Vectis Mail's newer codebase;
-					(3) you already have a ServerCow support contract that's working for you.
-					If none of those apply, the modern-surface case for Vectis Mail is strong.
+					You need SOGo groupware and can't move calendar/contacts out separately.
+					You value 12 years of production maturity over Vectis Mail's newer codebase.
+					You already have a ServerCow support contract that's working for you.
+					If none of those apply, Vectis Mail's modern surface is the better call.
 				</p>
 			</div>
 		</div>
