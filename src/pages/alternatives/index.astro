@@ -1,8 +1,8 @@
 ---
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
-const title = 'Vectis Mail alternatives — honest comparisons'
-const description = 'Honest side-by-side comparisons of Vectis Mail vs Mailcow, iRedMail, Mail-in-a-Box, SendGrid, and Postmark. Self-hosted vs managed, free vs metered.'
+const title = 'Vectis Mail alternatives — side-by-side comparisons'
+const description = 'Side-by-side comparisons of Vectis Mail vs Mailcow, iRedMail, Mail-in-a-Box, SendGrid, and Postmark. Self-hosted vs managed, free vs metered.'
 const url = 'https://vectismail.com/alternatives/'
 const ogImage = 'https://vectismail.com/og/default.png'
 const dateModified = '2026-05-13'
@@ -62,7 +62,7 @@ const live: Alt[] = [
 		bullets: [
 			'Flat-price self-host vs per-email after the 10K base bucket',
 			'Mailbox hosting included vs send + inbound parse only',
-			'No Message Streams equivalent — honest gap called out',
+			'No Message Streams equivalent (gap called out explicitly)',
 		],
 	},
 ]
@@ -87,7 +87,7 @@ const upcoming: { title: string; tagline: string }[] = []
 	<meta property="og:image" content={ogImage} />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content="Vectis Mail alternatives — honest comparisons" />
+	<meta property="og:image:alt" content="Vectis Mail alternatives — side-by-side comparisons" />
 	<meta property="og:site_name" content="Vectis Mail" />
 
 	<meta name="twitter:card" content="summary_large_image" />
@@ -135,17 +135,17 @@ const upcoming: { title: string; tagline: string }[] = []
 					{
 						"@type": "Question",
 						"name": "Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what is the difference?",
-						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are mature multi-domain mail servers — Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is one-command personal email sovereignty on a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-tenant operators." }
+						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are mature multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is one-command personal email sovereignty on a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-tenant operators." }
 					},
 					{
 						"@type": "Question",
 						"name": "Vectis Mail vs SendGrid vs Postmark — are these comparable products?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Comparable on the transactional API surface — sending API, inbound webhooks, analytics, domain-scoped keys all match. Not comparable on the operational model. SendGrid and Postmark are managed SaaS billed per email; Vectis Mail is self-hosted on your own VPS billed flat ($0 Starter / $29 USD Pro per tenant per month, unlimited volume). Cost crossover for Postmark vs Vectis Mail Pro is around 30K emails/month on the Postmark side. Vectis Mail also includes full IMAP/POP3 mailbox hosting; SendGrid and Postmark do not." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Comparable on the transactional API surface: sending API, inbound webhooks, analytics, domain-scoped keys all match. Not comparable on the operational model. SendGrid and Postmark are managed SaaS billed per email; Vectis Mail is self-hosted on your own VPS billed flat ($0 Starter / $29 USD Pro per tenant per month, unlimited volume). Cost crossover for Postmark vs Vectis Mail Pro is around 30K emails/month on the Postmark side. Vectis Mail also includes full IMAP/POP3 mailbox hosting; SendGrid and Postmark do not." }
 					},
 					{
 						"@type": "Question",
 						"name": "Is there a Vectis Mail alternative for Mailu, Modoboa, docker-mailserver, Mailgun, AWS SES, or Resend?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Not yet. The current five comparisons cover the highest-search-volume products in our market. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the public roadmap for the next batch of comparison pages. If you want one prioritised, contact us — we sequence the next set based on real reader demand." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Not yet. The current five comparisons cover the highest-search-volume products in our market. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the public roadmap for the next batch of comparison pages. If you want one prioritised, contact us and we'll sequence the next set based on real reader demand." }
 					}
 				]
 			}
@@ -169,12 +169,12 @@ const upcoming: { title: string; tagline: string }[] = []
 	<main>
 
 	<section class="hero alt-hero">
-		<div class="hero-badge">Compare · Honest side-by-side</div>
-		<h1>Vectis Mail alternatives.<br/><span>Honest comparisons.</span></h1>
+		<div class="hero-badge">Compare · Side-by-side</div>
+		<h1>Vectis Mail alternatives.<br/><span>Where each one fits.</span></h1>
 		<p class="alt-lead">
 			Each comparison below leads with where the other product wins, where Vectis Mail wins,
-			and a realistic migration path. No straw-man competitor framing — these are written
-			by the team that actually runs Vectis Mail in production at validonx.com,
+			and a realistic migration path. These are written
+			by the team that runs Vectis Mail in production at validonx.com,
 			pharlux.com, scrutique.com, and other Veltara Works infrastructure.
 		</p>
 		<div class="alt-meta">
@@ -184,7 +184,7 @@ const upcoming: { title: string; tagline: string }[] = []
 
 	<section class="section" style="padding-top: 1.5rem;">
 		<h2>Direct comparisons</h2>
-		<p class="subtitle">Live, in-depth pages — each with a side-by-side table, the honest verdict, and a migration guide.</p>
+		<p class="subtitle">Each page has a side-by-side table, a clear verdict, and a migration walk-through.</p>
 		<div class="feature-grid" style="margin-top: 1.5rem;">
 			{live.map((a) => (
 				<a href={a.href} class="feature-card alt-index-card">
@@ -226,11 +226,11 @@ const upcoming: { title: string; tagline: string }[] = []
 			</div>
 			<div class="feature-card">
 				<h3>Vectis Mail vs SendGrid vs Postmark — are these even comparable?</h3>
-				<p>On the API surface, yes — sending API, inbound webhooks, analytics, domain-scoped keys all match. On the operational model, no. SendGrid and Postmark are managed SaaS billed per email; Vectis Mail is self-hosted on your own VPS, billed flat ($0 Starter / $29 USD Pro per tenant per month, unlimited volume). Cost crossover with Postmark sits around 30K emails/month. Vectis Mail also includes full IMAP/POP3 mailbox hosting; SendGrid and Postmark do not.</p>
+				<p>On the API surface, yes: sending API, inbound webhooks, analytics, domain-scoped keys all match. On the operational model, no. SendGrid and Postmark are managed SaaS billed per email; Vectis Mail is self-hosted on your own VPS, billed flat ($0 Starter / $29 USD Pro per tenant per month, unlimited volume). Cost crossover with Postmark sits around 30K emails/month. Vectis Mail also includes full IMAP/POP3 mailbox hosting; SendGrid and Postmark do not.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Is there a comparison for Mailu, docker-mailserver, Mailgun, AWS SES, or Resend?</h3>
-				<p>Not yet. The current five cover the highest-search-volume products. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the roadmap for the next batch. Want one prioritised? <a href="/contact/">Contact us</a> — we sequence the next set based on real reader demand.</p>
+				<p>Not yet. The current five cover the highest-search-volume products. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the roadmap for the next batch. Want one prioritised? <a href="/contact/">Contact us</a> and we'll sequence the next set based on real reader demand.</p>
 			</div>
 		</div>
 	</section>
