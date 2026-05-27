@@ -2,7 +2,7 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 const title = 'Vectis Mail for Developers — Self-Hosted Email With a Real API'
-const description = 'Vectis Mail for developers: self-hosted email with a real REST API, declarative YAML config, runs on a $20 VPS. Free Starter tier, AGPL-3.0 core.'
+const description = 'Vectis Mail for developers: self-hosted email with a real REST API, declarative YAML config, runs on a $20 VPS. Free Starter tier, source-available under BSL 1.1.'
 const url = 'https://vectismail.com/for/developers/'
 const ogImage = 'https://vectismail.com/og/for-developers.png'
 const datePublished = '2026-05-13'
@@ -83,8 +83,8 @@ const dateModified = '2026-05-13'
 					},
 					{
 						"@type": "Question",
-						"name": "Is the source actually open?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Yes — AGPL-3.0 for the core. Read it, audit it, modify it. The Pro tier features (per-domain analytics, advanced spam controls, OIDC SSO) are under a commercial licence, but the platform you run is fully open-source. If AGPL doesn't fit your use case (e.g. modifying + distributing Vectis Mail in a closed-source product), the Pro commercial licence covers the AGPL terms." }
+						"name": "Is the source available? What's the licence?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is source-available under the Business Source License 1.1. The entire platform is on GitHub — read it, audit it, modify it for your own use. The Additional Use Grant restricts only one thing: commercial managed-service resale (you can't relaunch Vectis Mail as a hosted SaaS competitor). For most solo-developer use cases this is more permissive than AGPL would be — you can modify the code privately for your own product without the copyleft obligation. Each version converts to Apache License 2.0 four years after its first public release." }
 					},
 					{
 						"@type": "Question",
@@ -113,14 +113,14 @@ const dateModified = '2026-05-13'
 	<main>
 
 	<section class="hero alt-hero">
-		<div class="hero-badge">For developers · Self-hosted, AGPL-3.0, real API</div>
+		<div class="hero-badge">For developers · Self-hosted · Source-available · Real API</div>
 		<h1>Vectis Mail for developers.<br/><span>Email infrastructure you own, on a $20 VPS.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is the email platform for solo developers, indie hackers, and small
 			teams who want to own their infrastructure instead of paying SendGrid every month
 			for a side project. Starter is free forever — full REST API, inbound webhooks,
-			IMAP/POP3 mailboxes, monitoring. Runs comfortably on a $20/month VPS. AGPL-3.0
-			source you can audit.
+			IMAP/POP3 mailboxes, monitoring. Runs comfortably on a $20/month VPS.
+			Source-available under BSL 1.1; free to self-host and modify.
 		</p>
 		<div class="alt-meta">
 			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
@@ -146,12 +146,12 @@ const dateModified = '2026-05-13'
 				<p>Declarative <code>config.yaml</code> + <code>vectis apply</code>. You write intent (domains, mailboxes, API keys); the system generates Postfix, Dovecot, Rspamd, Traefik configs and reloads what changed. Audit the generated configs if you want, but you don't have to write them.</p>
 			</div>
 			<div class="feature-card">
-				<h3>4. Open source you can audit</h3>
-				<p>AGPL-3.0 core. The whole platform is on <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">GitHub</a> — read it, audit it, contribute. Pro features (analytics, advanced spam, OIDC SSO) are under a commercial licence; the platform itself is fully open.</p>
+				<h3>4. Source-available — read it, modify it, run it</h3>
+				<p>The entire platform is on <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">GitHub</a> under the Business Source License 1.1. Free to self-host, modify, and run for your own product. The only restriction is selling Vectis Mail as a competing managed service. Each version converts to Apache 2.0 four years after release.</p>
 			</div>
 			<div class="feature-card">
 				<h3>5. Real REST API + webhooks</h3>
-				<p>60+ endpoints covering sending (single + batch with attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox CRUD, domain management, analytics, audit logs. OpenAPI spec, code samples. The same surface you'd want from SendGrid — but yours.</p>
+				<p>40+ endpoints covering sending (single + batch with attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox CRUD, domain management, analytics, audit logs. OpenAPI spec, code samples. The same surface you'd want from SendGrid — but yours.</p>
 			</div>
 			<div class="feature-card">
 				<h3>6. Personal email + transactional in one box</h3>
@@ -226,8 +226,8 @@ const dateModified = '2026-05-13'
 		<h3 class="alt-h3">Open-source project transactional email</h3>
 		<p>
 			You maintain an open-source project that emails contributors, sends digest mails,
-			triggers webhook events. Vectis Mail's Starter tier handles the volume; the AGPL-3.0
-			licence aligns with the project ethos.
+			triggers webhook events. Vectis Mail's Starter tier handles the volume; running it
+			on your own infrastructure means no third-party email vendor in the dependency chain.
 		</p>
 	</section>
 
@@ -300,14 +300,17 @@ const dateModified = '2026-05-13'
 				</p>
 			</div>
 			<div class="alt-faq-q">
-				<h3>Is the source actually open?</h3>
+				<h3>Is the source available? What's the licence?</h3>
 				<p>
-					Yes — AGPL-3.0 for the core. Read it, audit it, modify it. The Pro tier
-					features (per-domain analytics, advanced spam controls, OIDC SSO) are under
-					a commercial licence, but the platform you run is fully open-source. If AGPL
-					doesn't fit your use case (e.g. modifying + distributing Vectis Mail in a
-					closed-source product), the Pro commercial licence covers the AGPL terms.
-					Source on <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a>.
+					Vectis Mail is source-available under the Business Source License 1.1.
+					The entire platform is on <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer">GitHub</a> —
+					read it, audit it, modify it for your own use. The Additional Use Grant
+					restricts only one thing: commercial managed-service resale (you can't
+					relaunch Vectis Mail as a hosted SaaS competitor). For most solo-developer
+					use cases this is more permissive than AGPL would be — you can modify the
+					code privately for your own product without the copyleft obligation.
+					Each version converts to Apache License 2.0 four years after its first
+					public release.
 				</p>
 			</div>
 			<div class="alt-faq-q">
