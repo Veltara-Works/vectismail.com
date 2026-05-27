@@ -18,10 +18,10 @@ const live: UseCase[] = [
 	{
 		href: '/for/saas/',
 		title: 'For SaaS founders',
-		tagline: 'Flat-priced transactional email + mailbox hosting + multi-tenancy. Per-tenant pricing, not per-email — the math compounds in your favour as you grow.',
+		tagline: 'Flat-priced transactional email + mailbox hosting + multi-tenancy. Per-tenant pricing, not per-email. Cost stays flat as you scale.',
 		bullets: [
 			'$49/mo flat from 10K to 5M+ emails/month',
-			'Multi-tenant from the database up — one install, many customer domains',
+			'Multi-tenant from the database up: one install, many customer domains',
 			'One Pro subscription covers unlimited installs operated by your org',
 		],
 	},
@@ -38,9 +38,9 @@ const live: UseCase[] = [
 	{
 		href: '/for/developers/',
 		title: 'For developers',
-		tagline: 'Self-hosted email infrastructure for solo developers, indie hackers, and small teams. Free Starter tier with full API. Runs on a $20 VPS. AGPL-3.0 source you can audit.',
+		tagline: 'Self-hosted email infrastructure for solo developers, indie hackers, and small teams. Free Starter tier with full API. Runs on a $20 VPS. Source-available code (BSL 1.1) you can audit.',
 		bullets: [
-			'Starter tier truly free — full API + webhooks + IMAP/POP3 + monitoring',
+			'Starter tier free forever: full API + webhooks + IMAP/POP3 + monitoring',
 			'~$21/mo all-in for a side project vs ~$27/mo on SendGrid + Workspace',
 			'Declarative YAML, no Postfix wizardry required',
 		],
@@ -51,7 +51,7 @@ const live: UseCase[] = [
 		tagline: 'Self-hosted, data-sovereign, source-available email infrastructure. Pro tier today; full Enterprise tier with clustering, hardened multi-tenancy, and audit-evidence packs lands later in 2026.',
 		bullets: [
 			'Run on your VPS, sovereign cloud, on-prem, or air-gapped',
-			'AGPL-3.0 source — your security team can audit',
+			'Source-available code (BSL 1.1): your security team can audit',
 			'Phase 4 Enterprise tier: clustering + audit packs + SLA support',
 		],
 	},
@@ -137,10 +137,10 @@ const upcoming: { title: string; tagline: string }[] = []
 		<div class="hero-badge">By use case · Audience-specific</div>
 		<h1>Vectis Mail by use case.<br/><span>What it does for your audience.</span></h1>
 		<p class="alt-lead">
-			Same product, different value props depending on who's running it. Each page below
-			leads with the pain points and use cases specific to that audience, the pricing math
-			at that audience's scale, and an honest "where Vectis Mail isn't the right fit (yet)"
-			section. For competitor-by-competitor comparisons, see <a href="/alternatives/" style="color: var(--sl-color-accent);">alternatives</a> instead.
+			Same product, different value depending on who's running it. Each page covers the
+			specific use case, the cost math at that scale, and what Vectis Mail doesn't yet
+			do for that audience. For competitor-by-competitor comparisons, see
+			<a href="/alternatives/" style="color: var(--sl-color-accent);">alternatives</a> instead.
 		</p>
 		<div class="alt-meta">
 			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
@@ -149,7 +149,7 @@ const upcoming: { title: string; tagline: string }[] = []
 
 	<section class="section" style="padding-top: 1.5rem;">
 		<h2>Live use-case pages</h2>
-		<p class="subtitle">Each page covers the audience-specific case, pricing math, and honest gaps.</p>
+		<p class="subtitle">Each page covers the audience-specific case, cost math, and gaps to factor in.</p>
 		<div class="feature-grid" style="margin-top: 1.5rem;">
 			{live.map((a) => (
 				<a href={a.href} class="feature-card alt-index-card">
