@@ -64,22 +64,22 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Does one Pro subscription really cover unlimited client installs?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Yes — within reason and as long as your organisation operates them. The Pro tier is licensed at $29 USD per tenant per month, where a tenant is your organisation. Every Vectis Mail install your organisation runs (one per client, one per geo, one per environment — your call) uses the same licence. The policy is built specifically for agencies and SaaS operators who'd otherwise pay per-instance fees with managed providers." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes, within reason and as long as your organisation operates them. The Pro tier is licensed at $29 USD per tenant per month, where a tenant is your organisation. Every Vectis Mail install your organisation runs (one per client, one per geo, one per environment, your call) uses the same licence. The policy is built specifically for agencies and SaaS operators who'd otherwise pay per-instance fees with managed providers." }
 					},
 					{
 						"@type": "Question",
 						"name": "How do I give each client their own branded webmail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Pro ships Custom Branding — per-install logo, colour scheme, and webmail skin. Each client install can carry the client's brand at the webmail layer. For more aggressive white-labelling (custom domain on the admin UI, custom email templates), the same install can host per-domain configuration." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Pro ships Custom Branding: per-install logo, colour scheme, and webmail skin. Each client install can carry the client's brand at the webmail layer. For more aggressive white-labelling (custom domain on the admin UI, custom email templates), the same install can host per-domain configuration." }
 					},
 					{
 						"@type": "Question",
 						"name": "Can I provision new client mailboxes programmatically?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Yes — 40+ REST API endpoints cover domain creation, DKIM key generation, mailbox provisioning, alias setup, API key management, and analytics. Your client-signup flow can call the Vectis Mail API to spin up a fresh sending domain + mailbox set in seconds. See /api/ for the full surface." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. 40+ REST API endpoints cover domain creation, DKIM key generation, mailbox provisioning, alias setup, API key management, and analytics. Your client-signup flow can call the Vectis Mail API to spin up a fresh sending domain + mailbox set in seconds. See /api/ for the full surface." }
 					},
 					{
 						"@type": "Question",
 						"name": "How do I bill clients for their email usage?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Your call. Vectis Mail provides per-domain analytics (send volume, delivery rate, bounce rate, complaint rate) via the analytics API. You can query that data per-client and turn it into invoice line items, dashboard metrics, or usage tiers — whatever fits your commercial model. Some agencies charge flat monthly fees per client; others charge per email or per mailbox. Vectis Mail's flat pricing means your costs are predictable regardless of which model you choose." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Your call. Vectis Mail provides per-domain analytics (send volume, delivery rate, bounce rate, complaint rate) via the analytics API. You can query that data per-client and turn it into invoice line items, dashboard metrics, or usage tiers, whatever fits your commercial model. Some agencies charge flat monthly fees per client; others charge per email or per mailbox. Vectis Mail's flat pricing means your costs are predictable regardless of which model you choose." }
 					},
 					{
 						"@type": "Question",
@@ -89,7 +89,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Do I need separate Vectis installs per client, or can one install host many clients?",
-						"acceptedAnswer": { "@type": "Answer", "text": "One install can host many client domains — Vectis Mail is multi-tenant from the database up with per-domain isolation. You'd want separate installs when: (1) clients have data-residency requirements pulling them into different geographic regions, (2) clients require dedicated IPs for deliverability isolation, (3) you're segmenting clients into different commercial tiers with different SLAs. Most agencies start with one install and add more only when these constraints kick in." }
+						"acceptedAnswer": { "@type": "Answer", "text": "One install can host many client domains. Vectis Mail is multi-tenant from the database up with per-domain isolation. You'd want separate installs when: (1) clients have data-residency requirements pulling them into different geographic regions, (2) clients require dedicated IPs for deliverability isolation, (3) you're segmenting clients into different commercial tiers with different SLAs. Most agencies start with one install and add more only when these constraints kick in." }
 					}
 				]
 			}
@@ -118,7 +118,7 @@ const dateModified = '2026-05-13'
 		<p class="alt-lead">
 			Vectis Mail's Pro tier licences per organisation, not per install. Run separate
 			Vectis Mail instances for every client you operate, every geo you deploy into, every
-			environment you stage — all under one $29 USD/month Pro subscription. Per-client DKIM,
+			environment you stage, all under one $29 USD/month Pro subscription. Per-client DKIM,
 			per-client branding, per-domain analytics, programmatic provisioning. The agency
 			economics work the way you'd hope.
 		</p>
@@ -147,7 +147,7 @@ const dateModified = '2026-05-13'
 			</div>
 			<div class="feature-card">
 				<h3>4. Programmatic client provisioning</h3>
-				<p>40+ REST API endpoints cover domain creation, mailbox provisioning, alias setup, key rotation. Your onboarding flow can spin up a new client's full email stack — domain, DKIM, mailboxes, API keys — in seconds via API calls.</p>
+				<p>40+ REST API endpoints cover domain creation, mailbox provisioning, alias setup, key rotation. Your onboarding flow can spin up a new client's full email stack (domain, DKIM, mailboxes, API keys) in seconds via API calls.</p>
 			</div>
 			<div class="feature-card">
 				<h3>5. Per-client analytics for transparency</h3>
@@ -183,20 +183,20 @@ const dateModified = '2026-05-13'
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> + standard Google Workspace pricing retrieved 2026-05-13. Numbers assume mid-tier plans typical for an agency setup. Mailbox hosting cost on managed providers is real — SendGrid and Postmark don't host mailboxes, so you're paying Workspace/M365 alongside.
+			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> + standard Google Workspace pricing retrieved 2026-05-13. Numbers assume mid-tier plans typical for an agency setup. Mailbox hosting cost on managed providers is real. SendGrid and Postmark don't host mailboxes, so you're paying Workspace/M365 alongside.
 		</p>
 	</section>
 
 	<section class="section">
 		<h2>How agencies actually deploy Vectis Mail</h2>
-		<p class="subtitle">Two common shapes — pick the one that matches your client mix.</p>
+		<p class="subtitle">Two common shapes. Pick the one that matches your client mix.</p>
 
 		<h3 class="alt-h3">Shape 1: One install, many client domains</h3>
 		<p>
 			Single Vectis Mail install, multi-domain. Each client domain has its own DKIM key,
 			DNS records, mailboxes, and per-domain analytics. Best for: smaller agencies, clients
 			with similar scale, no data-residency conflicts between clients. Lowest operational
-			overhead — one server to patch, one set of backups, one update window. Most agencies
+			overhead: one server to patch, one set of backups, one update window. Most agencies
 			start here.
 		</p>
 
@@ -221,23 +221,23 @@ const dateModified = '2026-05-13'
 
 	<section class="section">
 		<h2>Where Vectis Mail isn't the right fit for agencies (yet)</h2>
-		<p class="subtitle">Honest about what's not in the box. Factor in if any is critical.</p>
+		<p class="subtitle">What's not in the box. Factor in if any is critical.</p>
 		<div class="feature-grid" style="margin-top: 1.25rem;">
 			<div class="feature-card">
 				<h3>White-label admin UI</h3>
-				<p>Pro Custom Branding covers the webmail layer + admin UI logo/colours. Fully white-labelled admin UI on the client's own domain isn't shipped today — it's on the Phase 4 roadmap. If your clients can never see the "Vectis Mail" name anywhere in their admin experience, that's a real gap.</p>
+				<p>Pro Custom Branding covers the webmail layer + admin UI logo/colours. Fully white-labelled admin UI on the client's own domain isn't shipped today; it's on the Phase 4 roadmap. If your clients can never see the "Vectis Mail" name anywhere in their admin experience, that's a real gap.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Multi-tenant single-install isolation guarantees</h3>
-				<p>Per-domain isolation is first-class. Cross-tenant hardening (the strict guarantees you'd want before running competing brands on the same install) lands with Phase 4 Enterprise tier. Until then, dedicated installs are the safe answer for security-sensitive client pairs.</p>
+				<p>Per-domain isolation is structural. Cross-tenant hardening (the strict guarantees you'd want before running competing brands on the same install) lands with Phase 4 Enterprise tier. Until then, dedicated installs are the safe answer for security-sensitive client pairs.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Centralised dashboard across installs</h3>
-				<p>Per-install dashboards are first-class. A single agency-wide dashboard that aggregates metrics across all your client installs is a Phase 4+ ask. For now, you'd build this externally by hitting each install's analytics API and aggregating in your own tool.</p>
+				<p>Per-install dashboards are built in. A single agency-wide dashboard that aggregates metrics across all your client installs is a Phase 4+ ask. For now, you'd build this externally by hitting each install's analytics API and aggregating in your own tool.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Client-facing billing portal</h3>
-				<p>Vectis Mail bills you, not your clients. If you want each client to see "Vectis Mail powered by [your agency]" with a self-service billing portal in their name, you're building that layer yourself today. Some agencies use the Vectis Mail API to surface usage in their own client portal — that pattern works well.</p>
+				<p>Vectis Mail bills you, not your clients. If you want each client to see "Vectis Mail powered by [your agency]" with a self-service billing portal in their name, you're building that layer yourself today. Some agencies use the Vectis Mail API to surface usage in their own client portal; that pattern works well.</p>
 			</div>
 		</div>
 	</section>
@@ -248,10 +248,10 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>Does one Pro subscription really cover unlimited client installs?</h3>
 				<p>
-					Yes — within reason and as long as your organisation operates them. The Pro
+					Yes, within reason and as long as your organisation operates them. The Pro
 					tier is licensed at $29 USD per tenant per month, where a tenant is your
 					organisation. Every Vectis Mail install your organisation runs (one per client,
-					one per geo, one per environment — your call) uses the same licence. The
+					one per geo, one per environment, your call) uses the same licence. The
 					policy is built specifically for agencies and SaaS operators who'd otherwise
 					pay per-instance fees with managed providers.
 				</p>
@@ -259,7 +259,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>How do I give each client their own branded webmail?</h3>
 				<p>
-					Pro ships Custom Branding — per-install logo, colour scheme, and webmail skin.
+					Pro ships Custom Branding: per-install logo, colour scheme, and webmail skin.
 					Each client install can carry the client's brand at the webmail layer. For
 					more aggressive white-labelling (custom domain on the admin UI, custom email
 					templates), the same install can host per-domain configuration. See <a href="/features/">features</a>.
@@ -268,7 +268,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>Can I provision new client mailboxes programmatically?</h3>
 				<p>
-					Yes — 40+ REST API endpoints cover domain creation, DKIM key generation,
+					Yes. 40+ REST API endpoints cover domain creation, DKIM key generation,
 					mailbox provisioning, alias setup, API key management, and analytics. Your
 					client-signup flow can call the Vectis Mail API to spin up a fresh sending
 					domain + mailbox set in seconds. See the <a href="/api/">API Reference</a>.
@@ -280,7 +280,7 @@ const dateModified = '2026-05-13'
 					Your call. Vectis Mail provides per-domain analytics (send volume, delivery
 					rate, bounce rate, complaint rate) via the analytics API. You can query that
 					data per-client and turn it into invoice line items, dashboard metrics, or
-					usage tiers — whatever fits your commercial model. Vectis Mail's flat pricing
+					usage tiers, whatever fits your commercial model. Vectis Mail's flat pricing
 					means your costs are predictable regardless of which model you choose.
 				</p>
 			</div>
@@ -297,7 +297,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>Do I need separate Vectis installs per client, or can one install host many?</h3>
 				<p>
-					One install can host many client domains — Vectis Mail is multi-tenant from
+					One install can host many client domains. Vectis Mail is multi-tenant from
 					the database up with per-domain isolation. You'd want separate installs when:
 					(1) clients have data-residency requirements pulling them into different
 					geographic regions, (2) clients require dedicated IPs for deliverability
