@@ -85,7 +85,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Does iRedMail have a sending API or inbound webhooks?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No. iRedMail is a classic mail server — SMTP submission with mailbox credentials is the only programmatic surface, and inbound mail lands in mailboxes only. There's no REST API for sending, no inbound webhooks, no domain-scoped API keys. Vectis Mail ships 60+ REST endpoints covering sending, inbound webhooks, mailboxes, domains, analytics, and admin operations." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No. iRedMail is a classic mail server — SMTP submission with mailbox credentials is the only programmatic surface, and inbound mail lands in mailboxes only. There's no REST API for sending, no inbound webhooks, no domain-scoped API keys. Vectis Mail ships 40+ REST endpoints covering sending, inbound webhooks, mailboxes, domains, analytics, and admin operations." }
 					},
 					{
 						"@type": "Question",
@@ -128,7 +128,7 @@ const dateModified = '2026-05-13'
 		<h1>iRedMail alternative.<br/><span>Modern surface, real API.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is a self-hosted email platform built on the same Postfix and Dovecot stack
-			as iRedMail — but with declarative YAML config, a 60+ endpoint REST API, inbound webhooks,
+			as iRedMail — but with declarative YAML config, a 40+ endpoint REST API, inbound webhooks,
 			Rspamd by default, and atomic updates with automatic rollback. For teams who want
 			iRedMail's self-hosted control but with a modern operational surface and a programmable API.
 		</p>
@@ -152,7 +152,7 @@ const dateModified = '2026-05-13'
 					<tr><td>Deployment model</td><td>Docker Compose</td><td><strong>OS-native</strong> (installer script, no containers)</td></tr>
 					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family)</td><td><strong>Linux + FreeBSD + OpenBSD</strong></td></tr>
 					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
-					<tr><td>REST API</td><td><strong>60+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
+					<tr><td>REST API</td><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
 					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
 					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
 					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics, better deliverability)</td><td>SpamAssassin</td></tr>
@@ -163,7 +163,7 @@ const dateModified = '2026-05-13'
 					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
 					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
 					<tr><td>Observability built in</td><td>Prometheus · Loki · optional Grafana</td><td>Logs only — bring your own stack</td></tr>
-					<tr><td>License (core)</td><td>AGPL-3.0 (core), commercial Pro license</td><td>Mixed (upstream component licenses preserved)</td></tr>
+					<tr><td>License (core)</td><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>Mixed (upstream component licenses preserved)</td></tr>
 					<tr><td>Pricing</td><td>$0 Starter · $29 USD/tenant/month Pro (unlimited installs)</td><td>$0 OSS · iRedAdmin-Pro + Enterprise editions priced on request</td></tr>
 					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>19 years</strong>, continuous operation since 2007</td></tr>
 				</tbody>
@@ -229,7 +229,7 @@ const dateModified = '2026-05-13'
 			no inbound webhooks, no per-domain rate limiting.
 		</p>
 		<p>
-			Vectis Mail has 60+ endpoints covering sending (single + batch with attachments),
+			Vectis Mail has 40+ endpoints covering sending (single + batch with attachments),
 			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
 			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations.
 			Domain-scoped API keys with per-domain rate limits make it usable as a real
@@ -348,7 +348,7 @@ const dateModified = '2026-05-13'
 					No. iRedMail is a classic mail server — SMTP submission with mailbox credentials
 					is the only programmatic surface, and inbound mail lands in mailboxes only.
 					There's no REST API for sending, no inbound webhooks, no domain-scoped API keys.
-					Vectis Mail ships 60+ REST endpoints covering sending, inbound webhooks,
+					Vectis Mail ships 40+ REST endpoints covering sending, inbound webhooks,
 					mailboxes, domains, analytics, and admin operations.
 				</p>
 			</div>

@@ -90,7 +90,7 @@ const dateModified = '2026-05-12'
 					{
 						"@type": "Question",
 						"name": "Does Mailcow have a sending API like SendGrid or Postmark?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No. Mailcow exposes SMTP submission with per-mailbox credentials but doesn't ship a domain-scoped REST API for programmatic sending, inbound webhooks, or per-domain analytics. Vectis Mail's API has 60+ endpoints for sending, mailboxes, webhooks, domains, analytics, and admin operations." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Mailcow exposes SMTP submission with per-mailbox credentials but doesn't ship a domain-scoped REST API for programmatic sending, inbound webhooks, or per-domain analytics. Vectis Mail's API has 40+ endpoints for sending, mailboxes, webhooks, domains, analytics, and admin operations." }
 					},
 					{
 						"@type": "Question",
@@ -128,7 +128,7 @@ const dateModified = '2026-05-12'
 		<h1>Mailcow alternative.<br/><span>Modern surface, same control.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is a self-hosted email platform built on the same Postfix/Dovecot/Rspamd
-			stack as Mailcow — but with declarative YAML config, a 60+ endpoint REST API,
+			stack as Mailcow — but with declarative YAML config, a 40+ endpoint REST API,
 			inbound webhooks, and atomic updates with automatic rollback.
 			Half the containers, none of the bash. A modern alternative to Mailcow for teams
 			who want the same self-hosted control with developer-friendly ergonomics.
@@ -152,7 +152,7 @@ const dateModified = '2026-05-12'
 					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
 					<tr><td>Container count (default)</td><td><strong>14</strong></td><td>25+ <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent); font-size: 0.85em;">[1]</a></td></tr>
 					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
-					<tr><td>REST API</td><td><strong>60+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
+					<tr><td>REST API</td><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
 					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
 					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
 					<tr><td>Update model</td><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Manual <code>update.sh</code> script</td></tr>
@@ -220,7 +220,7 @@ const dateModified = '2026-05-12'
 			against SMTP submission using a mailbox's username + password.
 		</p>
 		<p>
-			Vectis Mail has 60+ endpoints covering sending (single + batch with attachments),
+			Vectis Mail has 40+ endpoints covering sending (single + batch with attachments),
 			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
 			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations.
 			Domain-scoped API keys with per-domain rate limits make it usable as a real
@@ -329,7 +329,7 @@ const dateModified = '2026-05-12'
 				<p>
 					No. Mailcow exposes SMTP submission with per-mailbox credentials but doesn't
 					ship a domain-scoped REST API for programmatic sending, inbound webhooks, or
-					per-domain analytics. Vectis Mail's API has 60+ endpoints for sending,
+					per-domain analytics. Vectis Mail's API has 40+ endpoints for sending,
 					mailboxes, webhooks, domains, analytics, and admin operations.
 				</p>
 			</div>

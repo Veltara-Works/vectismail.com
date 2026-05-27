@@ -69,7 +69,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 		],
 		"additionalProperty": [
 			{ "@type": "PropertyValue", "name": "Container count", "value": "14 by default (10 without observability and ClamAV)" },
-			{ "@type": "PropertyValue", "name": "API endpoints", "value": "60+ REST endpoints across sending, mailboxes, domains, analytics, admin" },
+			{ "@type": "PropertyValue", "name": "API endpoints", "value": "40+ REST endpoints across sending, mailboxes, domains, analytics, admin" },
 			{ "@type": "PropertyValue", "name": "Configuration model", "value": "Declarative single-file YAML (config.yaml) + Postgres-backed domain/mailbox catalog" },
 			{ "@type": "PropertyValue", "name": "Update model", "value": "Atomic orchestrator with snapshot + rollback; cross-version self-heal" },
 			{ "@type": "PropertyValue", "name": "License", "value": "Business Source License 1.1; each version converts to Apache 2.0 four years after release" }
@@ -157,7 +157,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 				<tbody>
 					<tr><td>Time to production</td><td>Minutes (single command)</td><td>Days to weeks</td><td>Hours</td><td>Minutes</td></tr>
 					<tr><td>Configuration model</td><td>Declarative YAML + REST API</td><td>Manual config files</td><td>Web UI</td><td>Dashboard + API</td></tr>
-					<tr><td>REST API for sending</td><td>Yes — 60+ endpoints</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
+					<tr><td>REST API for sending</td><td>Yes — 40+ endpoints</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
 					<tr><td>Inbound webhooks (parsed)</td><td>Yes — HMAC-signed</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
 					<tr><td>Mailbox hosting (IMAP/POP3)</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No (transactional only)</td></tr>
 					<tr><td>Per-domain analytics dashboard</td><td>Yes (Pro)</td><td>No</td><td>Limited</td><td>Yes</td></tr>
@@ -166,7 +166,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 					<tr><td>Data sovereignty</td><td>Full — your server</td><td>Full</td><td>Full</td><td>None — vendor controls</td></tr>
 					<tr><td>Cost at 100K emails/mo</td><td>$49 flat (Pro + VPS)</td><td>VPS only ($5–20) + your time</td><td>VPS + your time</td><td>$20–90 metered</td></tr>
 					<tr><td>Cost at 1M emails/mo</td><td>$49 flat</td><td>VPS only + your time</td><td>VPS + your time</td><td>$90–200+</td></tr>
-					<tr><td>Source available</td><td>Yes — AGPL-3.0 + BSL Pro</td><td>Yes — GPL/IBM</td><td>Yes</td><td>No</td></tr>
+					<tr><td>Source available</td><td>Yes — Business Source License 1.1</td><td>Yes — GPL/IBM</td><td>Yes</td><td>No</td></tr>
 					<tr><td>License model</td><td>Source-available; auto-Apache 2.0 after 4y</td><td>Open source</td><td>Open source</td><td>Proprietary SaaS</td></tr>
 				</tbody>
 			</table>

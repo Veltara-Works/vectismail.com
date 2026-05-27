@@ -85,7 +85,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Does Mail-in-a-Box have a sending API or inbound webhooks?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Mail-in-a-Box exposes a minimal REST API for control-panel operations (creating users, managing aliases) but not a transactional sending API and not inbound webhooks. SMTP submission with mailbox credentials is the only programmatic send path, and inbound mail lands in mailboxes only. Vectis Mail ships 60+ REST endpoints covering sending (single + batch with attachments), inbound webhooks with HMAC signatures, mailboxes, domains, analytics, and admin operations." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Mail-in-a-Box exposes a minimal REST API for control-panel operations (creating users, managing aliases) but not a transactional sending API and not inbound webhooks. SMTP submission with mailbox credentials is the only programmatic send path, and inbound mail lands in mailboxes only. Vectis Mail ships 40+ REST endpoints covering sending (single + batch with attachments), inbound webhooks with HMAC signatures, mailboxes, domains, analytics, and admin operations." }
 					},
 					{
 						"@type": "Question",
@@ -155,7 +155,7 @@ const dateModified = '2026-05-13'
 					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family) with Docker</td><td><strong>Ubuntu 22.04 LTS only</strong> (fresh install)</td></tr>
 					<tr><td>Install difficulty</td><td>Guided installer, ~20 min</td><td><strong>One command, ~15 min</strong></td></tr>
 					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Web control panel · no config-as-code</td></tr>
-					<tr><td>REST API</td><td><strong>60+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only · no sending API</td></tr>
+					<tr><td>REST API</td><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only · no sending API</td></tr>
 					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
 					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
 					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics)</td><td>SpamAssassin</td></tr>
@@ -227,7 +227,7 @@ const dateModified = '2026-05-13'
 			only programmatic send path.
 		</p>
 		<p>
-			Vectis Mail has 60+ endpoints covering sending (single + batch with attachments),
+			Vectis Mail has 40+ endpoints covering sending (single + batch with attachments),
 			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
 			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations. Domain-scoped
 			API keys with per-domain rate limits make Vectis usable as a real transactional
@@ -351,7 +351,7 @@ const dateModified = '2026-05-13'
 					Mail-in-a-Box exposes a minimal REST API for control-panel operations (creating
 					users, managing aliases) but not a transactional sending API and not inbound
 					webhooks. SMTP submission with mailbox credentials is the only programmatic send
-					path, and inbound mail lands in mailboxes only. Vectis Mail ships 60+ REST
+					path, and inbound mail lands in mailboxes only. Vectis Mail ships 40+ REST
 					endpoints covering sending (single + batch with attachments), inbound webhooks
 					with HMAC signatures, mailboxes, domains, analytics, and admin operations.
 				</p>
