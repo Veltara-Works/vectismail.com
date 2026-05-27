@@ -64,17 +64,17 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Is the Starter tier actually free, or is it freemium-tease?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Free forever, all platform features included. Up to 3 domains and 25 mailboxes per domain. The full REST API, inbound webhooks, monitoring, backup/restore, IP warmup tracking, automatic TLS, DKIM/SPF/DMARC — all in Starter. Pro is only for when you outgrow those caps or want advanced spam controls, OIDC SSO, or per-domain analytics. No artificial gating of core features." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Free forever, all platform features included. Up to 3 domains and 25 mailboxes per domain. The full REST API, inbound webhooks, monitoring, backup/restore, IP warmup tracking, automatic TLS, and DKIM/SPF/DMARC, all in Starter. Pro is only for when you outgrow those caps or want advanced spam controls, OIDC SSO, or per-domain analytics. No artificial gating of core features." }
 					},
 					{
 						"@type": "Question",
 						"name": "What VPS do I need for a small side project?",
-						"acceptedAnswer": { "@type": "Answer", "text": "The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on Ubuntu 22.04+) — same spec we use for the cost math on every other page. That's the comfort zone for production-shape use, including Rspamd's memory needs and the observability stack. The hard minimum from the install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume personal use, but Pro features and the spam stack run more cleanly with the recommended spec." }
+						"acceptedAnswer": { "@type": "Answer", "text": "The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on Ubuntu 22.04+): the same spec we use for the cost math on every other page. That's the comfort zone for production use, including Rspamd's memory needs and the observability stack. The hard minimum from the install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume personal use, but Pro features and the spam stack run more cleanly with the recommended spec." }
 					},
 					{
 						"@type": "Question",
 						"name": "Can I host my personal email on Vectis Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Yes — IMAP + POP3 + Roundcube webmail are included in Starter. You can host you@yourdomain alongside any transactional flows you build. Sieve filter management ships in the admin UI. Up to 25 mailboxes per domain on Starter, so a few family members or a small team fit easily." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. IMAP + POP3 + Roundcube webmail are included in Starter. You can host you@yourdomain alongside any transactional flows you build. Sieve filter management ships in the admin UI. Up to 25 mailboxes per domain on Starter, so a few family members or a small team fit easily." }
 					},
 					{
 						"@type": "Question",
@@ -84,12 +84,12 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Is the source available? What's the licence?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is source-available under the Business Source License 1.1. The entire platform is on GitHub — read it, audit it, modify it for your own use. The Additional Use Grant restricts only one thing: commercial managed-service resale (you can't relaunch Vectis Mail as a hosted SaaS competitor). For most solo-developer use cases this is more permissive than AGPL would be — you can modify the code privately for your own product without the copyleft obligation. Each version converts to Apache License 2.0 four years after its first public release." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is source-available under the Business Source License 1.1. The entire platform is on GitHub; read it, audit it, modify it for your own use. The Additional Use Grant restricts only one thing: commercial managed-service resale (you can't relaunch Vectis Mail as a hosted SaaS competitor). For most solo-developer use cases this is more permissive than AGPL would be: you can modify the code privately for your own product without the copyleft obligation. Each version converts to Apache License 2.0 four years after its first public release." }
 					},
 					{
 						"@type": "Question",
 						"name": "What if my side project takes off and I outgrow Starter?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Upgrade to Pro ($29 USD/tenant/month) when you hit one of: more than 3 domains, more than 25 mailboxes per domain, or you want per-domain analytics, advanced spam controls, OIDC SSO, or priority support. The upgrade is a license-key change — no migration, no data movement, no downtime. Same install, more features unlocked." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Upgrade to Pro ($29 USD/tenant/month) when you hit one of: more than 3 domains, more than 25 mailboxes per domain, or you want per-domain analytics, advanced spam controls, OIDC SSO, or priority support. The upgrade is a license-key change: no migration, no data movement, no downtime. Same install, more features unlocked." }
 					}
 				]
 			}
@@ -118,7 +118,7 @@ const dateModified = '2026-05-13'
 		<p class="alt-lead">
 			Vectis Mail is the email platform for solo developers, indie hackers, and small
 			teams who want to own their infrastructure instead of paying SendGrid every month
-			for a side project. Starter is free forever — full REST API, inbound webhooks,
+			for a side project. Starter is free forever: full REST API, inbound webhooks,
 			IMAP/POP3 mailboxes, monitoring. Runs comfortably on a $20/month VPS.
 			Source-available under BSL 1.1; free to self-host and modify.
 		</p>
@@ -131,27 +131,27 @@ const dateModified = '2026-05-13'
 
 	<section class="section">
 		<h2>The developer-specific case</h2>
-		<p class="subtitle">Six things solo developers actually want from email infrastructure. Each maps to a specific Vectis Mail capability.</p>
+		<p class="subtitle">Six things solo developers want from email infrastructure. Each maps to a specific Vectis Mail capability.</p>
 		<div class="feature-grid" style="margin-top: 1.5rem;">
 			<div class="feature-card">
-				<h3>1. Starter is genuinely free</h3>
-				<p>Up to 3 domains, 25 mailboxes per domain, full REST API, inbound webhooks, monitoring, backups — all in Starter. Not freemium-tease where every interesting feature is gated. The Pro tier is for scale + advanced features, not for unlocking the API.</p>
+				<h3>1. Starter is free, no upsell games</h3>
+				<p>Up to 3 domains, 25 mailboxes per domain, full REST API, inbound webhooks, monitoring, backups, all in Starter. Not freemium-tease where every interesting feature is gated. The Pro tier is for scale + advanced features, not for unlocking the API.</p>
 			</div>
 			<div class="feature-card">
 				<h3>2. Runs comfortably on a $20 VPS</h3>
-				<p>A 4 vCPU / 8 GB / 80 GB Ubuntu host (Hetzner, DigitalOcean, Vultr — all around $20/month at that spec) is the recommended baseline. The whole stack — Postfix, Dovecot, Rspamd, Traefik, the API, the React dashboard, Prometheus + Loki — fits with room for sending growth. Same spec as the recommendation on the install docs.</p>
+				<p>A 4 vCPU / 8 GB / 80 GB Ubuntu host (Hetzner, DigitalOcean, or Vultr, all around $20/month at that spec) is the recommended baseline. The whole stack (Postfix, Dovecot, Rspamd, Traefik, the API, the React dashboard, Prometheus + Loki) fits with room for sending growth. Same spec as the recommendation on the install docs.</p>
 			</div>
 			<div class="feature-card">
 				<h3>3. One YAML config, no Postfix wizardry</h3>
 				<p>Declarative <code>config.yaml</code> + <code>vectis apply</code>. You write intent (domains, mailboxes, API keys); the system generates Postfix, Dovecot, Rspamd, Traefik configs and reloads what changed. Audit the generated configs if you want, but you don't have to write them.</p>
 			</div>
 			<div class="feature-card">
-				<h3>4. Source-available — read it, modify it, run it</h3>
+				<h3>4. Source-available: read it, modify it, run it</h3>
 				<p>The entire platform is on <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">GitHub</a> under the Business Source License 1.1. Free to self-host, modify, and run for your own product. The only restriction is selling Vectis Mail as a competing managed service. Each version converts to Apache 2.0 four years after release.</p>
 			</div>
 			<div class="feature-card">
 				<h3>5. Real REST API + webhooks</h3>
-				<p>40+ endpoints covering sending (single + batch with attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox CRUD, domain management, analytics, audit logs. OpenAPI spec, code samples. The same surface you'd want from SendGrid — but yours.</p>
+				<p>40+ endpoints covering sending (single + batch with attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox CRUD, domain management, analytics, audit logs. OpenAPI spec, code samples. The same surface you'd want from SendGrid, but yours.</p>
 			</div>
 			<div class="feature-card">
 				<h3>6. Personal email + transactional in one box</h3>
@@ -183,7 +183,7 @@ const dateModified = '2026-05-13'
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + Google Workspace public pricing retrieved 2026-05-13. Vectis Mail Starter covers up to 3 domains and 25 mailboxes per domain — fits the vast majority of personal projects. The $20 VPS line matches the same baseline used on every other Vectis Mail page; the install docs cite 2 vCPU / 4 GB / 40 GB as the hard minimum if you're sending very low volume and want a cheaper host.
+			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + Google Workspace public pricing retrieved 2026-05-13. Vectis Mail Starter covers up to 3 domains and 25 mailboxes per domain, which fits the vast majority of personal projects. The $20 VPS line matches the same baseline used on every other Vectis Mail page; the install docs cite 2 vCPU / 4 GB / 40 GB as the hard minimum if you're sending very low volume and want a cheaper host.
 		</p>
 	</section>
 
@@ -203,14 +203,14 @@ const dateModified = '2026-05-13'
 		<p>
 			Your weekly newsletter to a few hundred subscribers. Use the batch sending API
 			(up to 100 messages per call) to fan out without paying per-email. Open + click
-			tracking is opt-in per message — useful for engagement metrics on the newsletter,
+			tracking is opt-in per message, useful for engagement metrics on the newsletter,
 			off for transactional mail where tracking pixels feel slimy.
 		</p>
 
 		<h3 class="alt-h3">Reply-to-resolve for a support inbox</h3>
 		<p>
 			Users email <code>support@yourdomain</code>. Vectis Mail's inbound webhook POSTs
-			the full message to your app — body text, HTML, attachments, SMTP envelope — with
+			the full message to your app (body text, HTML, attachments, SMTP envelope) with
 			HMAC signature + exponential-backoff retry. Your app creates a ticket, replies via
 			the sending API, no second mail vendor.
 		</p>
@@ -218,7 +218,7 @@ const dateModified = '2026-05-13'
 		<h3 class="alt-h3">Homelab / personal infrastructure</h3>
 		<p>
 			You want to run your own email because it's there to run. Vectis Mail fits the
-			homelab pattern — one server, Docker Compose, declarative config, one update
+			homelab pattern: one server, Docker Compose, declarative config, one update
 			command. Pair with a personal Nextcloud or other self-hosted tools on the same VPS
 			if you've got headroom.
 		</p>
@@ -233,23 +233,23 @@ const dateModified = '2026-05-13'
 
 	<section class="section">
 		<h2>Where Vectis Mail isn't the right fit for developers</h2>
-		<p class="subtitle">Honest about what's painful or missing for the solo-dev case.</p>
+		<p class="subtitle">What's painful or missing for the solo-dev case.</p>
 		<div class="feature-grid" style="margin-top: 1.25rem;">
 			<div class="feature-card">
 				<h3>You need pre-warmed IPs from day one</h3>
-				<p>Self-hosting puts you on a fresh IP. Reputation builds over 2–4 weeks of gradual volume. If you're launching tomorrow and need password resets in inboxes immediately, start on SendGrid or Postmark — the managed providers ride a shared pre-warmed pool. Migrate to Vectis Mail later when reputation has built.</p>
+				<p>Self-hosting puts you on a fresh IP. Reputation builds over 2–4 weeks of gradual volume. If you're launching tomorrow and need password resets in inboxes immediately, start on SendGrid or Postmark; the managed providers ride a shared pre-warmed pool. Migrate to Vectis Mail later when reputation has built.</p>
 			</div>
 			<div class="feature-card">
 				<h3>You really don't want to operate any infrastructure</h3>
-				<p>Vectis Mail is one VPS to keep running, one update command to run periodically, one set of backups to verify occasionally. If you genuinely want zero infrastructure to think about, managed SaaS is the right call. Vectis Mail is for people who'd rather operate a server than operate a vendor relationship.</p>
+				<p>Vectis Mail is one VPS to keep running, one update command to run periodically, one set of backups to verify occasionally. If you want zero infrastructure to think about, managed SaaS is the right call. Vectis Mail is for people who'd rather operate a server than operate a vendor relationship.</p>
 			</div>
 			<div class="feature-card">
 				<h3>You need calendar / contacts (CalDAV / CardDAV)</h3>
-				<p>Vectis Mail doesn't yet ship calendar / contacts — Phase 4 roadmap. If you need full Google Workspace / Exchange-replacement personal infrastructure today, pair Vectis Mail with a separate CalDAV server (Radicale, Baikal) or stay on Mail-in-a-Box for the bundled Nextcloud groupware.</p>
+				<p>Vectis Mail doesn't yet ship calendar / contacts; that's a Phase 4 roadmap item. If you need full Google Workspace / Exchange-replacement personal infrastructure today, pair Vectis Mail with a separate CalDAV server (Radicale, Baikal) or stay on Mail-in-a-Box for the bundled Nextcloud groupware.</p>
 			</div>
 			<div class="feature-card">
 				<h3>You're going to ignore IP warmup</h3>
-				<p>Sending 100K cold emails on day one will get your IP block-listed. Vectis Mail can't protect you from that — neither can SendGrid. If you're not going to run a warmup schedule, you'll have a bad time on any self-hosted setup.</p>
+				<p>Sending 100K cold emails on day one will get your IP block-listed. Vectis Mail can't protect you from that, and neither can SendGrid. If you're not going to run a warmup schedule, you'll have a bad time on any self-hosted setup.</p>
 			</div>
 		</div>
 	</section>
@@ -262,7 +262,7 @@ const dateModified = '2026-05-13'
 				<p>
 					Free forever, all platform features included. Up to 3 domains and 25 mailboxes
 					per domain. The full REST API, inbound webhooks, monitoring, backup/restore,
-					IP warmup tracking, automatic TLS, DKIM/SPF/DMARC — all in Starter. Pro is
+					IP warmup tracking, automatic TLS, and DKIM/SPF/DMARC, all in Starter. Pro is
 					only for when you outgrow those caps or want advanced spam controls, OIDC SSO,
 					or per-domain analytics. No artificial gating of core features.
 				</p>
@@ -271,8 +271,8 @@ const dateModified = '2026-05-13'
 				<h3>What VPS do I need for a small side project?</h3>
 				<p>
 					The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on
-					Ubuntu 22.04+) — same spec we use for the cost math on every other Vectis
-					Mail page. That's the comfort zone for production-shape use, including
+					Ubuntu 22.04+): the same spec we use for the cost math on every other Vectis
+					Mail page. That's the comfort zone for production use, including
 					Rspamd's memory needs and the observability stack. The hard minimum from the
 					install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume
 					personal use, but Pro features and the spam stack run more cleanly with the
@@ -282,7 +282,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>Can I host my personal email on Vectis Mail?</h3>
 				<p>
-					Yes — IMAP + POP3 + Roundcube webmail are included in Starter. You can host
+					Yes. IMAP + POP3 + Roundcube webmail are included in Starter. You can host
 					<code>you@yourdomain</code> alongside any transactional flows you build.
 					Sieve filter management ships in the admin UI. Up to 25 mailboxes per domain
 					on Starter, so a few family members or a small team fit easily.
