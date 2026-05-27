@@ -179,7 +179,7 @@ const dateModified = '2026-05-12'
 					<li>You run a SaaS and need domain-scoped API keys with rate limiting.</li>
 					<li>You value orchestrated updates with automatic rollback over manual <code>update.sh</code>.</li>
 					<li>You want per-domain analytics, IP warmup tracking, and built-in observability.</li>
-					<li>You're starting fresh — the modern surface compounds over time.</li>
+					<li>You don't want a bash env file as your source of truth.</li>
 				</ul>
 			</div>
 			<div class="verdict-card verdict-stay">
@@ -214,7 +214,7 @@ const dateModified = '2026-05-12'
 
 		<h3 class="alt-h3">API surface</h3>
 		<p>
-			This is where the products genuinely diverge. Mailcow has a minimal API focused on
+			Mailcow has a minimal API focused on
 			admin operations. It doesn't expose a sending API, inbound webhooks, or per-domain
 			analytics endpoints. To send programmatic email through Mailcow, you authenticate
 			against SMTP submission using a mailbox's username + password.
