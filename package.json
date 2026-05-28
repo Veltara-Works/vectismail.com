@@ -11,7 +11,12 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.38.2",
-    "astro": "^6.0.1",
+    "astro": "6.1.10",
     "sharp": "^0.34.2"
+  },
+  "overrides": {
+    "vite": "^7.3.3",
+    "postcss": "^8.5.15",
+    "devalue": "^5.8.1"
   }
 }
