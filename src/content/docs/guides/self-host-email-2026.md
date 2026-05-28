@@ -179,7 +179,7 @@ Realistic timeline: a long weekend for a small team; 1–2 weeks for a 100-perso
 
 ## How Vectis Mail fits
 
-Vectis Mail is the self-host platform we build. It's open-core (AGPL-3.0), API-first, and explicitly designed around the 2026 stack described above — Postfix + Dovecot + Rspamd + Traefik, all orchestrated under a single declarative configuration file with atomic updates and pg_dump-backed rollback.
+Vectis Mail is the self-host platform we build. It's source-available (BSL 1.1), API-first, and explicitly designed around the 2026 stack described above — Postfix + Dovecot + Rspamd + Traefik, all orchestrated under a single declarative configuration file with atomic updates and pg_dump-backed rollback.
 
 If you're weighing self-hosting in 2026, the relevant Vectis pages are:
 

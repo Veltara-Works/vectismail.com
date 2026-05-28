@@ -28,7 +28,7 @@ Last updated: 2026-05-19
   - Backup & restore
   - Atomic updates with rollback
   - Community support (GitHub Issues, Discussions)
-- **License:** AGPL-3.0
+- **License:** Business Source License 1.1 (source-available; auto-Apache 2.0 after 4 years)
 - **Activation:** No license key required.
 
 ## Pro
@@ -44,7 +44,7 @@ Last updated: 2026-05-19
   - Per-domain spam controls (custom reject thresholds, greylisting toggle, allow/block lists)
   - OIDC SSO (Google, Azure AD, Keycloak)
   - Priority email support
-- **License:** AGPL-3.0 core + commercial Pro license via ValidonX
+- **License:** BSL 1.1 core + commercial Pro license via ValidonX
 - **Activation:** ValidonX license key entered in admin UI or `secrets.yaml`.
 - **Free trial:** 30-day Pro trial available via ValidonX.
 - **Activation URL:** https://validonx.com/checkout/vectis-pro

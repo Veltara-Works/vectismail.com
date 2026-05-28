@@ -6,7 +6,7 @@ For the long-form, full-content reference (architecture, features, pricing, inst
 
 ## Quick facts
 
-- Open source under AGPL-3.0; Pro features gated via license key (ValidonX).
+- Source-available under BSL 1.1 (auto-Apache 2.0 after 4y); Pro features gated via license key (ValidonX).
 - 14 containers by default (10 if observability and ClamAV disabled).
 - Single declarative config: `config.yaml` + `vectis apply`.
 - REST API: 60+ endpoints (sending, webhooks, domains, mailboxes, analytics, admin).

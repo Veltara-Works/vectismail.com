@@ -139,7 +139,7 @@ We do not currently run a bug bounty. We do reply to every responsible disclosur
 
 ## 12. Source-available verification
 
-Vectis Mail is **AGPL-3.0** core with a **Business Source License 1.1** for the Pro-gated features. The full source is on GitHub at https://github.com/Veltara-Works/vectis. Build reproducibility is supported via the released Docker images (`ghcr.io/veltara-works/vectis-*`) and tagged source revisions.
+Vectis Mail's core is source-available under the **Business Source License 1.1** (auto-converts to Apache 2.0 four years after each version's first public release); Pro features are gated by a commercial license key (ValidonX). The full source is on GitHub at https://github.com/Veltara-Works/vectis. Build reproducibility is supported via the released Docker images (`ghcr.io/veltara-works/vectis-*`) and tagged source revisions.
 
 You can audit the code, build from source, and verify the security claims above against the implementation. We encourage it.
 
