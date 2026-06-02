@@ -22,7 +22,7 @@ Last updated: 2026-05-19
   - Sieve filter management (ManageSieve)
   - DKIM, SPF, DMARC, MTA-STS
   - Automatic TLS (acme.sh + Cloudflare DNS-01)
-  - Built-in monitoring (Prometheus + Grafana + Loki)
+  - Built-in metrics + health alerts (Prometheus-format; Grafana + Loki optional, off by default)
   - IP warmup tracking
   - RBL monitoring
   - Backup & restore

@@ -97,7 +97,7 @@ Output is an AES-256-GCM encrypted tarball at `/var/lib/vectis/backups/`. Restor
 sudo vectis backup restore <backup-id>
 ```
 
-See the full backup/restore guide at https://vectismail.com/guides/backup-restore/ (TODO — currently part of the operator handbook on GitHub).
+See the disaster-recovery runbook in the operator docs: https://github.com/Veltara-Works/vectis/blob/main/docs/notes/disaster-recovery-runbook.md
 
 ## Verification post-install
 

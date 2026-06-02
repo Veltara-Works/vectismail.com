@@ -256,7 +256,8 @@ const dateModified = '2026-05-12'
 		<h3 class="alt-h3">Observability</h3>
 		<p>
 			Both ship Rspamd, Postfix logs, and Dovecot logs. Vectis Mail also includes
-			Prometheus + Loki + optional Grafana out of the box, plus per-domain analytics on
+			Prometheus-format metrics and health alerts out of the box (with an optional
+			Grafana + Loki stack, off by default), plus per-domain analytics on
 			the Pro tier (delivery rates, bounce rates, IP warmup progress, RBL status). Mailcow
 			users typically wire their own metrics stack on top.
 		</p>

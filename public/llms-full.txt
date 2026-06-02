@@ -133,8 +133,9 @@ certificates (bring your own) are also supported via `tls.provider: custom`.
 - **RBAC + MFA** — Three-tier roles: `super_admin`, `admin`, `domain_admin`.
   TOTP multi-factor auth. OIDC SSO with Google, Azure AD, and Keycloak
   (Pro). API key management with domain scoping.
-- **Observability** — Prometheus metrics, optional Grafana dashboards, Loki
-  log aggregation, per-domain analytics, alertmanager rule templates.
+- **Observability** — Prometheus-format metrics and health alerts built in;
+  optional Grafana dashboards and Loki log aggregation (off by default).
+  Per-domain analytics is a Pro feature.
 
 ### Pro-only features
 
@@ -166,7 +167,7 @@ certificates (bring your own) are also supported via `tls.provider: custom`.
 | Webmail (Roundcube) | Yes | Yes |
 | DKIM / SPF / DMARC | Yes | Yes |
 | Automatic TLS | Yes | Yes |
-| Monitoring (Prometheus/Grafana/Loki) | Yes | Yes |
+| Monitoring (metrics + health alerts; Grafana/Loki optional) | Yes | Yes |
 | IP warmup + RBL monitoring | Yes | Yes |
 | Backup + restore | Yes | Yes |
 | RBAC + TOTP MFA | Yes | Yes |
@@ -175,7 +176,7 @@ certificates (bring your own) are also supported via `tls.provider: custom`.
 | Per-domain spam controls | — | Yes |
 | OIDC SSO | — | Yes |
 | Support | Community | Priority email |
-| Offline grace period (Pro license) | n/a | 30 days |
+| Offline use if ValidonX unreachable (Pro) | n/a | Through current paid period |
 
 **One Pro subscription covers unlimited Vectis installs across one tenant.**
 This is the per-tenant pricing model — multi-server, multi-customer
@@ -189,11 +190,12 @@ Pro is licensed through ValidonX.
 **What happens if my Pro license expires?** Mail keeps flowing. Postfix and
 Dovecot continue. Pro-only features (analytics, advanced spam, OIDC SSO,
 unlimited domains/mailboxes) revert to Starter limits. Data is never locked.
-30-day offline grace period.
+If a payment fails, Pro features keep working through a 21-day grace window
+while we retry.
 
 **Can I self-host with no external dependencies?** Yes for Starter. Pro
-checks ValidonX for entitlements, with a 30-day offline grace period and
-cached entitlements in Postgres.
+checks ValidonX for entitlements and keeps working offline through your
+current paid period, with entitlements cached in Postgres.
 
 **Can I resell Vectis Mail as a hosted service?** No, not under the default
 BSL 1.1 license. You may operate it for your own organisation and your own
@@ -384,8 +386,8 @@ Key terms:
   Apache 2.0 — even for competing hosted offerings.
 
 Pro features are gated by a license key issued by ValidonX. License
-verification is offline-tolerant (30-day grace period; entitlements cached
-in Postgres).
+verification is offline-tolerant (works through your current paid period;
+entitlements cached in Postgres).
 
 ---
 

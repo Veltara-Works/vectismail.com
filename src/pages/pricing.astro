@@ -49,7 +49,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 				"price": "0",
 				"priceCurrency": "USD",
 				"availability": "https://schema.org/InStock",
-				"description": "Free forever. Up to 3 domains, 25 mailboxes per domain, sending API, inbound webhooks, admin dashboard, Roundcube webmail, DKIM/SPF/DMARC, automatic TLS, backup and restore, RBAC + TOTP MFA, atomic updates, IP warmup, RBL monitoring, Prometheus + Grafana + Loki observability, community support.",
+				"description": "Free forever. Up to 3 domains, 25 mailboxes per domain, sending API, inbound webhooks, admin dashboard, Roundcube webmail, DKIM/SPF/DMARC, automatic TLS, backup and restore, RBAC + TOTP MFA, atomic updates, IP warmup, RBL monitoring, Prometheus-format metrics and health alerts (Grafana + Loki dashboards optional, off by default), community support.",
 				"category": "free",
 				"url": "https://vectismail.com/getting-started/installation"
 			},
@@ -59,7 +59,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 				"price": "29",
 				"priceCurrency": "USD",
 				"availability": "https://schema.org/InStock",
-				"description": "Per tenant per month. Everything in Starter plus unlimited domains, unlimited mailboxes per domain, per-domain analytics dashboard, per-domain spam controls (reject thresholds, greylisting, allow/block lists), OIDC SSO (Google, Azure AD, Keycloak), priority email support, 30-day offline license grace period. One subscription covers unlimited Vectis Mail installs.",
+				"description": "Per tenant per month. Everything in Starter plus unlimited domains, unlimited mailboxes per domain, per-domain analytics dashboard, per-domain spam controls (reject thresholds, greylisting, allow/block lists), OIDC SSO (Google, Azure AD, Keycloak), priority email support, and offline use through your current paid period (typically up to ~30 days on monthly plans) if ValidonX is temporarily unreachable. One subscription covers unlimited Vectis Mail installs.",
 				"category": "subscription",
 				"priceSpecification": {
 					"@type": "UnitPriceSpecification",
@@ -85,12 +85,12 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			{
 				"@type": "Question",
 				"name": "What happens if my license expires?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Your mail server keeps running. All core mail delivery continues. Pro features are gated but your data is never locked. There is a 30-day grace period." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Your mail server keeps running and all core mail delivery continues. If a payment fails, Pro features keep working through a 21-day grace window while we retry; after that they revert to Starter limits, but your data is never locked." }
 			},
 			{
 				"@type": "Question",
 				"name": "Can I self-host without any external dependencies?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Yes. The Starter tier works fully offline. Pro checks ValidonX for entitlements, with a 30-day offline grace period." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Yes. Starter works fully offline. Pro checks ValidonX for entitlements and keeps working offline through your current paid period if ValidonX is temporarily unreachable." }
 			},
 			{
 				"@type": "Question",
@@ -145,7 +145,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 					<li>Sieve filter management</li>
 					<li>DKIM/SPF/DMARC</li>
 					<li>Automatic TLS</li>
-					<li>Built-in monitoring (Prometheus + Grafana + Loki)</li>
+					<li>Built-in metrics &amp; health alerts (Grafana + Loki optional)</li>
 					<li>IP warmup &amp; RBL monitoring</li>
 					<li>Backup &amp; restore</li>
 					<li>Community support</li>
@@ -200,14 +200,14 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 					<tr><td>Sieve filter management</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>DKIM / SPF / DMARC</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Automatic TLS</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Monitoring (Prometheus + Grafana + Loki)</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Monitoring (metrics + health alerts; Grafana + Loki optional)</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>IP warmup &amp; RBL monitoring</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Backup &amp; restore</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Per-domain analytics dashboard</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>Per-domain spam controls (thresholds, greylisting, allow/block)</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>Support</td><td>Community</td><td>Priority email</td></tr>
-					<tr><td>License offline grace period</td><td>n/a</td><td>30 days</td></tr>
+					<tr><td>Offline use if ValidonX is unreachable</td><td>n/a</td><td>Through current paid period</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -222,11 +222,11 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			</div>
 			<div class="feature-card">
 				<h3>What happens if my Pro license expires?</h3>
-				<p>Your mail server keeps running. All core mail delivery (Postfix, Dovecot) continues working. Pro features (analytics, advanced spam controls, OIDC SSO, unlimited domains and mailboxes) revert to Starter limits but your data is never locked. There is a 30-day grace period.</p>
+				<p>Your mail server keeps running and all core mail delivery (Postfix, Dovecot) continues working. If a payment fails, Pro features keep working through a 21-day grace window while we retry; after that, Pro features (analytics, advanced spam controls, OIDC SSO, unlimited domains and mailboxes) revert to Starter limits but your data is never locked.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Can I self-host without any external dependencies?</h3>
-				<p>Yes. The Starter tier works fully offline. Pro checks <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a> for entitlements, with a 30-day offline grace period and cached entitlements in Postgres.</p>
+				<p>Yes. The Starter tier works fully offline. Pro checks <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a> for entitlements and keeps working offline through your current paid period if ValidonX is temporarily unreachable, with entitlements cached in Postgres.</p>
 			</div>
 			<div class="feature-card">
 				<h3>What server do I need?</h3>

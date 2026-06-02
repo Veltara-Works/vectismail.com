@@ -128,7 +128,7 @@ When your install hits Pro, it makes outbound calls to ValidonX's licensing endp
 - **Body**: `{license_key, features?}` — server-side tenant resolution from the API key; no tenant ID or domain on the wire
 - **Frequency**: cache TTL is 5 minutes. Resolve call frequency depends on entitlement checks.
 - **Content of the wire**: the call carries the license key and optionally a list of features to check. It carries **no** mailbox lists, **no** message content, **no** recipient addresses, and **no** IP addresses of your end users.
-- **Offline tolerance**: 30-day offline grace period for Pro entitlements. If `api.validonx.com` is unreachable, your install continues operating at Pro for up to 30 days from the last successful resolve. After that, Pro features fall back to Starter limits but **mail delivery is never affected** — Postfix and Dovecot keep running.
+- **Offline tolerance**: if `api.validonx.com` is unreachable, your install keeps operating at Pro through your current paid period (the license's paid-through date), then requires a successful re-check before continuing at Pro. **Mail delivery is never affected** — Postfix and Dovecot keep running regardless.
 - **Feature-gate failure mode**: if a feature check cannot be resolved, the gate **denies by default** (post-2026-05-02 fix — earlier versions had a pass-through bypass on unconfigured installs).
 
 ## 11. Reporting a security issue

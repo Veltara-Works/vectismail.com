@@ -59,7 +59,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 			"Backup and restore (AES-256-GCM encrypted)",
 			"Three-tier RBAC (super_admin, admin, domain_admin) + TOTP MFA",
 			"OIDC SSO (Google, Azure AD, Keycloak) — Pro",
-			"Prometheus + Grafana + Loki observability stack",
+			"Prometheus-format metrics + health alerts (Grafana + Loki optional)",
 			"DKIM, SPF, DMARC automated",
 			"Automatic TLS via Let's Encrypt or bring your own certs",
 			"IP warmup + RBL monitoring",
@@ -68,7 +68,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 			"Roundcube webmail with Vectis skin"
 		],
 		"additionalProperty": [
-			{ "@type": "PropertyValue", "name": "Container count", "value": "14 by default (10 without observability and ClamAV)" },
+			{ "@type": "PropertyValue", "name": "Container count", "value": "9 by default; up to 14 with webmail, ClamAV, and the optional Grafana/Loki/Promtail stack enabled" },
 			{ "@type": "PropertyValue", "name": "API endpoints", "value": "40+ REST endpoints across sending, mailboxes, domains, analytics, admin" },
 			{ "@type": "PropertyValue", "name": "Configuration model", "value": "Declarative single-file YAML (config.yaml) + Postgres-backed domain/mailbox catalog" },
 			{ "@type": "PropertyValue", "name": "Update model", "value": "Atomic orchestrator with snapshot + rollback; cross-version self-heal" },
@@ -136,7 +136,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 			<div class="feature-card"><h3>Atomic Updates</h3><p>6-phase orchestrator: snapshot, migrate, pull, deploy, health check, complete. Automatic rollback on failure. Advisory lock prevents concurrent operations.</p></div>
 			<div class="feature-card"><h3>Backup & Restore</h3><p>Scheduled backups with AES-256-GCM encryption. Database, mail data, DKIM keys, and config archived. One-click restore from the dashboard.</p></div>
 			<div class="feature-card"><h3>RBAC + MFA</h3><p>Three-tier roles: super_admin, admin, domain_admin. TOTP multi-factor auth. OIDC SSO with Google, Azure AD, and Keycloak. API key management with domain scoping.</p></div>
-			<div class="feature-card"><h3>Observability</h3><p>Prometheus metrics, optional Grafana dashboards, Loki log aggregation, per-domain analytics, alertmanager rule templates. Everything you need to monitor at scale.</p></div>
+			<div class="feature-card"><h3>Observability</h3><p>Prometheus-format metrics and health alerts built in; optional Grafana dashboards and Loki log aggregation (off by default). Per-domain analytics on Pro. Everything you need to monitor at scale.</p></div>
 		</div>
 	</section>
 
@@ -208,7 +208,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 					<tr><td>Atomic updates with auto-rollback</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Backup &amp; restore (AES-256-GCM)</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>RBAC (super_admin / admin / domain_admin) + TOTP MFA</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Prometheus + Grafana + Loki observability</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Metrics + health alerts (Grafana + Loki optional)</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>IP warmup &amp; RBL monitoring</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Domains</td><td>Up to 3</td><td>Unlimited</td></tr>
 					<tr><td>Mailboxes per domain</td><td>Up to 25</td><td>Unlimited</td></tr>

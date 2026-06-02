@@ -64,7 +64,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 			{
 				"@type": "Question",
 				"name": "Should I use Vectis Mail instead of setting up Postfix manually?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Yes, in almost every case. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs from a single YAML file with one apply command. Atomic updates with automatic rollback, built-in observability (Prometheus + Grafana + Loki), and a 40+ endpoint REST API ship in the box. Skip weeks of config tuning; production-ready in minutes." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Yes, in almost every case. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs from a single YAML file with one apply command. Atomic updates with automatic rollback, built-in metrics and health alerts (optional Grafana + Loki dashboards), and a 40+ endpoint REST API ship in the box. Skip weeks of config tuning; production-ready in minutes." }
 			}
 		]
 	})} />
@@ -148,7 +148,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 			<div class="feature-card">
 				<div class="icon icon-orange">&#128200;</div>
 				<h3>Built-in Observability</h3>
-				<p>Prometheus metrics, Grafana dashboards, Loki log aggregation, per-domain analytics, IP warmup tracking, and RBL monitoring — all included.</p>
+				<p>Prometheus-format metrics, health alerts, IP warmup tracking, and RBL monitoring built in. Grafana dashboards and Loki log aggregation are optional (off by default); per-domain analytics is a Pro feature.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-green">&#8635;</div>

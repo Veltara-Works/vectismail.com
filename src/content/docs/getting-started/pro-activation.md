@@ -121,13 +121,14 @@ button on the License page.
 
 Vectis caches entitlements in Postgres. If ValidonX becomes unreachable
 (network outage, ValidonX maintenance) Vectis keeps Pro features running
-for up to **30 days** while it retries refreshes in the background. Past
-that window without a successful refresh, Pro endpoints return
-`LICENSE_EXPIRED` until the server can reach ValidonX again.
+**through your current paid period** (the license's paid-through date)
+while it retries refreshes in the background. Past that point without a
+successful refresh, Pro endpoints return `LICENSE_EXPIRED` until the
+server can reach ValidonX again.
 
-This means a Vectis install can survive extended ValidonX outages without
-disrupting mail delivery (which is never gated) or Pro features (which
-keep working through the grace window).
+This means a Vectis install survives ValidonX outages within the paid
+period without disrupting mail delivery (which is never gated) or Pro
+features (which keep working until the paid-through date).
 
 ## Cancelling or moving to a different subscription
 

@@ -128,7 +128,7 @@ Vectis Mail installs communicate with `api.validonx.com` (operated by Veltara Wo
 - Auth: `X-API-Key: <service_key>` header
 - Body: `{license_key, features?}`
 - 5-minute cache TTL on the install side
-- 30-day offline grace period
+- Offline grace through the current paid period (the license's paid-through date)
 - Carries no end-user data — only the install's license key
 
 End users don't interact with this endpoint; their Vectis Mail install does it on their behalf.
