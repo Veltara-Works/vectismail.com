@@ -1,0 +1,264 @@
+---
+import './../styles/custom.css'
+import SiteFooter from "../components/SiteFooter.astro"
+const title = 'Email Deliverability on Self-Hosted Vectis Mail — Will My Mail Land?'
+const description = 'The honest answer to the #1 fear when leaving SendGrid: will my email reach the inbox? What Vectis Mail gives you (DKIM/SPF/DMARC, IP warmup, RBL + FBL monitoring), the dual-send migration playbook, and what we never promise.'
+const url = 'https://vectismail.com/deliverability/'
+const ogImage = 'https://vectismail.com/og/default.png'
+const datePublished = '2026-06-07'
+const dateModified = '2026-06-07'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Email deliverability on self-hosted Vectis Mail" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Deliverability", "item": url }
+				]
+			},
+			{
+				"@type": "WebPage",
+				"@id": url + "#page",
+				"name": title,
+				"description": description,
+				"url": url,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" }
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Will my email actually land in the inbox if I self-host?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes — once your sending IP is warm and your DNS authentication is correct. Deliverability on a self-hosted server tracks the reputation of your own VPS IP, which you build over a 2–4 week warmup. After that, mail with DKIM, SPF, DMARC and a clean PTR record, sent to engaged recipients, typically reaches the inbox at parity with managed providers. Vectis Mail ships the authentication configured correctly by default and gives you the warmup schedule, RBL monitoring, and bounce/complaint tracking to keep reputation healthy. What no self-hosted product can offer — and what we never claim — is guaranteed inbox placement, because the IP reputation is ultimately yours, not ours." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Vectis Mail guarantee inbox placement?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Deliverability rides on your own VPS IP reputation, which we equip and advise on but do not own, so no honest self-hosted product can guarantee inbox placement. What Vectis Mail guarantees is correct setup out of the box (DKIM/SPF/DMARC), a built-in IP warmup schedule, automatic RBL monitoring, and feedback-loop and bounce processing — the tooling that gets a competent operator to parity with managed providers." }
+					},
+					{
+						"@type": "Question",
+						"name": "How long does IP warmup take on a new server?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Plan for 2–4 weeks. Vectis Mail has a built-in ~30-day warmup schedule that starts low (around 50 messages/day) and ramps gradually so receivers see a steadily building, consistent sender rather than a sudden spike. Most teams reach full production volume inside 2–4 weeks. The warmup calendar — not the infrastructure setup — is the real constraint when migrating." }
+					},
+					{
+						"@type": "Question",
+						"name": "How do I migrate off SendGrid without hurting deliverability?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Dual-send. Keep SendGrid handling production volume while you route a small, growing percentage through Vectis Mail on its fresh IP, following the warmup schedule. Once the new IP is warm and you've watched a clean week of delivery, shift the remaining traffic and decommission SendGrid. You never have a window where mail is at risk because both paths run in parallel during warmup. Plan about 5 weeks end-to-end: ~1 week to wire up, ~3 weeks dual-send, ~1 week to decommission." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
+		<div>
+			<a href="/features/">Features</a>
+			<a href="/pricing/">Pricing</a>
+			<a href="/alternatives/">Compare</a>
+			<a href="/getting-started/">Docs</a>
+			<a href="/notes/">Notes</a>
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+		</div>
+	</nav>
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Deliverability · The honest version</div>
+		<h1>Will my email actually land?<br/><span>The straight answer before you switch.</span></h1>
+		<p class="alt-lead">
+			It's the first question every team asks when they leave SendGrid for self-hosting,
+			and it deserves an honest answer — not a guarantee no self-hosted product can keep.
+			Here's exactly what determines inbox placement, what Vectis Mail does for you, what
+			stays in your hands, and how to migrate without a single day of mail at risk.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>7 June 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>The honest trade-off</h2>
+		<p class="subtitle">Managed providers like SendGrid sell one thing above all: deliverability as a service. Self-hosting changes who owns the reputation — so it's worth being precise about it.</p>
+		<p>
+			SendGrid maintains pre-warmed IP pools, employs people who talk to ISPs, and runs
+			blocklist removal at scale. When you self-host, your sending reputation rides on
+			<strong>your own VPS IP</strong>. That's the real trade: you gain full control and flat,
+			unmetered pricing, and you take on the reputation that a managed provider abstracts away.
+		</p>
+		<p>
+			So we'll say plainly what we will and won't promise. <strong>We never promise guaranteed
+			inbox placement</strong> — no honest self-hosted product can, because the IP is yours, not
+			ours. What we do promise is everything that gets a competent operator to parity: correct
+			authentication out of the box, a managed warmup path, and the monitoring to catch trouble
+			early. The good news is that the gap closes fast: once an IP is warm and your DNS is right,
+			self-hosted deliverability with DKIM, SPF, DMARC and MTA-STS configured correctly typically
+			matches the managed providers.
+		</p>
+	</section>
+
+	<section class="section section-alt">
+		<h2>What Vectis Mail does for you</h2>
+		<p class="subtitle">The deliverability work that's automatic, configured correctly by default, or one command away.</p>
+		<div class="feature-grid" style="margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3>Authentication done right by default</h3>
+				<p>DKIM keys auto-generated per domain; SPF and DMARC records ready to publish; PTR and MTA-STS guidance built in. <code>vectis domain check</code> validates SPF, DKIM, DMARC, PTR, MX and TLS in one command, and the dashboard shows green/yellow/red status per domain.</p>
+			</div>
+			<div class="feature-card">
+				<h3>A built-in IP warmup schedule</h3>
+				<p>A ~30-day ramp that starts low and increases volume gradually, so receivers see a steady, trustworthy sender instead of a spike. Warmup progress is tracked in the dashboard. See the <a href="/guides/ip-warmup/">IP warmup guide</a>.</p>
+			</div>
+			<div class="feature-card">
+				<h3>RBL monitoring, automatically</h3>
+				<p>Your IP is checked against the major blocklists (Spamhaus ZEN, Barracuda, SpamCop, SORBS, CBL) on a schedule. If you're ever listed, the dashboard links straight to the delisting page for each list.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Bounce &amp; complaint processing</h3>
+				<p>Hard and soft bounces are processed automatically and surfaced as per-domain rates. Feedback-loop (FBL) complaints from Gmail, Microsoft and Yahoo are recorded and linked back to the message — so you can act on the signals that actually move reputation.</p>
+			</div>
+			<div class="feature-card">
+				<h3>A deliverability dashboard</h3>
+				<p>Per-domain authentication status, bounce and complaint rates, RBL standing, and IP warmup progress in one place — plus a REST API for the same data if you'd rather wire it into your own monitoring.</p>
+			</div>
+			<div class="feature-card">
+				<h3>The external tools, pointed out</h3>
+				<p>We walk you through registering for Google Postmaster Tools and Microsoft SNDS — the two most valuable external reputation signals — in the <a href="/guides/deliverability/">deliverability guide</a>. The best monitoring is partly outside any product, and we say so.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>The migration playbook: dual-send</h2>
+		<p class="subtitle">How to move off SendGrid (or Postmark, or SES) without a single day where your mail is at risk.</p>
+		<p>
+			The trick is simple: <strong>don't cut over — overlap.</strong> Run both providers in
+			parallel while your new IP warms, shift traffic only once it's proven, and decommission the
+			old provider last. Because both paths are live during warmup, there's never a window where
+			delivery depends on an un-warmed IP.
+		</p>
+		<ol class="deliverability-steps">
+			<li><strong>Wire up Vectis Mail (~1 week).</strong> Stand up the server, add your domains, publish DKIM/SPF/DMARC, set your PTR, and point a small slice of traffic at it. Keep SendGrid handling production volume.</li>
+			<li><strong>Dual-send while the IP warms (~3 weeks).</strong> Route a small percentage (start around 1%) through Vectis Mail and follow the warmup schedule, increasing daily volume as the calendar dictates. SendGrid carries the rest. Watch Postmaster Tools and your bounce/complaint rates.</li>
+			<li><strong>Shift production traffic.</strong> Once the new IP is warm, flip the percentage in your code until Vectis Mail carries the bulk of volume. Most teams do this in week 3–4.</li>
+			<li><strong>Decommission SendGrid.</strong> After a clean week of delivery on the new IP, turn the old provider off. Done.</li>
+		</ol>
+		<p style="margin-top: 1.25rem;">
+			Plan about <strong>five weeks end-to-end</strong>. The infrastructure work is small; the
+			warmup calendar is the real constraint — which is exactly why dual-send exists. Full detail
+			in the <a href="/guides/ip-warmup/">IP warmup guide</a> and the
+			<a href="/alternatives/sendgrid/">SendGrid migration comparison</a>.
+		</p>
+	</section>
+
+	<section class="section section-alt">
+		<h2>What stays in your hands</h2>
+		<p class="subtitle">Self-hosting means owning the reputation. These are the things no product can do for you — and being upfront about them is part of the deal.</p>
+		<div class="feature-grid" style="margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3>Respect the warmup calendar</h3>
+				<p>Don't blast a fresh IP. The schedule is there for a reason; jumping it is the fastest way to a blocklist.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Send mail people want</h3>
+				<p>Confirmed opt-in, prompt removal of hard bounces, complaint rate under 0.1%. Engagement is the strongest positive signal there is.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Keep your lists clean</h3>
+				<p>Never buy or scrape lists. Sunset recipients who haven't engaged in months. One bad send can undo weeks of warmup.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Mind your content</h3>
+				<p>Plain-text alongside HTML, links to domains you own, no spammy subject lines. The <a href="/guides/deliverability/">deliverability guide</a> has the full checklist.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>Common questions</h2>
+
+		<h3 class="alt-h3">Will my email actually land if I self-host?</h3>
+		<p>
+			Yes, once your IP is warm and your DNS authentication is correct. Deliverability tracks
+			your VPS IP's reputation, which you build over a 2–4 week warmup; after that, properly
+			authenticated mail to engaged recipients typically reaches the inbox at parity with managed
+			providers. The one thing no self-hosted product can offer — and we never claim — is
+			<em>guaranteed</em> placement, because the reputation is yours.
+		</p>
+
+		<h3 class="alt-h3">Does Vectis Mail guarantee inbox placement?</h3>
+		<p>
+			No, and be wary of anyone who does. We guarantee correct setup, a warmup path, RBL
+			monitoring, and bounce/complaint processing — the tooling that gets you to parity. The
+			placement itself depends on how you send, which is why the section above matters.
+		</p>
+
+		<h3 class="alt-h3">How long does IP warmup take?</h3>
+		<p>
+			Plan for 2–4 weeks. The built-in ~30-day schedule ramps volume gradually so receivers see
+			a steady sender. The warmup calendar, not the setup, is the real constraint.
+		</p>
+
+		<h3 class="alt-h3">How do I switch off SendGrid safely?</h3>
+		<p>
+			Dual-send: run both in parallel while the new IP warms, shift traffic once it's proven,
+			decommission SendGrid last. See the <a href="/alternatives/sendgrid/">full SendGrid
+			comparison</a> for the side-by-side.
+		</p>
+	</section>
+
+	<div class="cta-section">
+		<h2>Deliverability you can actually reason about</h2>
+		<p>Correct authentication by default, a managed warmup path, and the monitoring to keep reputation healthy — on a server you own, at flat pricing. Free for three domains.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation/" class="btn-primary">Get Started Free</a>
+			<a href="/guides/deliverability/" class="btn-secondary">Read the deliverability guide</a>
+		</div>
+	</div>
+
+	<p class="page-meta">Last updated <time datetime="2026-06-07">7 June 2026</time></p>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>

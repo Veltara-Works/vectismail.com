@@ -747,6 +747,19 @@ a.alt-index-card h3 {
 	.compare-table th, .compare-table td { padding: 0.6rem 0.7rem; }
 }
 
+/* ── Deliverability migration steps (ordered list) ──────────────── */
+.deliverability-steps {
+	max-width: 760px;
+	margin: 1.5rem 0 0;
+	padding-left: 1.25rem;
+	line-height: 1.7;
+}
+.deliverability-steps li {
+	margin-bottom: 1rem;
+	padding-left: 0.35rem;
+	color: var(--sl-color-gray-2);
+}
+
 /* ── Product tour video ─────────────────────────────────────────── */
 .video-section { text-align: center; }
 
