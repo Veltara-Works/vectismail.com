@@ -738,3 +738,126 @@ a.alt-index-card h3 {
 	.compare-table { font-size: 0.85rem; }
 	.compare-table th, .compare-table td { padding: 0.6rem 0.7rem; }
 }
+
+/* ── Product tour video ─────────────────────────────────────────── */
+.video-section { text-align: center; }
+
+.video-thumb {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0;
+	border: 1px solid var(--vm-border);
+	border-radius: 12px;
+	overflow: hidden;
+	cursor: pointer;
+	background: var(--vm-bg-card);
+	transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.video-thumb:hover {
+	border-color: rgba(31, 183, 255, 0.4);
+	transform: translateY(-2px);
+	box-shadow: 0 12px 40px rgba(31, 183, 255, 0.12);
+}
+
+.video-thumb img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.video-play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 84px;
+	height: 84px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(31, 183, 255, 0.92);
+	border-radius: 50%;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	transition: transform 0.2s, background 0.2s;
+}
+
+.video-thumb:hover .video-play {
+	transform: translate(-50%, -50%) scale(1.08);
+	background: var(--vm-blue);
+}
+
+.video-play svg {
+	width: 34px;
+	height: 34px;
+	fill: #0C0C0D;
+	margin-left: 4px;
+}
+
+.video-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+}
+
+.video-modal[hidden] { display: none; }
+
+.video-modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(5, 7, 9, 0.85);
+	backdrop-filter: blur(4px);
+}
+
+.video-modal-inner {
+	position: relative;
+	width: 100%;
+	max-width: 1100px;
+	z-index: 1;
+}
+
+.video-modal-inner video {
+	display: block;
+	width: 100%;
+	max-height: 82vh;
+	border-radius: 12px;
+	background: #000;
+	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.video-modal-close {
+	position: absolute;
+	top: -2.6rem;
+	right: 0;
+	width: 2.2rem;
+	height: 2.2rem;
+	font-size: 1.8rem;
+	line-height: 1;
+	color: var(--vm-steel);
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+
+.video-modal-close:hover { color: #fff; }
+
+@media (max-width: 600px) {
+	.video-play { width: 64px; height: 64px; }
+	.video-play svg { width: 26px; height: 26px; }
+	.video-modal { padding: 1rem; }
+	.video-modal-close { top: -2.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.video-thumb, .video-thumb:hover,
+	.video-thumb:hover .video-play { transition: none; transform: none; }
+	.video-thumb:hover .video-play { transform: translate(-50%, -50%); }
+}

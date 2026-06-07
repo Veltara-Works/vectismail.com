@@ -116,6 +116,17 @@ const description = 'Containerised, self-hosted email server with declarative co
 		</div>
 	</div>
 
+	<section class="section video-section">
+		<h2>See it in action</h2>
+		<p class="subtitle">A short tour of the admin: declarative config, the orchestrator (plan &rarr; apply &rarr; rollback), all-green deliverability, and built-in webmail.</p>
+		<button type="button" class="video-thumb" id="tourPlay" aria-label="Play the Vectis Mail product tour">
+			<img src="/media/tour-poster.webp" width="1440" height="810" alt="Vectis Mail admin dashboard — orchestrator updates with plan, apply, and rollback controls plus operation history" loading="lazy" decoding="async" />
+			<span class="video-play" aria-hidden="true">
+				<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+			</span>
+		</button>
+	</section>
+
 	<section class="section">
 		<h2>Everything you need for production email</h2>
 		<p class="subtitle">Postfix, Dovecot, Rspamd, DKIM, SPF, DMARC — configured and managed through a single YAML file.</p>
@@ -199,6 +210,39 @@ const description = 'Containerised, self-hosted email server with declarative co
 	<p class="page-meta">Last updated <time datetime="2026-05-12">12 May 2026</time></p>
 
 	</main>
+
+	<div class="video-modal" id="tourModal" hidden>
+		<div class="video-modal-backdrop" data-close></div>
+		<div class="video-modal-inner" role="dialog" aria-modal="true" aria-label="Vectis Mail product tour">
+			<button type="button" class="video-modal-close" data-close aria-label="Close video">&times;</button>
+			<video id="tourVideo" controls playsinline preload="none" poster="/media/tour-poster.webp">
+				<source src="/media/vectis-mail-tour.mp4" type="video/mp4" />
+				Your browser doesn&rsquo;t support embedded video. <a href="/media/vectis-mail-tour.mp4">Download the tour (MP4)</a>.
+			</video>
+		</div>
+	</div>
+
+	<script>
+		const playBtn = document.getElementById('tourPlay');
+		const modal = document.getElementById('tourModal');
+		const video = document.getElementById('tourVideo') as HTMLVideoElement | null;
+		function closeModal() {
+			if (!modal) return;
+			video?.pause();
+			modal.hidden = true;
+			document.body.style.overflow = '';
+		}
+		playBtn?.addEventListener('click', () => {
+			if (!modal) return;
+			modal.hidden = false;
+			document.body.style.overflow = 'hidden';
+			video?.play().catch(() => {});
+		});
+		modal?.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal));
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
+		});
+	</script>
 
 	<SiteFooter />
 </body>
