@@ -39,7 +39,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 		"url": "https://vectismail.com",
 		"offers": [
 			{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "description": "Up to 3 domains, 25 mailboxes. Free forever." },
-			{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "description": "Unlimited domains & mailboxes, per-domain analytics, OIDC SSO, priority support." }
+			{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "description": "Unlimited domains & mailboxes, per-domain analytics, OIDC SSO, priority support." }
 		],
 		"publisher": {
 			"@type": "Organization",
@@ -54,12 +54,12 @@ const description = 'Containerised, self-hosted email server with declarative co
 			{
 				"@type": "Question",
 				"name": "What's the best alternative to Mailcow or iRedMail?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Same self-hosted philosophy with a modern surface — declarative YAML config, REST API with domain-scoped keys, atomic 6-phase updates with automatic rollback, and clustering for HA. Mailcow's strength is maturity; Vectis Mail's is developer ergonomics. See the side-by-side comparison at vectismail.com/alternatives/mailcow/." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Same self-hosted philosophy with a modern surface — declarative YAML config, REST API with domain-scoped keys, and atomic 6-phase updates with automatic rollback. Mailcow's strength is maturity; Vectis Mail's is developer ergonomics. See the side-by-side comparison at vectismail.com/alternatives/mailcow/." }
 			},
 			{
 				"@type": "Question",
 				"name": "What's the best self-hosted alternative to SendGrid, Postmark, or SES?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Self-hosted on your own VPS — your data stays on your server. No per-email pricing. Flat $0–29/tenant/month covers unlimited volume. Same REST API surface as SendGrid for sending, plus full IMAP/POP3 mailbox hosting, inbound webhooks, spam filtering, and webmail out of the box. See vectismail.com/alternatives/sendgrid/." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Self-hosted on your own VPS — your data stays on your server. No per-email pricing, ever. Flat $0–39/tenant/month covers unlimited volume. Same REST API surface as SendGrid for sending, plus full IMAP/POP3 mailbox hosting, inbound webhooks, spam filtering, and webmail out of the box. See vectismail.com/alternatives/sendgrid/." }
 			},
 			{
 				"@type": "Question",
@@ -87,9 +87,10 @@ const description = 'Containerised, self-hosted email server with declarative co
 
 	<div class="hero-wrapper">
 		<section class="hero">
-			<div class="hero-badge">Source-available &middot; Self-Hosted &middot; API-First</div>
-			<h1>Self-hosted email server.<br/><span>Your rules.</span></h1>
-			<p>Vectis Mail is a self-hosted email server with the developer experience of SendGrid and the control of Postfix. Declarative YAML config, 40+ endpoint REST API, atomic updates with rollback. Free for 3 domains; $29 USD/tenant/month unlocks unlimited.</p>
+			<div class="hero-badge">Source-available &middot; Self-hosted &middot; Never per email</div>
+			<h1>Self-hosted email.<br/><span>Never priced per send.</span></h1>
+			<p>The developer experience of SendGrid &mdash; REST API, inbound webhooks, deliverability tooling &mdash; on infrastructure you own. Transactional sending and full IMAP mailboxes in one stack. Free for 3 domains; $39 USD/tenant/month unlocks unlimited volume, domains, and mailboxes.</p>
+			<p class="hero-agency">Running mail for client domains? One install serves every client &mdash; billed per client, never per email.</p>
 			<div class="hero-buttons">
 				<a href="/getting-started/installation/" class="btn-primary">Get Started Free</a>
 				<a href="/getting-started/" class="btn-secondary">Read the Docs</a>
@@ -99,20 +100,20 @@ const description = 'Containerised, self-hosted email server with declarative co
 
 	<div class="stats-bar">
 		<div class="stat-item">
-			<div class="stat-number">11</div>
-			<div class="stat-label">Containers, One Config</div>
+			<div class="stat-number">$0</div>
+			<div class="stat-label">Charged per email &mdash; ever</div>
+		</div>
+		<div class="stat-item">
+			<div class="stat-number">$39</div>
+			<div class="stat-label">Flat per month, unlimited volume</div>
+		</div>
+		<div class="stat-item">
+			<div class="stat-number">3</div>
+			<div class="stat-label">Domains, free forever</div>
 		</div>
 		<div class="stat-item">
 			<div class="stat-number">40+</div>
-			<div class="stat-label">API Endpoints</div>
-		</div>
-		<div class="stat-item">
-			<div class="stat-number">22</div>
-			<div class="stat-label">Doc Pages</div>
-		</div>
-		<div class="stat-item">
-			<div class="stat-number">2</div>
-			<div class="stat-label">Pricing Tiers</div>
+			<div class="stat-label">REST API endpoints</div>
 		</div>
 	</div>
 
@@ -133,48 +134,48 @@ const description = 'Containerised, self-hosted email server with declarative co
 		<div class="feature-grid">
 			<div class="feature-card">
 				<div class="icon icon-blue">&#9881;</div>
-				<h3>Declarative Configuration</h3>
+				<h3>Your whole mail stack in one file</h3>
 				<p>One config.yaml defines your entire mail stack. Change a setting, run apply, and Vectis generates Postfix, Dovecot, Rspamd, and Traefik configs automatically.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-cyan">&#9889;</div>
-				<h3>Sending API</h3>
-				<p>REST API for transactional email. Single and batch sending, domain-scoped API keys, webhook callbacks for delivery status. Drop-in replacement for external email services.</p>
+				<h3>Drop-in transactional sending</h3>
+				<p>A REST API for transactional email: single and batch sending, domain-scoped keys, webhook callbacks for delivery status. The same surface your code already speaks to SendGrid — pointed at your own server.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-purple">&#9638;</div>
-				<h3>Admin Dashboard</h3>
-				<p>Full web UI for domains, mailboxes, aliases, deliverability, audit logs, backups, and system updates. Role-based access control with TOTP MFA and OIDC SSO.</p>
+				<h3>Run everything from one dashboard</h3>
+				<p>A web UI for domains, mailboxes, aliases, deliverability, audit logs, backups, and updates. Role-based access control with TOTP MFA and OIDC SSO.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-green">&#10548;</div>
-				<h3>Inbound Webhooks</h3>
+				<h3>Turn inbound email into webhooks</h3>
 				<p>Receive email programmatically. Vectis parses inbound messages and POSTs the full content — body, attachments, headers, envelope — to your application via HMAC-signed webhooks.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-blue">&#128274;</div>
-				<h3>Automatic TLS</h3>
+				<h3>TLS that renews itself</h3>
 				<p>Let's Encrypt certificates provisioned and renewed automatically via acme.sh. Supports Cloudflare DNS-01 challenges. TLS 1.2+ enforced on all protocols.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-orange">&#128200;</div>
-				<h3>Built-in Observability</h3>
-				<p>Prometheus-format metrics, health alerts, IP warmup tracking, and RBL monitoring built in. Grafana dashboards and Loki log aggregation are optional (off by default); per-domain analytics is a Pro feature.</p>
+				<h3>Catch deliverability problems early</h3>
+				<p>IP warmup tracking, RBL monitoring, health alerts, and Prometheus-format metrics built in. Grafana dashboards and Loki log aggregation are optional (off by default); per-domain analytics is a Pro feature.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-green">&#8635;</div>
-				<h3>Atomic Updates</h3>
-				<p>The orchestrator manages updates with a 6-phase pipeline: snapshot, migrate, pull, deploy, health check, complete. Automatic rollback on failure.</p>
+				<h3>Updates that roll themselves back</h3>
+				<p>The orchestrator runs updates as a 6-phase pipeline: snapshot, migrate, pull, deploy, health check, complete. If a health check fails, it rolls back automatically — no half-applied state.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-purple">&#9993;</div>
-				<h3>Webmail Included</h3>
-				<p>Roundcube webmail with ManageSieve filter rules, mobile-responsive Elastic skin, and Vectis branding. Your users get a familiar email experience out of the box.</p>
+				<h3>Webmail your users already know</h3>
+				<p>Roundcube webmail with ManageSieve filter rules, a mobile-responsive Elastic skin, and Vectis branding. Your users get a familiar email experience out of the box.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-cyan">&#11036;</div>
-				<h3>Built for Operators</h3>
-				<p>Atomic updates via the orchestrator UI: plan, apply, rollback. Encrypted backups with one-click restore. Automatic TLS via acme.sh and Traefik. Full audit log.</p>
+				<h3>Recover from anything</h3>
+				<p>Encrypted backups with one-click restore, scheduled or on demand, with an off-host copy option. Every administrative action lands in a full audit log.</p>
 			</div>
 		</div>
 	</section>
@@ -185,7 +186,7 @@ const description = 'Containerised, self-hosted email server with declarative co
 		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); text-align: left;">
 			<a href="/alternatives/" class="feature-card alt-index-card">
 				<h3>vs Mailcow / iRedMail &rarr;</h3>
-				<p>Declarative config instead of manual web UI tweaks. API-first design with domain-scoped keys. Orchestrated updates with automatic rollback. Clustering for HA.</p>
+				<p>Declarative config instead of manual web UI tweaks. API-first design with domain-scoped keys. Orchestrated updates with automatic rollback.</p>
 			</a>
 			<a href="/alternatives/sendgrid/" class="feature-card alt-index-card">
 				<h3>vs SendGrid / Postmark / SES &rarr;</h3>
@@ -199,15 +200,15 @@ const description = 'Containerised, self-hosted email server with declarative co
 	</section>
 
 	<div class="cta-section">
-		<h2>Trusted by the Veltara Works ecosystem</h2>
-		<p>Vectis Mail powers transactional email for <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--vm-blue);">ValidonX</a> and other Veltara Works products.</p>
+		<h2>Stop paying per email</h2>
+		<p>We run Vectis Mail in production ourselves — it carries transactional email for <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--vm-blue);">ValidonX</a> and other Veltara Works products. Flat pricing, your server, no per-send metering: free for three domains, $39/month when you outgrow them.</p>
 		<div class="hero-buttons">
-			<a href="/pricing/" class="btn-primary">View Pricing</a>
-			<a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer" class="btn-secondary">GitHub</a>
+			<a href="/getting-started/installation/" class="btn-primary">Get Started Free</a>
+			<a href="/pricing/" class="btn-secondary">Compare plans</a>
 		</div>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime="2026-05-12">12 May 2026</time></p>
+	<p class="page-meta">Last updated <time datetime="2026-06-07">7 June 2026</time></p>
 
 	</main>
 

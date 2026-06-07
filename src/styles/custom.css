@@ -169,6 +169,14 @@
 	line-height: 1.7;
 }
 
+/* Secondary hero line — the agency/MSP hook. Smaller + tighter to the lede. */
+.hero p.hero-agency {
+	font-size: 1.02rem;
+	color: var(--vm-steel);
+	max-width: 600px;
+	margin: -1.5rem auto 2.5rem;
+}
+
 .hero-buttons {
 	display: flex;
 	gap: 1rem;

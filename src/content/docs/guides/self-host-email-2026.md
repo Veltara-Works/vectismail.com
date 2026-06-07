@@ -183,7 +183,7 @@ Vectis Mail is the self-host platform we build. It's source-available (BSL 1.1),
 
 If you're weighing self-hosting in 2026, the relevant Vectis pages are:
 
-- **[Pricing](/pricing/)** — Free Starter (3 domains / 50 mailboxes) + Pro at $29 USD/tenant/month with the full API, multi-tenancy, and analytics.
+- **[Pricing](/pricing/)** — Free Starter (3 domains / 50 mailboxes) + Pro at $39 USD/tenant/month with the full API, multi-tenancy, and analytics.
 - **[Features](/features/)** — what's in the box.
 - **[For SaaS founders](/for/saas/)**, **[For agencies](/for/agencies/)**, **[For developers](/for/developers/)**, **[For enterprises](/for/enterprises/)** — audience-specific use cases.
 - **[Alternatives](/alternatives/)** — direct comparisons against Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark.

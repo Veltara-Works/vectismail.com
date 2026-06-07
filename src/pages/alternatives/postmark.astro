@@ -85,7 +85,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "How do the costs compare at scale?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's base plans start at $15–18/month for 10,000 emails, with overages at $1.20–1.80 per thousand depending on tier. At 100,000 emails/month you're paying roughly $134/month on Pro; at 1 million you're around $1,200/month on Platform. Vectis Mail is $49/month flat regardless of volume (Pro tier at $29 USD/tenant + a $20 VPS to host it). The cost crossover happens around 30,000 emails/month. Past that, every email Postmark sends costs you something, while every email Vectis Mail sends costs nothing additional." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's base plans start at $15–18/month for 10,000 emails, with overages at $1.20–1.80 per thousand depending on tier. At 100,000 emails/month you're paying roughly $134/month on Pro; at 1 million you're around $1,200/month on Platform. Vectis Mail is $59/month flat regardless of volume (Pro tier at $39 USD/tenant + a $20 VPS to host it). The cost crossover happens around 37,000 emails/month. Past that, every email Postmark sends costs you something, while every email Vectis Mail sends costs nothing additional." }
 					},
 					{
 						"@type": "Question",
@@ -129,7 +129,7 @@ const dateModified = '2026-05-13'
 		<p class="alt-lead">
 			Postmark is well-loved for good reason: clean API, strong deliverability,
 			Message Streams. Vectis Mail offers the same transactional sending and
-			inbound webhook surfaces self-hosted, at a flat $0–49/month all-in cost,
+			inbound webhook surfaces self-hosted, at a flat $0–59/month all-in cost,
 			with IMAP/POP3 mailboxes included. Below covers where Postmark wins,
 			too.
 		</p>
@@ -142,7 +142,7 @@ const dateModified = '2026-05-13'
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>The cost math</h2>
-		<p class="subtitle">Postmark prices per email past the base bucket. Vectis Mail prices per tenant. Crossover at ~30K emails/month.</p>
+		<p class="subtitle">Postmark prices per email past the base bucket. Vectis Mail prices per tenant. Crossover at ~37K emails/month.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -150,12 +150,12 @@ const dateModified = '2026-05-13'
 				</thead>
 				<tbody>
 					<tr><td>100 emails</td><td><strong>$0 (Starter, no VPS needed for tiny volume)</strong></td><td>$0 (Free tier, never expires)</td></tr>
-					<tr><td>10,000 emails</td><td><strong>$49/mo flat</strong></td><td>$15–18/mo (Basic / Pro / Platform)</td></tr>
-					<tr><td>50,000 emails</td><td><strong>$49/mo flat</strong></td><td>~$70/mo (Pro + 40K overage at $1.30/1000)</td></tr>
-					<tr><td>100,000 emails</td><td><strong>$49/mo flat</strong></td><td>~$134/mo (Pro + 90K overage)</td></tr>
-					<tr><td>500,000 emails</td><td><strong>$49/mo flat</strong></td><td>~$654/mo (Pro + 490K overage)</td></tr>
-					<tr><td>1,000,000 emails</td><td><strong>$49/mo flat</strong></td><td>~$1,200/mo (Platform + overage at $1.20/1000)</td></tr>
-					<tr><td>5,000,000+ emails</td><td><strong>$49/mo</strong> (may need larger VPS at this scale)</td><td>~$6,000/mo + DMARC/dedicated-IP add-ons</td></tr>
+					<tr><td>10,000 emails</td><td><strong>$59/mo flat</strong></td><td>$15–18/mo (Basic / Pro / Platform)</td></tr>
+					<tr><td>50,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$70/mo (Pro + 40K overage at $1.30/1000)</td></tr>
+					<tr><td>100,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$134/mo (Pro + 90K overage)</td></tr>
+					<tr><td>500,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$654/mo (Pro + 490K overage)</td></tr>
+					<tr><td>1,000,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$1,200/mo (Platform + overage at $1.20/1000)</td></tr>
+					<tr><td>5,000,000+ emails</td><td><strong>$59/mo</strong> (may need larger VPS at this scale)</td><td>~$6,000/mo + DMARC/dedicated-IP add-ons</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -174,9 +174,9 @@ const dateModified = '2026-05-13'
 				</thead>
 				<tbody>
 					<tr><td>Hosting model</td><td><strong>Self-hosted</strong> (your VPS, your IPs)</td><td>Managed SaaS (US-primary)</td></tr>
-					<tr><td>Pricing model</td><td><strong>Flat per-tenant</strong> ($29 USD/tenant/mo Pro, unlimited installs)</td><td>Per-email after the 10K base bucket</td></tr>
-					<tr><td>Effective cost @ 100K emails/mo</td><td><strong>$49/mo</strong> (Pro + VPS)</td><td>~$134/mo</td></tr>
-					<tr><td>Effective cost @ 1M emails/mo</td><td><strong>$49/mo</strong> (Pro + VPS)</td><td>~$1,200/mo</td></tr>
+					<tr><td>Pricing model</td><td><strong>Flat per-tenant</strong> ($39 USD/tenant/mo Pro, unlimited installs)</td><td>Per-email after the 10K base bucket</td></tr>
+					<tr><td>Effective cost @ 100K emails/mo</td><td><strong>$59/mo</strong> (Pro + VPS)</td><td>~$134/mo</td></tr>
+					<tr><td>Effective cost @ 1M emails/mo</td><td><strong>$59/mo</strong> (Pro + VPS)</td><td>~$1,200/mo</td></tr>
 					<tr><td>Transactional sending API</td><td>REST + SMTP, domain-scoped keys, batch, attachments</td><td>REST + SMTP, mature SDKs</td></tr>
 					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>Yes — mature, well-documented</td></tr>
 					<tr><td>Mailbox hosting (IMAP/POP3)</td><td><strong>Yes</strong> — Roundcube webmail included</td><td>No — send + inbound parse only</td></tr>
@@ -219,7 +219,7 @@ const dateModified = '2026-05-13'
 					<li>You need pre-warmed IPs from day one with no 2–4 week warmup window.</li>
 					<li>SOC 2 / HIPAA reports from your email provider are a procurement requirement.</li>
 					<li>You have zero sysadmin capacity and "don't think about infrastructure" is worth the cost.</li>
-					<li>Your volume is below ~30K emails/month — the managed-SaaS economics work in your favour.</li>
+					<li>Your volume is below ~37K emails/month — the managed-SaaS economics work in your favour.</li>
 				</ul>
 			</div>
 		</div>
@@ -238,14 +238,14 @@ const dateModified = '2026-05-13'
 			100,000 emails/month you're at roughly $134; at 1M, roughly $1,200.
 		</p>
 		<p>
-			Vectis Mail prices per tenant. Starter is free forever; Pro is $29 USD/tenant/month
+			Vectis Mail prices per tenant. Starter is free forever; Pro is $39 USD/tenant/month
 			for unlimited domains, unlimited mailboxes, unlimited email volume. Add a $20/month
-			VPS and your fully-loaded cost is $49/month whether you send 10,000 or 10 million
+			VPS and your fully-loaded cost is $59/month whether you send 10,000 or 10 million
 			emails. One Pro subscription covers unlimited Vectis Mail installs — useful for SaaS
 			operators, agencies, and resellers running mail for many client domains.
 		</p>
 		<p>
-			The cost crossover sits around 30,000 emails/month. Below that, Postmark's managed
+			The cost crossover sits around 37,000 emails/month. Below that, Postmark's managed
 			economics work for you. Above it, every email Postmark sends costs you something
 			while every email Vectis Mail sends costs nothing additional.
 		</p>
@@ -371,8 +371,8 @@ const dateModified = '2026-05-13'
 					Postmark's base plans start at $15–18/month for 10,000 emails, with overages
 					at $1.20–$1.80 per thousand depending on tier. At 100,000 emails/month you're
 					paying roughly $134/month on Pro; at 1 million you're around $1,200/month on
-					Platform. Vectis Mail is $49/month flat regardless of volume (Pro at $29 USD/tenant
-					+ a $20 VPS to host it). The cost crossover happens around 30,000 emails/month.
+					Platform. Vectis Mail is $59/month flat regardless of volume (Pro at $39 USD/tenant
+					+ a $20 VPS to host it). The cost crossover happens around 37,000 emails/month.
 					Past that, every email Postmark sends costs you something, while every email
 					Vectis Mail sends costs nothing additional.
 				</p>
@@ -444,7 +444,7 @@ const dateModified = '2026-05-13'
 			</a>
 			<a href="/alternatives/sendgrid/" class="feature-card alt-index-card">
 				<h3>vs SendGrid &rarr;</h3>
-				<p>Same API surface, no per-email pricing. Flat $0–$49/mo covers unlimited sending volume.</p>
+				<p>Same API surface, no per-email pricing. Flat $0–$59/mo covers unlimited sending volume.</p>
 			</a>
 		</div>
 	</section>
