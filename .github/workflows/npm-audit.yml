@@ -1,0 +1,61 @@
+name: npm audit
+
+# Advisory dependency scan for the marketing site. Deploys are CF-Pages-native
+# (wrangler) and not driven by this workflow, so this only gates PR merges.
+#
+# astro is hard-pinned to 6.1.10 (6.4.x breaks mdx — see the team note on the
+# astro pin), and `npm audit fix` must NOT bump it. So this is deliberately
+# lenient: HIGH findings are reported but non-blocking (we can't always patch a
+# transitive issue without a pin-breaking bump), while CRITICAL blocks.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/npm-audit.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/npm-audit.yml'
+  schedule:
+    # Mondays 15:41 UTC — surface newly-disclosed advisories.
+    - cron: '41 15 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: npm audit
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      # Advisory: full report to the run summary, never blocks.
+      - name: npm audit (report high+)
+        if: always()
+        run: |
+          {
+            echo '### npm audit (high+, advisory)'
+            echo '```'
+            npm audit --audit-level=high 2>&1 || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Gate: only CRITICAL blocks — high-severity transitives on the pinned
+      # astro toolchain shouldn't force a pin-breaking bump.
+      - name: npm audit gate (critical)
+        run: npm audit --audit-level=critical
