@@ -1,0 +1,324 @@
+---
+import "../styles/custom.css"
+import SiteFooter from "../components/SiteFooter.astro"
+const title = 'Talk to us — Agency & Enterprise | Vectis Mail'
+const description = 'Running mail for client domains, or need SAML, an SLA, or compliance/DSAR support? Tell us about your setup and we’ll size an Agency or Enterprise plan with you.'
+const fieldStyle = "width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;"
+const labelStyle = "display: block; margin-bottom: 0.5rem; color: var(--sl-color-gray-1); font-weight: 600;"
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/talk-to-us/" />
+	<meta property="og:image" content="https://vectismail.com/og/default.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Talk to the Vectis Mail team about Agency and Enterprise plans" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://vectismail.com/og/default.png" />
+	<meta name="theme-color" content="#0C0C0D" />
+	<link rel="canonical" href="https://vectismail.com/talk-to-us/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		"name": title,
+		"description": description,
+		"url": "https://vectismail.com/talk-to-us/",
+		"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+		"publisher": {
+			"@type": "Organization",
+			"name": "Veltara Works",
+			"url": "https://veltaraworks.com",
+			"contactPoint": [
+				{ "@type": "ContactPoint", "contactType": "sales", "email": "sales@vectismail.com", "availableLanguage": "English" }
+			]
+		},
+		"inLanguage": "en"
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
+		<div>
+			<a href="/features/">Features</a>
+			<a href="/pricing/">Pricing</a>
+			<a href="/alternatives/">Compare</a>
+			<a href="/getting-started/">Docs</a>
+			<a href="/notes/">Notes</a>
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+		</div>
+	</nav>
+
+	<main>
+
+	<section class="section" style="max-width: 680px;">
+		<h1>Talk to us about Agency &amp; Enterprise</h1>
+		<p class="subtitle">
+			Starter and Pro are self-serve on the <a href="/pricing/" style="color: var(--sl-color-accent);">pricing page</a>.
+			This form is for two things we size with you: running mail for <strong>client domains</strong> (Agency),
+			or needing <strong>SAML, an SLA, or compliance/DSAR</strong> (Enterprise). Both tiers are in active
+			build — your answers below directly shape what we ship and how we price it. No sales call required to start.
+		</p>
+
+		<form id="capture-form" class="feature-card" style="margin-bottom: 2rem;">
+
+			<fieldset style="border: none; padding: 0; margin: 0 0 1.5rem;">
+				<legend style={labelStyle + "padding: 0; margin-bottom: 0.75rem; font-size: 1.05rem;"}>What brings you here?</legend>
+
+				<label class="segment-option" data-seg="agency-managed">
+					<input type="radio" name="segment" value="agency-managed" required />
+					<span>
+						<strong>I run mail for client domains</strong> — managed centrally
+						<small>One agency, many client domains. You manage everything; clients never need their own login.</small>
+					</span>
+				</label>
+
+				<label class="segment-option" data-seg="agency-isolation">
+					<input type="radio" name="segment" value="agency-isolation" />
+					<span>
+						<strong>I run mail for clients who need isolation</strong> — own login / branding
+						<small>Clients need their own isolated access or a white-labelled, branded experience. (This is our roadmap Platform tier — your signal tells us whether to build it.)</small>
+					</span>
+				</label>
+
+				<label class="segment-option" data-seg="enterprise">
+					<input type="radio" name="segment" value="enterprise" />
+					<span>
+						<strong>I need assurance for one organisation</strong> — SAML / SLA / compliance
+						<small>One org. SAML SSO, a support SLA, compliance/DSAR, or audit-evidence export. Not a size threshold.</small>
+					</span>
+				</label>
+
+				<label class="segment-option" data-seg="other">
+					<input type="radio" name="segment" value="other" />
+					<span>
+						<strong>Something else</strong>
+						<small>Tell us in the message field below.</small>
+					</span>
+				</label>
+			</fieldset>
+
+			<div style="margin-bottom: 1.25rem;">
+				<label for="name" style={labelStyle}>Your name</label>
+				<input type="text" id="name" name="name" required placeholder="Jane Smith" style={fieldStyle} />
+			</div>
+
+			<div style="margin-bottom: 1.25rem;">
+				<label for="email" style={labelStyle}>Work email</label>
+				<input type="email" id="email" name="email" required placeholder="jane@youragency.com" style={fieldStyle} />
+			</div>
+
+			<div style="margin-bottom: 1.25rem;">
+				<label for="company" style={labelStyle}>Company <span style="font-weight: 400; color: var(--sl-color-gray-3);">(optional)</span></label>
+				<input type="text" id="company" name="company" placeholder="Your Agency Ltd" style={fieldStyle} />
+			</div>
+
+			<!-- Agency capacity (both agency lanes) -->
+			<div class="seg-group" data-for="agency-managed agency-isolation" hidden>
+				<p style={labelStyle + "font-size: 1.05rem; margin-top: 0.5rem;"}>Your client book</p>
+				<p style="color: var(--sl-color-gray-3); font-size: 0.85rem; margin: -0.25rem 0 1rem;">Rough numbers are fine — this sets the right Agency metric and price.</p>
+				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+					<div>
+						<label for="clients" style={labelStyle}>Clients</label>
+						<input type="number" min="0" id="clients" name="clients" placeholder="e.g. 12" style={fieldStyle} />
+					</div>
+					<div>
+						<label for="domainsPerClient" style={labelStyle}>Domains / client</label>
+						<input type="number" min="0" id="domainsPerClient" name="domainsPerClient" placeholder="e.g. 1" style={fieldStyle} />
+					</div>
+					<div>
+						<label for="mailboxesPerClient" style={labelStyle}>Mailboxes / client</label>
+						<input type="number" min="0" id="mailboxesPerClient" name="mailboxesPerClient" placeholder="e.g. 10" style={fieldStyle} />
+					</div>
+				</div>
+			</div>
+
+			<!-- Enterprise assurance -->
+			<div class="seg-group" data-for="enterprise" hidden>
+				<p style={labelStyle + "font-size: 1.05rem; margin-top: 0.5rem;"}>What assurance do you need?</p>
+				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem 1rem; margin-bottom: 1.25rem;">
+					<label class="check-option"><input type="checkbox" name="assurance" value="saml" /> SAML SSO</label>
+					<label class="check-option"><input type="checkbox" name="assurance" value="scim" /> SCIM provisioning</label>
+					<label class="check-option"><input type="checkbox" name="assurance" value="sla" /> SLA-backed support</label>
+					<label class="check-option"><input type="checkbox" name="assurance" value="compliance" /> Compliance / DSAR</label>
+					<label class="check-option"><input type="checkbox" name="assurance" value="audit" /> Audit-evidence export</label>
+					<label class="check-option"><input type="checkbox" name="assurance" value="residency" /> Data residency</label>
+				</div>
+				<div style="margin-bottom: 1.25rem;">
+					<label for="seats" style={labelStyle}>Approx. mailboxes / seats</label>
+					<input type="number" min="0" id="seats" name="seats" placeholder="e.g. 250" style={fieldStyle} />
+				</div>
+			</div>
+
+			<!-- WTP fields (all segments except 'other' by default; shown once a segment is chosen) -->
+			<div class="seg-group" data-for="agency-managed agency-isolation enterprise" hidden>
+				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+					<div>
+						<label for="currentSpend" style={labelStyle}>Current email spend / month</label>
+						<select id="currentSpend" name="currentSpend" style={fieldStyle}>
+							<option value="">Select…</option>
+							<option>Nothing yet</option>
+							<option>Under $50</option>
+							<option>$50–200</option>
+							<option>$200–500</option>
+							<option>$500–2,000</option>
+							<option>$2,000–10,000</option>
+							<option>$10,000+</option>
+							<option>Not sure</option>
+						</select>
+					</div>
+					<div>
+						<label for="budget" style={labelStyle}>Budget for this / month</label>
+						<select id="budget" name="budget" style={fieldStyle}>
+							<option value="">Select…</option>
+							<option>Just exploring</option>
+							<option>Under $50</option>
+							<option>$50–200</option>
+							<option>$200–500</option>
+							<option>$500–2,000</option>
+							<option>$2,000+</option>
+							<option>Not sure yet</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div style="margin-bottom: 1.25rem;">
+				<label for="message" style={labelStyle}>Anything else? <span style="font-weight: 400; color: var(--sl-color-gray-3);">(optional)</span></label>
+				<textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Timeline, constraints, the clients you'd run on it…" style={fieldStyle + "resize: vertical;"}></textarea>
+				<div style="text-align: right; color: var(--sl-color-gray-4); font-size: 0.8rem; margin-top: 0.25rem;">
+					<span id="char-count">0</span> / 2000
+				</div>
+			</div>
+
+			<button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; font-size: 1rem;">Send</button>
+		</form>
+
+		<div id="form-status" class="feature-card" role="status" aria-live="polite" style="margin-bottom: 2rem; text-align: center; display: none;"></div>
+
+		<div class="feature-card">
+			<h3>Prefer email?</h3>
+			<p>Agency &amp; Enterprise enquiries go to <a href="mailto:sales@vectismail.com" style="color: var(--sl-color-accent);">sales@vectismail.com</a>. Resale / hosted-platform licensing: <a href="mailto:licensing@veltaraworks.com" style="color: var(--sl-color-accent);">licensing@veltaraworks.com</a>.</p>
+		</div>
+	</section>
+
+	<p class="page-meta">Last updated <time datetime="2026-06-08">8 June 2026</time></p>
+
+	</main>
+
+	<SiteFooter />
+
+	<style>
+		.segment-option {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.75rem;
+			padding: 0.85rem 1rem;
+			margin-bottom: 0.6rem;
+			border: 1px solid var(--sl-color-gray-4);
+			border-radius: 8px;
+			background: var(--sl-color-gray-6, var(--sl-color-gray-5));
+			cursor: pointer;
+			transition: border-color 0.15s, background 0.15s;
+		}
+		.segment-option:hover { border-color: var(--sl-color-accent); }
+		.segment-option input[type="radio"] { margin-top: 0.25rem; flex: none; accent-color: var(--sl-color-accent); }
+		.segment-option:has(input:checked) {
+			border-color: var(--sl-color-accent);
+			background: color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
+		}
+		.segment-option span { display: flex; flex-direction: column; gap: 0.2rem; color: var(--sl-color-gray-1); }
+		.segment-option small { color: var(--sl-color-gray-3); font-size: 0.82rem; line-height: 1.45; }
+		.check-option {
+			display: flex; align-items: center; gap: 0.5rem;
+			color: var(--sl-color-gray-1); font-size: 0.95rem; cursor: pointer;
+		}
+		.check-option input { accent-color: var(--sl-color-accent); }
+	</style>
+
+	<script>
+		const form = document.getElementById('capture-form');
+		const msg = document.getElementById('message');
+		const counter = document.getElementById('char-count');
+		msg?.addEventListener('input', () => { if (counter) counter.textContent = msg.value.length.toString(); });
+
+		// Reveal the field groups that apply to the selected segment.
+		function applySegment(seg) {
+			document.querySelectorAll('.seg-group').forEach((el) => {
+				const applies = (el.getAttribute('data-for') || '').split(' ').includes(seg);
+				el.hidden = !applies;
+			});
+		}
+		form?.querySelectorAll('input[name="segment"]').forEach((r) => {
+			r.addEventListener('change', () => applySegment(r.value));
+		});
+
+		// Preselect a lane from ?segment= (linked from pricing / for-pages).
+		const want = new URLSearchParams(location.search).get('segment');
+		if (want) {
+			const radio = form?.querySelector('input[name="segment"][value="' + CSS.escape(want) + '"]');
+			if (radio) { radio.checked = true; applySegment(want); }
+		}
+
+		form?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const status = document.getElementById('form-status');
+			const btn = form.querySelector('button[type="submit"]');
+			const fd = new FormData(form);
+			const data = {
+				segment: fd.get('segment'),
+				name: fd.get('name'),
+				email: fd.get('email'),
+				company: fd.get('company'),
+				clients: fd.get('clients'),
+				domainsPerClient: fd.get('domainsPerClient'),
+				mailboxesPerClient: fd.get('mailboxesPerClient'),
+				seats: fd.get('seats'),
+				assurance: fd.getAll('assurance'),
+				currentSpend: fd.get('currentSpend'),
+				budget: fd.get('budget'),
+				message: fd.get('message'),
+			};
+
+			btn.disabled = true;
+			btn.textContent = 'Sending…';
+			try {
+				const res = await fetch('/api/capture', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(data),
+				});
+				if (res.ok) {
+					form.style.display = 'none';
+					status.style.display = 'block';
+					status.style.color = '#4ade80';
+					status.style.padding = '1.5rem';
+					status.style.fontSize = '1.05rem';
+					status.innerHTML = '<strong>Thanks — we’ve got it.</strong><br />We’ll be in touch shortly to size the right plan with you.';
+				} else {
+					throw new Error('Server error');
+				}
+			} catch {
+				status.style.display = 'block';
+				status.style.color = '#f87171';
+				status.textContent = 'Something went wrong sending that. Please try again in a moment, or email us directly at sales@vectismail.com.';
+			} finally {
+				btn.disabled = false;
+				btn.textContent = 'Send';
+			}
+		});
+	</script>
+</body>
+</html>
