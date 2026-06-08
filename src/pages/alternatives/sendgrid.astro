@@ -90,7 +90,7 @@ const dateModified = '2026-06-08'
 					{
 						"@type": "Question",
 						"name": "What about deliverability on a self-hosted server?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Deliverability on Vectis Mail is as good as the IP reputation you build. Day one on a fresh VPS IP, you'll need 2–4 weeks of IP warmup before sending bulk volume to Google/Microsoft inboxes; SendGrid hides this by pooling pre-warmed IPs. After warmup, self-hosted deliverability with DKIM/SPF/DMARC/MTA-STS properly configured typically matches managed providers. The Vectis Mail IP warmup guide walks through the calendar schedule." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Deliverability on Vectis Mail is as good as the IP reputation you build. Day one on a fresh VPS IP, you'll need 2–4 weeks of IP warmup before sending bulk volume to Google/Microsoft inboxes; SendGrid hides this by pooling pre-warmed IPs. Crucially, you don't take a day-one hit when migrating: the dual-send playbook keeps your current provider delivering while your new IP warms, so there's no reputation gap. After warmup, self-hosted deliverability with DKIM/SPF/DMARC/MTA-STS properly configured typically matches managed providers. See the deliverability page and IP warmup guide for the schedule." }
 					},
 					{
 						"@type": "Question",
@@ -167,24 +167,27 @@ const dateModified = '2026-06-08'
 			<div class="verdict-card verdict-win">
 				<h3>Choose Vectis Mail when…</h3>
 				<ul>
-					<li>Your SendGrid bill is climbing past $200/month and the per-email model feels misaligned with your costs.</li>
-					<li>Data sovereignty matters: you're in healthcare, government, financial services, or the EU public sector.</li>
+					<li>Your SendGrid bill is climbing past $200/month and per-email pricing feels misaligned with your costs.</li>
+					<li>Data sovereignty or residency matters — healthcare, government, financial services, EU public sector. Self-hosting often makes internal audits <em>easier</em>: nothing leaves your network boundary.</li>
 					<li>You also need to host mailboxes (e.g. <code>support@yourdomain</code>) and want one product for inbound + outbound.</li>
 					<li>You want full control over the underlying mail stack: Postfix tuning, custom Rspamd rules, custom headers.</li>
-					<li>You're building a SaaS and want predictable cost scaling instead of usage-based bills.</li>
+					<li>You're building a SaaS and want predictable flat cost instead of usage-based bills that scale with your cost-of-revenue.</li>
 					<li>You distrust vendor lock-in and want your historical email data in your own Postgres.</li>
 				</ul>
 			</div>
 			<div class="verdict-card verdict-stay">
 				<h3>Stay on SendGrid when…</h3>
 				<ul>
-					<li>You have zero sysadmin capacity and "don't think about infrastructure" is worth $89.95/month.</li>
-					<li>You need pre-warmed IPs from day one; Vectis Mail on a fresh IP requires 2–4 weeks of warmup.</li>
-					<li>SOC 2 / HIPAA reports from your email provider are a procurement requirement.</li>
-					<li>You're at 100M+ emails/month and need a team watching ISP relations daily.</li>
-					<li>You use Marketing Campaigns (broadcast). Vectis Mail is transactional + receive only.</li>
+					<li><strong>You send marketing broadcasts.</strong> Vectis Mail is transactional + receive — not a campaign tool with list management, A/B testing, and broadcast analytics. Pair it with a marketing platform, or keep SendGrid Marketing Campaigns for that lane.</li>
+					<li><strong>You're at 100M+ emails/month</strong> and want a vendor team watching ISP relations and blocklist removal for you, every day.</li>
+					<li>You have nobody to run a VPS and "never think about infrastructure" is worth the per-email premium.</li>
 				</ul>
 			</div>
+		</div>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<h3>The two fears that usually aren't blockers</h3>
+			<p style="margin-bottom: 0.75rem;"><strong>"I need warm IPs from day one."</strong> You never switch cold. With the <a href="/deliverability/" style="color: var(--sl-color-accent);">dual-send playbook</a> you keep SendGrid delivering production mail while your own IP warms over 2–4 weeks, then shift traffic once it's proven. There's no day-one reputation gap — just an overlap window you control.</p>
+			<p><strong>"I need compliance reports."</strong> If you need <em>data residency, GDPR, or internal-audit</em> evidence, self-hosting is usually the stronger answer — the data never leaves your boundary, so the question becomes "where did you deploy the server," not "trust the vendor's attestation." The genuine gap is a <em>vendor-side</em> SOC 2 / HIPAA BAA as a hard procurement gate; audit-evidence packs for that are on the <a href="/for/enterprises/" style="color: var(--sl-color-accent);">Enterprise roadmap</a> — <a href="/talk-to-us/?segment=enterprise" style="color: var(--sl-color-accent);">talk to us</a> if that's your timeline.</p>
 		</div>
 	</section>
 
@@ -334,8 +337,11 @@ const dateModified = '2026-06-08'
 					sending bulk volume to Google/Microsoft inboxes; SendGrid hides this by
 					pooling pre-warmed IPs. After warmup, self-hosted deliverability with
 					DKIM/SPF/DMARC/MTA-STS properly configured typically matches managed
-					providers. The <a href="/guides/ip-warmup/">IP warmup guide</a> walks
-					through the calendar schedule.
+					providers. You don't take a day-one hit when migrating: the
+					<a href="/deliverability/">dual-send playbook</a> keeps your current
+					provider delivering while the new IP warms, so there's no reputation gap.
+					The <a href="/guides/ip-warmup/">IP warmup guide</a> walks through the
+					calendar schedule.
 				</p>
 			</div>
 			<div class="alt-faq-q">
