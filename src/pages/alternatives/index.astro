@@ -5,7 +5,7 @@ const title = 'Vectis Mail alternatives — side-by-side comparisons'
 const description = 'Side-by-side comparisons of Vectis Mail vs Mailcow, iRedMail, Mail-in-a-Box, SendGrid, and Postmark. Self-hosted vs managed, free vs metered.'
 const url = 'https://vectismail.com/alternatives/'
 const ogImage = 'https://vectismail.com/og/default.png'
-const dateModified = '2026-05-13'
+const dateModified = '2026-06-08'
 
 type Alt = {
 	href: string
@@ -48,9 +48,9 @@ const live: Alt[] = [
 	{
 		href: '/alternatives/mail-in-a-box/',
 		title: 'vs Mail-in-a-Box',
-		tagline: 'One-command personal email sovereignty vs API-first multi-tenant infrastructure. When each is the right fit.',
+		tagline: 'One-command personal email sovereignty vs API-first multi-domain infrastructure. When each is the right fit.',
 		bullets: [
-			'Single-org one-command install vs multi-tenant + API',
+			'Single-org one-command install vs multi-domain + API',
 			'Bundled CalDAV/CardDAV vs Phase-4 roadmap',
 			'CC0 public domain vs BSL 1.1 + commercial Pro',
 		],
@@ -130,12 +130,12 @@ const upcoming: { title: string; tagline: string }[] = []
 					{
 						"@type": "Question",
 						"name": "Which Vectis Mail alternative comparison should I read first?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Start with the comparison that matches what you're running today. If you operate a Mailcow stack and want a more declarative surface, read /alternatives/mailcow/. If you're paying SendGrid or Postmark per email and want flat pricing on a self-hosted stack, read /alternatives/sendgrid/ or /alternatives/postmark/. If you outgrew Mail-in-a-Box's single-server model and need multi-tenant + API, read /alternatives/mail-in-a-box/. If iRedMail's OS-native install feels dated and you want REST API + atomic updates, read /alternatives/iredmail/." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Start with the comparison that matches what you're running today. If you operate a Mailcow stack and want a more declarative surface, read /alternatives/mailcow/. If you're paying SendGrid or Postmark per email and want flat pricing on a self-hosted stack, read /alternatives/sendgrid/ or /alternatives/postmark/. If you outgrew Mail-in-a-Box's single-server model and need multi-domain + API, read /alternatives/mail-in-a-box/. If iRedMail's OS-native install feels dated and you want REST API + atomic updates, read /alternatives/iredmail/." }
 					},
 					{
 						"@type": "Question",
 						"name": "Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what is the difference?",
-						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are mature multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is one-command personal email sovereignty on a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-tenant operators." }
+						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are mature multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is one-command personal email sovereignty on a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-domain operators." }
 					},
 					{
 						"@type": "Question",
@@ -178,7 +178,7 @@ const upcoming: { title: string; tagline: string }[] = []
 			pharlux.com, scrutique.com, and other Veltara Works infrastructure.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
 		</div>
 	</section>
 
@@ -222,7 +222,7 @@ const upcoming: { title: string; tagline: string }[] = []
 			</div>
 			<div class="feature-card">
 				<h3>Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what's different?</h3>
-				<p>All four are self-hosted email platforms targeting different operators. Mailcow ships as Docker Compose, iRedMail installs OS-native, Mail-in-a-Box is one-command personal sovereignty on a single VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML, atomic updates with rollback, and a 40+ endpoint REST API for agencies, SaaS, and multi-tenant operators.</p>
+				<p>All four are self-hosted email platforms targeting different operators. Mailcow ships as Docker Compose, iRedMail installs OS-native, Mail-in-a-Box is one-command personal sovereignty on a single VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML, atomic updates with rollback, and a 40+ endpoint REST API for agencies, SaaS, and multi-domain operators.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Vectis Mail vs SendGrid vs Postmark — are these even comparable?</h3>
@@ -242,7 +242,7 @@ const upcoming: { title: string; tagline: string }[] = []
 		</div>
 	</section>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
 
 
 	</main>

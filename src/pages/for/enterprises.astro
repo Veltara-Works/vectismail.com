@@ -2,11 +2,11 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 const title = 'Vectis Mail for Enterprises — Self-Hosted Sovereign Email'
-const description = 'Vectis Mail for enterprises: self-hosted, data-sovereign email with audit trails, multi-tenancy, and BSL 1.1 source-available licensing.'
+const description = 'Vectis Mail for enterprises: self-hosted, data-sovereign email with audit trails, multi-domain hosting, and BSL 1.1 source-available licensing.'
 const url = 'https://vectismail.com/for/enterprises/'
 const ogImage = 'https://vectismail.com/og/for-enterprises.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-05-13'
+const dateModified = '2026-06-08'
 ---
 <html lang="en">
 <head>
@@ -84,7 +84,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "How does Vectis Mail handle multi-tenancy at enterprise scale?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is multi-tenant from the database up: tenants, domains, mailboxes, and API keys are isolated at the database row level. Today's isolation is suitable for trusted-tenant scenarios (multiple internal business units, multiple managed customer brands under one operator). Strict cross-tenant security isolation guarantees, the level you'd want before running mutually-distrustful tenants on shared infrastructure, land with the Enterprise tier. Until then, the safe answer for security-sensitive tenant pairs is one install per tenant boundary." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail isolates at the domain level — every domain has its own DKIM keys, analytics, and spam controls. Today's domain-level isolation is suitable for trusted-tenant scenarios (multiple internal business units, multiple managed customer brands under one operator). Strict cross-tenant security isolation guarantees, the level you'd want before running mutually-distrustful tenants on shared infrastructure, land with the Enterprise tier. Until then, the safe answer for security-sensitive tenant pairs is one install per tenant boundary." }
 					},
 					{
 						"@type": "Question",
@@ -117,14 +117,14 @@ const dateModified = '2026-05-13'
 		<h1>Vectis Mail for enterprises.<br/><span>Email infrastructure on your terms — your servers, your data, your audit trail.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is self-hosted email infrastructure for enterprises that need data
-			sovereignty, audit trails, multi-tenancy, and source-available code. Pro tier
+			sovereignty, audit trails, multi-domain hosting, and source-available code. Pro tier
 			today covers the Vectis Mail platform. The dedicated Enterprise tier lands later
 			in 2026, adding clustering, hardened multi-tenancy, audit-report packs, and
 			SLA-backed support. We're transparent about what's in the box today and what's
 			coming.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
 			<span>·</span>
 			<span>Written by Ian Holt</span>
 		</div>
@@ -143,8 +143,8 @@ const dateModified = '2026-05-13'
 				<p>BSL 1.1 core. Your security team can read the source, run their own code review, instrument the build, verify what's running matches what's in <a href="https://github.com/Veltara-Works/vectis" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">GitHub</a>. Closed-source vendors can't make that promise.</p>
 			</div>
 			<div class="feature-card">
-				<h3>3. Multi-tenant from the database up</h3>
-				<p>Tenants, domains, mailboxes, and API keys are isolated at the database row level. Pro adds per-domain analytics, advanced spam controls, and per-domain rate limiting. Suitable today for trusted-tenant scenarios: internal business units, managed customer brands.</p>
+				<h3>3. Domain-level isolation from the database up</h3>
+				<p>Every domain has its own DKIM keys, and Pro adds per-domain analytics, advanced spam controls, and per-domain rate limiting. Domain-level isolation is suitable today for trusted-tenant scenarios: internal business units, managed customer brands. Strict cross-tenant isolation guarantees land with the Enterprise tier.</p>
 			</div>
 			<div class="feature-card">
 				<h3>4. Atomic updates with rollback</h3>
@@ -311,8 +311,8 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>How does Vectis Mail handle multi-tenancy at enterprise scale?</h3>
 				<p>
-					Vectis Mail is multi-tenant from the database up: tenants, domains, mailboxes,
-					and API keys are isolated at the database row level. Today's isolation is suitable for
+					Vectis Mail isolates at the domain level — every domain has its own DKIM keys,
+					analytics, and spam controls. Today's domain-level isolation is suitable for
 					trusted-tenant scenarios (multiple internal business units, multiple managed
 					customer brands under one operator). Strict cross-tenant security isolation
 					guarantees (the level you'd want before running mutually-distrustful tenants
@@ -344,7 +344,7 @@ const dateModified = '2026-05-13'
 		</div>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
 
 	</main>
 

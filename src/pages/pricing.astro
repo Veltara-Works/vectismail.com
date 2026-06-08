@@ -36,7 +36,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		"operatingSystem": "Linux",
 		"description": description,
 		"url": "https://vectismail.com/pricing/",
-		"softwareVersion": "0.1.12",
+		"softwareVersion": "0.1.19",
 		"publisher": {
 			"@type": "Organization",
 			"name": "Veltara Works",
@@ -56,14 +56,14 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			{
 				"@type": "Offer",
 				"name": "Pro",
-				"price": "29",
+				"price": "39",
 				"priceCurrency": "USD",
 				"availability": "https://schema.org/InStock",
-				"description": "Per tenant per month. Everything in Starter plus unlimited domains, unlimited mailboxes per domain, per-domain analytics dashboard, per-domain spam controls (reject thresholds, greylisting, allow/block lists), OIDC SSO (Google, Azure AD, Keycloak), priority email support, and offline use through your current paid period (typically up to ~30 days on monthly plans) if ValidonX is temporarily unreachable. One subscription covers unlimited Vectis Mail installs.",
+				"description": "Per tenant per month, never per email — unlimited send volume. Everything in Starter plus unlimited domains, unlimited mailboxes per domain, per-domain analytics dashboard, per-domain spam controls (reject thresholds, greylisting, allow/block lists), OIDC SSO (Google, Azure AD, Keycloak), priority email support, and offline use through your current paid period (typically up to ~30 days on monthly plans) if ValidonX is temporarily unreachable. One subscription covers unlimited Vectis Mail installs operated by your organisation.",
 				"category": "subscription",
 				"priceSpecification": {
 					"@type": "UnitPriceSpecification",
-					"price": "29",
+					"price": "39",
 					"priceCurrency": "USD",
 					"unitText": "per tenant per month",
 					"billingIncrement": "1",
@@ -77,6 +77,11 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Why is Pro priced per tenant and not per email?",
+				"acceptedAnswer": { "@type": "Answer", "text": "Because metered sending punishes growth. SendGrid, Postmark, Resend, and SES all price per email past a base bucket, so your email bill rises with your send volume. Vectis Mail never charges per email — Pro is a flat $39 USD per tenant per month for unlimited send volume, whether you send 10,000 or 10 million. A tenant is your organisation, and one subscription covers unlimited Vectis Mail installs you operate." }
+			},
 			{
 				"@type": "Question",
 				"name": "Do I need a license to use Vectis Mail?",
@@ -128,7 +133,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 
 	<section class="section" style="text-align: center;">
 		<h1>Vectis Mail&trade; pricing</h1>
-		<p class="subtitle">Self-hosted email platform — free Starter tier, $39 USD/tenant/month Pro. Start free, upgrade when you need more.</p>
+		<p class="subtitle">Self-hosted email — never priced per send. Free Starter tier, $39 USD/tenant/month Pro for unlimited volume. Start free, upgrade when you need more.</p>
 
 		<div class="pricing-grid" style="grid-template-columns: repeat(2, minmax(280px, 380px)); justify-content: center;">
 			<div class="pricing-card">
@@ -160,6 +165,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 				<ul>
 					<li>One subscription, unlimited Vectis installs</li>
 					<li>Everything in Starter, plus:</li>
+					<li>Unlimited send volume &mdash; never priced per email</li>
 					<li>Unlimited domains</li>
 					<li>Unlimited mailboxes per domain</li>
 					<li>Per-domain analytics dashboard</li>
@@ -168,13 +174,15 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 					<li>Priority email support</li>
 				</ul>
 				<a href="/upgrade/" class="btn-primary" style="display: block; text-align: center;">Buy Pro — $39 USD/mo</a>
+				<p style="margin-top: 1rem; font-size: 0.85rem; line-height: 1.5; opacity: 0.85;">At ~1M emails/month, SendGrid Pro runs ~$89.95+ plus $30/mo per dedicated IP, and Resend Scale climbs from $90 toward $1,150. Vectis Pro is <strong>$39 flat</strong> &mdash; same price whether you send 10,000 or 10 million.</p>
 			</div>
 		</div>
 
 		<p class="subtitle" style="margin-top: 2rem; font-size: 0.95rem;">
-			Need clustering, multi-tenant, or compliance features for a larger
-			deployment? <a href="/contact/">Get in touch</a> &mdash; we're shipping
-			an Enterprise tier later in 2026.
+			Running mail for client domains, or need SAML, an SLA, or
+			compliance/DSAR support? Agency and Enterprise plans are in the works
+			&mdash; <a href="/contact/">tell us what you need</a> and we'll size it
+			with you.
 		</p>
 	</section>
 
@@ -217,6 +225,10 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		<h2>Frequently Asked Questions</h2>
 		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
 			<div class="feature-card">
+				<h3>Why per tenant and not per email?</h3>
+				<p>Because metered sending punishes growth. SendGrid, Postmark, Resend, and SES all price per email past a base bucket, so your bill rises with your send volume. Vectis Mail <strong>never charges per email</strong> — Pro is a flat $39 USD per tenant per month for unlimited volume, the same price whether you send 10,000 or 10 million. A tenant is your organisation, and one subscription covers unlimited Vectis Mail installs you operate.</p>
+			</div>
+			<div class="feature-card">
 				<h3>Do I need a license to use Vectis Mail?</h3>
 				<p>The Starter tier is free forever with no license required. Pro is licensed through <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a>, our licensing and billing platform.</p>
 			</div>
@@ -243,7 +255,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		</div>
 	</section>
 
-	<p class="page-meta">Last updated <time datetime="2026-05-17">17 May 2026</time></p>
+	<p class="page-meta">Last updated <time datetime="2026-06-08">8 June 2026</time></p>
 
 	</main>
 

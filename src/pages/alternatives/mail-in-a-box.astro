@@ -2,11 +2,11 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 const title = 'Mail-in-a-Box Alternative — Vectis Mail vs Mail-in-a-Box'
-const description = 'Vectis Mail vs Mail-in-a-Box: one-command personal email sovereignty vs API-first multi-tenant infrastructure. When each is the right fit.'
+const description = 'Vectis Mail vs Mail-in-a-Box: one-command personal email sovereignty vs API-first multi-domain infrastructure. When each is the right fit.'
 const url = 'https://vectismail.com/alternatives/mail-in-a-box/'
 const ogImage = 'https://vectismail.com/og/alternatives-mail-in-a-box.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-05-13'
+const dateModified = '2026-06-08'
 ---
 <html lang="en">
 <head>
@@ -71,7 +71,7 @@ const dateModified = '2026-05-13'
 				"brand": { "@type": "Brand", "name": "Vectis Mail" },
 				"offers": [
 					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
-					{ "@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+					{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
 				]
 			},
 			{
@@ -80,7 +80,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Is Vectis Mail a drop-in replacement for Mail-in-a-Box?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Not really. These are different products targeting different audiences. Mail-in-a-Box is single-server, single-org, one-command-install email sovereignty for individuals and families. Vectis Mail is API-first, multi-tenant, multi-domain mail + transactional sending for teams and SaaS. The mail-data layer (Postfix + Dovecot) migrates cleanly via standard IMAP sync, but the operational shape is different. If you've outgrown Mail-in-a-Box's single-tenant constraints or you now need an API, Vectis Mail is a natural next step. If you're still happy with one-command-and-done personal email, stay where you are." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Not really. These are different products targeting different audiences. Mail-in-a-Box is single-server, single-org, one-command-install email sovereignty for individuals and families. Vectis Mail is API-first, multi-domain mail + transactional sending for teams and SaaS. The mail-data layer (Postfix + Dovecot) migrates cleanly via standard IMAP sync, but the operational shape is different. If you've outgrown Mail-in-a-Box's single-tenant constraints or you now need an API, Vectis Mail is a natural next step. If you're still happy with one-command-and-done personal email, stay where you are." }
 					},
 					{
 						"@type": "Question",
@@ -129,12 +129,12 @@ const dateModified = '2026-05-13'
 		<p class="alt-lead">
 			Mail-in-a-Box does one thing really well: one command, one Ubuntu VPS, working
 			personal email server with webmail, calendar, contacts. Vectis Mail targets a different
-			problem: API-first, multi-tenant, multi-domain mail infrastructure for teams and SaaS
+			problem: API-first, multi-domain mail infrastructure for teams and SaaS
 			that need a transactional sending API alongside mailboxes. The cases where you
 			should stay on Mail-in-a-Box are below.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
 			<span>·</span>
 			<span>Written by Ian Holt</span>
 		</div>
@@ -149,7 +149,7 @@ const dateModified = '2026-05-13'
 					<tr><th></th><th>Vectis Mail</th><th>Mail-in-a-Box</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>Target user</td><td>Teams, SaaS, multi-tenant operators</td><td><strong>Individuals, families, single-org</strong></td></tr>
+					<tr><td>Target user</td><td>Teams, SaaS, multi-domain operators</td><td><strong>Individuals, families, single-org</strong></td></tr>
 					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
 					<tr><td>Deployment model</td><td>Docker Compose</td><td><strong>One-command shell script</strong> (OS-native)</td></tr>
 					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family) with Docker</td><td><strong>Ubuntu 22.04 LTS only</strong> (fresh install)</td></tr>
@@ -159,7 +159,7 @@ const dateModified = '2026-05-13'
 					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
 					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
 					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics)</td><td>SpamAssassin</td></tr>
-					<tr><td>Multi-tenant / multi-domain</td><td><strong>Built-in</strong>: many domains, many tenants</td><td>Single-org-shaped</td></tr>
+					<tr><td>Multi-domain</td><td><strong>Built-in</strong>: many domains on one install</td><td>Single-org-shaped</td></tr>
 					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
 					<tr><td>Webmail</td><td>Roundcube</td><td>Roundcube</td></tr>
 					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (Nextcloud-based)</td></tr>
@@ -181,7 +181,7 @@ const dateModified = '2026-05-13'
 				<ul>
 					<li>You're a team or SaaS, not a single person or family.</li>
 					<li>You need a real REST API and inbound webhooks alongside mailboxes: a SendGrid-shape sending API that you host yourself.</li>
-					<li>You manage multiple domains and need real multi-tenancy, not single-org constraints.</li>
+					<li>You manage multiple domains and need real multi-domain hosting, not single-org constraints.</li>
 					<li>You want declarative config: one <code>config.yaml</code> plus <code>vectis apply</code>, not click-through a web panel.</li>
 					<li>You want orchestrated updates with automatic rollback, not a re-run-the-setup-script model.</li>
 					<li>You want Rspamd's modern heuristics out of the box.</li>
@@ -215,7 +215,7 @@ const dateModified = '2026-05-13'
 		<p>
 			Vectis Mail sits in a different category. The audience is teams, SaaS, and multi-domain
 			operators who need a real transactional sending API, inbound webhooks,
-			multi-tenancy, and config-as-code. Comparing the two on the same table is useful for
+			multi-domain hosting, and config-as-code. Comparing the two on the same table is useful for
 			the migration question, but understand what each product is for.
 		</p>
 
@@ -237,12 +237,12 @@ const dateModified = '2026-05-13'
 			See the <a href="/api/">API Reference</a> for the full surface.
 		</p>
 
-		<h3 class="alt-h3">Multi-tenancy + multi-domain</h3>
+		<h3 class="alt-h3">Multi-domain hosting</h3>
 		<p>
 			Mail-in-a-Box is single-org-shaped. You can run multiple domains on one box, but the
 			control panel, the user model, and the operational shape all assume one organisation.
-			Vectis Mail is multi-tenant from the database up: tenants, domains, mailboxes, and
-			API keys are isolated at the database row level. If you're running mail infrastructure for
+			Vectis Mail hosts many domains on one install, each isolated at the domain level —
+			its own DKIM keys, analytics, and spam controls. If you're running mail for
 			multiple brands or customer subdomains, that's a structural difference, not a config tweak.
 		</p>
 
@@ -337,7 +337,7 @@ const dateModified = '2026-05-13'
 				<p>
 					Not really. These are different products targeting different audiences.
 					Mail-in-a-Box is single-server, single-org, one-command-install email sovereignty
-					for individuals and families. Vectis Mail is API-first, multi-tenant, multi-domain
+					for individuals and families. Vectis Mail is API-first, multi-domain
 					mail + transactional sending for teams and SaaS. The mail-data layer
 					(Postfix + Dovecot) migrates cleanly via standard IMAP sync, but the operational
 					shape is different. If you've outgrown Mail-in-a-Box's single-tenant
@@ -393,7 +393,7 @@ const dateModified = '2026-05-13'
 
 	<div class="cta-section">
 		<h2>Try Vectis Mail</h2>
-		<p>Production mail + transactional API for teams and SaaS. Multi-tenant, declarative, observable.</p>
+		<p>Production mail + transactional API for teams and SaaS. Multi-domain, declarative, observable.</p>
 		<div class="hero-buttons">
 			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
 			<a href="/pricing/" class="btn-secondary">View Pricing</a>

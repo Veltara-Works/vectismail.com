@@ -1,7 +1,7 @@
 ---
 title: "Should You Self-Host Email? The 2026 Decision Guide"
 description: "An honest 2026 decision guide for self-hosting email. TCO math vs SendGrid, Postmark, Mailgun and Google Workspace; the real deliverability bar; when SaaS still wins; when self-hosting wins; and the minimum viable self-host stack."
-lastUpdated: 2026-05-14
+lastUpdated: 2026-06-08
 ---
 
 **Short answer.** Self-host email in 2026 if you (a) send under ~500k transactional emails/month and want flat pricing, (b) need mailbox hosting *and* a transactional API on one stack, (c) have data-residency or sovereignty constraints, or (d) are paying enough to a SaaS provider that the engineering time pays back inside a year. Stay on SaaS if you send cold outreach at scale, lack any Linux operations capacity, or your business literally cannot tolerate a 4-hour mail outage during a learning curve.
@@ -183,7 +183,7 @@ Vectis Mail is the self-host platform we build. It's source-available (BSL 1.1),
 
 If you're weighing self-hosting in 2026, the relevant Vectis pages are:
 
-- **[Pricing](/pricing/)** — Free Starter (3 domains / 50 mailboxes) + Pro at $39 USD/tenant/month with the full API, multi-tenancy, and analytics.
+- **[Pricing](/pricing/)** — Free Starter (3 domains / 50 mailboxes) + Pro at $39 USD/tenant/month with the full API, multi-domain hosting, and analytics.
 - **[Features](/features/)** — what's in the box.
 - **[For SaaS founders](/for/saas/)**, **[For agencies](/for/agencies/)**, **[For developers](/for/developers/)**, **[For enterprises](/for/enterprises/)** — audience-specific use cases.
 - **[Alternatives](/alternatives/)** — direct comparisons against Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark.

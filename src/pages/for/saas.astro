@@ -2,11 +2,11 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 const title = 'Vectis Mail for SaaS — Self-Hosted Transactional Email'
-const description = 'Vectis Mail for SaaS: transactional sending, inbound webhooks, mailbox hosting, multi-tenancy, atomic updates. Flat $0–59/month, no per-email tax.'
+const description = 'Vectis Mail for SaaS: transactional sending, inbound webhooks, mailbox hosting, multi-domain management, atomic updates. Flat $0–59/month, no per-email tax.'
 const url = 'https://vectismail.com/for/saas/'
 const ogImage = 'https://vectismail.com/og/for-saas.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-05-13'
+const dateModified = '2026-06-08'
 ---
 <html lang="en">
 <head>
@@ -71,7 +71,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "How does Vectis Mail handle multi-tenancy for a SaaS with many customer domains?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is multi-tenant from the database up: tenants, domains, mailboxes, and API keys are isolated at the database row level. You can run one install hosting many customer domains with per-domain DKIM keys, per-domain analytics, and per-domain spam controls. Agencies and white-label operators can run a single Pro subscription across multiple Vectis Mail installs (one per geo, per customer, or per environment) without paying again. For the architecture, see the overview at /architecture/overview/." }
+						"acceptedAnswer": { "@type": "Answer", "text": "One install hosts many customer domains, and each domain is isolated at the domain level — its own DKIM keys, analytics, and spam controls. When a client needs hard isolation, run a dedicated install per client: one Pro subscription covers unlimited installs you operate, so there is no per-install fee. (Single-install isolation between mutually-distrustful tenants, and per-client white-label branding, are on the Phase 4 roadmap, not shipped today.) For the architecture, see the overview at /architecture/overview/." }
 					},
 					{
 						"@type": "Question",
@@ -115,17 +115,17 @@ const dateModified = '2026-05-13'
 	<main>
 
 	<section class="hero alt-hero">
-		<div class="hero-badge">For SaaS · Transactional + Mailbox + Multi-tenant</div>
+		<div class="hero-badge">For SaaS · Transactional + Mailbox + Multi-domain</div>
 		<h1>Vectis Mail for SaaS founders.<br/><span>Flat-priced email infrastructure that scales with you, not against you.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is what you get when transactional sending, inbound webhooks, mailbox
-			hosting, and multi-tenancy ship as one self-hosted product instead of three
+			hosting, and multi-domain management ship as one self-hosted product instead of three
 			separate SaaS bills. Pro is $39 USD per tenant per month: unlimited domains,
 			unlimited volume, unlimited installs operated by your organisation. The math
 			compounds in your favour as you grow.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -144,8 +144,8 @@ const dateModified = '2026-05-13'
 				<p>SendGrid + Google Workspace for <code>support@</code> is two vendors, two bills, two integration surfaces. Vectis Mail hosts mailboxes (IMAP/POP3 + Roundcube webmail) and runs the transactional API on the same instance. One product, one cost line.</p>
 			</div>
 			<div class="feature-card">
-				<h3>3. Multi-tenant SaaS needs multi-tenant infrastructure</h3>
-				<p>Tenants, domains, mailboxes, and API keys are isolated at the database row level in Vectis Mail. Per-domain DKIM, per-domain analytics, per-domain spam controls. One Pro subscription covers <strong>unlimited installs</strong> operated by your org, useful for per-geo deployment, per-customer-segment isolation, or white-labelling for resellers.</p>
+				<h3>3. Multi-domain SaaS needs per-domain isolation</h3>
+				<p>Every domain gets its own DKIM keys, analytics, and spam controls, isolated per domain. One install hosts many customer domains; one Pro subscription covers <strong>unlimited installs</strong> you operate, so you can run a dedicated install per customer when a client needs hard isolation. (Single-install isolation between mutually-distrustful tenants, and per-client white-label, are on the Phase 4 roadmap.)</p>
 			</div>
 			<div class="feature-card">
 				<h3>4. Data sovereignty closes deals</h3>
@@ -199,7 +199,7 @@ const dateModified = '2026-05-13'
 		<h2>What you build on Vectis Mail</h2>
 		<p class="subtitle">Concrete SaaS patterns that Vectis Mail handles cleanly.</p>
 
-		<h3 class="alt-h3">Multi-tenant transactional email</h3>
+		<h3 class="alt-h3">Multi-domain transactional email</h3>
 		<p>
 			Each of your customers gets their own sending domain. Vectis Mail handles DKIM key
 			generation, DNS record publishing (or guidance for customers managing their own
@@ -207,12 +207,14 @@ const dateModified = '2026-05-13'
 			calls one API; routing to the right domain is config.
 		</p>
 
-		<h3 class="alt-h3">White-label reseller / agency</h3>
+		<h3 class="alt-h3">Mail for client domains (agency / reseller)</h3>
 		<p>
-			Running mail infrastructure for client domains under your brand? Run multiple
-			Vectis Mail installs (one per geo, per customer tier, or per major client) all
+			Running mail for client domains? Host many client domains on one install, or run a
+			separate install per client (per geo, per customer tier, or per major client) — all
 			under a single Pro subscription. The "unlimited Vectis installs per organisation"
-			policy is built for this. <a href="/alternatives/" style="color: var(--sl-color-accent);">Compare to the per-instance pricing on managed providers</a>.
+			policy is built for this. Pro's Custom Branding sets the admin dashboard's name, colour,
+			and logo today; per-client webmail/admin white-label branding is on the Phase 4 roadmap.
+			<a href="/alternatives/" style="color: var(--sl-color-accent);">Compare to the per-instance pricing on managed providers</a>.
 		</p>
 
 		<h3 class="alt-h3">Reply-to-resolve support flow</h3>
@@ -232,12 +234,12 @@ const dateModified = '2026-05-13'
 			region" answer to enterprise procurement.
 		</p>
 
-		<h3 class="alt-h3">Per-tenant analytics for white-label transparency</h3>
+		<h3 class="alt-h3">Per-domain analytics for client transparency</h3>
 		<p>
 			Pro ships a per-domain analytics dashboard: delivery rates, bounce rates, IP warmup
-			progress, RBL status. If you white-label, you can surface those metrics to your
-			customers in their own admin UI via the analytics API. They see "your delivery rate
-			this week" without ever seeing the underlying provider.
+			progress, RBL status. Surface those metrics to your clients in your own admin UI via
+			the analytics API, and they see "your delivery rate this week" without ever seeing the
+			underlying provider.
 		</p>
 	</section>
 
@@ -282,12 +284,12 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>How does Vectis Mail handle multi-tenancy for a SaaS with many customer domains?</h3>
 				<p>
-					Multi-tenant from the database up. Tenants, domains, mailboxes, and API keys
-					are isolated at the database row level. One install can host many customer domains with
-					per-domain DKIM keys, per-domain analytics, and per-domain spam controls.
-					Agencies and white-label operators can run a single Pro subscription across
-					multiple Vectis Mail installs (one per geo, per customer, or per environment)
-					without paying again. Architecture detail at <a href="/architecture/overview/">/architecture/overview</a>.
+					One install hosts many customer domains, and each domain is isolated at the domain
+					level — its own DKIM keys, analytics, and spam controls. When a client needs hard
+					isolation, run a dedicated install per client: one Pro subscription covers unlimited
+					installs you operate, so there is no per-install fee. Single-install isolation between
+					mutually-distrustful tenants, and per-client white-label branding, are on the Phase 4
+					roadmap. Architecture detail at <a href="/architecture/overview/">/architecture/overview</a>.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -341,14 +343,14 @@ const dateModified = '2026-05-13'
 
 	<div class="cta-section">
 		<h2>Try Vectis Mail for your SaaS</h2>
-		<p>Self-hosted transactional sending + mailbox hosting + multi-tenancy. Flat $0–59/month all-in.</p>
+		<p>Self-hosted transactional sending + mailbox hosting + multi-domain management. Flat $0–59/month all-in.</p>
 		<div class="hero-buttons">
 			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
 			<a href="/pricing/" class="btn-secondary">View Pricing</a>
 		</div>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
 
 
 	</main>

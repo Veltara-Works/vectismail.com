@@ -6,7 +6,7 @@ const description = 'Vectis Mail for agencies: one Pro subscription covers unlim
 const url = 'https://vectismail.com/for/agencies/'
 const ogImage = 'https://vectismail.com/og/for-agencies.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-05-13'
+const dateModified = '2026-06-08'
 ---
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@ const dateModified = '2026-05-13'
 				"datePublished": datePublished,
 				"dateModified": dateModified,
 				"isPartOf": { "@type": "WebSite", "name": "Vectis Mail", "url": "https://vectismail.com/" },
-				"audience": { "@type": "BusinessAudience", "audienceType": "Agencies and white-label resellers" }
+				"audience": { "@type": "BusinessAudience", "audienceType": "Agencies and managed-mail resellers" }
 			},
 			{
 				"@type": "FAQPage",
@@ -89,7 +89,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "Do I need separate Vectis installs per client, or can one install host many clients?",
-						"acceptedAnswer": { "@type": "Answer", "text": "One install can host many client domains. Vectis Mail is multi-tenant from the database up with per-domain isolation. You'd want separate installs when: (1) clients have data-residency requirements pulling them into different geographic regions, (2) clients require dedicated IPs for deliverability isolation, (3) you're segmenting clients into different commercial tiers with different SLAs. Most agencies start with one install and add more only when these constraints kick in." }
+						"acceptedAnswer": { "@type": "Answer", "text": "One install can host many client domains, with isolation at the domain level (each domain has its own DKIM keys, analytics, and spam controls). You'd want separate installs when: (1) clients have data-residency requirements pulling them into different geographic regions, (2) clients require dedicated IPs for deliverability isolation, (3) you're segmenting clients into different commercial tiers with different SLAs. Most agencies start with one install and add more only when these constraints kick in." }
 					}
 				]
 			}
@@ -123,7 +123,7 @@ const dateModified = '2026-05-13'
 			economics work the way you'd hope.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>13 May 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -298,8 +298,8 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>Do I need separate Vectis installs per client, or can one install host many?</h3>
 				<p>
-					One install can host many client domains. Vectis Mail is multi-tenant from
-					the database up with per-domain isolation. You'd want separate installs when:
+					One install can host many client domains, with isolation at the domain level
+					(each domain has its own DKIM keys, analytics, and spam controls). You'd want separate installs when:
 					(1) clients have data-residency requirements pulling them into different
 					geographic regions, (2) clients require dedicated IPs for deliverability
 					isolation, (3) you're segmenting clients into different commercial tiers
@@ -319,7 +319,7 @@ const dateModified = '2026-05-13'
 		</div>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>13 May 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
 
 
 	</main>
