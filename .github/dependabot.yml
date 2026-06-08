@@ -1,0 +1,24 @@
+# Dependabot version-update PRs for the marketing site.
+# Security *alerts* are enabled in repo settings; this drives scheduled bumps.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      # astro is hard-pinned to 6.1.10 — 6.4.x breaks mdx. Bump deliberately
+      # (with overrides for vite/postcss), never via an automated PR.
+      - dependency-name: "astro"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: "ci(deps)"
