@@ -85,7 +85,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			{
 				"@type": "Question",
 				"name": "Do I need a license to use Vectis Mail?",
-				"acceptedAnswer": { "@type": "Answer", "text": "The Starter tier is free forever with no license required. Pro is licensed through ValidonX." }
+				"acceptedAnswer": { "@type": "Answer", "text": "The Starter tier is free forever with no license required. Pro is licensed and billed through ValidonX, the default licensing backend operated by Veltara Works — though the endpoint Pro checks is a configurable URL, not a hardwired dependency." }
 			},
 			{
 				"@type": "Question",
@@ -95,7 +95,12 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			{
 				"@type": "Question",
 				"name": "Can I self-host without any external dependencies?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Yes. Starter works fully offline. Pro checks ValidonX for entitlements and keeps working offline through your current paid period if ValidonX is temporarily unreachable." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Yes, and your mail is never coupled to a licensing service. Starter runs fully offline with no licensing backend. For Pro, the licensing backend is a configurable endpoint (ValidonX is the default, not a hardwired dependency); it exchanges only an opaque tenant identifier and entitlement flags — no mailboxes, message content, or recipient addresses. Core mail delivery never depends on it, and entitlements are cached in your Postgres so Pro keeps working offline through your current paid period if the backend is unreachable." }
+			},
+			{
+				"@type": "Question",
+				"name": "Am I locked into ValidonX?",
+				"acceptedAnswer": { "@type": "Answer", "text": "No. The licensing backend is a URL you set, and Pro entitlement checks speak a documented HTTP contract, so the licensing layer is not hardwired to one provider. ValidonX is the default and what Pro is billed through. Combined with the source-available BSL 1.1 licence (which converts to Apache 2.0 four years after each release), there is no lock-in: your data lives in your Postgres, your mail runs on your server, and you can read, audit, or fork the code." }
 			},
 			{
 				"@type": "Question",
@@ -230,7 +235,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			</div>
 			<div class="feature-card">
 				<h3>Do I need a license to use Vectis Mail?</h3>
-				<p>The Starter tier is free forever with no license required. Pro is licensed through <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a>, our licensing and billing platform.</p>
+				<p>The Starter tier is free forever with no license required. Pro is licensed and billed through <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a>, the default licensing backend (operated by Veltara Works) — though the endpoint Pro checks is configurable, not a hardwired dependency.</p>
 			</div>
 			<div class="feature-card">
 				<h3>What happens if my Pro license expires?</h3>
@@ -238,7 +243,11 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			</div>
 			<div class="feature-card">
 				<h3>Can I self-host without any external dependencies?</h3>
-				<p>Yes. The Starter tier works fully offline. Pro checks <a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a> for entitlements and keeps working offline through your current paid period if ValidonX is temporarily unreachable, with entitlements cached in Postgres.</p>
+				<p>Yes — and your mail is never coupled to a licensing service. Starter runs fully offline with no licensing backend at all. For Pro, the licensing backend is a <strong>configurable endpoint</strong> (<a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a> is the default we operate, not a hardwired dependency): it exchanges only an opaque tenant identifier and your entitlement flags — no mailboxes, message content, or recipient addresses ever pass through it. Core mail delivery (Postfix, Dovecot) never depends on it, and Pro entitlements are cached in your Postgres so they keep working offline through your current paid period if the backend is unreachable.</p>
+			</div>
+			<div class="feature-card">
+				<h3>Am I locked into ValidonX?</h3>
+				<p>No. The licensing backend is a URL you set, and Pro entitlement checks speak a documented HTTP contract — so the licensing layer isn't hardwired to one provider. ValidonX (operated by Veltara Works) is the default and what Pro is billed through; it's a convenience, not a chain. Combined with the source-available <a href="https://github.com/Veltara-Works/vectis/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">BSL 1.1</a> licence (which converts to Apache 2.0 four years after each release), there's no lock-in: your data lives in your Postgres, your mail runs on your server, and you can read, audit, or fork the code.</p>
 			</div>
 			<div class="feature-card">
 				<h3>What server do I need?</h3>
