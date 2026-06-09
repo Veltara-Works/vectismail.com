@@ -2,7 +2,7 @@
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Pricing — Vectis Mail'
-const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 mailboxes), Pro at $39 USD per tenant/month with unlimited domains, OIDC SSO, and priority support.'
+const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 mailboxes), Pro at $39 USD per tenant/month with unlimited domains and OIDC SSO, and Enterprise from $499 USD/month with SAML 2.0 SSO and a support SLA.'
 ---
 <html lang="en">
 <head>
@@ -17,7 +17,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 	<meta property="og:image" content="https://vectismail.com/og/default.png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content="Vectis Mail pricing — free Starter, $39 USD/tenant/month Pro" />
+	<meta property="og:image:alt" content="Vectis Mail pricing — free Starter, $39 USD/tenant/month Pro, Enterprise from $499 USD/month" />
 	<meta property="og:site_name" content="Vectis Mail" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
@@ -36,7 +36,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		"operatingSystem": "Linux",
 		"description": description,
 		"url": "https://vectismail.com/pricing/",
-		"softwareVersion": "0.1.19",
+		"softwareVersion": "0.1.21",
 		"publisher": {
 			"@type": "Organization",
 			"name": "Veltara Works",
@@ -70,13 +70,33 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 					"billingDuration": "P1M"
 				},
 				"url": "https://vectismail.com/upgrade/"
-			}
+			},
+				{
+					"@type": "Offer",
+					"name": "Enterprise",
+					"price": "499",
+					"priceCurrency": "USD",
+					"availability": "https://schema.org/InStock",
+					"description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on and a business-hours support SLA (first-response targets). Roadmap: DSAR export and data-retention tooling, deliverability monitoring, SCIM. Sold via talk-to-us.",
+					"category": "subscription",
+					"url": "https://vectismail.com/talk-to-us/"
+				}
 		]
 	})} />
 	<script is:inline type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What does the Enterprise plan include?",
+					"acceptedAnswer": { "@type": "Answer", "text": "Enterprise is for organisations that need assurance, regardless of size: everything in Pro plus SAML 2.0 single sign-on and a business-hours support SLA. It is flat-priced from $499 USD per tenant per month — never per seat — with custom pricing for larger organisations. DSAR export and data-retention tooling, deliverability monitoring, and SCIM are on the roadmap; tell us what you need at https://vectismail.com/talk-to-us/." }
+				},
+				{
+					"@type": "Question",
+					"name": "What does the Enterprise support SLA cover?",
+					"acceptedAnswer": { "@type": "Answer", "text": "The Enterprise SLA sets first-response targets by severity during business hours (9am–5pm AEST, Mon–Fri, excluding Australian public holidays): P1 (production mail flow down) 4 business hours, P2 (major feature degraded) 8 business hours, P3 (minor) 2 business days, P4 (question) 3 business days. These are first-response targets, not resolution times, and cover the Vectis Mail software — not customer infrastructure, DNS or deliverability, third-party components, or modified/unsupported versions. 24/7 priority response is available as a custom add-on. Because Vectis Mail is self-hosted, we do not offer an uptime SLA — your server’s availability is yours to run." }
+				},
 			{
 				"@type": "Question",
 				"name": "Why is Pro priced per tenant and not per email?",
@@ -140,7 +160,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		<h1>Vectis Mail&trade; pricing</h1>
 		<p class="subtitle">Self-hosted email — never priced per send. Free Starter tier, $39 USD/tenant/month Pro for unlimited volume. Start free, upgrade when you need more.</p>
 
-		<div class="pricing-grid" style="grid-template-columns: repeat(2, minmax(280px, 380px)); justify-content: center;">
+		<div class="pricing-grid" style="grid-template-columns: repeat(3, minmax(240px, 360px)); justify-content: center;">
 			<div class="pricing-card">
 				<div class="tier">Starter</div>
 				<div class="price">Free</div>
@@ -181,50 +201,93 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 				<a href="/upgrade/" class="btn-primary" style="display: block; text-align: center;">Buy Pro — $39 USD/mo</a>
 				<p style="margin-top: 1rem; font-size: 0.85rem; line-height: 1.5; opacity: 0.85;">At ~1M emails/month, SendGrid Pro runs ~$89.95+ plus $30/mo per dedicated IP, and Resend Scale climbs from $90 toward $1,150. Vectis Pro is <strong>$39 flat</strong> &mdash; same price whether you send 10,000 or 10 million.</p>
 			</div>
+				<div class="pricing-card">
+					<div class="tier">Enterprise</div>
+					<div class="price">From $499</div>
+					<div class="period">USD per tenant / month · custom above</div>
+					<ul>
+						<li>Everything in Pro, plus:</li>
+						<li>SAML 2.0 SSO</li>
+						<li>Support SLA &mdash; business-hours response targets</li>
+						<li>Critical security-patch commitments</li>
+						<li>Flat pricing &mdash; never per seat</li>
+						<li style="opacity: 0.7;">Roadmap: DSAR &amp; data retention, deliverability monitoring, SCIM</li>
+					</ul>
+					<a href="/talk-to-us/" class="btn-primary" style="display: block; text-align: center;">Talk to us</a>
+					<p style="margin-top: 1rem; font-size: 0.85rem; line-height: 1.5; opacity: 0.85;">For organisations that need SAML, an SLA, or compliance tooling. Flat per-tenant pricing &mdash; where Microsoft 365 and Google Workspace bill per seat, Enterprise stays flat as you grow.</p>
+				</div>
+
 		</div>
 
 		<p class="subtitle" style="margin-top: 2rem; font-size: 0.95rem;">
-			Running mail for client domains, or need SAML, an SLA, or
-			compliance/DSAR support? Agency and Enterprise plans are in the works
-			&mdash; <a href="/talk-to-us/">tell us what you need</a> and we'll size it
-			with you.
+			Running mail for client domains? Agency plans are in the works &mdash; <a href="/talk-to-us/">tell us what you need</a> and we’ll size it with you. Need a larger or custom Enterprise plan? <a href="/talk-to-us/">Talk to us</a>.
 		</p>
 	</section>
 
 	<section class="section">
-		<h2>Starter vs Pro at a glance</h2>
+		<h2>Starter vs Pro vs Enterprise at a glance</h2>
 		<div class="compare-table-wrap" style="margin-top: 1.25rem;">
 			<table class="compare-table">
-				<thead>
-					<tr>
-						<th scope="col">Feature</th>
-						<th scope="col">Starter</th>
-						<th scope="col">Pro</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr><td>Price</td><td>Free forever</td><td>$39 USD / tenant / month</td></tr>
-					<tr><td>Domains</td><td>Up to 3</td><td>Unlimited</td></tr>
-					<tr><td>Mailboxes per domain</td><td>Up to 25</td><td>Unlimited</td></tr>
-					<tr><td>Sending API + batch sending</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Inbound webhooks (full body)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Admin dashboard</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Webmail (Roundcube)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Sieve filter management</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>DKIM / SPF / DMARC</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Automatic TLS</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Monitoring (metrics + health alerts; Grafana + Loki optional)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>IP warmup &amp; RBL monitoring</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Backup &amp; restore</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Per-domain analytics dashboard</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Per-domain spam controls (thresholds, greylisting, allow/block)</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Support</td><td>Community</td><td>Priority email</td></tr>
-					<tr><td>Offline use if ValidonX is unreachable</td><td>n/a</td><td>Through current paid period</td></tr>
-				</tbody>
-			</table>
+						<thead>
+							<tr>
+								<th scope="col">Feature</th>
+								<th scope="col">Starter</th>
+								<th scope="col">Pro</th>
+								<th scope="col">Enterprise</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>Price</td><td>Free forever</td><td>$39 USD / tenant / month</td><td>From $499 USD / tenant / month</td></tr>
+							<tr><td>Domains</td><td>Up to 3</td><td>Unlimited</td><td>Unlimited</td></tr>
+							<tr><td>Mailboxes per domain</td><td>Up to 25</td><td>Unlimited</td><td>Unlimited</td></tr>
+							<tr><td>Sending API + batch sending</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Inbound webhooks (full body)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Admin dashboard</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Webmail (Roundcube)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Sieve filter management</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>DKIM / SPF / DMARC</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Automatic TLS</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Monitoring (metrics + health alerts; Grafana + Loki optional)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>IP warmup &amp; RBL monitoring</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Backup &amp; restore</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Per-domain analytics dashboard</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>Per-domain spam controls (thresholds, greylisting, allow/block)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+							<tr><td>SAML 2.0 SSO</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+							<tr><td>Support</td><td>Community</td><td>Priority email</td><td>Priority email + SLA</td></tr>
+							<tr><td>Support SLA (first-response targets)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+							<tr><td>Critical security-patch commitment</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+							<tr><td>DSAR export &amp; data retention</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
+							<tr><td>Advanced deliverability monitoring</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
+							<tr><td>SCIM provisioning</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
+							<tr><td>Offline use if ValidonX is unreachable</td><td>n/a</td><td>Through current paid period</td><td>Through current paid period</td></tr>
+						</tbody>
+					</table>
 		</div>
 	</section>
+
+		<section class="section">
+			<h2>Enterprise assurance</h2>
+			<p class="subtitle" style="margin-top: 0.5rem;">For organisations that need SAML, a support SLA, and compliance tooling — regardless of size. Flat per-tenant pricing from $499 USD/month, never per seat, custom above.</p>
+			<h3 style="margin-top: 1.5rem;">Support SLA — first-response targets</h3>
+			<div class="compare-table-wrap" style="margin-top: 0.75rem;">
+				<table class="compare-table">
+					<thead>
+						<tr><th scope="col">Severity</th><th scope="col">Example</th><th scope="col">First response</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>P1 &mdash; Critical</td><td>Production mail flow down, no workaround</td><td>4 business hours</td></tr>
+						<tr><td>P2 &mdash; High</td><td>Major feature degraded</td><td>8 business hours</td></tr>
+						<tr><td>P3 &mdash; Normal</td><td>Minor issue, workaround exists</td><td>2 business days</td></tr>
+						<tr><td>P4 &mdash; Low</td><td>Question or cosmetic</td><td>3 business days</td></tr>
+					</tbody>
+				</table>
+			</div>
+			<p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.85;">Business hours are 9am&ndash;5pm AEST, Monday&ndash;Friday, excluding Australian public holidays. These are <strong>first-response targets, not resolution times</strong>. Coverage is for the Vectis Mail software and excludes customer infrastructure, networks, DNS and deliverability, third-party components, and modified or unsupported versions. 24/7 priority response is available as a custom add-on &mdash; <a href="/talk-to-us/">talk to us</a>. We also commit to issuing critical security patches promptly and prioritising confirmed critical fixes into the next patch release.</p>
+			<h3 style="margin-top: 1.5rem;">Deliverability, honestly</h3>
+			<p style="font-size: 0.9rem; opacity: 0.85;">Vectis Mail is self-hosted, so inbox placement ultimately rides on your own server&rsquo;s IP reputation — which we equip and advise on, but do not own. We don&rsquo;t sell &ldquo;guaranteed deliverability&rdquo;. What we provide: correct DKIM/SPF/DMARC out of the box, the dual-send warmup migration playbook (keep your current provider live while your new IP warms), and RBL monitoring today — with reputation/blocklist alerting on the Enterprise roadmap. For the same reason, we do not offer an uptime SLA: your server&rsquo;s availability is yours to run.</p>
+			<p style="margin-top: 1.25rem;"><a href="/talk-to-us/" class="btn-primary" style="display:inline-block;">Talk to us about Enterprise</a></p>
+		</section>
 
 	<section class="section">
 		<h2>Frequently Asked Questions</h2>
@@ -241,6 +304,14 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 				<h3>What happens if my Pro license expires?</h3>
 				<p>Your mail server keeps running and all core mail delivery (Postfix, Dovecot) continues working. If a payment fails, Pro features keep working through a 21-day grace window while we retry; after that, Pro features (analytics, advanced spam controls, OIDC SSO, unlimited domains and mailboxes) revert to Starter limits but your data is never locked.</p>
 			</div>
+				<div class="feature-card">
+					<h3>What does the Enterprise plan include?</h3>
+					<p>Enterprise is for organisations that need <strong>assurance</strong>, regardless of size: everything in Pro plus <strong>SAML 2.0 SSO</strong> and a <strong>business-hours support SLA</strong>. It&rsquo;s flat-priced <strong>from $499 USD per tenant per month</strong> &mdash; never per seat &mdash; with custom pricing for larger organisations. DSAR export and data-retention tooling, deliverability monitoring, and SCIM are on the roadmap. <a href="/talk-to-us/" style="color: var(--sl-color-accent);">Tell us what you need</a> and we&rsquo;ll size it with you.</p>
+				</div>
+				<div class="feature-card">
+					<h3>What does the Enterprise support SLA cover?</h3>
+					<p>First-response targets by severity during business hours (9am&ndash;5pm AEST, Mon&ndash;Fri, excl. AU public holidays): <strong>P1 4 business hours</strong>, P2 8 business hours, P3 2 business days, P4 3 business days. These are first-response targets, not resolution times, and cover the Vectis Mail software &mdash; not your infrastructure, DNS/deliverability, third-party components, or modified versions. 24/7 priority response is a custom add-on. Because Vectis Mail is self-hosted, we don&rsquo;t offer an uptime SLA &mdash; your server&rsquo;s availability is yours to run.</p>
+				</div>
 			<div class="feature-card">
 				<h3>Can I self-host without any external dependencies?</h3>
 				<p>Yes — and your mail is never coupled to a licensing service. Starter runs fully offline with no licensing backend at all. For Pro, the licensing backend is a <strong>configurable endpoint</strong> (<a href="https://validonx.com" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent);">ValidonX</a> is the default we operate, not a hardwired dependency): it exchanges only an opaque tenant identifier and your entitlement flags — no mailboxes, message content, or recipient addresses ever pass through it. Core mail delivery (Postfix, Dovecot) never depends on it, and Pro entitlements are cached in your Postgres so they keep working offline through your current paid period if the backend is unreachable.</p>
@@ -264,7 +335,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		</div>
 	</section>
 
-	<p class="page-meta">Last updated <time datetime="2026-06-08">8 June 2026</time></p>
+	<p class="page-meta">Last updated <time datetime="2026-06-09">9 June 2026</time></p>
 
 	</main>
 
