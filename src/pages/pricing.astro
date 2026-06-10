@@ -2,7 +2,7 @@
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Pricing — Vectis Mail'
-const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 mailboxes), Pro at $39 USD per tenant/month with unlimited domains and OIDC SSO, and Enterprise from $499 USD/month with SAML 2.0 SSO and a support SLA.'
+const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 mailboxes), Pro at $39 USD per tenant/month with unlimited domains and OIDC SSO, and Enterprise from $499 USD/month with SAML 2.0 SSO, a support SLA, and GDPR compliance tooling (DSAR export & data retention).'
 ---
 <html lang="en">
 <head>
@@ -77,7 +77,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 					"price": "499",
 					"priceCurrency": "USD",
 					"availability": "https://schema.org/InStock",
-					"description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on and a business-hours support SLA (first-response targets). Roadmap: DSAR export and data-retention tooling, deliverability monitoring, SCIM. Sold via talk-to-us.",
+					"description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on, a business-hours support SLA (first-response targets), and GDPR compliance tooling (DSAR export & erasure, data-retention controls). Roadmap: deliverability monitoring, SCIM. Sold via talk-to-us.",
 					"category": "subscription",
 					"url": "https://vectismail.com/talk-to-us/"
 				}
@@ -90,7 +90,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 				{
 					"@type": "Question",
 					"name": "What does the Enterprise plan include?",
-					"acceptedAnswer": { "@type": "Answer", "text": "Enterprise is for organisations that need assurance, regardless of size: everything in Pro plus SAML 2.0 single sign-on and a business-hours support SLA. It is flat-priced from $499 USD per tenant per month — never per seat — with custom pricing for larger organisations. DSAR export and data-retention tooling, deliverability monitoring, and SCIM are on the roadmap; tell us what you need at https://vectismail.com/talk-to-us/." }
+					"acceptedAnswer": { "@type": "Answer", "text": "Enterprise is for organisations that need assurance, regardless of size: everything in Pro plus SAML 2.0 single sign-on, a business-hours support SLA, and GDPR compliance tooling (DSAR export & erasure, data-retention controls). It is flat-priced from $499 USD per tenant per month — never per seat — with custom pricing for larger organisations. Deliverability monitoring and SCIM are on the roadmap; tell us what you need at https://vectismail.com/talk-to-us/." }
 				},
 				{
 					"@type": "Question",
@@ -208,10 +208,11 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 					<ul>
 						<li>Everything in Pro, plus:</li>
 						<li>SAML 2.0 SSO</li>
+						<li>GDPR compliance tooling &mdash; DSAR export &amp; erasure, data-retention controls</li>
 						<li>Support SLA &mdash; business-hours response targets</li>
 						<li>Critical security-patch commitments</li>
 						<li>Flat pricing &mdash; never per seat</li>
-						<li style="opacity: 0.7;">Roadmap: DSAR &amp; data retention, deliverability monitoring, SCIM</li>
+						<li style="opacity: 0.7;">Roadmap: deliverability monitoring, SCIM</li>
 					</ul>
 					<a href="/talk-to-us/" class="btn-primary" style="display: block; text-align: center;">Talk to us</a>
 					<p style="margin-top: 1rem; font-size: 0.85rem; line-height: 1.5; opacity: 0.85;">For organisations that need SAML, an SLA, or compliance tooling. Flat per-tenant pricing &mdash; where Microsoft 365 and Google Workspace bill per seat, Enterprise stays flat as you grow.</p>
@@ -257,7 +258,8 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 							<tr><td>Support</td><td>Community</td><td>Priority email</td><td>Priority email + SLA</td></tr>
 							<tr><td>Support SLA (first-response targets)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 							<tr><td>Critical security-patch commitment</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
-							<tr><td>DSAR export &amp; data retention</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
+							<tr><td>GDPR DSAR export &amp; erasure</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+							<tr><td>Data-retention controls (PII purge)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 							<tr><td>Advanced deliverability monitoring</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
 							<tr><td>SCIM provisioning</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
 							<tr><td>Offline use if ValidonX is unreachable</td><td>n/a</td><td>Through current paid period</td><td>Through current paid period</td></tr>
@@ -306,7 +308,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 			</div>
 				<div class="feature-card">
 					<h3>What does the Enterprise plan include?</h3>
-					<p>Enterprise is for organisations that need <strong>assurance</strong>, regardless of size: everything in Pro plus <strong>SAML 2.0 SSO</strong> and a <strong>business-hours support SLA</strong>. It&rsquo;s flat-priced <strong>from $499 USD per tenant per month</strong> &mdash; never per seat &mdash; with custom pricing for larger organisations. DSAR export and data-retention tooling, deliverability monitoring, and SCIM are on the roadmap. <a href="/talk-to-us/" style="color: var(--sl-color-accent);">Tell us what you need</a> and we&rsquo;ll size it with you.</p>
+					<p>Enterprise is for organisations that need <strong>assurance</strong>, regardless of size: everything in Pro plus <strong>SAML 2.0 SSO</strong>, a <strong>business-hours support SLA</strong>, and <strong>GDPR compliance tooling</strong> (DSAR export &amp; erasure, data-retention controls). It&rsquo;s flat-priced <strong>from $499 USD per tenant per month</strong> &mdash; never per seat &mdash; with custom pricing for larger organisations. Deliverability monitoring and SCIM are on the roadmap. <a href="/talk-to-us/" style="color: var(--sl-color-accent);">Tell us what you need</a> and we&rsquo;ll size it with you.</p>
 				</div>
 				<div class="feature-card">
 					<h3>What does the Enterprise support SLA cover?</h3>
