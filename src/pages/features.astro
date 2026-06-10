@@ -39,7 +39,8 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 		"softwareVersion": "0.1.12",
 		"offers": [
 			{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "description": "Up to 3 domains, 25 mailboxes per domain. Free forever." },
-			{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "description": "Unlimited domains and mailboxes, unlimited send volume (never per email), per-domain analytics, OIDC SSO, priority support." }
+			{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "description": "Unlimited domains and mailboxes, unlimited send volume (never per email), per-domain analytics, OIDC SSO, priority support." },
+			{ "@type": "Offer", "name": "Enterprise", "price": "499", "priceCurrency": "USD", "description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on, a business-hours support SLA (first-response targets), and GDPR compliance tooling (DSAR export & erasure, data-retention controls). Sold via talk-to-us." }
 		],
 		"publisher": {
 			"@type": "Organization",
@@ -65,6 +66,9 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 			"IP warmup + RBL monitoring",
 			"Per-domain analytics dashboard — Pro",
 			"Per-domain spam controls (thresholds, greylisting, allow/block lists) — Pro",
+			"SAML 2.0 SSO (Okta, Entra ID, ADFS) — Enterprise",
+			"GDPR compliance tooling: DSAR export & erasure, data-retention controls — Enterprise",
+			"Business-hours support SLA (first-response targets) — Enterprise",
 			"Roundcube webmail with Vectis skin"
 		],
 		"additionalProperty": [
@@ -183,8 +187,8 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 	</section>
 
 	<section class="section">
-		<h2>Starter vs Pro &mdash; full comparison</h2>
-		<p class="subtitle">Every feature, side by side. Everything below the divider is Pro-only.</p>
+		<h2>Starter vs Pro vs Enterprise &mdash; full comparison</h2>
+		<p class="subtitle">Every feature, side by side, across all three tiers. Enterprise includes everything in Pro, plus the rows at the bottom.</p>
 		<div class="compare-table-wrap" style="margin-top: 1.25rem;">
 			<table class="compare-table">
 				<thead>
@@ -192,32 +196,40 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 						<th scope="col">Feature</th>
 						<th scope="col">Starter (Free)</th>
 						<th scope="col">Pro ($39 USD/mo)</th>
+						<th scope="col">Enterprise (from $499 USD/mo)</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr><td>Postfix MTA (inbound + outbound SMTP)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Dovecot IMAP / POP3 / ManageSieve</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Rspamd spam filtering (Bayes + neural)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>ClamAV antivirus (optional)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Sending API + batch sending</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Inbound webhooks (HMAC-signed)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Message storage API + search</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Engagement tracking (opens, clicks)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Admin dashboard + Roundcube webmail</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>DKIM / SPF / DMARC + automatic TLS</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Atomic updates with auto-rollback</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Backup &amp; restore (AES-256-GCM)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>RBAC (super_admin / admin / domain_admin) + TOTP MFA</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Metrics + health alerts (Grafana + Loki optional)</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>IP warmup &amp; RBL monitoring</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Domains</td><td>Up to 3</td><td>Unlimited</td></tr>
-					<tr><td>Mailboxes per domain</td><td>Up to 25</td><td>Unlimited</td></tr>
-					<tr><td>Per-domain analytics dashboard</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Per-domain reject threshold (Rspamd)</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Per-domain greylisting toggle</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Per-domain allow / block lists</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Support</td><td>Community</td><td>Priority email</td></tr>
+					<tr><td>Postfix MTA (inbound + outbound SMTP)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Dovecot IMAP / POP3 / ManageSieve</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Rspamd spam filtering (Bayes + neural)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>ClamAV antivirus (optional)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Sending API + batch sending</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Inbound webhooks (HMAC-signed)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Message storage API + search</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Engagement tracking (opens, clicks)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Admin dashboard + Roundcube webmail</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>DKIM / SPF / DMARC + automatic TLS</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Atomic updates with auto-rollback</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Backup &amp; restore (AES-256-GCM)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>RBAC (super_admin / admin / domain_admin) + TOTP MFA</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Metrics + health alerts (Grafana + Loki optional)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>IP warmup &amp; RBL monitoring</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Domains</td><td>Up to 3</td><td>Unlimited</td><td>Unlimited</td></tr>
+					<tr><td>Mailboxes per domain</td><td>Up to 25</td><td>Unlimited</td><td>Unlimited</td></tr>
+					<tr><td>Per-domain analytics dashboard</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Per-domain reject threshold (Rspamd)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Per-domain greylisting toggle</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Per-domain allow / block lists</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>SAML 2.0 SSO</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+					<tr><td>GDPR DSAR export &amp; erasure</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+					<tr><td>Data-retention controls (PII purge)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+					<tr><td>Support</td><td>Community</td><td>Priority email</td><td>Priority email + SLA</td></tr>
+					<tr><td>Support SLA (first-response targets)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+					<tr><td>Critical security-patch commitment</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+					<tr><td>Advanced deliverability monitoring</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
+					<tr><td>SCIM provisioning</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
 				</tbody>
 			</table>
 		</div>
