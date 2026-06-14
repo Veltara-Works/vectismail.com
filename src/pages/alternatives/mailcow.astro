@@ -1,6 +1,7 @@
 ---
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
 const title = 'Mailcow Alternative — Vectis Mail vs Mailcow'
 const description = 'Vectis Mail vs Mailcow: same self-hosted philosophy with a modern surface: declarative YAML, REST API, atomic updates. When to switch and when to stay.'
 const url = 'https://vectismail.com/alternatives/mailcow/'
@@ -108,18 +109,7 @@ const dateModified = '2026-06-08'
 	})} />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 

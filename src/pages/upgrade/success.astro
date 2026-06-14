@@ -1,6 +1,7 @@
 ---
 import "../../styles/custom.css"
 import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
 const title = 'Welcome to Vectis Mail Pro'
 const description = 'Thanks for upgrading to Vectis Mail Pro. Your license key is on its way to your email.'
 ---
@@ -22,18 +23,7 @@ const description = 'Thanks for upgrading to Vectis Mail Pro. Your license key i
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 

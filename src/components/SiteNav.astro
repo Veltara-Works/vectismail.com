@@ -1,0 +1,39 @@
+---
+// Shared marketing top navigation. On desktop the links sit inline; on mobile
+// (<=768px) they collapse behind an accessible hamburger toggle so the hero is
+// visible without scrolling past a tall stacked menu.
+---
+<nav class="marketing-nav">
+	<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
+	<button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav-menu">
+		<span class="nav-toggle-bar"></span>
+		<span class="nav-toggle-bar"></span>
+		<span class="nav-toggle-bar"></span>
+	</button>
+	<div class="nav-links" id="site-nav-menu">
+		<a href="/features/">Features</a>
+		<a href="/pricing/">Pricing</a>
+		<a href="/alternatives/">Compare</a>
+		<a href="/getting-started/">Docs</a>
+		<a href="/notes/">Notes</a>
+		<a href="/about/">About</a>
+		<a href="/contact/">Contact</a>
+	</div>
+</nav>
+<script>
+	const nav = document.querySelector('.marketing-nav');
+	const toggle = nav?.querySelector('.nav-toggle');
+	const setOpen = (open: boolean) => {
+		nav?.classList.toggle('nav-open', open);
+		toggle?.setAttribute('aria-expanded', String(open));
+		toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+	};
+	toggle?.addEventListener('click', () => setOpen(!nav?.classList.contains('nav-open')));
+	nav?.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && nav?.classList.contains('nav-open')) {
+			setOpen(false);
+			(toggle as HTMLElement | null)?.focus();
+		}
+	});
+</script>

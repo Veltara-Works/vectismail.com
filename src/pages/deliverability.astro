@@ -1,6 +1,7 @@
 ---
 import './../styles/custom.css'
 import SiteFooter from "../components/SiteFooter.astro"
+import SiteNav from "../components/SiteNav.astro"
 const title = 'Email Deliverability on Self-Hosted Vectis Mail — Will My Mail Land?'
 const description = 'The honest answer to the #1 fear when leaving SendGrid: will my email reach the inbox? What Vectis Mail gives you (DKIM/SPF/DMARC, IP warmup, RBL + FBL monitoring), the dual-send migration playbook, and what we never promise.'
 const url = 'https://vectismail.com/deliverability/'
@@ -85,18 +86,7 @@ const dateModified = '2026-06-07'
 	})} />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 

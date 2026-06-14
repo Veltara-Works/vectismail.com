@@ -1,6 +1,7 @@
 ---
 import '../../styles/custom.css'
 import SiteFooter from '../../components/SiteFooter.astro'
+import SiteNav from "../../components/SiteNav.astro"
 import { getCollection } from 'astro:content'
 
 const title = 'Notes — Vectis Mail'
@@ -43,18 +44,7 @@ const fmtDate = (d: Date) =>
 	<meta name="theme-color" content="#0C0C0D" />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 		<section class="section" style="max-width: 760px;">

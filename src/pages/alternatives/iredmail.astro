@@ -1,6 +1,7 @@
 ---
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
 const title = 'iRedMail Alternative — Vectis Mail vs iRedMail'
 const description = 'Vectis Mail vs iRedMail: modern declarative surface, REST API, atomic updates with rollback vs the long-running OS-native open-source mail stack.'
 const url = 'https://vectismail.com/alternatives/iredmail/'
@@ -108,18 +109,7 @@ const dateModified = '2026-06-08'
 	})} />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 

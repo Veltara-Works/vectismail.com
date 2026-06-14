@@ -94,6 +94,35 @@
 	color: var(--sl-color-white);
 }
 
+/* Desktop: links inline, hamburger hidden. The hamburger only appears at
+   <=768px (see the media query below). */
+.nav-links {
+	display: flex;
+	align-items: center;
+}
+
+.nav-toggle {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.nav-toggle-bar {
+	display: block;
+	width: 24px;
+	height: 2px;
+	margin: 0 auto;
+	background: var(--sl-color-gray-1);
+	transition: transform 0.2s, opacity 0.2s;
+}
+
 /* Content links in marketing-page prose. Without this, any link that
    isn't a button/nav (i.e. has no class) falls back to the UA default
    #0000ee — which fails colour-contrast (2.08:1 on dark) and reads as
@@ -770,8 +799,33 @@ a.alt-index-card h3 {
 	.hero h1 { font-size: 2.2rem; }
 	.hero p { font-size: 1.05rem; }
 	.section h2 { font-size: 1.6rem; }
-	.marketing-nav { padding: 1rem; }
-	.marketing-nav a { margin-left: 1rem; font-size: 0.8rem; }
+	.marketing-nav { padding: 1rem; position: relative; }
+	/* Collapse the links behind the hamburger toggle. */
+	.nav-toggle { display: flex; }
+	.nav-links {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		flex-direction: column;
+		align-items: stretch;
+		background: var(--vm-bg-dark);
+		border-bottom: 1px solid var(--vm-border);
+		padding: 0.25rem 1rem 0.75rem;
+		z-index: 100;
+	}
+	.marketing-nav.nav-open .nav-links { display: flex; }
+	.nav-links a {
+		margin-left: 0;
+		padding: 0.85rem 0.25rem;
+		font-size: 1rem;
+		border-top: 1px solid var(--vm-border);
+	}
+	/* Animate the three bars into an X when open. */
+	.nav-open .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+	.nav-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+	.nav-open .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 	.pricing-card .price { font-size: 2rem; }
 	.stats-bar { gap: 1rem; }
 	.stat-item .stat-number { font-size: 1.8rem; }

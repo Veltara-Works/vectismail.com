@@ -1,6 +1,7 @@
 ---
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
+import SiteNav from "../components/SiteNav.astro"
 const title = 'Pricing — Vectis Mail'
 const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 mailboxes), Pro at $39 USD per tenant/month with unlimited domains and OIDC SSO, and Enterprise from $499 USD/month with SAML 2.0 SSO, a support SLA, and GDPR compliance tooling (DSAR export & data retention).'
 ---
@@ -141,18 +142,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 	})} />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 

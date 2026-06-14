@@ -1,6 +1,7 @@
 ---
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
+import SiteNav from "../components/SiteNav.astro"
 const title = 'Buy Vectis Mail Pro — $39 USD/mo'
 const description = 'Upgrade to Vectis Mail Pro for $39 USD/month. Unlimited domains, unlimited mailboxes per domain, per-domain analytics, OIDC SSO, priority email support, and offline use through your current paid period.'
 
@@ -40,18 +41,7 @@ const ERROR_MESSAGES: Record<string, string> = {
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 

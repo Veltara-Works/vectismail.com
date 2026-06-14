@@ -1,6 +1,7 @@
 ---
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
+import SiteNav from "../components/SiteNav.astro"
 const title = 'Talk to us — Agency & Enterprise | Vectis Mail'
 const description = 'Running mail for client domains, or need SAML, an SLA, or compliance/DSAR support? Tell us about your setup and we’ll size an Agency or Enterprise plan with you.'
 const fieldStyle = "width: 100%; padding: 0.6rem 0.75rem; background: var(--sl-color-gray-5); border: 1px solid var(--sl-color-gray-4); border-radius: 6px; color: var(--sl-color-gray-1); font-size: 0.95rem;"
@@ -48,18 +49,7 @@ const labelStyle = "display: block; margin-bottom: 0.5rem; color: var(--sl-color
 	})} />
 </head>
 <body class="marketing-page">
-	<nav class="marketing-nav">
-		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
-		<div>
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
-		</div>
-	</nav>
+	<SiteNav />
 
 	<main>
 
