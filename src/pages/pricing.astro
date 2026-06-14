@@ -160,7 +160,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 		<h1>Vectis Mail&trade; pricing</h1>
 		<p class="subtitle">Self-hosted email — never priced per send. Free Starter tier, $39 USD/tenant/month Pro for unlimited volume. Start free, upgrade when you need more.</p>
 
-		<div class="pricing-grid" style="grid-template-columns: repeat(3, minmax(240px, 360px)); justify-content: center;">
+		<div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 360px)); justify-content: center;">
 			<div class="pricing-card">
 				<div class="tier">Starter</div>
 				<div class="price">Free</div>
@@ -293,7 +293,7 @@ const description = 'Vectis Mail pricing — free Starter tier (3 domains, 25 ma
 
 	<section class="section">
 		<h2>Frequently Asked Questions</h2>
-		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
 			<div class="feature-card">
 				<h3>Why per tenant and not per email?</h3>
 				<p>Because metered sending punishes growth. SendGrid, Postmark, Resend, and SES all price per email past a base bucket, so your bill rises with your send volume. Vectis Mail <strong>never charges per email</strong> — Pro is a flat $39 USD per tenant per month for unlimited volume, the same price whether you send 10,000 or 10 million. A tenant is your organisation, and one subscription covers unlimited Vectis Mail installs you operate.</p>

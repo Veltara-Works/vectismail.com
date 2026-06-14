@@ -277,7 +277,9 @@
 /* ── Feature Grid ───────────────────────────────────────────────── */
 .feature-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	/* min(100%, 300px) so a single column can never exceed the viewport on
+	   narrow phones — the mobile-first guard against horizontal overflow. */
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 	gap: 1.25rem;
 }
 
@@ -328,7 +330,7 @@
 /* ── Pricing ────────────────────────────────────────────────────── */
 .pricing-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 	gap: 1.5rem;
 	margin-top: 2rem;
 }
@@ -488,6 +490,10 @@
 	color: var(--sl-color-gray-2);
 	text-decoration: none;
 	transition: color 0.15s;
+	/* inline-block + vertical padding lifts each footer link to a ≥24px
+	   tap target (WCAG 2.5.8), matching the nav-link fix. */
+	display: inline-block;
+	padding: 0.3rem 0;
 }
 
 .footer a:hover {
