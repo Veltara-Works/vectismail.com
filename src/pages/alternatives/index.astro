@@ -2,7 +2,7 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 const title = 'Vectis Mail alternatives — side-by-side comparisons'
-const description = 'Side-by-side comparisons of Vectis Mail vs Mailcow, iRedMail, Mail-in-a-Box, SendGrid, and Postmark. Self-hosted vs managed, free vs metered.'
+const description = 'Side-by-side comparisons of Vectis Mail vs Mailcow, Stalwart, Mox, iRedMail, Mail-in-a-Box, SendGrid, and Postmark. Self-hosted vs managed, free vs metered, proven stack vs from-scratch.'
 const url = 'https://vectismail.com/alternatives/'
 const ogImage = 'https://vectismail.com/og/default.png'
 const dateModified = '2026-06-08'
@@ -23,6 +23,26 @@ const live: Alt[] = [
 			'14 vs 25+ containers by default',
 			'Declarative config + 40+ endpoint REST API',
 			'Atomic 6-phase updates with auto-rollback',
+		],
+	},
+	{
+		href: '/alternatives/stalwart/',
+		title: 'vs Stalwart',
+		tagline: 'Proven Postfix/Dovecot/Rspamd vs an impressive from-scratch Rust server. An honest comparison — Stalwart wins several rows.',
+		bullets: [
+			'Proven components vs from-scratch reimplementation',
+			'Vectis: declarative config + atomic rollback',
+			'Stalwart wins: JMAP, groupware, clustering',
+		],
+	},
+	{
+		href: '/alternatives/mox/',
+		title: 'vs Mox',
+		tagline: 'Both ship a transactional HTTP API + webhooks. Mox is a minimal MIT binary; Vectis is a multi-tenant platform. Where each fits.',
+		bullets: [
+			'Both have a transactional API + webhooks',
+			'Vectis: multi-tenant RBAC, Rspamd + ClamAV',
+			'Mox wins: MIT licence, DANE/MTA-STS, one binary',
 		],
 	},
 	{

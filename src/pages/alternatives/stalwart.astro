@@ -1,0 +1,385 @@
+---
+import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
+const title = 'Stalwart Alternative — Vectis Mail vs Stalwart'
+const description = 'Vectis Mail vs Stalwart Mail Server: a proven Postfix/Dovecot/Rspamd stack with a transactional sending API and atomic updates, versus Stalwart’s from-scratch Rust server with JMAP, groupware and clustering. Honest comparison — when each one wins.'
+const url = 'https://vectismail.com/alternatives/stalwart/'
+const ogImage = 'https://vectismail.com/og/alternatives-stalwart.png'
+const datePublished = '2026-06-14'
+const dateModified = '2026-06-14'
+---
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail vs Stalwart — self-hosted email platform comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://vectismail.com/alternatives/" },
+					{ "@type": "ListItem", "position": 3, "name": "Stalwart", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Vectis Mail vs Stalwart",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.webp" }
+				}
+			},
+			{
+				"@type": "Product",
+				"name": "Vectis Mail",
+				"description": "Self-hosted, declarative email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
+				"url": "https://vectismail.com/",
+				"brand": { "@type": "Brand", "name": "Vectis Mail" },
+				"offers": [
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
+					{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is Stalwart better than Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Neither is strictly better — they make different bets. Stalwart is a from-scratch Rust server that's broader on protocols (JMAP, CalDAV, CardDAV, WebDAV), ships built-in clustering and pluggable distributed storage, and reimplements spam filtering with an AI/statistical classifier. Vectis Mail packages the battle-tested Postfix/Dovecot/Rspamd stack with a declarative single-file config, atomic updates with automatic rollback, a transactional sending API framed as a SendGrid replacement, bundled Roundcube webmail, and a commercial Pro/SLA option. Pick Stalwart for groupware, JMAP and HA; pick Vectis for proven components, declarative ops and a transactional platform." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Stalwart have a transactional sending API and webhooks?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Stalwart exposes JMAP for programmatic message submission and access, a REST admin API, and event webhooks (plus MTA Hooks, an HTTP-based milter replacement). Vectis Mail's difference is packaging: domain-scoped API keys, batch sending with attachments, per-domain rate limits and analytics, and HMAC-signed inbound webhooks presented as a hosted-it-yourself SendGrid/Postmark replacement rather than a JMAP server." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Stalwart include webmail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Stalwart does not ship a webmail client — you connect an external client or deploy something like Roundcube alongside it. Vectis Mail bundles Roundcube webmail with ManageSieve filter management out of the box." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Stalwart support calendar and contacts (CalDAV/CardDAV)?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Stalwart speaks CalDAV, CardDAV and WebDAV in addition to JMAP/IMAP/POP3/SMTP, so calendar and contacts are built in. Vectis Mail does not ship CalDAV/CardDAV yet — it's on the roadmap — so if groupware is a hard requirement today, that's the biggest gap in Vectis's favour of Stalwart." }
+					},
+					{
+						"@type": "Question",
+						"name": "What does Vectis Mail offer that Stalwart doesn't?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Battle-tested components (Postfix/Dovecot/Rspamd rather than an all-new implementation), a single declarative config.yaml with atomic 6-phase updates and automatic rollback, bundled Roundcube webmail, IP-warmup tracking and per-domain analytics on the Pro tier, and a vendor-backed Pro ($39/tenant/month) and Enterprise ($499) tier with a support SLA. Stalwart also has a paid Enterprise edition, so commercial support is available on both sides." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<nav class="marketing-nav">
+		<a href="/" class="logo"><img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="181" height="34" /></a>
+		<div>
+			<a href="/features/">Features</a>
+			<a href="/pricing/">Pricing</a>
+			<a href="/alternatives/">Compare</a>
+			<a href="/getting-started/">Docs</a>
+			<a href="/notes/">Notes</a>
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+		</div>
+	</nav>
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Alternatives · Self-Hosted</div>
+		<h1>Stalwart alternative.<br/><span>Proven stack, transactional surface.</span></h1>
+		<p class="alt-lead">
+			Stalwart is an impressive from-scratch Rust mail server — JMAP, CalDAV/CardDAV,
+			clustering, pluggable storage, AI spam filtering. Vectis Mail takes a different bet:
+			the battle-tested Postfix/Dovecot/Rspamd stack, wrapped in a declarative single-file
+			config, atomic updates with automatic rollback, a transactional sending API, and
+			bundled webmail. This is an honest comparison of where each one wins.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>14 June 2026</time></span>
+			<span>·</span>
+			<span>Written by Ian Holt</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Side-by-side, current as of June 2026. Stalwart wins several rows — we call them out honestly.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Vectis Mail</th><th>Stalwart</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">Mail engine</th><td><strong>Postfix · Dovecot · Rspamd</strong> (decades-hardened)</td><td>From-scratch Rust (all protocols reimplemented)</td></tr>
+					<tr><th scope="row">Footprint</th><td>Container stack (Postgres, Traefik, API)</td><td><strong>Single Rust binary</strong></td></tr>
+					<tr><th scope="row">Protocols</th><td>SMTP · IMAP · POP3</td><td><strong>SMTP · IMAP · POP3 · JMAP · CalDAV · CardDAV · WebDAV</strong></td></tr>
+					<tr><th scope="row">Calendar / contacts</th><td>Not yet (roadmap)</td><td><strong>Yes</strong> (CalDAV/CardDAV/WebDAV)</td></tr>
+					<tr><th scope="row">Webmail</th><td><strong>Roundcube bundled</strong></td><td>None (bring your own, e.g. Roundcube)</td></tr>
+					<tr><th scope="row">Config model</th><td><strong>Declarative <code>config.yaml</code> + <code>vectis apply</code></strong></td><td>TOML files + web admin</td></tr>
+					<tr><th scope="row">Transactional / programmatic API</th><td>REST sending API — domain-scoped keys, batch, attachments</td><td>JMAP + REST admin API</td></tr>
+					<tr><th scope="row">Webhooks</th><td>Yes — HMAC-signed inbound + delivery events</td><td>Yes — event webhooks + MTA Hooks</td></tr>
+					<tr><th scope="row">Spam filtering</th><td>Rspamd (mature, scriptable)</td><td>Built-in — statistical + AI/LLM, Pyzor, blocklists</td></tr>
+					<tr><th scope="row">Antivirus</th><td>ClamAV (bundled, optional)</td><td>SMTP-time filtering; AV via integration</td></tr>
+					<tr><th scope="row">Clustering / HA</th><td>Single-node</td><td><strong>Yes</strong> — node autodiscovery, partition-tolerant</td></tr>
+					<tr><th scope="row">Storage</th><td>PostgreSQL</td><td><strong>Pluggable</strong> — RocksDB, FoundationDB, Postgres, S3, …</td></tr>
+					<tr><th scope="row">Update model</th><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Binary / package upgrade</td></tr>
+					<tr><th scope="row">License</th><td>BSL 1.1 (auto-Apache 2.0 after 4y) + commercial Pro</td><td>AGPL-3.0 + SELv1 (Enterprise)</td></tr>
+					<tr><th scope="row">Commercial tier</th><td>Pro $39/tenant/mo · Enterprise from $499 + SLA</td><td>Enterprise edition (paid)</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026; proven components</td><td>Modern, rapidly evolving, from-scratch codebase</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The verdict</h2>
+		<div class="verdict-grid">
+			<div class="verdict-card verdict-win">
+				<h3>Choose Vectis Mail when…</h3>
+				<ul>
+					<li>You'd rather run battle-tested Postfix/Dovecot/Rspamd than a from-scratch reimplementation of every protocol.</li>
+					<li>You want one declarative <code>config.yaml</code> and atomic updates with automatic rollback.</li>
+					<li>You're building a transactional sending platform — domain-scoped API keys, per-domain analytics, IP-warmup tracking — with mailboxes on the same stack.</li>
+					<li>You want bundled Roundcube webmail rather than wiring up a separate client.</li>
+					<li>You want a vendor-backed Pro / Enterprise tier with a support SLA.</li>
+				</ul>
+			</div>
+			<div class="verdict-card verdict-stay">
+				<h3>Choose Stalwart when…</h3>
+				<ul>
+					<li>You need JMAP, or built-in calendar/contacts (CalDAV/CardDAV/WebDAV) groupware.</li>
+					<li>You want built-in clustering / high availability.</li>
+					<li>You want pluggable, distributed storage (FoundationDB, S3, Elasticsearch, …).</li>
+					<li>You prefer a single self-contained binary over a container stack.</li>
+					<li>You like the idea of the whole stack in one modern, memory-safe Rust codebase.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Philosophy: proven components vs from-scratch</h3>
+		<p>
+			This is the core difference. Stalwart reimplements SMTP, IMAP, POP3, JMAP and the DAV
+			protocols from the ground up in Rust — one cohesive, memory-safe codebase with no
+			Postfix or Dovecot underneath. That's genuinely impressive and gives Stalwart a clean,
+			unified surface. The trade-off is that it is a younger implementation of protocols that
+			Postfix and Dovecot have been hardening in production for two decades.
+		</p>
+		<p>
+			Vectis Mail makes the opposite bet: keep the boring, proven mail engine
+			(Postfix/Dovecot/Rspamd) and put the modern surface — Go API, React admin, declarative
+			config, orchestrated updates — <em>around</em> it. If "my SMTP daemon has handled
+			internet mail since before the company existed" reads as a feature to you, that's the
+			Vectis argument in one line.
+		</p>
+
+		<h3 class="alt-h3">Protocols and groupware</h3>
+		<p>
+			Stalwart is broader here, and we won't pretend otherwise. It speaks JMAP (the modern
+			JSON mail protocol) plus CalDAV, CardDAV and WebDAV, so calendar and contacts are part
+			of the server. Vectis Mail today is SMTP/IMAP/POP3 only; CalDAV/CardDAV is on the
+			roadmap, not shipped. If groupware is a hard requirement right now, Stalwart covers it
+			and Vectis doesn't.
+		</p>
+
+		<h3 class="alt-h3">The transactional API</h3>
+		<p>
+			Both have programmatic surfaces — this isn't a Vectis-only feature. Stalwart offers
+			JMAP for submission/access, a REST admin API, and event webhooks plus MTA Hooks.
+			Vectis Mail's difference is framing and packaging: a dedicated transactional sending
+			API with <strong>domain-scoped API keys</strong>, batch sending with attachments,
+			per-domain rate limits and analytics, and HMAC-signed inbound webhooks — presented as a
+			self-hosted SendGrid/Postmark replacement rather than a JMAP server. If your mental
+			model is "give my app an API key and a send endpoint," Vectis maps to it directly; if
+			it's "give my client a JMAP account," Stalwart does.
+		</p>
+		<p>See the <a href="/api/">API Reference</a> for the full Vectis surface.</p>
+
+		<h3 class="alt-h3">Config and updates</h3>
+		<p>
+			Stalwart is configured through TOML files and its Rust/Leptos web admin, and upgrades
+			are a binary/package replacement. Vectis Mail uses a single <code>config.yaml</code> as
+			the source of truth: <code>vectis apply</code> diffs desired against running state and
+			reloads only what changed, and updates run through a 6-phase orchestrator
+			(snapshot → migrate → pull → deploy → health-check → complete) that <strong>automatically
+			rolls back</strong> on any failure. If config-as-code and safe, reversible updates
+			matter to you, that's a Vectis advantage.
+		</p>
+
+		<h3 class="alt-h3">Scale and storage</h3>
+		<p>
+			Stalwart is built to scale out: node autodiscovery, partition-tolerant failure
+			detection, and pluggable storage backends from RocksDB to FoundationDB, S3 and
+			Elasticsearch. Vectis Mail is a single-node design on PostgreSQL — deliberately simple,
+			and the right shape for the one-VPS-per-deployment model most self-hosters run, but not
+			a clustered HA system. If you need multi-node HA, Stalwart is the stronger fit.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Migrating from Stalwart to Vectis Mail</h2>
+		<p>
+			Migration is standard IMAP-to-IMAP, since both expose IMAP regardless of what's
+			underneath:
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS via the <a href="/getting-started/installation/">installation guide</a>, with DNS still pointed at Stalwart.</li>
+			<li><strong>Sync mailboxes</strong> with <code>imapsync</code> from Stalwart's IMAP to Vectis Mail's Dovecot IMAP.</li>
+			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them alongside the existing ones; run both in parallel during the cutover.</li>
+			<li><strong>Re-create Sieve filters</strong> as needed (both support server-side Sieve).</li>
+			<li><strong>Export calendar/contacts</strong> from Stalwart (CalDAV/CardDAV) to iCal/vCard if you use them — Vectis can't host these, so plan where they'll live.</li>
+			<li><strong>Cut DNS over</strong>: switch MX to Vectis Mail and watch it take over as DNS propagates.</li>
+			<li><strong>Verify + decommission</strong> after a few clean days.</li>
+		</ol>
+		<p>
+			The honest caveat: if you rely on Stalwart's JMAP clients or built-in calendar/contacts,
+			there's no equivalent on Vectis yet, so that part of a migration is a feature change,
+			not a lift-and-shift.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is Stalwart better than Vectis Mail?</h3>
+				<p>
+					Neither is strictly better — they make different bets. Stalwart is broader on
+					protocols (JMAP, CalDAV, CardDAV, WebDAV), ships built-in clustering and pluggable
+					distributed storage, and reimplements spam filtering with an AI/statistical
+					classifier. Vectis Mail packages the battle-tested Postfix/Dovecot/Rspamd stack
+					with a declarative single-file config, atomic updates with automatic rollback, a
+					transactional sending API, bundled Roundcube webmail, and a commercial Pro/SLA
+					option. Pick Stalwart for groupware, JMAP and HA; pick Vectis for proven
+					components, declarative ops and a transactional platform.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Stalwart have a transactional sending API and webhooks?</h3>
+				<p>
+					Yes. Stalwart exposes JMAP for programmatic submission and access, a REST admin
+					API, and event webhooks (plus MTA Hooks, an HTTP-based milter replacement).
+					Vectis Mail's difference is packaging: domain-scoped API keys, batch sending with
+					attachments, per-domain rate limits and analytics, and HMAC-signed inbound
+					webhooks presented as a hosted-it-yourself SendGrid/Postmark replacement rather
+					than a JMAP server.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Stalwart include webmail?</h3>
+				<p>
+					No. Stalwart doesn't ship a webmail client — you connect an external client or
+					deploy something like Roundcube alongside it. Vectis Mail bundles Roundcube
+					webmail with ManageSieve filter management out of the box.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Stalwart support calendar and contacts (CalDAV/CardDAV)?</h3>
+				<p>
+					Yes — Stalwart speaks CalDAV, CardDAV and WebDAV alongside JMAP/IMAP/POP3/SMTP, so
+					calendar and contacts are built in. Vectis Mail doesn't ship CalDAV/CardDAV yet
+					(it's on the roadmap), so if groupware is a hard requirement today, that's the
+					clearest point in Stalwart's favour.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>What does Vectis Mail offer that Stalwart doesn't?</h3>
+				<p>
+					Battle-tested components (Postfix/Dovecot/Rspamd rather than an all-new
+					implementation), a single declarative <code>config.yaml</code> with atomic 6-phase
+					updates and automatic rollback, bundled Roundcube webmail, IP-warmup tracking and
+					per-domain analytics on Pro, and a vendor-backed Pro ($39/tenant/month) and
+					Enterprise (from $499) tier with a support SLA. Stalwart also has a paid Enterprise
+					edition, so commercial support exists on both sides.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="cta-section">
+		<h2>Try Vectis Mail</h2>
+		<p>Production mail server in minutes. Proven stack, modern surface.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing/" class="btn-secondary">View Pricing</a>
+		</div>
+	</div>
+
+	<section class="section other-alts">
+		<h2>Other Vectis Mail alternatives</h2>
+		<p class="subtitle">Coming from a different stack? Read the comparison that matches it.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/mox/" class="feature-card alt-index-card">
+				<h3>vs Mox &rarr;</h3>
+				<p>The other modern single-binary server: MIT-licensed, DANE/MTA-STS-first, with its own transactional webapi. Where each fits.</p>
+			</a>
+			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
+				<h3>vs Mailcow &rarr;</h3>
+				<p>Same Postfix/Dovecot/Rspamd stack, modern surface: declarative YAML, REST API, atomic updates with rollback.</p>
+			</a>
+			<a href="/alternatives/sendgrid/" class="feature-card alt-index-card">
+				<h3>vs SendGrid &rarr;</h3>
+				<p>Same API surface, no per-email pricing. Flat pricing covers unlimited sending volume.</p>
+			</a>
+			<a href="/alternatives/postmark/" class="feature-card alt-index-card">
+				<h3>vs Postmark &rarr;</h3>
+				<p>Flat self-host pricing vs the developer-loved transactional SaaS. Same API, mailboxes included.</p>
+			</a>
+		</div>
+	</section>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>Stalwart project + docs: <a href="https://stalw.art/" target="_blank" rel="noopener noreferrer">stalw.art</a> · <a href="https://github.com/stalwartlabs/stalwart" target="_blank" rel="noopener noreferrer">github.com/stalwartlabs/stalwart</a> · <a href="https://stalw.art/blog/webhooks/" target="_blank" rel="noopener noreferrer">Webhooks &amp; MTA Hooks announcement</a> (retrieved 2026-06-14)</li>
+			<li>Vectis Mail architecture, API surface, update model: <a href="/architecture/overview/">/architecture/overview</a> · <a href="/api/">/api</a> · <a href="/getting-started/installation/">/getting-started/installation</a></li>
+		</ul>
+	</aside>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>

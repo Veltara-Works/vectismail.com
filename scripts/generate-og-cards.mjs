@@ -122,6 +122,8 @@ const cards = [
 	{ file: 'alternatives-iredmail.png',     svg: altCard({ product: 'iRedMail',     slug: 'iredmail' }) },
 	{ file: 'alternatives-mail-in-a-box.png', svg: altCard({ product: 'Mail-in-a-Box', slug: 'mail-in-a-box' }) },
 	{ file: 'alternatives-postmark.png',     svg: altCard({ product: 'Postmark',     slug: 'postmark' }) },
+	{ file: 'alternatives-stalwart.png',     svg: altCard({ product: 'Stalwart',     slug: 'stalwart' }) },
+	{ file: 'alternatives-mox.png',          svg: altCard({ product: 'Mox',          slug: 'mox' }) },
 
 	// Use-case / for-pages
 	{ file: 'for-saas.png',        svg: usecaseCard({ audience: 'SAAS FOUNDERS', headline: 'Flat-priced email infra',     subhead: 'Transactional + mailbox + multi-tenancy on one self-hosted platform.', slug: 'saas' }) },
