@@ -1,6 +1,17 @@
 ---
 title: "Cloudflare Integration"
 description: "How to use Cloudflare DNS with Vectis Mail. Covers MX and mail hostname records (DNS-only mode), SPF/DKIM/DMARC TXT records, DNS-01 challenges for TLS certificates, and common Cloudflare configuration mistakes."
+faq:
+  - q: "Can I run a self-hosted mail server behind Cloudflare?"
+    a: "Yes for your website and the admin/API over HTTPS, but the mail records themselves must be DNS-only (grey cloud), never proxied (orange cloud). SMTP, IMAP, and POP3 aren't HTTP and can't pass through Cloudflare's proxy, so proxying the mail hostname breaks delivery."
+  - q: "Why does my email stop working when I enable the Cloudflare proxy?"
+    a: "The orange cloud routes connections to Cloudflare's IPs instead of your server, and mail protocols can't traverse it. The fix is to toggle the mail hostname's A/AAAA record to grey (DNS-only) and wait about 5 minutes for propagation."
+  - q: "Should I enable Cloudflare Email Routing with Vectis Mail?"
+    a: "No. Email Routing adds its own MX records (route1.mx.cloudflare.net) that conflict with yours and intercept inbound mail before it reaches your server. Disable it under the Email tab and publish your own MX record."
+  - q: "How do I tell whether a Cloudflare DNS record is proxied?"
+    a: "Run `dig A mail.example.com +short`. A DNS-only record returns your server's real IP (e.g. 203.0.113.10); a proxied record returns a Cloudflare IP in the 104.x.x.x or 172.x.x.x range, which means it needs switching to grey cloud."
+  - q: "Do I set the PTR (reverse DNS) record in Cloudflare?"
+    a: "No. PTR records are configured at your VPS provider's control panel, not in Cloudflare — your VPS provider controls reverse DNS for your IP. Verify it with `dig -x <your-ip> +short`."
 ---
 
 Cloudflare is the most popular DNS provider for self-hosted mail servers. It works well with Vectis Mail, but there are critical configuration requirements -- most importantly, mail-related DNS records must NOT be proxied through Cloudflare. This guide covers everything you need to configure correctly.
@@ -215,6 +226,28 @@ When you run `dig A mail.example.com`, a DNS-only record returns your server's a
 | DNSSEC | Enabled | Prevents DNS spoofing |
 | Universal SSL | Does not apply (DNS-only) | Your mail hostname is not proxied |
 | Always Use HTTPS | Does not apply (DNS-only) | Traefik handles HTTPS redirect |
+
+## Frequently asked questions
+
+### Can I run a self-hosted mail server behind Cloudflare?
+
+Yes for your website and the admin/API over HTTPS, but the mail records themselves must be DNS-only (grey cloud), never proxied (orange cloud). SMTP, IMAP, and POP3 aren't HTTP and can't pass through Cloudflare's proxy, so proxying the mail hostname breaks delivery.
+
+### Why does my email stop working when I enable the Cloudflare proxy?
+
+The orange cloud routes connections to Cloudflare's IPs instead of your server, and mail protocols can't traverse it. The fix is to toggle the mail hostname's A/AAAA record to grey (DNS-only) and wait about 5 minutes for propagation.
+
+### Should I enable Cloudflare Email Routing with Vectis Mail?
+
+No. Email Routing adds its own MX records (`route1.mx.cloudflare.net`) that conflict with yours and intercept inbound mail before it reaches your server. Disable it under the **Email** tab and publish your own MX record.
+
+### How do I tell whether a Cloudflare DNS record is proxied?
+
+Run `dig A mail.example.com +short`. A DNS-only record returns your server's real IP (e.g. `203.0.113.10`); a proxied record returns a Cloudflare IP in the `104.x.x.x` or `172.x.x.x` range, which means it needs switching to grey cloud.
+
+### Do I set the PTR (reverse DNS) record in Cloudflare?
+
+No. PTR records are configured at your VPS provider's control panel, not in Cloudflare — your VPS provider controls reverse DNS for your IP. Verify it with `dig -x <your-ip> +short`.
 
 ## Next steps
 

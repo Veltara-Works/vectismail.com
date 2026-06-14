@@ -1,6 +1,17 @@
 ---
 title: "TLS Certificates"
 description: "How Vectis Mail handles TLS certificate provisioning with acme.sh, Let's Encrypt automatic issuance, Cloudflare DNS-01 challenges, custom certificates, and TLS 1.2+ enforcement across SMTP, IMAP, POP3, and HTTPS."
+faq:
+  - q: "Does Vectis Mail handle TLS certificates automatically?"
+    a: "Yes. By default Vectis issues Let's Encrypt certificates — Traefik handles HTTPS (443) via HTTP-01, and an acme.sh sidecar handles the mail certificate shared by Postfix and Dovecot (SMTP/IMAP/POP3). Both renew automatically when within 30 days of expiry, with no manual intervention."
+  - q: "What TLS version does Vectis Mail require?"
+    a: "TLS 1.2 is enforced as the minimum across SMTP, IMAP, POP3, and HTTPS; TLS 1.0 and 1.1 are disabled. Submission ports 587 (STARTTLS) and 465 (implicit TLS) require encryption, while inbound port 25 uses opportunistic TLS for interoperability but only allows authentication over TLS."
+  - q: "Can I use my own TLS certificate instead of Let's Encrypt?"
+    a: "Yes. Set provider: custom in config.yaml with cert_path and key_path pointing to your PEM-encoded fullchain and key, then run `vectis config apply`. With custom certificates you're responsible for renewal — Vectis won't auto-renew them."
+  - q: "How do I issue mail certificates if port 80 is blocked?"
+    a: "Use a DNS-01 challenge. Add a scoped Cloudflare API token (Zone → DNS → Edit) to secrets.yaml and set the DNS challenge to Cloudflare; the acme.sh sidecar creates a temporary _acme-challenge TXT record, validates, and cleans it up automatically. DNS-01 also supports wildcard certificates."
+  - q: "How do I check when my mail TLS certificate expires?"
+    a: "Run openssl s_client against port 993 piped to `openssl x509 -noout -dates`, or check the Vectis health API. Let's Encrypt certificates last 90 days and renew automatically within 30 days of expiry; if a renewal fails you can force one with `docker exec vectis-acme acme.sh --renew --domain mail.example.com --force`."
 ---
 
 Vectis Mail encrypts all connections by default. HTTPS traffic is terminated by Traefik with automatic Let's Encrypt certificates. Mail protocols (SMTP, IMAP, POP3) use a separate certificate managed by an acme.sh sidecar container. This dual-certificate architecture keeps the HTTP and mail TLS stacks independent and simplifies renewal.
@@ -285,6 +296,28 @@ Common causes:
 - Client requires TLS 1.0 or 1.1 (not supported -- the client needs updating)
 - Certificate hostname mismatch (the certificate's CN or SAN does not match the hostname the client is connecting to)
 - Incomplete certificate chain (the fullchain file is missing intermediate certificates)
+
+## Frequently asked questions
+
+### Does Vectis Mail handle TLS certificates automatically?
+
+Yes. By default Vectis issues Let's Encrypt certificates — Traefik handles HTTPS (443) via HTTP-01, and an acme.sh sidecar handles the mail certificate shared by Postfix and Dovecot (SMTP/IMAP/POP3). Both renew automatically when within 30 days of expiry, with no manual intervention.
+
+### What TLS version does Vectis Mail require?
+
+TLS 1.2 is enforced as the minimum across SMTP, IMAP, POP3, and HTTPS; TLS 1.0 and 1.1 are disabled. Submission ports 587 (STARTTLS) and 465 (implicit TLS) require encryption, while inbound port 25 uses opportunistic TLS for interoperability but only allows authentication over TLS.
+
+### Can I use my own TLS certificate instead of Let's Encrypt?
+
+Yes. Set `provider: custom` in `config.yaml` with `cert_path` and `key_path` pointing to your PEM-encoded fullchain and key, then run `vectis config apply`. With custom certificates you're responsible for renewal — Vectis won't auto-renew them.
+
+### How do I issue mail certificates if port 80 is blocked?
+
+Use a DNS-01 challenge. Add a scoped Cloudflare API token (Zone → DNS → Edit) to `secrets.yaml` and set the DNS challenge to Cloudflare; the acme.sh sidecar creates a temporary `_acme-challenge` TXT record, validates, and cleans it up automatically. DNS-01 also supports wildcard certificates.
+
+### How do I check when my mail TLS certificate expires?
+
+Run `openssl s_client -connect mail.example.com:993` piped to `openssl x509 -noout -dates`, or check the Vectis health API. Let's Encrypt certificates last 90 days and renew automatically within 30 days of expiry; if a renewal fails you can force one with `docker exec vectis-acme acme.sh --renew --domain mail.example.com --force`.
 
 ## Next steps
 

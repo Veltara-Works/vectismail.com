@@ -1,6 +1,17 @@
 ---
 title: "IP Warmup for New Mail Servers"
 description: "A complete guide to IP warmup for new mail servers. Learn why warmup matters, follow Vectis Mail's 30-day warmup schedule, use the warmup API, monitor progress, and avoid common mistakes that damage sender reputation."
+faq:
+  - q: "How long does email IP warmup take?"
+    a: "Vectis Mail's built-in warmup runs 30 days, starting at 50 messages/day and ramping to 200,000/day, holding each level for two days to establish a consistent pattern. After day 30 the warmup auto-completes and sending limits are removed."
+  - q: "What happens if I send too much email from a new IP without warming up?"
+    a: "Providers treat a high-volume new IP like a spammer: Gmail defers with 421 'try again later' errors (eventually bouncing them), Microsoft 365 blocks the IP and requires manual delisting, and Yahoo silently routes you to spam. Recovering a damaged reputation takes weeks to months — far longer than warming up correctly the first time."
+  - q: "Do I need to warm up my IP if I'm migrating an existing mail server?"
+    a: "If the IP already carries an established sending reputation, you can skip or remove warmup. Warmup matters for fresh IPs with no history; for a known-good IP you're moving over, the reputation travels with the address."
+  - q: "Can I pause and resume IP warmup?"
+    a: "Avoid pausing — the schedule is designed for 30 consecutive days, and stopping for several days can cost the reputation you've built. If you must pause, resume from the day you stopped rather than restarting from day 1."
+  - q: "Do I have to warm up each IP separately?"
+    a: "Yes. If your deployment sends from multiple outbound IPs (for example, separate transactional and marketing IPs), each one builds its own reputation and needs its own warmup entry."
 ---
 
 When you deploy a new mail server on a fresh IP address, major email providers (Gmail, Outlook, Yahoo) have no history for that IP. They treat unknown IPs with suspicion -- sending too much mail too quickly from an unknown IP triggers rate limiting, deferrals, or outright blocks. IP warmup is the process of gradually increasing your sending volume over 30 days to build a positive reputation.
@@ -245,6 +256,28 @@ curl -X POST https://mail.example.com/api/v1/warmup \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{"ip_address": "203.0.113.11", "label": "Marketing"}'
 ```
+
+## Frequently asked questions
+
+### How long does email IP warmup take?
+
+Vectis Mail's built-in warmup runs 30 days, starting at 50 messages/day and ramping to 200,000/day, holding each level for two days to establish a consistent pattern. After day 30 the warmup auto-completes and sending limits are removed.
+
+### What happens if I send too much email from a new IP without warming up?
+
+Providers treat a high-volume new IP like a spammer: Gmail defers with 421 "try again later" errors (eventually bouncing them), Microsoft 365 blocks the IP and requires manual delisting, and Yahoo silently routes you to spam. Recovering a damaged reputation takes weeks to months — far longer than warming up correctly the first time.
+
+### Do I need to warm up my IP if I'm migrating an existing mail server?
+
+If the IP already carries an established sending reputation, you can skip or remove warmup. Warmup matters for fresh IPs with no history; for a known-good IP you're moving over, the reputation travels with the address.
+
+### Can I pause and resume IP warmup?
+
+Avoid pausing — the schedule is designed for 30 consecutive days, and stopping for several days can cost the reputation you've built. If you must pause, resume from the day you stopped rather than restarting from day 1.
+
+### Do I have to warm up each IP separately?
+
+Yes. If your deployment sends from multiple outbound IPs (for example, separate transactional and marketing IPs), each one builds its own reputation and needs its own warmup entry.
 
 ## Next steps
 

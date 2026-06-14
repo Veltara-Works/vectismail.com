@@ -1,6 +1,17 @@
 ---
 title: "Email Deliverability Best Practices"
 description: "A comprehensive guide to email deliverability for self-hosted mail servers. Covers DNS authentication, IP reputation management, content best practices, bounce handling, FBL processing, RBL monitoring, and using the Vectis deliverability dashboard."
+faq:
+  - q: "What's a good bounce rate and complaint rate for a self-hosted mail server?"
+    a: "Keep your hard bounce rate below 2% (below 1% during IP warmup) and your spam-complaint rate below 0.1% — about one complaint per 1,000 messages. Remove hard-bouncing addresses immediately, and drop anyone who files a spam complaint from all future mail."
+  - q: "Which blocklists (RBLs) does Vectis Mail monitor?"
+    a: "Vectis checks your server IP automatically against the major Real-time Blackhole Lists: Spamhaus ZEN, Barracuda BRBL, SpamCop, SORBS, and the CBL. Spamhaus ZEN is the most consequential — a listing there blocks delivery to most major providers. If you're listed, the dashboard links to each list's delisting page."
+  - q: "How do I check whether my mail server IP is blocklisted?"
+    a: "Vectis monitors RBLs daily and exposes the status on the deliverability dashboard and via the /api/v1/deliverability/rbl endpoint, which can also trigger an immediate re-check. For an independent look, run your IP through mxtoolbox.com's blacklist check."
+  - q: "What's the difference between a hard bounce and a soft bounce?"
+    a: "A hard bounce is a permanent failure — the address doesn't exist or was permanently rejected — and you should remove it immediately. A soft bounce is temporary (full mailbox, server busy, warmup rate-limiting); Postfix retries automatically, but if an address soft-bounces consistently over several days, treat it as a hard bounce and remove it."
+  - q: "How do I improve deliverability on a self-hosted email server?"
+    a: "Get SPF, DKIM, DMARC, and a matching PTR record green first, then warm a new IP gradually, keep sending volume consistent, maintain clean opt-in lists, and process bounces and spam complaints promptly. Register with Google Postmaster Tools and Microsoft SNDS for reputation feedback, and run `vectis domain check` to confirm every record passes."
 ---
 
 Deliverability is the percentage of your emails that reach the inbox rather than the spam folder or a bounce. Running your own mail server gives you full control over your sending reputation, but it also means you are responsible for maintaining it. This guide covers everything you need to know.
@@ -275,6 +286,28 @@ Use this checklist when setting up a new domain on Vectis:
 - [ ] Test email received in inbox (not spam) at Gmail, Outlook, and Yahoo
 - [ ] Google Postmaster Tools registered
 - [ ] RBL status clean
+
+## Frequently asked questions
+
+### What's a good bounce rate and complaint rate for a self-hosted mail server?
+
+Keep your hard bounce rate below 2% (below 1% during IP warmup) and your spam-complaint rate below 0.1% — about one complaint per 1,000 messages. Remove hard-bouncing addresses immediately, and drop anyone who files a spam complaint from all future mail.
+
+### Which blocklists (RBLs) does Vectis Mail monitor?
+
+Vectis checks your server IP automatically against the major Real-time Blackhole Lists: Spamhaus ZEN, Barracuda BRBL, SpamCop, SORBS, and the CBL. Spamhaus ZEN is the most consequential — a listing there blocks delivery to most major providers. If you're listed, the dashboard links to each list's delisting page.
+
+### How do I check whether my mail server IP is blocklisted?
+
+Vectis monitors RBLs daily and exposes the status on the deliverability dashboard and via the `/api/v1/deliverability/rbl` endpoint, which can also trigger an immediate re-check. For an independent look, run your IP through mxtoolbox.com's blacklist check.
+
+### What's the difference between a hard bounce and a soft bounce?
+
+A hard bounce is a permanent failure — the address doesn't exist or was permanently rejected — and you should remove it immediately. A soft bounce is temporary (full mailbox, server busy, warmup rate-limiting); Postfix retries automatically, but if an address soft-bounces consistently over several days, treat it as a hard bounce and remove it.
+
+### How do I improve deliverability on a self-hosted email server?
+
+Get SPF, DKIM, DMARC, and a matching PTR record green first, then warm a new IP gradually, keep sending volume consistent, maintain clean opt-in lists, and process bounces and spam complaints promptly. Register with Google Postmaster Tools and Microsoft SNDS for reputation feedback, and run `vectis domain check` to confirm every record passes.
 
 ## Next steps
 

@@ -2,6 +2,23 @@
 title: "Should You Self-Host Email? The 2026 Decision Guide"
 description: "An honest 2026 decision guide for self-hosting email. TCO math vs SendGrid, Postmark, Mailgun and Google Workspace; the real deliverability bar; when SaaS still wins; when self-hosting wins; and the minimum viable self-host stack."
 lastUpdated: 2026-06-08
+faq:
+  - q: "Is self-hosting email illegal in 2026?"
+    a: "No. Self-hosting email is legal everywhere we operate. Some jurisdictions require you to keep records of certain commercial communications, but that's a sending-practice rule, not a hosting rule."
+  - q: "Will Gmail block self-hosted email by default?"
+    a: "No. Gmail accepts mail from any properly authenticated sender (SPF/DKIM/DMARC, a clean PTR, and TLS). The 2024 bulk-sender rules apply at 5,000+ messages/day to Gmail addresses and you must comply with those, but a small self-hosted server sending to Gmail recipients works fine without any special arrangement."
+  - q: "What VPS provider should I use for self-hosting email?"
+    a: "Look for one that lets you set a custom PTR record, has outbound port 25 unblocked, and uses IPs that aren't on residential blocklists. Hetzner, OVH, BinaryLane, DigitalOcean (with a port-25 ticket), Vultr, and Linode all work. Avoid AWS EC2 (port 25 is blocked by default and the unblock process is painful) and most consumer cloud platforms."
+  - q: "Can I self-host email behind Cloudflare?"
+    a: "Yes for the website and the API, but not for the mail records themselves. MX records and your mail server's A/AAAA record must be DNS-only (grey cloud), not proxied (orange cloud). Cloudflare doesn't proxy SMTP, IMAP, or POP3 traffic, so the orange cloud actively breaks mail delivery."
+  - q: "How much does it cost to self-host email for a small SaaS in 2026?"
+    a: "For a SaaS sending 50–200k transactional emails/month plus 5–20 team mailboxes, expect roughly $25–50/month total: a 4 GB VPS ($20–40), domain and DNS ($1–2), free Let's Encrypt TLS, and object-storage backups ($1–5). That compares with $200–500/month on equivalent SaaS, plus about 30 minutes a week of engineering time at steady state."
+  - q: "How long does it take to set up a self-hosted email server in 2026?"
+    a: "With a modern installer (Vectis, Mailcow, Mail-in-a-Box), 30–90 minutes including DNS propagation. By hand from Postfix and Dovecot configs, 4–12 hours, plus another 4–8 hours wiring up the antispam, webmail, and TLS layers."
+  - q: "Does self-hosting email mean worse deliverability?"
+    a: "Not inherently. A well-configured self-hosted server with a clean IP, valid SPF/DKIM/DMARC, working PTR, and a reasonable sending pattern lands in the inbox at rates comparable to managed SaaS. The variance is in configuration, not in the underlying mail protocol — self-hosted setups underperform on average only because many skip steps the modern stacks include by default."
+  - q: "What's the biggest mistake first-time self-hosters make?"
+    a: "Skipping the PTR record. Without a valid reverse-DNS entry pointing at your mail hostname, many receiving servers reject your mail outright, and the rejection message isn't always clear about why. Always verify with `dig -x <your-ip>` before sending real mail."
 ---
 
 **Short answer.** Self-host email in 2026 if you (a) send under ~500k transactional emails/month and want flat pricing, (b) need mailbox hosting *and* a transactional API on one stack, (c) have data-residency or sovereignty constraints, or (d) are paying enough to a SaaS provider that the engineering time pays back inside a year. Stay on SaaS if you send cold outreach at scale, lack any Linux operations capacity, or your business literally cannot tolerate a 4-hour mail outage during a learning curve.
