@@ -10,7 +10,10 @@ const slug = Astro.locals.starlightRoute?.id ?? ''
 const showByline = slug.startsWith('guides/') || slug.startsWith('getting-started')
 ---
 {showByline && (
-	<p class="doc-byline">Written by Ian Holt</p>
+	<p class="doc-byline">
+		<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="Ian Holt" width="28" height="28" loading="lazy" decoding="async" />
+		<span>Written by Ian Holt</span>
+	</p>
 )}
 <footer class="doc-footer">
 	<div class="doc-footer-inner">
@@ -35,6 +38,17 @@ const showByline = slug.startsWith('guides/') || slug.startsWith('getting-starte
 		padding: 0 1.5rem;
 		font-size: 0.85rem;
 		color: var(--sl-color-gray-3, #8b949e);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.byline-avatar {
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		object-fit: cover;
+		flex-shrink: 0;
 	}
 
 	.doc-footer {

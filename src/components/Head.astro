@@ -85,7 +85,7 @@ const pageUrl = new URL(found?.link.href ?? '/', SITE).toString()
 const slug = route.id ?? ''
 const isNarrative = slug.startsWith('guides/') || slug.startsWith('getting-started')
 const articleAuthor = isNarrative
-	? { '@type': 'Person', name: 'Ian Holt', url: 'https://vectismail.com/about/' }
+	? { '@type': 'Person', name: 'Ian Holt', url: 'https://vectismail.com/about/', image: 'https://vectismail.com/brand/imagery/ian-holt-avatar.webp' }
 	: { '@type': 'Organization', name: 'Vectis Mail', url: 'https://vectismail.com/about/' }
 
 const techArticle = {

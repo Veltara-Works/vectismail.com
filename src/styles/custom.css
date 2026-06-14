@@ -500,6 +500,29 @@
 	font-size: 1.05rem;
 }
 
+/* ── Founder card (About) ───────────────────────────────────────── */
+.founder-card {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	margin: 1.5rem 0 2rem;
+}
+.founder-photo {
+	width: 150px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 12px;
+	border: 1px solid var(--vm-border);
+	flex-shrink: 0;
+}
+.founder-id { line-height: 1.5; }
+.founder-name { font-size: 1.2rem; font-weight: 700; color: var(--sl-color-white); margin: 0; }
+.founder-role { color: var(--sl-color-gray-2); margin: 0.2rem 0 0; }
+.founder-loc { color: var(--sl-color-gray-3); font-size: 0.9rem; margin: 0.2rem 0 0; }
+@media (max-width: 540px) {
+	.founder-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
 /* ── Footer ─────────────────────────────────────────────────────── */
 .footer {
 	border-top: 1px solid var(--vm-border);
