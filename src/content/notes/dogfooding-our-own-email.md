@@ -7,7 +7,7 @@ excerpt: "There are no customer logos to show you yet. So here's the next best p
 
 **Short version.** We don't have a wall of customer logos yet — Vectis Mail is new. What we do have is the next most honest thing: we run our own email on it. Every domain Veltara Works operates, the licensing path that powers Pro, and the contact forms on this site all run on the same Vectis Mail you can install today. Nothing here is a staging environment we keep separate from the product. It *is* the product.
 
-This isn't a stunt. It's the cheapest, most direct quality signal a small team can offer: if the thing we sell wasn't good enough for our own critical mail, we'd know before you did.
+This isn't a stunt. It's the cheapest, most direct quality signal we can give: if the thing we sell wasn't good enough for our own critical mail, we'd know before you did.
 
 ## What actually runs on it
 
@@ -31,7 +31,7 @@ Every one of those is a fix that shipped to everyone. Dogfooding turns our incon
 Eating your own dog food cuts both ways, and it should.
 
 - **We carry the pager.** When an outbound IP gets temporarily listed, or a disk fills, or a renewal misfires, it's our phone at an inconvenient hour — the same pager any self-hoster signs up for. We're not insulated from the trade-off we describe on the [deliverability page](/deliverability/); we live inside it.
-- **We're a small team.** Solo-operator scale is a strength for accountability and a constraint on surface area. We'd rather do a focused product well than a broad one unevenly, and running it ourselves keeps us honest about where the edges are.
+- **We're focused, on purpose.** We'd rather do one product well than many unevenly, and running it ourselves keeps us honest about where the edges are. Email is infrastructure we operate every day across our portfolio, not a side experiment.
 - **New is new.** Production-since-2026 is real production, but it isn't a decade of it. We tell you what's shipped, what's on the roadmap, and we don't dress one up as the other.
 
 ## The point
