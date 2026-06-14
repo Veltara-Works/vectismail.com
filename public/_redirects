@@ -1,2 +1,5 @@
-# www → apex redirect
-https://www.vectismail.com/* https://vectismail.com/:splat 301
+# www → apex redirect is handled by a Cloudflare Single Redirect rule
+# (zone-level Ruleset, http_request_dynamic_redirect phase), NOT here.
+# Cloudflare Pages _redirects matches on PATH only — a host-based rule
+# like "https://www.vectismail.com/*" is INERT on Pages. Do not re-add it.
+# Add path-based redirects below if needed.

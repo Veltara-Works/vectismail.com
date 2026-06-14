@@ -1,6 +1,6 @@
 ---
-title: "SPF, DKIM & DMARC for Self-Hosted Email"
-description: "How SPF, DKIM, and DMARC work together to authenticate self-hosted email — with copy-paste DNS records, the Gmail/Yahoo bulk-sender requirements, and how to verify alignment. Vectis Mail auto-generates DKIM keys and signs every message."
+title: "SPF, DKIM & DMARC: The Complete Email Authentication Guide (2026)"
+description: "SPF, DKIM, and DMARC explained — how the three email-authentication standards work together, copy-paste DNS records, recommended TTLs, the Gmail/Yahoo bulk-sender rules, and how to check every record passes."
 faq:
   - q: "What's the difference between SPF, DKIM, and DMARC?"
     a: "SPF lists which servers may send mail for your domain. DKIM cryptographically signs each message so receivers can verify it was not altered and genuinely came from your domain. DMARC ties the two together: it checks that SPF or DKIM aligns with the visible From address, and tells receivers what to do — and where to send reports — when authentication fails. You need all three for reliable inbox placement."
@@ -8,29 +8,53 @@ faq:
     a: "You should publish all three. Since February 2024, Google and Yahoo require bulk senders (5,000+ messages per day) to pass SPF, DKIM, and DMARC, and mailbox providers increasingly treat a missing DMARC record as a spam signal even at low volume. Vectis Mail signs DKIM automatically; you publish the SPF and DMARC TXT records once."
   - q: "How do I check my SPF, DKIM, and DMARC records?"
     a: "Run `vectis domain check example.com` (or call the deliverability API) for a green/yellow/red status on every record, including PTR and MX. For an outside opinion, send a message to mail-tester.com, or open a test email in Gmail, choose Show original, and look for spf=pass, dkim=pass, and dmarc=pass."
+  - q: "What TTL should SPF, DKIM, and DMARC records use?"
+    a: "Use 3600 seconds (one hour) for steady-state records — it keeps DNS load low while letting changes propagate within an hour. Drop the TTL to 300 seconds (five minutes) before you change a record or rotate a DKIM key, then raise it back once the change has settled. TTL never affects whether authentication passes; it only controls how quickly an edit takes effect."
   - q: "I published my DKIM record but it is not working — why?"
     a: "Allow 5–10 minutes for DNS propagation (some providers take up to 48 hours), and confirm the selector in your DNS matches the one Vectis signs with (shown under Domains → DKIM). The other common cause is a truncated public key: long keys may need to be split into multiple quoted strings within the same TXT record."
   - q: "Can I have more than one SPF record?"
     a: "No. A domain must have exactly one SPF TXT record. Two records produce a permanent error (permerror) that most receivers treat as a fail. Merge every sender into a single v=spf1 record, and watch the 10-DNS-lookup limit — Vectis uses a direct ip4: mechanism, which does not count against it."
+  - q: "What is DMARC alignment, and what is the difference between relaxed and strict?"
+    a: "Alignment means the domain used by SPF or DKIM matches the domain in the visible From header. Relaxed alignment (the default) accepts the organisational domain, so mail.example.com aligns with example.com. Strict alignment requires an exact match. DMARC passes when at least one of SPF or DKIM both passes and aligns. Vectis signs DKIM with the exact domain, so both modes pass for a standard setup."
+  - q: "How long before I move DMARC to p=reject?"
+    a: "Spend 2–4 weeks at p=none reading the aggregate (rua) reports until every legitimate source authenticates cleanly, then 2–4 weeks at p=quarantine, then move to p=reject. Rushing to reject before your reports are clean can silently drop real mail, so let the data tell you when each source is ready."
+  - q: "RSA-2048 or RSA-1024 — which DKIM key length should I use?"
+    a: "Use 2048-bit keys. They are the modern standard, every major receiver supports them, and 1024-bit keys are now considered weak. Vectis generates RSA-2048 keys automatically, so there is nothing to configure."
+  - q: "Do I need BIMI?"
+    a: "BIMI is optional. It displays your brand logo next to authenticated mail in supporting clients, but it requires DMARC at p=quarantine or p=reject first, and most issuers also require a Verified Mark Certificate. Get SPF, DKIM, and DMARC to enforcement first; treat BIMI as a later brand-polish step, not an authentication requirement."
 ---
 
-**SPF, DKIM, and DMARC are the three DNS-based standards that prove an email genuinely came from your domain.** SPF authorises which servers may send for you, DKIM cryptographically signs every message, and DMARC ties both to your visible `From` address and tells receivers what to do when a check fails. Self-hosted senders need all three — since [**February 2024, Google and Yahoo require bulk senders (5,000+ messages/day) to authenticate with SPF, DKIM, and DMARC**](https://support.google.com/a/answer/81126), and mailbox providers increasingly treat a missing DMARC record as a spam signal at any volume.
+**SPF, DKIM, and DMARC are the three DNS-based standards that prove an email genuinely came from your domain.** SPF authorises which servers may send for you, DKIM cryptographically signs every message, and DMARC ties both to your visible `From` address and tells receivers what to do when a check fails. Every sender needs all three — since [**February 2024, Google and Yahoo require bulk senders (5,000+ messages/day) to authenticate with SPF, DKIM, and DMARC**](https://support.google.com/a/answer/81126), and mailbox providers increasingly treat a missing DMARC record as a spam signal at any volume.
 
-Vectis Mail generates your DKIM key and signs every outgoing message automatically — you publish three TXT records once, then verify alignment. This guide covers what each protocol does, the exact records to publish, and how to confirm everything passes.
+This is the complete reference: what each protocol does, the exact records to publish, the TTLs to set, how to verify everything passes, and the standards worth adding once the big three are enforced. Vectis Mail generates your DKIM key and signs every outgoing message automatically — you publish three TXT records once, then verify alignment.
 
 :::tip[Already set up?]
-Run `vectis domain check example.com` for a green/yellow/red status on SPF, DKIM, DMARC, PTR, and MX in one shot — see [the built-in checker](#vectis-deliverability-checker) below.
+Run `vectis domain check example.com` for a green/yellow/red status on SPF, DKIM, DMARC, PTR, and MX in one shot — see [the built-in checker](#how-to-check-spf-dkim--dmarc) below.
 :::
+
+## SPF, DKIM & DMARC at a glance
+
+The three protocols answer three different questions. They are complementary, not alternatives — each closes a gap the others leave open.
+
+| | **SPF** | **DKIM** | **DMARC** |
+|---|---|---|---|
+| **Question it answers** | Is this server allowed to send for the domain? | Was this message signed by the domain and left unaltered? | Do SPF/DKIM align with the `From` address — and what happens on failure? |
+| **DNS record** | One TXT on the domain | TXT at `<selector>._domainkey` | TXT at `_dmarc` |
+| **How it works** | IP authorisation list | Public-key signature | Policy + alignment + reporting |
+| **What it can't do alone** | Survives forwarding poorly; says nothing about content | Doesn't say which servers are allowed | Nothing — it relies on SPF and DKIM results |
+| **If it fails** | Message may be rejected or marked | Signature is ignored for that message | Your policy applies: `none`, `quarantine`, or `reject` |
+
+The short version: **publish all three, get them passing, then tighten DMARC to enforcement.** The rest of this guide is how.
 
 ## How email authentication works
 
 When a receiving mail server (Gmail, Outlook, Yahoo, etc.) gets a message claiming to be from your domain, it runs three checks:
 
-1. **SPF** -- Is the sending server authorised to send for this domain?
-2. **DKIM** -- Was this message cryptographically signed by the domain owner?
-3. **DMARC** -- Do SPF and DKIM results align with the From header, and what should we do if they fail?
+1. **SPF** — Is the sending server authorised to send for this domain?
+2. **DKIM** — Was this message cryptographically signed by the domain owner?
+3. **DMARC** — Do SPF and DKIM results align with the From header, and what should we do if they fail?
 
-All three checks happen via DNS lookups against your domain. If any check fails, the receiving server uses your DMARC policy to decide what to do with the message.
+All three checks happen via DNS lookups against your domain. If authentication fails, the receiving server uses your DMARC policy to decide what to do with the message.
 
 ## SPF (Sender Policy Framework)
 
@@ -116,7 +140,7 @@ After adding a domain, Vectis displays the DNS record you need to add:
 
 The record name follows the pattern `<selector>._domainkey.<domain>`.
 
-Copy the full value from the Vectis dashboard or CLI output. The public key is a long base64 string -- make sure you copy it completely.
+Copy the full value from the Vectis dashboard or CLI output. The public key is a long base64 string — make sure you copy it completely.
 
 ### DKIM key rotation
 
@@ -131,7 +155,7 @@ curl -X POST https://mail.example.com/api/v1/domains/DOMAIN_ID/dkim/rotate \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
-This generates a new key pair with a new selector, keeps the old key active for a transition period, and returns the new DNS record to publish. Once the new DNS record has propagated, the old key can be retired.
+This generates a new key pair with a new selector, keeps the old key active for a transition period, and returns the new DNS record to publish. Once the new DNS record has propagated, the old key can be retired. Lower the DKIM record's TTL to 300 seconds a day before you rotate, so the new selector propagates quickly.
 
 ### Verify DKIM
 
@@ -157,8 +181,8 @@ DMARC ties SPF and DKIM together. It tells receiving servers what to do when aut
 
 DMARC checks two things:
 
-1. **SPF alignment** -- Does the domain in the envelope `MAIL FROM` match the domain in the `From` header?
-2. **DKIM alignment** -- Does the `d=` domain in the DKIM signature match the domain in the `From` header?
+1. **SPF alignment** — Does the domain in the envelope `MAIL FROM` match the domain in the `From` header?
+2. **DKIM alignment** — Does the `d=` domain in the DKIM signature match the domain in the `From` header?
 
 If at least one of these aligns and passes, DMARC passes. If both fail, the receiving server applies your DMARC policy.
 
@@ -172,21 +196,23 @@ Start permissive and tighten over time:
 | **Quarantine** | `p=quarantine` | 2-4 weeks | Failed messages go to spam |
 | **Reject** | `p=reject` | Permanent | Failed messages are rejected |
 
+Do not skip the monitoring phase. `p=none` is the only safe way to discover every legitimate source sending as your domain before you start blocking. Move forward only when the reports show your real mail authenticating cleanly.
+
 ### Recommended DMARC records
 
-**Phase 1 -- Monitoring (start here):**
+**Phase 1 — Monitoring (start here):**
 
 ```dns
 _dmarc.example.com.  IN  TXT  "v=DMARC1; p=none; rua=mailto:dmarc@example.com; fo=1"
 ```
 
-**Phase 2 -- Quarantine:**
+**Phase 2 — Quarantine:**
 
 ```dns
 _dmarc.example.com.  IN  TXT  "v=DMARC1; p=quarantine; rua=mailto:dmarc@example.com; fo=1; pct=100"
 ```
 
-**Phase 3 -- Reject:**
+**Phase 3 — Reject:**
 
 ```dns
 _dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:dmarc@example.com; fo=1; pct=100"
@@ -217,42 +243,40 @@ If you set up a `rua=` address, you will receive daily XML reports from major em
 - Which IPs sent mail claiming to be from your domain
 - Which authentication methods failed and why
 
-These reports are invaluable for identifying issues and detecting spoofing attempts. Several free services (e.g., DMARC Analyzer, Postmark DMARC) can parse these XML files into readable dashboards.
+These reports are invaluable for identifying issues and detecting spoofing attempts. Several free services (e.g., DMARC Analyzer, Postmark DMARC, dmarcian) can parse these XML files into readable dashboards.
 
-### Verify DMARC
+## Record TTL: what values to use
+
+The TTL (time to live) on each TXT record controls how long resolvers cache it. **TTL never affects whether authentication passes — only how quickly an edit takes effect.** Set sensible values and you avoid both stale records and needless DNS chatter.
+
+| Situation | Recommended TTL | Why |
+|-----------|-----------------|-----|
+| Steady state (SPF, DKIM, DMARC) | `3600` (1 hour) | Edits land within an hour; cache load stays low |
+| Before editing a record or rotating a DKIM key | `300` (5 min) | New value propagates almost immediately |
+| Very stable, rarely-changed record | `86400` (24 hours) | Minimal DNS load; fine if you won't touch it |
+
+The practical rule: lower the TTL to `300` a day before any planned change (a DKIM rotation, an SPF edit, tightening DMARC), make the change, confirm it has propagated, then raise the TTL back to `3600`. The frequently searched "DKIM TTL" question has the same answer as the others — there is nothing DKIM-specific about it beyond rotation timing.
+
+## How to check SPF, DKIM & DMARC
+
+Never assume a record is live just because you saved it. Verify from three angles: the raw DNS, a real delivered message, and an independent scoring tool.
+
+### 1. Check the raw DNS records
 
 ```bash
-# Check the DNS record
+# SPF
+dig TXT example.com +short
+
+# DKIM (substitute your selector)
+dig TXT 202604._domainkey.example.com +short
+
+# DMARC
 dig TXT _dmarc.example.com +short
-
-# Expected output:
-# "v=DMARC1; p=quarantine; rua=mailto:dmarc@example.com; fo=1; pct=100"
 ```
 
-## Putting it all together
+### 2. Use the Vectis deliverability checker
 
-Here is a complete DNS record set for `example.com` on a Vectis server at `203.0.113.10`:
-
-```dns
-; MX record -- where to deliver mail
-example.com.                    IN  MX   10  mail.example.com.
-
-; A record -- mail server IP
-mail.example.com.               IN  A        203.0.113.10
-
-; SPF -- who can send for this domain
-example.com.                    IN  TXT      "v=spf1 mx a ip4:203.0.113.10 -all"
-
-; DKIM -- public signing key
-202604._domainkey.example.com.  IN  TXT      "v=DKIM1; k=rsa; p=MIIBIjANBg..."
-
-; DMARC -- policy and reporting
-_dmarc.example.com.             IN  TXT      "v=DMARC1; p=quarantine; rua=mailto:dmarc@example.com; fo=1"
-```
-
-## Vectis deliverability checker
-
-Vectis has a built-in deliverability checker that verifies all your DNS records:
+Vectis has a built-in checker that validates every record at once:
 
 ```bash
 # CLI
@@ -272,13 +296,54 @@ The checker validates:
 
 The dashboard shows a green/yellow/red status for each check.
 
-## Testing with external tools
+### 3. Read a real message and score it externally
 
-After configuring everything, send a test email and verify the headers:
+1. **Gmail**: Open a message you sent, click the three dots, choose **Show original**. Look for `spf=pass`, `dkim=pass`, and `dmarc=pass`.
+2. **mail-tester.com**: Send an email to the address they provide. Scores of 9/10 or above are good.
+3. **MXToolbox**: Run SPF, DKIM, and DMARC lookups at [mxtoolbox.com/SuperTool.aspx](https://mxtoolbox.com/SuperTool.aspx).
 
-1. **Gmail**: Open the message, click the three dots, "Show original". Look for `spf=pass`, `dkim=pass`, `dmarc=pass`.
-2. **mail-tester.com**: Send an email to the address they provide. Scores 9/10 or above are good.
-3. **MXToolbox**: Run SPF, DKIM, and DMARC lookups at mxtoolbox.com/SuperTool.aspx.
+## Putting it all together
+
+Here is a complete DNS record set for `example.com` on a Vectis server at `203.0.113.10`:
+
+```dns
+; MX record — where to deliver mail
+example.com.                    IN  MX   10  mail.example.com.
+
+; A record — mail server IP
+mail.example.com.               IN  A        203.0.113.10
+
+; SPF — who can send for this domain
+example.com.                    IN  TXT      "v=spf1 mx a ip4:203.0.113.10 -all"
+
+; DKIM — public signing key
+202604._domainkey.example.com.  IN  TXT      "v=DKIM1; k=rsa; p=MIIBIjANBg..."
+
+; DMARC — policy and reporting
+_dmarc.example.com.             IN  TXT      "v=DMARC1; p=quarantine; rua=mailto:dmarc@example.com; fo=1"
+```
+
+## Beyond the big three: BIMI, MTA-STS, TLS-RPT & ARC
+
+Once SPF, DKIM, and DMARC are passing and DMARC is at enforcement, a handful of newer standards build on top of them. None are required to send authenticated mail — treat them as the next layer, not a prerequisite.
+
+- **BIMI (Brand Indicators for Message Identification)** — displays your brand logo beside authenticated mail in supporting clients. It requires DMARC at `p=quarantine` or `p=reject` first, an SVG Tiny PS logo published in DNS, and (for Gmail and Apple Mail) a Verified Mark Certificate. Pure brand polish; do it last.
+- **MTA-STS (SMTP MTS Strict Transport Security)** — tells sending servers to require TLS when delivering to you, closing the door on downgrade attacks. It needs a policy file served over HTTPS at `mta-sts.<domain>` plus a `_mta-sts` TXT record.
+- **TLS-RPT** — a TXT record at `_smtp._tls.<domain>` that asks receivers to report TLS delivery failures, so you learn when encrypted delivery breaks. It pairs naturally with MTA-STS.
+- **ARC (Authenticated Received Chain)** — preserves authentication results across forwarders and mailing lists, which can otherwise break SPF and DKIM. Mostly relevant if your mail is frequently forwarded.
+
+The right order is always the same: **get SPF, DKIM, and DMARC passing and enforced first.** These extras only matter once that foundation is solid.
+
+## Troubleshooting
+
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| `dkim=fail` or `dkim=none` | Selector mismatch, key not propagated, or truncated value | Confirm the DNS selector matches the one Vectis signs with; wait for propagation; check the public key wasn't cut off |
+| `spf=permerror` | Two SPF records, or more than 10 DNS lookups | Merge into one record; replace `include:` chains with a direct `ip4:` |
+| `spf=softfail` unexpectedly | Sending IP isn't listed | Add the server's `ip4:` (or `mx`/`a`) to the record |
+| `dmarc=fail` despite SPF and DKIM passing | Alignment mismatch — strict mode, or `d=` domain differs from `From` | Use relaxed alignment and sign with the organisational domain |
+| No DMARC reports arriving | `rua` mailbox missing or mistyped | Confirm the `rua` address exists and can receive mail |
+| Mail to Gmail still lands in spam | Missing PTR or low IP reputation | Set reverse DNS to your mail hostname; see [IP warmup](/guides/ip-warmup) |
 
 ## Frequently asked questions
 
@@ -294,6 +359,10 @@ You should publish all three. Since February 2024, Google and Yahoo require bulk
 
 Run `vectis domain check example.com` (or call the deliverability API) for a green/yellow/red status on every record, including PTR and MX. For an outside opinion, send a message to mail-tester.com, or open a test email in Gmail, choose **Show original**, and look for `spf=pass`, `dkim=pass`, and `dmarc=pass`.
 
+### What TTL should SPF, DKIM, and DMARC records use?
+
+Use 3600 seconds (one hour) for steady-state records — it keeps DNS load low while letting changes propagate within an hour. Drop the TTL to 300 seconds (five minutes) before you change a record or rotate a DKIM key, then raise it back once the change has settled. TTL never affects whether authentication passes; it only controls how quickly an edit takes effect.
+
 ### I published my DKIM record but it isn't working — why?
 
 Allow 5–10 minutes for DNS propagation (some providers take up to 48 hours), and confirm the selector in your DNS matches the one Vectis signs with (shown under **Domains → DKIM**). The other common cause is a truncated public key: long keys may need to be split into multiple quoted strings within the same TXT record.
@@ -302,9 +371,26 @@ Allow 5–10 minutes for DNS propagation (some providers take up to 48 hours), a
 
 No. A domain must have exactly one SPF TXT record. Two records produce a permanent error (permerror) that most receivers treat as a fail. Merge every sender into a single `v=spf1` record, and watch the 10-DNS-lookup limit — Vectis uses a direct `ip4:` mechanism, which doesn't count against it.
 
+### What is DMARC alignment, and what is the difference between relaxed and strict?
+
+Alignment means the domain used by SPF or DKIM matches the domain in the visible `From` header. Relaxed alignment (the default) accepts the organisational domain, so `mail.example.com` aligns with `example.com`. Strict alignment requires an exact match. DMARC passes when at least one of SPF or DKIM both passes and aligns. Vectis signs DKIM with the exact domain, so both modes pass for a standard setup.
+
+### How long before I move DMARC to p=reject?
+
+Spend 2–4 weeks at `p=none` reading the aggregate (`rua`) reports until every legitimate source authenticates cleanly, then 2–4 weeks at `p=quarantine`, then move to `p=reject`. Rushing to reject before your reports are clean can silently drop real mail, so let the data tell you when each source is ready.
+
+### RSA-2048 or RSA-1024 — which DKIM key length should I use?
+
+Use 2048-bit keys. They are the modern standard, every major receiver supports them, and 1024-bit keys are now considered weak. Vectis generates RSA-2048 keys automatically, so there is nothing to configure.
+
+### Do I need BIMI?
+
+BIMI is optional. It displays your brand logo next to authenticated mail in supporting clients, but it requires DMARC at `p=quarantine` or `p=reject` first, and most issuers also require a Verified Mark Certificate. Get SPF, DKIM, and DMARC to enforcement first; treat BIMI as a later brand-polish step, not an authentication requirement.
+
 ## Next steps
 
 - [Email deliverability best practices](/guides/deliverability) for a comprehensive guide to inbox placement
 - [IP warmup for new servers](/guides/ip-warmup) if this is a fresh IP address
 - [Cloudflare integration](/guides/cloudflare) for managing DNS records in Cloudflare
 - [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
+- [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026) if you're still choosing a platform
