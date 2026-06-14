@@ -2,7 +2,7 @@
 import '../styles/custom.css'
 import SiteFooter from "../components/SiteFooter.astro"
 const title = 'Vectis Mail — Self-Hosted Email Platform'
-const description = 'Containerised, self-hosted email server with declarative config, sending API, admin dashboard, and enterprise features. Deploy in minutes.'
+const description = 'The complete self-hosted email platform — mailboxes, sending API, webhooks, spam filtering and webmail in one stack, built on Postfix, Dovecot and Rspamd. Declarative config, atomic rollback, flat pricing that never meters volume.'
 ---
 <html lang="en">
 <head>
@@ -88,8 +88,8 @@ const description = 'Containerised, self-hosted email server with declarative co
 	<div class="hero-wrapper">
 		<section class="hero">
 			<div class="hero-badge">Source-available &middot; Self-hosted &middot; Never per email</div>
-			<h1>Self-hosted email.<br/><span>Never priced per send.</span></h1>
-			<p>The developer experience of SendGrid &mdash; REST API, inbound webhooks, deliverability tooling &mdash; on infrastructure you own. Transactional sending and full IMAP mailboxes in one stack. Free for 3 domains; $39 USD/tenant/month unlocks unlimited volume, domains, and mailboxes.</p>
+			<h1>The complete email platform,<br/><span>on infrastructure you own.</span></h1>
+			<p>Mailboxes, transactional sending, inbound webhooks, spam filtering and webmail &mdash; one stack, built on Postfix, Dovecot and Rspamd, the software that already moves the internet&rsquo;s mail. A single YAML file configures it; every update rolls itself back if a health check fails. Flat pricing that never meters volume: free for 3 domains, $39 USD/tenant/month for unlimited.</p>
 			<p class="hero-agency">Running mail for client domains? One install serves every client &mdash; billed per client, never per email.</p>
 			<div class="hero-buttons">
 				<a href="/getting-started/installation/" class="btn-primary">Get Started Free</a>
@@ -117,6 +117,43 @@ const description = 'Containerised, self-hosted email server with declarative co
 		</div>
 	</div>
 
+	<section class="section">
+		<h2>Built to last, not to demo</h2>
+		<p class="subtitle">Anyone can ship an API. The advantages that hold up over years are harder to copy &mdash; and they&rsquo;re what Vectis is built on.</p>
+		<div class="feature-grid">
+			<div class="feature-card">
+				<div class="icon icon-blue">&#127959;</div>
+				<h3>Proven components, not a rewrite</h3>
+				<p>Vectis orchestrates Postfix, Dovecot and Rspamd &mdash; the battle-tested software that already moves the internet&rsquo;s mail &mdash; instead of a brand-new MTA you&rsquo;d be trusting with production. A modern surface over infrastructure with decades of hardening behind it.</p>
+			</div>
+			<div class="feature-card">
+				<div class="icon icon-green">&#8635;</div>
+				<h3>One YAML file, updates that roll back</h3>
+				<p>Your entire stack lives in one declarative config.yaml. Change it, run apply, and Vectis regenerates every service through a 6-phase pipeline that snapshots first and rolls back automatically if a health check fails. No half-applied state, no 3 a.m. config archaeology.</p>
+			</div>
+			<div class="feature-card">
+				<div class="icon icon-purple">&#128101;</div>
+				<h3>One install, every client &mdash; flat per tenant</h3>
+				<p>Host mail for one product or every client you manage from a single install, each domain with its own keys, DKIM, analytics and isolation. Billed per client, never per email and never per seat &mdash; economics metered SaaS and per-seat suites can&rsquo;t match.</p>
+			</div>
+			<div class="feature-card">
+				<div class="icon icon-orange">&#128737;</div>
+				<h3>Deliverability you control</h3>
+				<p>Rspamd with Bayes and neural scoring, optional ClamAV antivirus, and automated DKIM, SPF and DMARC &mdash; plus IP-warmup tracking and RBL monitoring. The filtering and reputation tooling that decides whether your mail lands, tuned on your server instead of a vendor black box.</p>
+			</div>
+			<div class="feature-card">
+				<div class="icon icon-cyan">&#128230;</div>
+				<h3>The whole platform, not a slice</h3>
+				<p>Transactional APIs host no mailboxes; raw OSS stacks make you assemble everything yourself. Vectis ships sending, receiving, mailbox hosting, webmail, an admin dashboard and an optional support SLA in one place &mdash; the complete job, out of the box.</p>
+			</div>
+			<div class="feature-card">
+				<div class="icon icon-blue">&#128178;</div>
+				<h3>Pricing that never punishes growth</h3>
+				<p>Free for 3 domains, $39 USD/tenant/month for unlimited domains, mailboxes and send volume. No per-email meter, no per-seat tax &mdash; the bill you sign up for is the bill you keep as you scale.</p>
+			</div>
+		</div>
+	</section>
+
 	<section class="section video-section">
 		<h2>See it in action</h2>
 		<p class="subtitle">A short tour of the admin: declarative config, the orchestrator (plan &rarr; apply &rarr; rollback), all-green deliverability, and built-in webmail.</p>
@@ -129,8 +166,8 @@ const description = 'Containerised, self-hosted email server with declarative co
 	</section>
 
 	<section class="section">
-		<h2>Everything you need for production email</h2>
-		<p class="subtitle">Postfix, Dovecot, Rspamd, DKIM, SPF, DMARC — configured and managed through a single YAML file.</p>
+		<h2>What that looks like in the box</h2>
+		<p class="subtitle">The moats above, made concrete — every capability configured and managed through a single YAML file.</p>
 		<div class="feature-grid">
 			<div class="feature-card">
 				<div class="icon icon-blue">&#9881;</div>
