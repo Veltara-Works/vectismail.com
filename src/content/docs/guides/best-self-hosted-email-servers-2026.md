@@ -127,6 +127,7 @@ If it is *not* you — you need groupware, or BSD, or a from-scratch JMAP server
 ## Next steps
 
 - [Should you self-host email? The 2026 decision guide](/guides/self-host-email-2026/) — the TCO math and when SaaS still wins
+- [Self-hosted email vs Google Workspace & Microsoft 365](/guides/self-hosted-email-vs-google-workspace-microsoft-365/) — the per-seat cost-and-control comparison vs the big hosted suites
 - [Email deliverability best practices](/guides/deliverability/) — getting into the inbox once you have a server
 - [SPF, DKIM and DMARC explained](/guides/dkim-spf-dmarc/) — the records every self-hoster must get right
 - Head-to-head comparisons: [vs Mailcow](/alternatives/mailcow/) · [vs iRedMail](/alternatives/iredmail/) · [vs Mail-in-a-Box](/alternatives/mail-in-a-box/) · [vs Stalwart](/alternatives/stalwart/) · [vs Mox](/alternatives/mox/)
