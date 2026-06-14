@@ -80,6 +80,11 @@ const dateModified = '2026-06-08'
 				"mainEntity": [
 					{
 						"@type": "Question",
+						"name": "Does SendGrid have a free tier?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Not anymore. SendGrid discontinued its permanent free plan in 2025 and replaced it with a 60-day free trial limited to 100 emails per day (about 3,000 per month). When the trial ends you must move to a paid plan — Essentials starts at $19.95/month — or lose sending access, so there is no longer an ongoing free tier on SendGrid. Vectis Mail's Starter tier is genuinely $0: self-hosted, no per-email charge and no expiry, covering up to 3 domains and 25 mailboxes per domain. You pay only for the VPS it runs on, plus optionally $39/month for the Pro tier's API and analytics." }
+					},
+					{
+						"@type": "Question",
 						"name": "What does SendGrid cost vs self-hosting Vectis Mail?",
 						"acceptedAnswer": { "@type": "Answer", "text": "SendGrid's cheapest paid tier is $19.95/month for 50,000 emails (Essentials). Pro starts at $89.95/month for 100,000+ emails. At 1 million emails per month, expect $89.95+ in base fees plus dedicated IP charges ($30/month per IP). Vectis Mail self-hosted on a $20/month VPS handles the same volume for the cost of the VPS plus optionally $39 USD/tenant/month for the Pro tier: about $59/month total at any sending volume." }
 					},
@@ -298,6 +303,19 @@ const dateModified = '2026-06-08'
 		<h2>Frequently asked questions</h2>
 		<div class="alt-faq">
 			<div class="alt-faq-q">
+				<h3>Does SendGrid have a free tier?</h3>
+				<p>
+					Not anymore. SendGrid <strong>discontinued its permanent free plan in 2025</strong>
+					and replaced it with a 60-day free trial capped at 100 emails/day (~3,000/month).
+					When the trial ends you have to move to a paid plan — Essentials starts at
+					$19.95/month — or lose sending access, so there is no longer an ongoing free
+					tier on SendGrid. Vectis Mail's <a href="/pricing/">Starter tier</a> is genuinely
+					$0: self-hosted, with no per-email charge and no expiry, covering up to 3 domains
+					and 25 mailboxes per domain. You pay only for the VPS it runs on, plus optionally
+					$39/month for the Pro tier's API and analytics.
+				</p>
+			</div>
+			<div class="alt-faq-q">
 				<h3>What does SendGrid cost vs self-hosting Vectis Mail?</h3>
 				<p>
 					SendGrid's cheapest paid tier is $19.95/month for 50,000 emails
@@ -393,6 +411,7 @@ const dateModified = '2026-06-08'
 		<h3>Sources</h3>
 		<ul>
 			<li>SendGrid pricing: <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> (retrieved 2026-05-12)</li>
+			<li>SendGrid free-plan change (permanent free plan retired, now a 60-day trial): <a href="https://www.twilio.com/en-us/changelog/sendgrid-free-plan" target="_blank" rel="noopener noreferrer">twilio.com/en-us/changelog/sendgrid-free-plan</a></li>
 			<li>Vectis Mail API surface: <a href="/api/">/api</a> reference</li>
 			<li>Vectis Mail IP warmup + deliverability: <a href="/guides/ip-warmup/">/guides/ip-warmup</a> · <a href="/guides/deliverability/">/guides/deliverability</a></li>
 			<li>Vectis Mail pricing: <a href="/pricing/">/pricing</a></li>
