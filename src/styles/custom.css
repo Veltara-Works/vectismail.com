@@ -108,6 +108,16 @@
 	text-underline-offset: 2px;
 }
 
+/* Comfortable base line-height for prose. Bare <p> blocks (e.g. the
+   pricing "Enterprise assurance" / "Deliverability, honestly" copy) carry
+   no own line-height and would otherwise inherit the UA default (~1.2),
+   reading as cramped. Set it on the container so every paragraph inherits
+   a readable rhythm, while components that tune their own (.feature-card p,
+   .hero p, .section .subtitle, etc.) keep their declared values. */
+.marketing-page main {
+	line-height: 1.7;
+}
+
 .marketing-nav .logo {
 	margin-left: 0;
 	display: flex;
