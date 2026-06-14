@@ -38,6 +38,8 @@ See also (machine-readable files for AI agents and programmatic buyers):
 
 ## Guides
 
+- [Should You Self-Host Email? The 2026 Decision Guide](https://vectismail.com/guides/self-host-email-2026/): honest TCO math vs SaaS, when self-hosting wins, when it doesn't.
+- [Best Self-Hosted Email Servers in 2026](https://vectismail.com/guides/best-self-hosted-email-servers-2026/): honest comparison of Mailcow, iRedMail, Mail-in-a-Box, Mailu, docker-mailserver, Stalwart, Mox and Vectis Mail by buyer type.
 - [DKIM, SPF & DMARC](https://vectismail.com/guides/dkim-spf-dmarc/): authentication primer with DNS examples.
 - [TLS Certificates](https://vectismail.com/guides/tls-certificates/): acme.sh + Cloudflare DNS-01 setup.
 - [IP Warmup](https://vectismail.com/guides/ip-warmup/): calendar schedule for new VPS IPs.
