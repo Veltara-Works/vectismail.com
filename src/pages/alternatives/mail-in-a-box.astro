@@ -149,25 +149,25 @@ const dateModified = '2026-06-08'
 					<tr><th></th><th>Vectis Mail</th><th>Mail-in-a-Box</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>Target user</td><td>Teams, SaaS, multi-domain operators</td><td><strong>Individuals, families, single-org</strong></td></tr>
-					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
-					<tr><td>Deployment model</td><td>Docker Compose</td><td><strong>One-command shell script</strong> (OS-native)</td></tr>
-					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family) with Docker</td><td><strong>Ubuntu 22.04 LTS only</strong> (fresh install)</td></tr>
-					<tr><td>Install difficulty</td><td>Guided installer, ~20 min</td><td><strong>One command, ~15 min</strong></td></tr>
-					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Web control panel · no config-as-code</td></tr>
-					<tr><td>REST API</td><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only · no sending API</td></tr>
-					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
-					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
-					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics)</td><td>SpamAssassin</td></tr>
-					<tr><td>Multi-domain</td><td><strong>Built-in</strong>: many domains on one install</td><td>Single-org-shaped</td></tr>
-					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
-					<tr><td>Webmail</td><td>Roundcube</td><td>Roundcube</td></tr>
-					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (Nextcloud-based)</td></tr>
-					<tr><td>Update model</td><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Re-run setup script (fragile if box modified)</td></tr>
-					<tr><td>Observability built in</td><td>Prometheus-format metrics + alerts; Grafana/Loki optional</td><td>Logs only · bring your own stack</td></tr>
-					<tr><td>License</td><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td><strong>CC0-1.0</strong> (public domain)</td></tr>
-					<tr><td>Pricing</td><td>$0 Starter · $39 USD/tenant/month Pro (unlimited installs)</td><td>$0 forever · donations welcome</td></tr>
-					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>13 years</strong>, v75 (2026-04-20), 15.3k GitHub stars</td></tr>
+					<tr><th scope="row">Target user</th><td>Teams, SaaS, multi-domain operators</td><td><strong>Individuals, families, single-org</strong></td></tr>
+					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
+					<tr><th scope="row">Deployment model</th><td>Docker Compose</td><td><strong>One-command shell script</strong> (OS-native)</td></tr>
+					<tr><th scope="row">Supported OS</th><td>Linux (Ubuntu, Debian, RHEL family) with Docker</td><td><strong>Ubuntu 22.04 LTS only</strong> (fresh install)</td></tr>
+					<tr><th scope="row">Install difficulty</th><td>Guided installer, ~20 min</td><td><strong>One command, ~15 min</strong></td></tr>
+					<tr><th scope="row">Configuration model</th><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Web control panel · no config-as-code</td></tr>
+					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only · no sending API</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
+					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
+					<tr><th scope="row">Antispam (default)</th><td><strong>Rspamd</strong> (stronger heuristics)</td><td>SpamAssassin</td></tr>
+					<tr><th scope="row">Multi-domain</th><td><strong>Built-in</strong>: many domains on one install</td><td>Single-org-shaped</td></tr>
+					<tr><th scope="row">Per-domain analytics</th><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
+					<tr><th scope="row">Webmail</th><td>Roundcube</td><td>Roundcube</td></tr>
+					<tr><th scope="row">Calendar / contacts (CalDAV/CardDAV)</th><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (Nextcloud-based)</td></tr>
+					<tr><th scope="row">Update model</th><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Re-run setup script (fragile if box modified)</td></tr>
+					<tr><th scope="row">Observability built in</th><td>Prometheus-format metrics + alerts; Grafana/Loki optional</td><td>Logs only · bring your own stack</td></tr>
+					<tr><th scope="row">License</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td><strong>CC0-1.0</strong> (public domain)</td></tr>
+					<tr><th scope="row">Pricing</th><td>$0 Starter · $39 USD/tenant/month Pro (unlimited installs)</td><td>$0 forever · donations welcome</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td><strong>13 years</strong>, v75 (2026-04-20), 15.3k GitHub stars</td></tr>
 				</tbody>
 			</table>
 		</div>

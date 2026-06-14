@@ -148,24 +148,24 @@ const dateModified = '2026-06-08'
 					<tr><th></th><th>Vectis Mail</th><th>iRedMail</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
-					<tr><td>Deployment model</td><td>Docker Compose</td><td><strong>OS-native</strong> (installer script, no containers)</td></tr>
-					<tr><td>Supported OS</td><td>Linux (Ubuntu, Debian, RHEL family)</td><td><strong>Linux + FreeBSD + OpenBSD</strong></td></tr>
-					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
-					<tr><td>REST API</td><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
-					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
-					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
-					<tr><td>Antispam (default)</td><td><strong>Rspamd</strong> (stronger heuristics, better deliverability)</td><td>SpamAssassin</td></tr>
-					<tr><td>Update model</td><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Documented manual upgrade procedure</td></tr>
-					<tr><td>Backend storage</td><td>PostgreSQL only</td><td>OpenLDAP, MySQL, MariaDB, or PostgreSQL</td></tr>
-					<tr><td>Admin UI</td><td>React SPA (modern)</td><td>iRedAdmin (basic) · iRedAdmin-Pro (paid upgrade)</td></tr>
-					<tr><td>Webmail</td><td>Roundcube</td><td>Roundcube · SOGo (optional)</td></tr>
-					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
-					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
-					<tr><td>Observability built in</td><td>Prometheus-format metrics + alerts; Grafana/Loki optional</td><td>Logs only — bring your own stack</td></tr>
-					<tr><td>License (core)</td><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>Mixed (upstream component licenses preserved)</td></tr>
-					<tr><td>Pricing</td><td>$0 Starter · $39 USD/tenant/month Pro (unlimited installs)</td><td>$0 OSS · iRedAdmin-Pro + Enterprise editions priced on request</td></tr>
-					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>19 years</strong>, continuous operation since 2007</td></tr>
+					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
+					<tr><th scope="row">Deployment model</th><td>Docker Compose</td><td><strong>OS-native</strong> (installer script, no containers)</td></tr>
+					<tr><th scope="row">Supported OS</th><td>Linux (Ubuntu, Debian, RHEL family)</td><td><strong>Linux + FreeBSD + OpenBSD</strong></td></tr>
+					<tr><th scope="row">Configuration model</th><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
+					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
+					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
+					<tr><th scope="row">Antispam (default)</th><td><strong>Rspamd</strong> (stronger heuristics, better deliverability)</td><td>SpamAssassin</td></tr>
+					<tr><th scope="row">Update model</th><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Documented manual upgrade procedure</td></tr>
+					<tr><th scope="row">Backend storage</th><td>PostgreSQL only</td><td>OpenLDAP, MySQL, MariaDB, or PostgreSQL</td></tr>
+					<tr><th scope="row">Admin UI</th><td>React SPA (modern)</td><td>iRedAdmin (basic) · iRedAdmin-Pro (paid upgrade)</td></tr>
+					<tr><th scope="row">Webmail</th><td>Roundcube</td><td>Roundcube · SOGo (optional)</td></tr>
+					<tr><th scope="row">Calendar / contacts (CalDAV/CardDAV)</th><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
+					<tr><th scope="row">Per-domain analytics</th><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
+					<tr><th scope="row">Observability built in</th><td>Prometheus-format metrics + alerts; Grafana/Loki optional</td><td>Logs only — bring your own stack</td></tr>
+					<tr><th scope="row">License (core)</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>Mixed (upstream component licenses preserved)</td></tr>
+					<tr><th scope="row">Pricing</th><td>$0 Starter · $39 USD/tenant/month Pro (unlimited installs)</td><td>$0 OSS · iRedAdmin-Pro + Enterprise editions priced on request</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td><strong>19 years</strong>, continuous operation since 2007</td></tr>
 				</tbody>
 			</table>
 		</div>

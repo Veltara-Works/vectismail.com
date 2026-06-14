@@ -78,6 +78,14 @@ const data = route.entry.data as typeof route.entry.data & {
 }
 const pageUrl = new URL(found?.link.href ?? '/', SITE).toString()
 
+// Narrative content (guides + getting-started) is bylined to a Person (A3);
+// reference docs (API / CLI / architecture) stay authored by the Organization.
+const slug = route.id ?? ''
+const isNarrative = slug.startsWith('guides/') || slug.startsWith('getting-started')
+const articleAuthor = isNarrative
+	? { '@type': 'Person', name: 'Ian Holt', url: 'https://vectismail.com/about/' }
+	: { '@type': 'Organization', name: 'Vectis Mail', url: 'https://vectismail.com/about/' }
+
 const techArticle = {
 	'@context': 'https://schema.org',
 	'@type': 'TechArticle',
@@ -87,11 +95,7 @@ const techArticle = {
 	datePublished: LAUNCH_DATE,
 	dateModified: isoDay(route.lastUpdated),
 	inLanguage: 'en',
-	author: {
-		'@type': 'Organization',
-		name: 'Vectis Mail',
-		url: 'https://vectismail.com/about/',
-	},
+	author: articleAuthor,
 	publisher: {
 		'@type': 'Organization',
 		name: 'Vectis Mail',
@@ -112,11 +116,7 @@ const howTo = data.howToSteps && data.howToSteps.length > 0 ? {
 	datePublished: LAUNCH_DATE,
 	dateModified: isoDay(route.lastUpdated),
 	inLanguage: 'en',
-	author: {
-		'@type': 'Organization',
-		name: 'Vectis Mail',
-		url: 'https://vectismail.com/about/',
-	},
+	author: articleAuthor,
 	publisher: {
 		'@type': 'Organization',
 		name: 'Vectis Mail',

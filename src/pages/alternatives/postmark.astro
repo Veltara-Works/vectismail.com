@@ -149,13 +149,13 @@ const dateModified = '2026-06-08'
 					<tr><th>Monthly volume</th><th>Vectis Mail (Pro + $20/mo VPS)</th><th>Postmark</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>100 emails</td><td><strong>$0 (Starter, no VPS needed for tiny volume)</strong></td><td>$0 (Free tier, never expires)</td></tr>
-					<tr><td>10,000 emails</td><td><strong>$59/mo flat</strong></td><td>$15–18/mo (Basic / Pro / Platform)</td></tr>
-					<tr><td>50,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$70/mo (Pro + 40K overage at $1.30/1000)</td></tr>
-					<tr><td>100,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$134/mo (Pro + 90K overage)</td></tr>
-					<tr><td>500,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$654/mo (Pro + 490K overage)</td></tr>
-					<tr><td>1,000,000 emails</td><td><strong>$59/mo flat</strong></td><td>~$1,200/mo (Platform + overage at $1.20/1000)</td></tr>
-					<tr><td>5,000,000+ emails</td><td><strong>$59/mo</strong> (may need larger VPS at this scale)</td><td>~$6,000/mo + DMARC/dedicated-IP add-ons</td></tr>
+					<tr><th scope="row">100 emails</th><td><strong>$0 (Starter, no VPS needed for tiny volume)</strong></td><td>$0 (Free tier, never expires)</td></tr>
+					<tr><th scope="row">10,000 emails</th><td><strong>$59/mo flat</strong></td><td>$15–18/mo (Basic / Pro / Platform)</td></tr>
+					<tr><th scope="row">50,000 emails</th><td><strong>$59/mo flat</strong></td><td>~$70/mo (Pro + 40K overage at $1.30/1000)</td></tr>
+					<tr><th scope="row">100,000 emails</th><td><strong>$59/mo flat</strong></td><td>~$134/mo (Pro + 90K overage)</td></tr>
+					<tr><th scope="row">500,000 emails</th><td><strong>$59/mo flat</strong></td><td>~$654/mo (Pro + 490K overage)</td></tr>
+					<tr><th scope="row">1,000,000 emails</th><td><strong>$59/mo flat</strong></td><td>~$1,200/mo (Platform + overage at $1.20/1000)</td></tr>
+					<tr><th scope="row">5,000,000+ emails</th><td><strong>$59/mo</strong> (may need larger VPS at this scale)</td><td>~$6,000/mo + DMARC/dedicated-IP add-ons</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -173,24 +173,24 @@ const dateModified = '2026-06-08'
 					<tr><th></th><th>Vectis Mail</th><th>Postmark</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>Hosting model</td><td><strong>Self-hosted</strong> (your VPS, your IPs)</td><td>Managed SaaS (US-primary)</td></tr>
-					<tr><td>Pricing model</td><td><strong>Flat per-tenant</strong> ($39 USD/tenant/mo Pro, unlimited installs)</td><td>Per-email after the 10K base bucket</td></tr>
-					<tr><td>Effective cost @ 100K emails/mo</td><td><strong>$59/mo</strong> (Pro + VPS)</td><td>~$134/mo</td></tr>
-					<tr><td>Effective cost @ 1M emails/mo</td><td><strong>$59/mo</strong> (Pro + VPS)</td><td>~$1,200/mo</td></tr>
-					<tr><td>Transactional sending API</td><td>REST + SMTP, domain-scoped keys, batch, attachments</td><td>REST + SMTP, mature SDKs</td></tr>
-					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>Yes — mature, well-documented</td></tr>
-					<tr><td>Mailbox hosting (IMAP/POP3)</td><td><strong>Yes</strong> — Roundcube webmail included</td><td>No — send + inbound parse only</td></tr>
-					<tr><td>Message Streams (txn / broadcast separation)</td><td>No direct equivalent</td><td><strong>Yes</strong> — architectural differentiator</td></tr>
-					<tr><td>Email templates</td><td>Stored + rendered locally</td><td>Hosted in Postmark, JSON-exportable</td></tr>
-					<tr><td>IP warmup required</td><td><strong>Yes</strong> — 2–4 weeks on fresh IP</td><td>No — pre-warmed shared pool</td></tr>
-					<tr><td>Sender vetting</td><td>You own the decision</td><td>Strict — some senders rejected at signup</td></tr>
-					<tr><td>Data sovereignty</td><td><strong>Full</strong> — content + metadata on your infra</td><td>US-primary; ActiveCampaign-owned</td></tr>
-					<tr><td>Underlying stack control</td><td><strong>Full</strong> Postfix/Rspamd/Dovecot access</td><td>None — black-box SaaS</td></tr>
-					<tr><td>Analytics retention</td><td>Your Postgres, indefinite</td><td>45–365 days, tier-dependent</td></tr>
-					<tr><td>Marketing/broadcast features</td><td>Transactional + receive only</td><td>Transactional-first; broadcast is light</td></tr>
-					<tr><td>Compliance off-the-shelf</td><td>You operate the controls</td><td><strong>SOC 2, GDPR, HIPAA-eligible</strong></td></tr>
-					<tr><td>License</td><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>Proprietary SaaS</td></tr>
-					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>15+ years</strong> (founded 2010)</td></tr>
+					<tr><th scope="row">Hosting model</th><td><strong>Self-hosted</strong> (your VPS, your IPs)</td><td>Managed SaaS (US-primary)</td></tr>
+					<tr><th scope="row">Pricing model</th><td><strong>Flat per-tenant</strong> ($39 USD/tenant/mo Pro, unlimited installs)</td><td>Per-email after the 10K base bucket</td></tr>
+					<tr><th scope="row">Effective cost @ 100K emails/mo</th><td><strong>$59/mo</strong> (Pro + VPS)</td><td>~$134/mo</td></tr>
+					<tr><th scope="row">Effective cost @ 1M emails/mo</th><td><strong>$59/mo</strong> (Pro + VPS)</td><td>~$1,200/mo</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td>REST + SMTP, domain-scoped keys, batch, attachments</td><td>REST + SMTP, mature SDKs</td></tr>
+					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>Yes — mature, well-documented</td></tr>
+					<tr><th scope="row">Mailbox hosting (IMAP/POP3)</th><td><strong>Yes</strong> — Roundcube webmail included</td><td>No — send + inbound parse only</td></tr>
+					<tr><th scope="row">Message Streams (txn / broadcast separation)</th><td>No direct equivalent</td><td><strong>Yes</strong> — architectural differentiator</td></tr>
+					<tr><th scope="row">Email templates</th><td>Stored + rendered locally</td><td>Hosted in Postmark, JSON-exportable</td></tr>
+					<tr><th scope="row">IP warmup required</th><td><strong>Yes</strong> — 2–4 weeks on fresh IP</td><td>No — pre-warmed shared pool</td></tr>
+					<tr><th scope="row">Sender vetting</th><td>You own the decision</td><td>Strict — some senders rejected at signup</td></tr>
+					<tr><th scope="row">Data sovereignty</th><td><strong>Full</strong> — content + metadata on your infra</td><td>US-primary; ActiveCampaign-owned</td></tr>
+					<tr><th scope="row">Underlying stack control</th><td><strong>Full</strong> Postfix/Rspamd/Dovecot access</td><td>None — black-box SaaS</td></tr>
+					<tr><th scope="row">Analytics retention</th><td>Your Postgres, indefinite</td><td>45–365 days, tier-dependent</td></tr>
+					<tr><th scope="row">Marketing/broadcast features</th><td>Transactional + receive only</td><td>Transactional-first; broadcast is light</td></tr>
+					<tr><th scope="row">Compliance off-the-shelf</th><td>You operate the controls</td><td><strong>SOC 2, GDPR, HIPAA-eligible</strong></td></tr>
+					<tr><th scope="row">License</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>Proprietary SaaS</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td><strong>15+ years</strong> (founded 2010)</td></tr>
 				</tbody>
 			</table>
 		</div>

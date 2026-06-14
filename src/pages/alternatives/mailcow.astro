@@ -149,20 +149,20 @@ const dateModified = '2026-06-08'
 					<tr><th></th><th>Vectis Mail</th><th>Mailcow</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>Mail stack</td><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
-					<tr><td>Container count (default)</td><td><strong>14</strong></td><td>25+ <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent); font-size: 0.85em;">[1]</a></td></tr>
-					<tr><td>Configuration model</td><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
-					<tr><td>REST API</td><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
-					<tr><td>Transactional sending API</td><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
-					<tr><td>Inbound webhooks</td><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
-					<tr><td>Update model</td><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Manual <code>update.sh</code> script</td></tr>
-					<tr><td>Per-domain analytics</td><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
-					<tr><td>Webmail</td><td>Roundcube</td><td>SOGo</td></tr>
-					<tr><td>Calendar / contacts (CalDAV/CardDAV)</td><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
-					<tr><td>Admin UI</td><td>React SPA</td><td>PHP / Twig</td></tr>
-					<tr><td>License</td><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>GPL-3.0</td></tr>
-					<tr><td>Pricing</td><td>$0 Starter · $39 USD/tenant/month Pro</td><td>$0 · paid ServerCow support optional</td></tr>
-					<tr><td>Maturity</td><td>v0.1.x — production since April 2026</td><td><strong>12+ years</strong>, large community</td></tr>
+					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
+					<tr><th scope="row">Container count (default)</th><td><strong>14</strong></td><td>25+ <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent); font-size: 0.85em;">[1]</a></td></tr>
+					<tr><th scope="row">Configuration model</th><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
+					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
+					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
+					<tr><th scope="row">Update model</th><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Manual <code>update.sh</code> script</td></tr>
+					<tr><th scope="row">Per-domain analytics</th><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
+					<tr><th scope="row">Webmail</th><td>Roundcube</td><td>SOGo</td></tr>
+					<tr><th scope="row">Calendar / contacts (CalDAV/CardDAV)</th><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
+					<tr><th scope="row">Admin UI</th><td>React SPA</td><td>PHP / Twig</td></tr>
+					<tr><th scope="row">License</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>GPL-3.0</td></tr>
+					<tr><th scope="row">Pricing</th><td>$0 Starter · $39 USD/tenant/month Pro</td><td>$0 · paid ServerCow support optional</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td><strong>12+ years</strong>, large community</td></tr>
 				</tbody>
 			</table>
 		</div>

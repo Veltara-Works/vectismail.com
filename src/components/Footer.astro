@@ -2,7 +2,16 @@
 // Custom Starlight Footer override.
 // Adds a site-wide footer with links matching the marketing pages.
 import type { Props } from '@astrojs/starlight/props'
+
+// Author byline on narrative content (guides + getting-started tutorials),
+// not on reference docs (API / CLI / architecture). A3 (AI-SEO): visible
+// byline pairs with the Person author in the page's Article/HowTo schema.
+const slug = Astro.locals.starlightRoute?.id ?? ''
+const showByline = slug.startsWith('guides/') || slug.startsWith('getting-started')
 ---
+{showByline && (
+	<p class="doc-byline">Written by Ian Holt</p>
+)}
 <footer class="doc-footer">
 	<div class="doc-footer-inner">
 		<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
@@ -20,9 +29,17 @@ import type { Props } from '@astrojs/starlight/props'
 </footer>
 
 <style>
+	.doc-byline {
+		max-width: 1400px;
+		margin: 3rem auto 0;
+		padding: 0 1.5rem;
+		font-size: 0.85rem;
+		color: var(--sl-color-gray-3, #8b949e);
+	}
+
 	.doc-footer {
 		border-top: 1px solid var(--sl-color-gray-5, #21262d);
-		margin-top: 3rem;
+		margin-top: 1.5rem;
 		padding: 2rem 1.5rem;
 	}
 

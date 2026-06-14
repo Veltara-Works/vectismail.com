@@ -78,6 +78,9 @@
 }
 
 .marketing-nav a {
+	/* inline-block so the 0.5rem vertical padding counts toward the tap
+	   target — keeps each nav link ≥24px tall (WCAG 2.5.8 target-size). */
+	display: inline-block;
 	color: var(--sl-color-gray-2);
 	text-decoration: none;
 	margin-left: 1rem;
@@ -89,6 +92,20 @@
 
 .marketing-nav a:hover {
 	color: var(--sl-color-white);
+}
+
+/* Content links in marketing-page prose. Without this, any link that
+   isn't a button/nav (i.e. has no class) falls back to the UA default
+   #0000ee — which fails colour-contrast (2.08:1 on dark) and reads as
+   unstyled. Colour + underline also satisfies link-in-text-block
+   (links must be distinguishable from surrounding text by more than
+   colour). Buttons (.btn-*) and nav links are unaffected: nav sits
+   outside <main>, buttons carry a class, and inline color= wins on
+   specificity. */
+.marketing-page main a:not([class]) {
+	color: var(--sl-color-accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
 }
 
 .marketing-nav .logo {
@@ -592,6 +609,7 @@ a.alt-index-card h3 {
 .compare-table thead th:first-child {
 	background: transparent;
 }
+.compare-table tbody th:first-child,
 .compare-table tbody td:first-child {
 	color: var(--sl-color-gray-3);
 	font-weight: 500;
