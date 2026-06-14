@@ -42,6 +42,7 @@ See also (machine-readable files for AI agents and programmatic buyers):
 - [Best Self-Hosted Email Servers in 2026](https://vectismail.com/guides/best-self-hosted-email-servers-2026/): honest comparison of Mailcow, iRedMail, Mail-in-a-Box, Mailu, docker-mailserver, Stalwart, Mox and Vectis Mail by buyer type.
 - [Self-Hosted Email vs Google Workspace & Microsoft 365 (2026)](https://vectismail.com/guides/self-hosted-email-vs-google-workspace-microsoft-365/): honest per-seat cost-and-control comparison; where the lines cross, the 2025–2026 price hikes, when each makes sense, the hybrid pattern.
 - [DKIM, SPF & DMARC](https://vectismail.com/guides/dkim-spf-dmarc/): authentication primer with DNS examples.
+- [Where Are Mailcow's DKIM Keys?](https://vectismail.com/guides/mailcow-dkim-keys/): mailcow stores DKIM keys in Redis (not /data/dkim); how to find, export, back up and fix signing — and why migrations break DKIM.
 - [TLS Certificates](https://vectismail.com/guides/tls-certificates/): acme.sh + Cloudflare DNS-01 setup.
 - [IP Warmup](https://vectismail.com/guides/ip-warmup/): calendar schedule for new VPS IPs.
 - [Deliverability](https://vectismail.com/guides/deliverability/): inbox rate vs spam folder, end to end.

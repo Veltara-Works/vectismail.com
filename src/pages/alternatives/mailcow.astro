@@ -280,7 +280,7 @@ const dateModified = '2026-06-08'
 		<ol class="alt-steps">
 			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Configure your domain(s) but leave DNS pointed at Mailcow for now.</li>
 			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> or <code>doveadm backup</code>: both Mailcow and Vectis Mail are vanilla Dovecot underneath, so the maildir structure transfers directly.</li>
-			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them to DNS alongside the existing Mailcow keys. Run both in parallel during the switchover.</li>
+			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them to DNS alongside the existing Mailcow keys. Run both in parallel during the switchover. (Mailcow keeps its DKIM keys in Redis, not on disk &mdash; see <a href="/guides/mailcow-dkim-keys/">where Mailcow's DKIM keys live</a> if you need to locate or export them first.)</li>
 			<li><strong>Export Sieve filters</strong> (per-user) from Mailcow Dovecot and import into Vectis Mail Dovecot (same file format).</li>
 			<li><strong>Export SOGo data</strong> (calendar / contacts) to iCal/vCard if needed. Vectis Mail can't import these directly. This is the only non-trivial step.</li>
 			<li><strong>Cut DNS over</strong>: update MX to point at the Vectis Mail server. Mail starts flowing through Vectis Mail as DNS propagates.</li>

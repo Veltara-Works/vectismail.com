@@ -63,6 +63,7 @@ export default defineConfig({
 						{ label: 'Best Self-Hosted Email Servers 2026', slug: 'guides/best-self-hosted-email-servers-2026' },
 						{ label: 'Self-Hosted Email vs Google Workspace & Microsoft 365', slug: 'guides/self-hosted-email-vs-google-workspace-microsoft-365' },
 						{ label: 'SPF, DKIM & DMARC', slug: 'guides/dkim-spf-dmarc' },
+						{ label: 'Mailcow DKIM Keys: Find, Back Up & Fix', slug: 'guides/mailcow-dkim-keys' },
 						{ label: 'TLS Certificates', slug: 'guides/tls-certificates' },
 						{ label: 'IP Warmup', slug: 'guides/ip-warmup' },
 						{ label: 'Deliverability', slug: 'guides/deliverability' },

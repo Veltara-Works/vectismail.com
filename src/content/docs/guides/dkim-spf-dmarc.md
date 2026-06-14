@@ -393,4 +393,5 @@ BIMI is optional. It displays your brand logo next to authenticated mail in supp
 - [IP warmup for new servers](/guides/ip-warmup) if this is a fresh IP address
 - [Cloudflare integration](/guides/cloudflare) for managing DNS records in Cloudflare
 - [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
+- [Where are mailcow's DKIM keys?](/guides/mailcow-dkim-keys/) if you're troubleshooting DKIM on a mailcow server
 - [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026) if you're still choosing a platform
