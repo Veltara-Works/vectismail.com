@@ -5,6 +5,7 @@ type SidebarLink = { type: 'link'; label: string; href: string; isCurrent: boole
 type SidebarGroup = { type: 'group'; label: string; entries: SidebarEntry[] }
 type SidebarEntry = SidebarLink | SidebarGroup
 type HowToStep = { name: string; url: string; text?: string }
+type FaqItem = { q: string; a: string }
 
 type FindResult = { group: SidebarGroup | null; link: SidebarLink }
 
@@ -75,6 +76,7 @@ const breadcrumb = {
 const data = route.entry.data as typeof route.entry.data & {
 	howToName?: string
 	howToSteps?: Array<{ name: string; url: string; text?: string }>
+	faq?: Array<{ q: string; a: string }>
 }
 const pageUrl = new URL(found?.link.href ?? '/', SITE).toString()
 
@@ -133,6 +135,16 @@ const howTo = data.howToSteps && data.howToSteps.length > 0 ? {
 		text: s.text ?? s.name,
 	})),
 } : null
+
+const faqPage = data.faq && data.faq.length > 0 ? {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: data.faq.map((f: FaqItem) => ({
+		'@type': 'Question',
+		name: f.q,
+		acceptedAnswer: { '@type': 'Answer', text: f.a },
+	})),
+} : null
 ---
 <Default {...Astro.props}><slot /></Default>
 {items.length >= 2 && (
@@ -143,4 +155,7 @@ const howTo = data.howToSteps && data.howToSteps.length > 0 ? {
 )}
 {howTo && (
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(howTo)} />
+)}
+{faqPage && (
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(faqPage)} />
 )}

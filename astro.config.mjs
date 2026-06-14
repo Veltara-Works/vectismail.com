@@ -60,7 +60,7 @@ export default defineConfig({
 					label: 'Guides',
 					items: [
 						{ label: 'Should You Self-Host Email?', slug: 'guides/self-host-email-2026' },
-						{ label: 'DKIM, SPF & DMARC', slug: 'guides/dkim-spf-dmarc' },
+						{ label: 'SPF, DKIM & DMARC', slug: 'guides/dkim-spf-dmarc' },
 						{ label: 'TLS Certificates', slug: 'guides/tls-certificates' },
 						{ label: 'IP Warmup', slug: 'guides/ip-warmup' },
 						{ label: 'Deliverability', slug: 'guides/deliverability' },

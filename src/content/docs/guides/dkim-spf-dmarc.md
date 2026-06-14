@@ -1,11 +1,26 @@
 ---
-title: "DKIM, SPF & DMARC Configuration"
-description: "A comprehensive guide to email authentication with DKIM, SPF, and DMARC. Learn how Vectis Mail auto-generates DKIM keys, how to publish SPF and DMARC records, and how to verify alignment for maximum deliverability."
+title: "SPF, DKIM & DMARC for Self-Hosted Email"
+description: "How SPF, DKIM, and DMARC work together to authenticate self-hosted email — with copy-paste DNS records, the Gmail/Yahoo bulk-sender requirements, and how to verify alignment. Vectis Mail auto-generates DKIM keys and signs every message."
+faq:
+  - q: "What's the difference between SPF, DKIM, and DMARC?"
+    a: "SPF lists which servers may send mail for your domain. DKIM cryptographically signs each message so receivers can verify it was not altered and genuinely came from your domain. DMARC ties the two together: it checks that SPF or DKIM aligns with the visible From address, and tells receivers what to do — and where to send reports — when authentication fails. You need all three for reliable inbox placement."
+  - q: "Do I need all three to send email?"
+    a: "You should publish all three. Since February 2024, Google and Yahoo require bulk senders (5,000+ messages per day) to pass SPF, DKIM, and DMARC, and mailbox providers increasingly treat a missing DMARC record as a spam signal even at low volume. Vectis Mail signs DKIM automatically; you publish the SPF and DMARC TXT records once."
+  - q: "How do I check my SPF, DKIM, and DMARC records?"
+    a: "Run `vectis domain check example.com` (or call the deliverability API) for a green/yellow/red status on every record, including PTR and MX. For an outside opinion, send a message to mail-tester.com, or open a test email in Gmail, choose Show original, and look for spf=pass, dkim=pass, and dmarc=pass."
+  - q: "I published my DKIM record but it is not working — why?"
+    a: "Allow 5–10 minutes for DNS propagation (some providers take up to 48 hours), and confirm the selector in your DNS matches the one Vectis signs with (shown under Domains → DKIM). The other common cause is a truncated public key: long keys may need to be split into multiple quoted strings within the same TXT record."
+  - q: "Can I have more than one SPF record?"
+    a: "No. A domain must have exactly one SPF TXT record. Two records produce a permanent error (permerror) that most receivers treat as a fail. Merge every sender into a single v=spf1 record, and watch the 10-DNS-lookup limit — Vectis uses a direct ip4: mechanism, which does not count against it."
 ---
 
-Email authentication is the foundation of deliverability. Without it, receiving servers have no way to verify that your messages are legitimate, and they will be flagged as spam or rejected outright. Vectis Mail handles much of this automatically, but you still need to publish the correct DNS records.
+**SPF, DKIM, and DMARC are the three DNS-based standards that prove an email genuinely came from your domain.** SPF authorises which servers may send for you, DKIM cryptographically signs every message, and DMARC ties both to your visible `From` address and tells receivers what to do when a check fails. Self-hosted senders need all three — since [**February 2024, Google and Yahoo require bulk senders (5,000+ messages/day) to authenticate with SPF, DKIM, and DMARC**](https://support.google.com/a/answer/81126), and mailbox providers increasingly treat a missing DMARC record as a spam signal at any volume.
 
-This guide covers all three protocols in depth: what they do, how Vectis implements them, and how to verify everything is working.
+Vectis Mail generates your DKIM key and signs every outgoing message automatically — you publish three TXT records once, then verify alignment. This guide covers what each protocol does, the exact records to publish, and how to confirm everything passes.
+
+:::tip[Already set up?]
+Run `vectis domain check example.com` for a green/yellow/red status on SPF, DKIM, DMARC, PTR, and MX in one shot — see [the built-in checker](#vectis-deliverability-checker) below.
+:::
 
 ## How email authentication works
 
@@ -264,6 +279,28 @@ After configuring everything, send a test email and verify the headers:
 1. **Gmail**: Open the message, click the three dots, "Show original". Look for `spf=pass`, `dkim=pass`, `dmarc=pass`.
 2. **mail-tester.com**: Send an email to the address they provide. Scores 9/10 or above are good.
 3. **MXToolbox**: Run SPF, DKIM, and DMARC lookups at mxtoolbox.com/SuperTool.aspx.
+
+## Frequently asked questions
+
+### What's the difference between SPF, DKIM, and DMARC?
+
+SPF lists which servers may send mail for your domain. DKIM cryptographically signs each message so receivers can verify it was not altered and genuinely came from your domain. DMARC ties the two together: it checks that SPF or DKIM aligns with the visible `From` address, and tells receivers what to do — and where to send reports — when authentication fails. You need all three for reliable inbox placement.
+
+### Do I need all three to send email?
+
+You should publish all three. Since February 2024, Google and Yahoo require bulk senders (5,000+ messages per day) to pass SPF, DKIM, and DMARC, and mailbox providers increasingly treat a missing DMARC record as a spam signal even at low volume. Vectis Mail signs DKIM automatically; you publish the SPF and DMARC TXT records once.
+
+### How do I check my SPF, DKIM, and DMARC records?
+
+Run `vectis domain check example.com` (or call the deliverability API) for a green/yellow/red status on every record, including PTR and MX. For an outside opinion, send a message to mail-tester.com, or open a test email in Gmail, choose **Show original**, and look for `spf=pass`, `dkim=pass`, and `dmarc=pass`.
+
+### I published my DKIM record but it isn't working — why?
+
+Allow 5–10 minutes for DNS propagation (some providers take up to 48 hours), and confirm the selector in your DNS matches the one Vectis signs with (shown under **Domains → DKIM**). The other common cause is a truncated public key: long keys may need to be split into multiple quoted strings within the same TXT record.
+
+### Can I have more than one SPF record?
+
+No. A domain must have exactly one SPF TXT record. Two records produce a permanent error (permerror) that most receivers treat as a fail. Merge every sender into a single `v=spf1` record, and watch the 10-DNS-lookup limit — Vectis uses a direct `ip4:` mechanism, which doesn't count against it.
 
 ## Next steps
 
