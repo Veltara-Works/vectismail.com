@@ -80,6 +80,11 @@ const dateModified = '2026-06-08'
 				"mainEntity": [
 					{
 						"@type": "Question",
+						"name": "What are the best iRedMail alternatives?",
+						"acceptedAnswer": { "@type": "Answer", "text": "The main self-hosted alternatives to iRedMail are Vectis Mail (Postfix/Dovecot with a declarative config, a 40+ endpoint REST API, inbound webhooks and flat pricing), mailcow (a mature Docker stack with a web UI and SOGo groupware), Mailu and docker-mailserver (lighter Docker stacks), Mail-in-a-Box (single-server simplicity for individuals), and the from-scratch MTAs Stalwart and Mox. If you want iRedMail's self-hosted control plus a programmatic API and mailbox hosting on one platform, Vectis Mail is the closest modern fit; for a full side-by-side of every option see our best self-hosted email servers guide." }
+					},
+					{
+						"@type": "Question",
 						"name": "Is Vectis Mail a drop-in replacement for iRedMail?",
 						"acceptedAnswer": { "@type": "Answer", "text": "For the mail data, yes. Both products use Postfix and Dovecot under the hood, so mailbox migration via imapsync is straightforward. The bigger shift is operational: iRedMail installs OS-native (no Docker); Vectis Mail ships as a Docker Compose stack. If your team prohibits Docker, that's a hard blocker, not a small one." }
 					},
@@ -131,7 +136,7 @@ const dateModified = '2026-06-08'
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Side-by-side, current as of May 2026.</p>
+		<p class="subtitle">Side-by-side, current as of June 2026.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -322,6 +327,22 @@ const dateModified = '2026-06-08'
 	<section class="section" style="padding-top: 1rem;">
 		<h2>Frequently asked questions</h2>
 		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>What are the best iRedMail alternatives?</h3>
+				<p>
+					The main self-hosted alternatives to iRedMail are <strong>Vectis Mail</strong>
+					(Postfix/Dovecot with declarative config, a 40+ endpoint REST API, inbound
+					webhooks and flat pricing), <a href="/alternatives/mailcow/">mailcow</a> (a mature
+					Docker stack with a web UI and SOGo groupware), Mailu and docker-mailserver
+					(lighter Docker stacks), <a href="/alternatives/mail-in-a-box/">Mail-in-a-Box</a>
+					(single-server simplicity for individuals), and the from-scratch MTAs
+					<a href="/alternatives/stalwart/">Stalwart</a> and <a href="/alternatives/mox/">Mox</a>.
+					If you want iRedMail's self-hosted control <em>plus</em> a programmatic API and
+					mailbox hosting on one platform, Vectis Mail is the closest modern fit — see the
+					<a href="/guides/best-self-hosted-email-servers-2026/">best self-hosted email servers guide</a>
+					for the full side-by-side.
+				</p>
+			</div>
 			<div class="alt-faq-q">
 				<h3>Is Vectis Mail a drop-in replacement for iRedMail?</h3>
 				<p>

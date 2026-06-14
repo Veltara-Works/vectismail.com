@@ -64,6 +64,7 @@ export default defineConfig({
 						{ label: 'Self-Hosted Email vs Google Workspace & Microsoft 365', slug: 'guides/self-hosted-email-vs-google-workspace-microsoft-365' },
 						{ label: 'SPF, DKIM & DMARC', slug: 'guides/dkim-spf-dmarc' },
 						{ label: 'Mailcow DKIM Keys: Find, Back Up & Fix', slug: 'guides/mailcow-dkim-keys' },
+						{ label: 'Migrate to Self-Hosted Email (No Downtime)', slug: 'guides/migrate-to-self-hosted-email' },
 						{ label: 'TLS Certificates', slug: 'guides/tls-certificates' },
 						{ label: 'IP Warmup', slug: 'guides/ip-warmup' },
 						{ label: 'Deliverability', slug: 'guides/deliverability' },
