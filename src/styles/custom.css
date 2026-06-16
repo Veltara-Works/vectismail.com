@@ -649,6 +649,17 @@ a.alt-index-card h3 {
 	border-radius: 999px;
 }
 
+/* Author byline avatar — used by .alt-meta (comparison/marketing pages) and
+   .note-byline (notes). The Starlight guide byline in Footer.astro keeps its
+   own scoped copy; keep them in sync if the avatar styling changes. */
+.byline-avatar {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
 .compare-table-wrap {
 	overflow-x: auto;
 	background: var(--vm-bg-card);

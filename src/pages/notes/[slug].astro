@@ -94,7 +94,7 @@ const fmtDate = (d: Date) =>
 				<a href="/notes/" class="note-back">← All notes</a>
 				<time datetime={datePublished} class="note-date">{fmtDate(note.data.pubDate)}</time>
 				<h1 class="note-title">{note.data.title}</h1>
-				<p class="note-byline">Written by Ian Holt</p>
+				<p class="note-byline"><img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" />Written by Ian Holt</p>
 			</header>
 
 			<div class="note-prose">
@@ -157,6 +157,9 @@ const fmtDate = (d: Date) =>
 		font-size: 0.9rem;
 		font-weight: 500;
 		margin: 0.75rem 0 0;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
 	.note-footer {
