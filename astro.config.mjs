@@ -60,6 +60,7 @@ export default defineConfig({
 					label: 'Guides',
 					items: [
 						{ label: 'Should You Self-Host Email?', slug: 'guides/self-host-email-2026' },
+						{ label: 'Self-Hosted Email for Small Business', slug: 'guides/self-hosted-email-for-small-business' },
 						{ label: 'Best Self-Hosted Email Servers 2026', slug: 'guides/best-self-hosted-email-servers-2026' },
 						{ label: 'Self-Hosted Email vs Google Workspace & Microsoft 365', slug: 'guides/self-hosted-email-vs-google-workspace-microsoft-365' },
 						{ label: 'SPF, DKIM & DMARC', slug: 'guides/dkim-spf-dmarc' },

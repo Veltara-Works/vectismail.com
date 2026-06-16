@@ -69,6 +69,8 @@ Workspace's per-seat pricing makes sense for the first 5–10 seats — you get 
 
 The thing nobody mentions: self-hosting mailboxes also gives you free *aliases* and *catch-all addresses*, which Workspace and M365 charge for or limit per-seat. An agency with 25 staff and 50 client domains can have 200+ functional addresses on a self-host stack at no per-address cost.
 
+If you're running a small team specifically, the [small-business guide](/guides/self-hosted-email-for-small-business/) works the numbers, the continuity risk, and the starter stack for the 5-to-50-person case.
+
 ### The hidden costs of self-hosting (be honest)
 
 - **Setup time**: 4–12 hours the first time, depending on stack maturity. With a modern installer (Vectis, Mailcow, Mail-in-a-Box) this drops to 30–90 minutes.
