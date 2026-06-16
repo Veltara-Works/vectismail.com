@@ -33,5 +33,12 @@ Allow: /
 
 User-agent: *
 Allow: /
+# Cloudflare system paths (incl. the email-obfuscation decoder link CF injects
+# for mailto: addresses) — not real pages; were showing as 404s in Search Console.
+Disallow: /cdn-cgi/
+# POST-only form endpoints (Pages Functions) — not content; a crawler GET 404s.
+# Does NOT affect the /api/* reference docs, which have their own paths.
+Disallow: /api/contact
+Disallow: /api/capture
 
 Sitemap: https://vectismail.com/sitemap-index.xml
