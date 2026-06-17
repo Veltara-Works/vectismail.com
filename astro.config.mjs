@@ -31,6 +31,20 @@ export default defineConfig({
 					tag: 'link',
 					attrs: { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
 				},
+				// Preload the brand font so LCP text paints with Inter without
+				// waiting for CSS parse to discover the @font-face. crossorigin is
+				// REQUIRED even same-origin — fonts fetch in CORS mode, so omitting
+				// it triggers a duplicate (uncredited) fetch.
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'preload',
+						href: '/brand/fonts/Inter-VariableFont_opsz_wght.woff2',
+						as: 'font',
+						type: 'font/woff2',
+						crossorigin: true,
+					},
+				},
 			],
 			logo: {
 				src: './public/brand/logos/vectis-mail-wings.png',
