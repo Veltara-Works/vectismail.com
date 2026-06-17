@@ -3,7 +3,7 @@
 /* ── Brand fonts ────────────────────────────────────────────────── */
 @font-face {
 	font-family: 'Inter';
-	src: url('/brand/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations');
+	src: url('/brand/fonts/Inter-VariableFont_opsz_wght.woff2') format('woff2');
 	font-weight: 100 900;
 	font-style: normal;
 	font-display: swap;
