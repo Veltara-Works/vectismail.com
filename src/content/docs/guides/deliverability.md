@@ -16,6 +16,10 @@ faq:
 
 Deliverability is the percentage of your emails that reach the inbox rather than the spam folder or a bounce. Running your own mail server gives you full control over your sending reputation, but it also means you are responsible for maintaining it. This guide covers everything you need to know.
 
+:::note
+Deliverability is the single biggest factor in whether self-hosting is right for you. If you're still weighing it up, start with **[Should You Self-Host Email? The 2026 Decision Guide](/guides/self-host-email-2026/)** — it covers the real deliverability bar honestly before you commit.
+:::
+
 ## The deliverability stack
 
 Deliverability depends on multiple layers working together:
