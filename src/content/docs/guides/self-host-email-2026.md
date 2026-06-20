@@ -25,6 +25,10 @@ faq:
 
 That's the headline. The rest of this guide explains the math, the deliverability reality in 2026, the failure modes nobody tells you about, and what a defensible self-host stack actually looks like today.
 
+:::note
+Want the head-to-head of the servers themselves — Mailcow, iRedMail, Mail-in-a-Box, Stalwart, Mox and Vectis Mail — rather than the *should I* question? Start with **[Best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026/)**, which ranks every option by buyer type. This page is about whether to self-host at all.
+:::
+
 ## TL;DR — the 2026 self-host email scorecard
 
 | If you... | Self-host? |
