@@ -1,0 +1,49 @@
+---
+import "../../styles/custom.css"
+import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
+const title = 'Thanks — feedback noted — Vectis Mail'
+const description = 'Thanks for the feedback. We have logged it and it genuinely helps us improve Vectis Mail.'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://vectismail.com/feedback/thanks/" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="theme-color" content="#0C0C0D" />
+	<meta name="robots" content="noindex, follow" />
+	<link rel="canonical" href="https://vectismail.com/feedback/thanks/" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="section" style="max-width: 640px;">
+		<h1>Thanks — noted.</h1>
+		<p class="subtitle">We've logged your feedback. It genuinely helps us make Vectis Mail better, so thank you for taking the moment.</p>
+
+		<div class="feature-card" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+			<h3 style="margin-top: 0;">Nothing's shut off</h3>
+			<p style="margin-top: 0.75rem;">Your account is on the free <strong>Starter</strong> plan and your server keeps running exactly as it was — Vectis runs on your own infrastructure, so there's no lock-in and nothing held hostage. You're just on Starter's limits and features now (3 domains, 25 mailboxes per domain).</p>
+			<p style="margin-top: 0.75rem; margin-bottom: 0;">If your needs change, <a href="/upgrade/" style="color: var(--sl-color-accent);">upgrading back to Pro</a> takes a couple of clicks and picks up right where you left off.</p>
+		</div>
+
+		<a href="/" class="btn-primary" style="display: inline-block;">Back to vectismail.com</a>
+		<a href="/pricing/" style="display: inline-block; margin-left: 1rem; color: var(--sl-color-accent);">Compare plans</a>
+	</section>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>

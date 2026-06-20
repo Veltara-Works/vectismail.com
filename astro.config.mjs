@@ -19,7 +19,11 @@ export default defineConfig({
 		// @astrojs/sitemap as a transitive dep; declaring it here lets
 		// us pass a filter.
 		sitemap({
-			filter: (page) => !page.includes('/account/billing/done'),
+			// Exclude noindex utility/landing pages from the submitted sitemap
+			// (Search Console flags "submitted URL marked noindex" otherwise).
+			filter: (page) =>
+				!page.includes('/account/billing/done') &&
+				!page.includes('/feedback/thanks'),
 		}),
 		starlight({
 			title: 'Vectis Mail',
