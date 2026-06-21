@@ -135,6 +135,8 @@ It widens the gap. Google raised Workspace prices 17–22% in January 2025 when 
 
 ## Next steps
 
+- [Vectis Mail vs Google Workspace](/alternatives/google-workspace/) — the head-to-head if you're leaving Workspace for self-hosted email
+- [Vectis Mail vs Microsoft 365](/alternatives/microsoft-365/) — the head-to-head if you're leaving Microsoft 365 / Exchange Online
 - [Should you self-host email? The 2026 decision guide](/guides/self-host-email-2026) — the full TCO and deliverability reality check
 - [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026) — an honest 8-way platform comparison
 - [Email deliverability best practices](/guides/deliverability) — how to land in the inbox once you've moved

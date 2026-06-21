@@ -72,19 +72,21 @@ function wings(x, y, height) {
 </g>` + '' // width tracked here for layout: ${width}
 }
 
-function altCard({ product, slug }) {
+function altCard({ product, slug, subhead = 'Self-hosted. Same control. Modern surface.' }) {
 	const label = 'ALTERNATIVE TO'
 	const headlineProduct = product
 	const url = `vectismail.com/alternatives/${slug}`
+	// Shrink the headline for longer product names so they never overflow 1200px.
+	const headSize = product.length > 11 ? 72 : (product.length > 8 ? 92 : 112)
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 ${backdrop()}
 ${wings(80, 90, 140)}
 <text x="270" y="138" font-family="Inter, sans-serif" font-weight="700" font-size="32" letter-spacing="3" fill="${GRAY3}">${esc(label)}</text>
-<text x="270" y="240" font-family="Inter, sans-serif" font-weight="800" font-size="112" fill="${WHITE}">${esc(headlineProduct)}</text>
+<text x="270" y="240" font-family="Inter, sans-serif" font-weight="800" font-size="${headSize}" fill="${WHITE}">${esc(headlineProduct)}</text>
 
 <text x="80" y="408" font-family="Inter, sans-serif" font-weight="800" font-size="64" fill="${CYAN}">Vectis Mail</text>
 <text x="80" y="478" font-family="Inter, sans-serif" font-weight="800" font-size="64" fill="${WHITE}">vs ${esc(product)}</text>
-<text x="80" y="534" font-family="Inter, sans-serif" font-weight="500" font-size="30" fill="${GRAY2}">Self-hosted. Same control. Modern surface.</text>
+<text x="80" y="534" font-family="Inter, sans-serif" font-weight="500" font-size="30" fill="${GRAY2}">${esc(subhead)}</text>
 <text x="80" y="590" font-family="Inter, sans-serif" font-weight="700" font-size="26" fill="${CYAN}">${esc(url)}</text>
 </svg>`
 }
@@ -124,6 +126,12 @@ const cards = [
 	{ file: 'alternatives-postmark.png',     svg: altCard({ product: 'Postmark',     slug: 'postmark' }) },
 	{ file: 'alternatives-stalwart.png',     svg: altCard({ product: 'Stalwart',     slug: 'stalwart' }) },
 	{ file: 'alternatives-mox.png',          svg: altCard({ product: 'Mox',          slug: 'mox' }) },
+
+	// Hosted-provider comparisons (round-3) — own-the-frame subhead
+	{ file: 'alternatives-google-workspace.png', svg: altCard({ product: 'Google Workspace', slug: 'google-workspace', subhead: 'Self-hosted. Own your email, don’t rent it per seat.' }) },
+	{ file: 'alternatives-microsoft-365.png',    svg: altCard({ product: 'Microsoft 365',    slug: 'microsoft-365',    subhead: 'Self-hosted. Own your mailboxes, don’t license them.' }) },
+	{ file: 'alternatives-proton-mail.png',      svg: altCard({ product: 'Proton Mail',      slug: 'proton-mail',      subhead: 'Privacy you own, not rent. Your server, your domain.' }) },
+	{ file: 'alternatives-migadu.png',           svg: altCard({ product: 'Migadu',           slug: 'migadu',           subhead: 'Flat-rate ethos — but it’s your own server.' }) },
 
 	// Use-case / for-pages
 	{ file: 'for-saas.png',        svg: usecaseCard({ audience: 'SAAS FOUNDERS', headline: 'Flat-priced email infra',     subhead: 'Transactional + mailbox + multi-tenancy on one self-hosted platform.', slug: 'saas' }) },

@@ -1,6 +1,7 @@
 ---
 title: "SPF, DKIM & DMARC: The Complete Email Authentication Guide (2026)"
 description: "SPF, DKIM, and DMARC explained — how the three email-authentication standards work together, copy-paste DNS records, recommended TTLs, the Gmail/Yahoo bulk-sender rules, and how to check every record passes."
+lastUpdated: 2026-06-21
 faq:
   - q: "What's the difference between SPF, DKIM, and DMARC?"
     a: "SPF lists which servers may send mail for your domain. DKIM cryptographically signs each message so receivers can verify it was not altered and genuinely came from your domain. DMARC ties the two together: it checks that SPF or DKIM aligns with the visible From address, and tells receivers what to do — and where to send reports — when authentication fails. You need all three for reliable inbox placement."
@@ -18,8 +19,14 @@ faq:
     a: "Alignment means the domain used by SPF or DKIM matches the domain in the visible From header. Relaxed alignment (the default) accepts the organisational domain, so mail.example.com aligns with example.com. Strict alignment requires an exact match. DMARC passes when at least one of SPF or DKIM both passes and aligns. Vectis signs DKIM with the exact domain, so both modes pass for a standard setup."
   - q: "How long before I move DMARC to p=reject?"
     a: "Spend 2–4 weeks at p=none reading the aggregate (rua) reports until every legitimate source authenticates cleanly, then 2–4 weeks at p=quarantine, then move to p=reject. Rushing to reject before your reports are clean can silently drop real mail, so let the data tell you when each source is ready."
-  - q: "RSA-2048 or RSA-1024 — which DKIM key length should I use?"
-    a: "Use 2048-bit keys. They are the modern standard, every major receiver supports them, and 1024-bit keys are now considered weak. Vectis generates RSA-2048 keys automatically, so there is nothing to configure."
+  - q: "What is a DKIM selector?"
+    a: "A selector is a short label that picks which DKIM public key a receiver should look up — it lets one domain publish several keys at once (for rotation, or for different sending systems). The receiver reads the selector from the `s=` tag in the message's DKIM-Signature header, then queries `<selector>._domainkey.<domain>` for the matching key. Vectis Mail uses a date-based selector like `202606` and rotates it for you, so a new key never collides with the old one."
+  - q: "What does p=quarantine vs p=reject mean?"
+    a: "They're the two enforcement levels of a DMARC policy. `p=quarantine` tells receivers to treat failing mail as suspicious — usually dropping it into the spam/junk folder, where it's still recoverable. `p=reject` tells them to refuse it outright at SMTP time, so it never reaches the mailbox. Start at `p=none` (monitor only), move to `p=quarantine` once your reports are clean, then to `p=reject` for full protection against spoofing."
+  - q: "Why are my emails still going to spam with SPF, DKIM and DMARC set up?"
+    a: "Authentication proves who sent the mail; it doesn't guarantee placement. The usual remaining causes are a missing or mismatched PTR (reverse DNS) record, a cold IP with no sending history, blocklist hits, or spammy content and link patterns. Fix PTR first (`dig -x <your-ip>` must return your mail hostname), warm a new IP gradually, and check your domain and IP against the major blocklists. See the deliverability and IP-warmup guides linked below."
+  - q: "Which DKIM key type should I use — RSA-2048 or ed25519?"
+    a: "Use RSA-2048 as your baseline — every receiver supports it and 1024-bit keys are now considered weak. ed25519 keys are shorter and faster but not yet universally supported, so the modern best practice is to publish both and let receivers verify whichever they understand. Vectis Mail generates ed25519 and RSA keys and signs with both automatically, so there's nothing to configure."
   - q: "Do I need BIMI?"
     a: "BIMI is optional. It displays your brand logo next to authenticated mail in supporting clients, but it requires DMARC at p=quarantine or p=reject first, and most issuers also require a Verified Mark Certificate. Get SPF, DKIM, and DMARC to enforcement first; treat BIMI as a later brand-polish step, not an authentication requirement."
 ---
@@ -123,12 +130,12 @@ DKIM adds a cryptographic signature to every outgoing message. The receiving ser
 
 When you add a domain to Vectis, the system automatically:
 
-1. Generates an RSA-2048 key pair
-2. Stores the private key at `/var/vectis/dkim/<domain>/<selector>.key` (mode 0600)
+1. Generates DKIM key pairs (RSA-2048 plus ed25519)
+2. Stores the private keys at `/var/vectis/dkim/<domain>/<selector>.key` (mode 0600)
 3. Configures Rspamd to sign all outgoing mail for that domain
-4. Displays the public key DNS record in the dashboard and CLI output
+4. Displays the public-key DNS record(s) in the dashboard and CLI output
 
-The DKIM selector is date-based by default (e.g., `202604`), making key rotation straightforward.
+The DKIM selector is date-based by default (e.g., `202606`), making key rotation straightforward. You publish the records once; signing, the private key, and rotation are handled for you.
 
 ### Publishing the DKIM record
 
@@ -243,7 +250,7 @@ If you set up a `rua=` address, you will receive daily XML reports from major em
 - Which IPs sent mail claiming to be from your domain
 - Which authentication methods failed and why
 
-These reports are invaluable for identifying issues and detecting spoofing attempts. Several free services (e.g., DMARC Analyzer, Postmark DMARC, dmarcian) can parse these XML files into readable dashboards.
+These reports are invaluable for identifying issues and detecting spoofing attempts. The raw XML is verbose, so most people feed it into a report parser to turn it into a readable dashboard — there are several free and open-source options, or you can point `rua=` at a mailbox on your own Vectis server and review the summaries directly.
 
 ## Record TTL: what values to use
 
@@ -343,7 +350,7 @@ The right order is always the same: **get SPF, DKIM, and DMARC passing and enfor
 | `spf=softfail` unexpectedly | Sending IP isn't listed | Add the server's `ip4:` (or `mx`/`a`) to the record |
 | `dmarc=fail` despite SPF and DKIM passing | Alignment mismatch — strict mode, or `d=` domain differs from `From` | Use relaxed alignment and sign with the organisational domain |
 | No DMARC reports arriving | `rua` mailbox missing or mistyped | Confirm the `rua` address exists and can receive mail |
-| Mail to Gmail still lands in spam | Missing PTR or low IP reputation | Set reverse DNS to your mail hostname; see [IP warmup](/guides/ip-warmup) |
+| Mail to Gmail still lands in spam | Missing PTR or low IP reputation | Set reverse DNS to your mail hostname; see [IP warmup](/guides/ip-warmup/) |
 
 ## Frequently asked questions
 
@@ -379,9 +386,21 @@ Alignment means the domain used by SPF or DKIM matches the domain in the visible
 
 Spend 2–4 weeks at `p=none` reading the aggregate (`rua`) reports until every legitimate source authenticates cleanly, then 2–4 weeks at `p=quarantine`, then move to `p=reject`. Rushing to reject before your reports are clean can silently drop real mail, so let the data tell you when each source is ready.
 
-### RSA-2048 or RSA-1024 — which DKIM key length should I use?
+### What is a DKIM selector?
 
-Use 2048-bit keys. They are the modern standard, every major receiver supports them, and 1024-bit keys are now considered weak. Vectis generates RSA-2048 keys automatically, so there is nothing to configure.
+A selector is a short label that picks which DKIM public key a receiver should look up — it lets one domain publish several keys at once (for rotation, or for different sending systems). The receiver reads the selector from the `s=` tag in the message's `DKIM-Signature` header, then queries `<selector>._domainkey.<domain>` for the matching key. Vectis Mail uses a date-based selector like `202606` and rotates it for you, so a new key never collides with the old one.
+
+### What does p=quarantine vs p=reject mean?
+
+They are the two enforcement levels of a DMARC policy. `p=quarantine` tells receivers to treat failing mail as suspicious — usually dropping it into the spam/junk folder, where it's still recoverable. `p=reject` tells them to refuse it outright at SMTP time, so it never reaches the mailbox. Start at `p=none` (monitor only), move to `p=quarantine` once your reports are clean, then to `p=reject` for full protection against spoofing.
+
+### Why are my emails still going to spam with SPF, DKIM and DMARC set up?
+
+Authentication proves *who* sent the mail; it doesn't guarantee placement. The usual remaining causes are a missing or mismatched PTR (reverse DNS) record, a cold IP with no sending history, blocklist hits, or spammy content and link patterns. Fix PTR first (`dig -x <your-ip>` must return your mail hostname), warm a new IP gradually, and check your domain and IP against the major blocklists. See [deliverability best practices](/guides/deliverability/) and [IP warmup](/guides/ip-warmup/).
+
+### Which DKIM key type should I use — RSA-2048 or ed25519?
+
+Use RSA-2048 as your baseline — every receiver supports it, and 1024-bit keys are now considered weak. ed25519 keys are shorter and faster but not yet universally supported, so the modern best practice is to publish both and let receivers verify whichever they understand. Vectis generates ed25519 and RSA keys and signs with both automatically, so there is nothing to configure.
 
 ### Do I need BIMI?
 
@@ -389,9 +408,12 @@ BIMI is optional. It displays your brand logo next to authenticated mail in supp
 
 ## Next steps
 
-- [Email deliverability best practices](/guides/deliverability) for a comprehensive guide to inbox placement
-- [IP warmup for new servers](/guides/ip-warmup) if this is a fresh IP address
+- [Email deliverability best practices](/guides/deliverability/) for a comprehensive guide to inbox placement
+- [IP warmup for new servers](/guides/ip-warmup/) if this is a fresh IP address
 - [Cloudflare integration](/guides/cloudflare) for managing DNS records in Cloudflare
 - [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
-- [Where are mailcow's DKIM keys?](/guides/mailcow-dkim-keys/) if you're troubleshooting DKIM on a mailcow server
-- [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026) if you're still choosing a platform
+- [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026/) if you're still choosing a platform
+
+### Skip the manual setup
+
+Vectis Mail generates your DKIM keys, signs every outgoing message, and shows you the exact SPF, DKIM, and DMARC records to publish — so authentication is right the first time, not after three rounds of failed tests. [Install Vectis Mail on a fresh VPS](/getting-started/installation/) in about 30 minutes, or see [pricing](/pricing/) for the Free Starter and Pro tiers.

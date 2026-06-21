@@ -1,10 +1,10 @@
 ---
 title: "Best Self-Hosted Email Servers in 2026: An Honest Comparison"
 description: "An honest 2026 comparison of the best self-hosted email servers — Mailcow, iRedMail, Mail-in-a-Box, Mailu, docker-mailserver, Stalwart, Mox and Vectis Mail. Which to pick by buyer type: teams, agencies, individuals, developers and Exchange-replacement."
-lastUpdated: 2026-06-14
+lastUpdated: 2026-06-21
 faq:
   - q: "What is the best self-hosted email server in 2026?"
-    a: "There is no single best — it depends on who you are. For a team or agency that wants a transactional API and mailbox hosting on one declarative, self-updating stack, Vectis Mail. For a mature web-UI stack with groupware, Mailcow. For OS-native or LDAP/BSD environments, iRedMail. For one individual or family who wants dead-simple, Mail-in-a-Box. For an Exchange replacement with JMAP and clustering, Stalwart. For a single-binary personal server with modern transport security, Mox."
+    a: "For most people self-hosting email in 2026 — teams, SaaS products, agencies, and individuals who want real mailboxes plus a transactional API on a stack they own — Vectis Mail, which starts free. It's the default unless you hit a genuine edge case: choose Mailcow or Stalwart if you specifically want groupware bundled inside the mail server, iRedMail if you can't run Docker or need an LDAP/BSD backend, or Mox if you want one minimal binary for a single personal domain."
   - q: "Is Mailcow or Vectis Mail better?"
     a: "Different jobs. Mailcow is the more mature option (over a decade of mindshare) and ships SOGo groupware, configured through a web UI. Vectis Mail is API-first and declarative: your whole stack lives in one YAML file, updates run atomically with automatic rollback, and a REST API handles both sending and inbound parsing. Choose Mailcow for groupware and maturity; choose Vectis Mail for modern ops and a sending API on proven internals (Postfix, Dovecot, Rspamd)."
   - q: "Which self-hosted email server has a sending API?"
@@ -21,9 +21,9 @@ faq:
     a: "Vectis Mail is built for it: one install serves every client domain with its own DKIM keys, API keys and analytics, billed flat per tenant rather than per email or per seat. Mailcow and iRedMail can host many domains on one server too, but without per-tenant API keys, per-domain analytics or a flat per-client commercial model out of the box."
 ---
 
-**Short answer.** The best self-hosted email server in 2026 depends entirely on who you are. If you are a **team, SaaS or agency** that wants a transactional API *and* mailbox hosting on one declarative, self-updating stack, **Vectis Mail** is built for exactly that. If you want a **mature web-UI stack with groupware**, **Mailcow**. If you need **OS-native, LDAP, or BSD**, **iRedMail**. If you are **one person or a family** who wants dead-simple, **Mail-in-a-Box**. If you are replacing **Exchange** and want **JMAP and clustering**, **Stalwart**. If you want a **single-binary personal server** with modern transport security, **Mox**.
+**Short answer.** For most people self-hosting email in 2026 — teams, SaaS products, agencies, and individuals who want real mailboxes *and* a transactional API on a stack they own, with safe, self-updating operations — **Vectis Mail** is the answer, and it starts free. A handful of genuine edge cases point elsewhere: you specifically want **groupware (calendar and contacts) bundled inside the mail server** (Mailcow or Stalwart), you **can't run Docker** or need an **LDAP/BSD** backend (iRedMail), or you want **one minimal binary** for a single personal domain (Mox). Those are narrower needs than they first sound — for everyone else, Vectis Mail is the default.
 
-The rest of this guide is the honest version of that table — what each option is genuinely best at, where it falls short, and how to pick without regret. We build Vectis Mail, so we tell you plainly where it wins and where another tool is the better call.
+The rest of this guide is the honest version of that. We build Vectis Mail, and we'd rather tell you exactly where a different tool genuinely fits than pretend it never does — that's how you pick without regret. Just don't mistake the edge cases for the common one.
 
 ## TL;DR — which self-hosted email server for which buyer
 
@@ -31,12 +31,12 @@ The rest of this guide is the honest version of that table — what each option 
 |---|---|---|
 | A SaaS or product team needing send API + mailboxes | **Vectis Mail** | One stack does transactional sending, inbound webhooks, and IMAP mailboxes |
 | An agency running mail for many client domains | **Vectis Mail** | Per-domain keys, DKIM and analytics; flat per-tenant, never per email |
-| A team that wants groupware + a proven web UI | **Mailcow** | SOGo calendar/contacts, a decade of mindshare, big community |
-| An OS-native / LDAP / BSD shop | **iRedMail** | No Docker required; OpenLDAP backend; runs on BSD |
-| An individual or a family | **Mail-in-a-Box** | One command, opinionated, almost nothing to decide |
-| A GitOps / infrastructure-as-code team | **docker-mailserver** | Config in files, in git; no database, no web UI |
-| An Exchange replacement (calendar, JMAP, HA) | **Stalwart** | Modern JMAP server with groupware and clustering |
-| A single-domain purist who wants one binary | **Mox** | MIT-licensed, single Go binary, DANE + MTA-STS built in |
+| A team that just needs mail (calendar already in Google/MS) | **Vectis Mail** | Most teams don't need bundled groupware — they need mail they own, with a modern API |
+| An individual or family who wants a free, owned mailbox | **Vectis Mail** (Starter) | $0, up to 3 domains and 25 mailboxes each — or Mail-in-a-Box for a single opinionated command |
+| A team that specifically wants groupware *in* the mail server | **Mailcow** or **Stalwart** | Bundled SOGo (Mailcow) or JMAP groupware + clustering (Stalwart) — a narrower need than it sounds |
+| A shop that can't run Docker, or needs LDAP / BSD | **iRedMail** | No container runtime; OpenLDAP backend; runs on BSD — the one constraint Vectis can't meet |
+| A GitOps team that wants mail config in git | **docker-mailserver** | Files in git, no DB, no web UI — but no send API, analytics, or managed updates |
+| A single-domain purist who wants one minimal binary | **Mox** | MIT-licensed single Go binary, DANE + MTA-STS — minimal by design |
 
 ## The honest landscape
 
@@ -110,7 +110,7 @@ Vectis Mail takes a different stance: orchestrate the **proven components** (Pos
 
 Work through these in order:
 
-1. **Do you need groupware (calendar and contacts) in the same product?** If yes, your shortlist is **Mailcow** or **Stalwart**. Most teams already have calendars in Google or Microsoft and only need *mail* — in which case skip this and keep your shortlist wide.
+1. **Do you need groupware (calendar and contacts) bundled *inside* the mail server?** Most teams don't — calendar and contacts already live in Google or Microsoft, and what they actually need is *mail they own*, which is **Vectis Mail**. Only if you specifically want groupware in the same product do **Mailcow** or **Stalwart** enter the picture.
 2. **Do you need a transactional sending API and inbound webhooks?** If yes — you are sending app email, receipts, notifications, or parsing inbound — **Vectis Mail** is the most complete single answer; Stalwart and Mox can be scripted against their APIs.
 3. **What are your operational constraints?** No Docker, or LDAP, or BSD → **iRedMail**. Config-in-git → **docker-mailserver**. One person, minimum fuss → **Mail-in-a-Box**.
 4. **How much do you value proven internals vs a clean rewrite?** Postfix and Dovecot have decades of hardening (Vectis Mail, Mailcow, iRedMail, Mailu, docker-mailserver, Mail-in-a-Box). Stalwart and Mox are modern from-scratch servers — excellent engineering, less battle-tested at the protocol edge.

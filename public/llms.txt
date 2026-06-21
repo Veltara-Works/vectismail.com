@@ -73,8 +73,14 @@ See also (machine-readable files for AI agents and programmatic buyers):
 - [vs Mailcow](https://vectismail.com/alternatives/mailcow/): same self-hosted philosophy, declarative config, REST API, atomic updates.
 - [vs iRedMail](https://vectismail.com/alternatives/iredmail/): modern declarative surface vs the long-running OS-native open-source mail stack.
 - [vs Mail-in-a-Box](https://vectismail.com/alternatives/mail-in-a-box/): one-command personal email sovereignty vs API-first multi-tenant infrastructure.
-- [vs SendGrid](https://vectismail.com/alternatives/sendgrid/): self-hosted with the same API, flat $0–29/month pricing instead of per-email.
+- [vs Stalwart](https://vectismail.com/alternatives/stalwart/): the proven Postfix/Dovecot/Rspamd engine with a transactional API and SLA, not a from-scratch rewrite.
+- [vs Mox](https://vectismail.com/alternatives/mox/): the multi-tenant platform you graduate to from a single-binary personal mail server.
+- [vs SendGrid](https://vectismail.com/alternatives/sendgrid/): self-hosted with the same API, flat $0–39/month pricing instead of per-email.
 - [vs Postmark](https://vectismail.com/alternatives/postmark/): self-hosted transactional API with mailboxes included, flat pricing instead of per-email.
+- [vs Google Workspace](https://vectismail.com/alternatives/google-workspace/): own the email half on your own server at a flat price instead of renting it per seat; honest that Vectis is email only, not Docs/Meet.
+- [vs Microsoft 365](https://vectismail.com/alternatives/microsoft-365/): a self-hosted Exchange Online alternative on standard IMAP/SMTP, flat price vs per-seat licensing; email only, not Office apps or Teams.
+- [vs Proton Mail](https://vectismail.com/alternatives/proton-mail/): privacy-as-ownership (your server, your domain, standard protocols) vs hosted privacy-as-a-service; honestly not client-side E2E, by design.
+- [vs Migadu](https://vectismail.com/alternatives/migadu/): the same flat-rate, domain-unlimited ethos but self-hosted, with a REST API and inbound webhooks; honest hosted-vs-self-hosted trade.
 
 ## Source code
 

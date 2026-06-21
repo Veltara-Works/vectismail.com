@@ -1,7 +1,7 @@
 ---
 title: "Should You Self-Host Email? The 2026 Decision Guide"
 description: "An honest 2026 decision guide for self-hosting email. TCO math vs SendGrid, Postmark, Mailgun and Google Workspace; the real deliverability bar; when SaaS still wins; when self-hosting wins; and the minimum viable self-host stack."
-lastUpdated: 2026-06-08
+lastUpdated: 2026-06-21
 faq:
   - q: "Is self-hosting email illegal in 2026?"
     a: "No. Self-hosting email is legal everywhere we operate. Some jurisdictions require you to keep records of certain commercial communications, but that's a sending-practice rule, not a hosting rule."
@@ -69,7 +69,7 @@ At 1M+ messages/month, you are paying SaaS providers a four-to-five-figure month
 | 100 | $840/mo | $600/mo | $40/mo |
 | 500 | $4,200/mo | $3,000/mo | $200/mo |
 
-Workspace's per-seat pricing makes sense for the first 5–10 seats — you get the calendar, Drive, document collaboration, mobile clients, and conferencing all in one bundle. Past ~25 seats, if all you actually need is mail, IMAP, and SMTP for an authenticated user set, the line crosses hard.
+Workspace's per-seat pricing makes sense for the first 5–10 seats — you get the calendar, Drive, document collaboration, mobile clients, and conferencing all in one bundle. Past ~25 seats, if all you actually need is mail, IMAP, and SMTP for an authenticated user set, the line crosses hard. For the full head-to-head on each, see [Vectis Mail vs Google Workspace](/alternatives/google-workspace/) and [vs Microsoft 365](/alternatives/microsoft-365/).
 
 The thing nobody mentions: self-hosting mailboxes also gives you free *aliases* and *catch-all addresses*, which Workspace and M365 charge for or limit per-seat. An agency with 25 staff and 50 client domains can have 200+ functional addresses on a self-host stack at no per-address cost.
 
@@ -206,12 +206,12 @@ Vectis Mail is the self-host platform we build. It's source-available (BSL 1.1),
 
 If you're weighing self-hosting in 2026, the relevant Vectis pages are:
 
-- **[Pricing](/pricing/)** — Free Starter (3 domains / 50 mailboxes) + Pro at $39 USD/tenant/month with the full API, multi-domain hosting, and analytics.
+- **[Pricing](/pricing/)** — Free Starter (up to 3 domains, 25 mailboxes per domain) + Pro at $39 USD/tenant/month with the full API, unlimited domains and mailboxes, and analytics.
 - **[Features](/features/)** — what's in the box.
 - **[For SaaS founders](/for/saas/)**, **[For agencies](/for/agencies/)**, **[For developers](/for/developers/)**, **[For enterprises](/for/enterprises/)** — audience-specific use cases.
 - **[Alternatives](/alternatives/)** — direct comparisons against Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark.
 
-Vectis is not the only good answer. Mailcow is mature and free. Mail-in-a-Box is the right call for a single-domain personal setup. The honest test is which platform's failure modes you can live with.
+Vectis Mail isn't the only self-host option, and we say plainly where each alternative fits on our [comparison pages](/alternatives/) — we'd rather you read the honest head-to-head than take our word for it. But if what you want is a transactional API *and* real mailboxes on one declarative stack you own, with updates that snapshot and roll themselves back, that's the specific gap we built Vectis Mail to fill — and it starts free.
 
 ## FAQ
 

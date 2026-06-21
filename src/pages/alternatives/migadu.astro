@@ -1,0 +1,418 @@
+---
+import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
+const title = 'Migadu Alternative — Self-Hosted, Own Your Mail Server'
+const description = 'Self-hosted Migadu alternative: same flat-rate, domain-unlimited ethos, but it is your server. Full REST API, inbound webhooks, no provider lock-in.'
+const url = 'https://vectismail.com/alternatives/migadu/'
+const ogImage = 'https://vectismail.com/og/alternatives-migadu.png'
+const datePublished = '2026-06-21'
+const dateModified = '2026-06-21'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail vs Migadu — flat-rate self-hosted email comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://vectismail.com/alternatives/" },
+					{ "@type": "ListItem", "position": 3, "name": "Migadu", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Vectis Mail vs Migadu",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.webp" }
+				}
+			},
+			{
+				"@type": "Product",
+				"name": "Vectis Mail",
+				"description": "Self-hosted, declarative email platform with flat per-tenant pricing. The same flat-rate, domain-unlimited ethos Migadu fans love, but it runs on your own server: full REST API, inbound webhooks, custom branding, and an orchestrator that automates updates and backups.",
+				"url": "https://vectismail.com/",
+				"brand": { "@type": "Brand", "name": "Vectis Mail" },
+				"offers": [
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
+					{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is Vectis Mail hosted like Migadu, or self-hosted?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Self-hosted. This is the core honest difference. Migadu runs the servers for you — you never touch infrastructure, which is the whole appeal. Vectis Mail runs on a VPS that you own and control. You handle the box (updates, backups, the IP reputation), though the built-in orchestrator automates most of that: atomic updates with automatic rollback, scheduled backups, DKIM/SPF/DMARC/MTA-STS generated for you. So it is not zero-ops the way Migadu is, but in exchange you own everything end to end — no provider who can change terms, get acquired, or have an outage on your behalf." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Vectis Mail share Migadu's flat-rate, unlimited-domains pricing?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes — that ethos is exactly the shared ground. Migadu prices by usage tier (Micro/Mini/Standard/Maxi) rather than per mailbox, with unlimited domains, mailboxes and aliases on every plan. Vectis Mail prices per tenant: Starter is $0 self-hosted (up to 3 domains, 25 mailboxes per domain); Pro is $39/month flat for unlimited domains, unlimited mailboxes and unlimited send volume. Neither of us nickel-and-dimes per mailbox. The difference is the cost line: with Vectis you also pay for the VPS the server runs on (typically $5–$20/month)." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Migadu have daily sending and receiving limits?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Migadu applies per-day message limits that scale with your plan tier: roughly 200 in / 20 out on Micro, 1,000 in / 100 out on Mini, 3,000 in / 500 out on Standard, up to 10,000 in / 2,000 out on Maxi (Migadu pricing, retrieved June 2026). They are there to manage shared-server load and prevent abuse. On a self-hosted Vectis Mail box there is no provider-imposed daily cap — your throughput is bounded by your own VPS and the receiving-side reputation you build, not by a plan tier." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Vectis Mail have an API and inbound webhooks that Migadu doesn't?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Migadu offers an admin REST API for managing accounts, domains, mailboxes and aliases, plus standard SMTP submission for sending. What it does not offer is a transactional sending API with delivery-event and inbound webhooks. Vectis Mail ships a 40+ endpoint REST API: domain-scoped sending keys (single and batch with attachments) and inbound webhooks that POST the full parsed message to your application, HMAC-SHA256 signed with exponential-backoff retry. If you want mailboxes and a programmable mail pipeline in one product, that is the gap Vectis closes." }
+					},
+					{
+						"@type": "Question",
+						"name": "Why move off Migadu when it works so well?",
+						"acceptedAnswer": { "@type": "Answer", "text": "For most people running a few personal or small-business domains, Migadu is genuinely excellent and there is no reason to move — it is well-loved for good reasons. You move to Vectis Mail when you want ownership rather than tenancy: no provider who can change terms or get acquired, your data in your own Postgres and filesystem, custom branding on the admin and webmail surfaces, and a real sending/inbound API for apps. It is the ownership upgrade for people who already believe in flat-rate, no-lock-in email." }
+					},
+					{
+						"@type": "Question",
+						"name": "How do I migrate from Migadu to Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Migadu speaks standard IMAP, so mailbox data moves cleanly with imapsync. Stand up Vectis Mail on a fresh VPS, recreate your domains and mailboxes, sync each mailbox over IMAP, publish new DKIM/SPF/DMARC records (Vectis generates the values), then cut your MX over once you have verified delivery. Plan a short cutover window during DNS propagation for small installs. Because your new IP starts cold, give it a warmup window before high outbound volume — see the deliverability guide." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Alternatives · Self-Hosted</div>
+		<h1>Migadu alternative.<br/><span>Flat-rate ethos, your server.</span></h1>
+		<p class="alt-lead">
+			Migadu fans love what they stand for: flat pricing instead of per-mailbox billing,
+			unlimited domains and aliases, no nickel-and-diming. Vectis Mail shares that ethos —
+			and makes it <em>your</em> server. The honest trade is simple: Migadu is hosted, so you
+			never touch infrastructure; Vectis Mail is self-hosted, so you own the box and run it
+			on your own VPS (the orchestrator automates updates and backups, but it is not
+			zero-ops). What you get back is full ownership, a real REST API, inbound webhooks,
+			and no provider who can change the terms.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>21 June 2026</time></span>
+			<span>·</span>
+			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Side-by-side, current as of June 2026.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Vectis Mail</th><th>Migadu</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">Hosting model</th><td><strong>Self-hosted</strong> (your VPS)</td><td>Hosted (Migadu runs the servers)</td></tr>
+					<tr><th scope="row">Who runs ops</th><td>You — orchestrator automates updates, backups, TLS</td><td><strong>Migadu</strong> — zero infrastructure for you</td></tr>
+					<tr><th scope="row">Pricing model</th><td>Flat per tenant ($0 / $39 mo)</td><td>Flat per usage tier (Micro → Maxi)</td></tr>
+					<tr><th scope="row">Per-mailbox charges</th><td><strong>None</strong></td><td><strong>None</strong></td></tr>
+					<tr><th scope="row">Domains</th><td>3 (Starter) · <strong>unlimited</strong> (Pro)</td><td><strong>Unlimited</strong> (all plans)</td></tr>
+					<tr><th scope="row">Mailboxes / aliases</th><td>25/domain (Starter) · <strong>unlimited</strong> (Pro)</td><td><strong>Unlimited</strong> (all plans)</td></tr>
+					<tr><th scope="row">Daily send/receive limits</th><td><strong>None imposed</strong> (bounded by your VPS + IP reputation)</td><td>Per-plan caps (200/20 → 10,000/2,000 per day) <a href="https://www.migadu.com/pricing/" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent); font-size: 0.85em;">[1]</a></td></tr>
+					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission + admin API (no send-event API)</td></tr>
+					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
+					<tr><th scope="row">Custom branding</th><td><strong>Yes</strong> (admin + webmail skin)</td><td>Migadu-branded surfaces</td></tr>
+					<tr><th scope="row">Where your data lives</th><td><strong>Your Postgres + filesystem</strong></td><td>Migadu infrastructure (Switzerland)</td></tr>
+					<tr><th scope="row">Provider risk</th><td>None — you own the stack</td><td>Terms change / acquisition / outage exposure</td></tr>
+					<tr><th scope="row">Webmail</th><td>Roundcube (skinnable)</td><td>Migadu webmail (Roundcube/SnappyMail)</td></tr>
+					<tr><th scope="row">Storage</th><td>Your disk (size your VPS)</td><td>5–500 GB by plan, soft caps</td></tr>
+					<tr><th scope="row">Pricing</th><td>$0 Starter · $39/mo Pro</td><td>$19/yr Micro · $9/mo Mini · $29/mo Standard · $99/mo Maxi</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
+			Migadu plan prices and daily limits per <a href="https://www.migadu.com/pricing/" target="_blank" rel="noopener noreferrer">migadu.com/pricing</a> retrieved 2026-06-21. Vectis Mail Starter is free self-hosted (up to 3 domains, 25 mailboxes/domain); Pro is $39 USD/tenant/month plus the VPS it runs on (typically $5–$20/month).
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The verdict</h2>
+		<div class="verdict-grid">
+			<div class="verdict-card verdict-win">
+				<h3>Choose Vectis Mail when…</h3>
+				<ul>
+					<li>You want to <strong>own the box</strong>, not rent tenancy — no provider who can change terms, get acquired, or have an outage on your behalf.</li>
+					<li>You need a real <strong>sending API + inbound webhooks</strong> alongside mailboxes: domain-scoped keys, batch sends, HMAC-signed inbound POSTs into your app.</li>
+					<li>You want your mail data in <strong>your own Postgres + filesystem</strong>, where the residency answer is "the server I deployed," not a vendor attestation.</li>
+					<li>You want <strong>custom branding</strong> on the admin and webmail surfaces — your name on it, not the provider's.</li>
+					<li>You're hitting (or will hit) Migadu's per-plan <strong>daily message caps</strong> and want headroom bounded only by your own VPS.</li>
+				</ul>
+			</div>
+			<div class="verdict-card verdict-stay">
+				<h3>Stay on Migadu when…</h3>
+				<ul>
+					<li><strong>You want zero server ops.</strong> Migadu running the infrastructure is the entire point — no VPS, no updates, no IP reputation to babysit. If "I never want to think about a server" is worth it, stay.</li>
+					<li><strong>You run a handful of personal or small-business domains.</strong> At small scale Migadu is genuinely excellent and cheap (Micro is $19/year). Self-hosting only earns its keep once ownership, API, or scale matter.</li>
+					<li><strong>You don't want a VPS at all.</strong> No infrastructure to run is a feature, not a gap — and it's one Vectis Mail deliberately doesn't try to match.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">The same flat-rate ethos</h3>
+		<p>
+			This is the common ground, and it's real. Migadu broke from the per-mailbox model the
+			rest of the industry runs on: you pay by usage tier (Micro, Mini, Standard, Maxi), and
+			every tier gives you unlimited domains, unlimited mailboxes, and unlimited aliases. No
+			"$5 per user per month" creeping up as your team grows. Vectis Mail shares that exact
+			belief — Pro is a flat $39/month per tenant for unlimited domains, unlimited mailboxes,
+			and unlimited send volume, and Starter is genuinely $0 for up to 3 domains and 25
+			mailboxes per domain. Neither product charges you for the act of adding an address.
+			If you came to Migadu because per-mailbox billing felt wrong, you already believe the
+			thing Vectis is built on.
+		</p>
+
+		<h3 class="alt-h3">Ownership vs hosted — the honest core</h3>
+		<p>
+			Migadu is a hosted service: they operate the infrastructure in Switzerland, and you
+			never touch a server. That is a genuine strength, and it's the right answer for a lot of
+			people. But hosted means tenancy, and tenancy carries provider risk: a provider can change
+			its terms, raise prices, get acquired, deprecate a feature, or have an outage — and you
+			ride along with whatever they decide. Migadu is a small, well-run, bootstrapped company
+			with a great reputation, so this risk is low. It is not zero, and it's structural: it
+			exists because the servers aren't yours.
+		</p>
+		<p>
+			Vectis Mail removes that category of risk by removing the landlord. The server is on a VPS
+			you own. Your mailboxes live on your filesystem; your audit trail and metadata live in your
+			Postgres. There is no upstream account to be cancelled, no terms-of-service to be rewritten,
+			no acquisition to absorb. If Veltara Works vanished tomorrow, your mail server keeps running
+			on your box — and the Business Source License auto-converts to Apache 2.0 after four years,
+			so the code is yours too. That's the difference between renting and owning.
+		</p>
+
+		<h3 class="alt-h3">What you actually run yourself</h3>
+		<p>
+			Let's be honest about the cost of ownership, because self-hosting is not free of effort.
+			With Vectis Mail you run a Linux VPS (typically $5–$20/month), you point DNS at it, and you
+			are the one on the hook if the box falls over. The orchestrator is what makes that tractable
+			rather than a second job: updates run as an atomic six-phase pipeline that snapshots first
+			and rolls back automatically if a health check fails; backups are scheduled; DKIM, SPF,
+			DMARC, MTA-STS and TLS certificates are generated and renewed for you. So the day-to-day is
+			closer to "watch a dashboard" than "hand-edit Postfix at 2am." But it is still your server,
+			and the trade is real: Migadu hands you zero-ops in exchange for tenancy; Vectis hands you
+			ownership in exchange for owning a VPS. Pick the trade that fits you — don't let anyone tell
+			you self-hosting is effortless.
+		</p>
+
+		<h3 class="alt-h3">The API + webhooks Migadu doesn't offer</h3>
+		<p>
+			Migadu has an admin REST API — it's good, and it covers creating and managing accounts,
+			domains, mailboxes, and aliases programmatically. Sending happens over standard SMTP
+			submission with mailbox credentials. What Migadu does not ship is a <em>transactional</em>
+			API: there's no domain-scoped sending-key endpoint, no delivery-event webhooks, and no
+			inbound-parse webhooks that POST received mail into your application.
+		</p>
+		<p>
+			Vectis Mail does. Its 40+ endpoint REST API covers domain-scoped sending keys (single and
+			batch, with attachments), per-domain analytics, and inbound webhooks that deliver the full
+			parsed message — body, HTML, attachments, SMTP envelope — to your endpoint, HMAC-SHA256
+			signed with exponential-backoff retry. That makes Vectis usable as a programmable mail
+			pipeline for an app, not just a mailbox host: a self-hosted SendGrid-style surface and your
+			team's mailboxes on one server. See the <a href="/api/">API Reference</a> for the full
+			surface.
+		</p>
+
+		<h3 class="alt-h3">Daily limits vs your own headroom</h3>
+		<p>
+			Migadu's per-plan daily message caps — from roughly 200 in / 20 out on Micro up to 10,000
+			in / 2,000 out on Maxi — exist because it's a shared service and they protect everyone's
+			deliverability. That's responsible engineering on a multi-tenant platform. On your own
+			Vectis Mail box there's no plan-tier cap at all: your throughput is bounded by the VPS you
+			sized and the receiving-side reputation you build, not by which subscription you bought.
+			The flip side, honestly stated, is that reputation is now <em>your</em> job — a cold IP
+			needs a warmup window before high outbound volume. See <a href="/deliverability/">Will my mail land?</a>
+			for the full picture.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Migrating from Migadu to Vectis Mail</h2>
+		<p>
+			Migadu speaks plain IMAP, so the mail data moves cleanly. The typical sequence:
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Recreate your domains and mailboxes, but leave DNS pointed at Migadu for now.</li>
+			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> from Migadu's IMAP servers into Vectis Mail. Both ends are standard IMAP, so messages, folders and flags transfer directly.</li>
+			<li><strong>Publish new DNS records</strong>: Vectis Mail generates your DKIM/SPF/DMARC/MTA-STS values. Add them alongside the existing Migadu records during the switchover.</li>
+			<li><strong>Cut the MX over</strong> to the Vectis Mail server once you've verified delivery in both directions. Inbound mail starts flowing through Vectis as DNS propagates.</li>
+			<li><strong>Warm the IP</strong> before high outbound volume — a fresh VPS IP has no reputation on day one. The <a href="/deliverability/">deliverability guide</a> covers the warmup calendar.</li>
+			<li><strong>Verify + close the Migadu account</strong>: watch logs for a few days, confirm nothing is still routing through Migadu, then cancel.</li>
+		</ol>
+		<p>
+			Realistic timeline: a short cutover window during DNS propagation for a small install,
+			or a staged migration over a few days for many domains and mailboxes.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is Vectis Mail hosted like Migadu, or self-hosted?</h3>
+				<p>
+					Self-hosted — this is the core honest difference. Migadu runs the servers for you,
+					so you never touch infrastructure; that's the whole appeal and it's a genuine
+					strength. Vectis Mail runs on a VPS that <em>you</em> own and control. You handle
+					the box (updates, backups, IP reputation), though the built-in orchestrator
+					automates most of it: atomic updates with automatic rollback, scheduled backups,
+					DKIM/SPF/DMARC/MTA-STS generated for you. It's not zero-ops the way Migadu is — but
+					in exchange you own everything end to end, with no provider who can change terms,
+					get acquired, or have an outage on your behalf.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Vectis Mail share Migadu's flat-rate, unlimited-domains pricing?</h3>
+				<p>
+					Yes — that ethos is the shared ground. Migadu prices by usage tier
+					(<a href="https://www.migadu.com/pricing/" target="_blank" rel="noopener noreferrer">Micro/Mini/Standard/Maxi</a>)
+					rather than per mailbox, with unlimited domains, mailboxes and aliases on every plan.
+					Vectis Mail prices per tenant: <a href="/pricing/">Starter</a> is $0 self-hosted (up to
+					3 domains, 25 mailboxes per domain); Pro is $39/month flat for unlimited domains,
+					mailboxes and send volume. Neither nickel-and-dimes per mailbox. The difference is the
+					extra cost line: with Vectis you also pay for the VPS the server runs on (typically
+					$5–$20/month).
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Migadu have daily sending and receiving limits?</h3>
+				<p>
+					Yes. Migadu applies per-day message limits that scale with your plan tier: roughly
+					200 in / 20 out on Micro, 1,000 in / 100 out on Mini, 3,000 in / 500 out on Standard,
+					up to 10,000 in / 2,000 out on Maxi
+					(<a href="https://www.migadu.com/pricing/" target="_blank" rel="noopener noreferrer">Migadu pricing</a>,
+					retrieved June 2026). They exist to manage shared-server load and prevent abuse — sensible
+					for a multi-tenant platform. On a self-hosted Vectis Mail box there's no provider-imposed
+					daily cap; throughput is bounded by your own VPS and the receiving-side reputation you
+					build, not by a plan tier.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Vectis Mail have an API and inbound webhooks that Migadu doesn't?</h3>
+				<p>
+					Migadu offers an admin REST API for managing accounts, domains, mailboxes and aliases,
+					plus standard SMTP submission for sending. What it doesn't offer is a transactional
+					sending API with delivery-event and inbound webhooks. Vectis Mail ships a 40+ endpoint
+					REST API: domain-scoped sending keys (single and batch, with attachments) and inbound
+					webhooks that POST the full parsed message to your application, HMAC-SHA256 signed with
+					exponential-backoff retry. If you want mailboxes <em>and</em> a programmable mail
+					pipeline in one product, that's the gap Vectis closes. See the <a href="/api/">API Reference</a>.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Why move off Migadu when it works so well?</h3>
+				<p>
+					For most people running a few personal or small-business domains, Migadu is genuinely
+					excellent and there's no reason to move — it's well-loved for good reasons. You move to
+					Vectis Mail when you want ownership rather than tenancy: no provider who can change terms
+					or get acquired, your data in your own Postgres and filesystem, custom branding on the
+					admin and webmail surfaces, and a real sending/inbound API for apps. It's the ownership
+					upgrade for people who already believe in flat-rate, no-lock-in email.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>How do I migrate from Migadu to Vectis Mail?</h3>
+				<p>
+					Migadu speaks standard IMAP, so mailbox data moves cleanly with <code>imapsync</code>.
+					Stand up Vectis Mail on a fresh VPS, recreate your domains and mailboxes, sync each
+					mailbox over IMAP, publish new DKIM/SPF/DMARC records (Vectis generates the values),
+					then cut your MX over once you've verified delivery. Plan a short cutover window during
+					DNS propagation for small installs. Because the new IP starts cold, give it a warmup
+					window before high outbound volume — see the <a href="/deliverability/">deliverability guide</a>.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="cta-section">
+		<h2>Try Vectis Mail</h2>
+		<p>The flat-rate, domain-unlimited ethos you came for — on a server you own.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing/" class="btn-secondary">View Pricing</a>
+		</div>
+	</div>
+
+	<section class="section other-alts">
+		<h2>Other Vectis Mail alternatives</h2>
+		<p class="subtitle">Coming from a different stack? Read the comparison that matches it.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/proton-mail/" class="feature-card alt-index-card">
+				<h3>vs Proton Mail &rarr;</h3>
+				<p>Privacy-first hosted mail vs self-hosted ownership with a full REST API and your own infrastructure.</p>
+			</a>
+			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
+				<h3>vs Mailcow &rarr;</h3>
+				<p>Same self-hosted stack, declarative YAML config, REST API, atomic updates with rollback.</p>
+			</a>
+			<a href="/alternatives/mail-in-a-box/" class="feature-card alt-index-card">
+				<h3>vs Mail-in-a-Box &rarr;</h3>
+				<p>One-command personal email sovereignty vs API-first multi-domain infrastructure. When each is the right fit.</p>
+			</a>
+		</div>
+	</section>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>Migadu plans, prices, storage + daily limits: <a href="https://www.migadu.com/pricing/" target="_blank" rel="noopener noreferrer">migadu.com/pricing</a> (retrieved 2026-06-21)</li>
+			<li>Migadu hosting model + usage-based pricing: <a href="https://www.migadu.com/" target="_blank" rel="noopener noreferrer">migadu.com</a> (retrieved 2026-06-21)</li>
+			<li>Vectis Mail pricing: <a href="/pricing/">/pricing</a></li>
+			<li>Vectis Mail API surface: <a href="/api/">/api</a> reference</li>
+			<li>Vectis Mail deliverability + IP warmup: <a href="/deliverability/">/deliverability</a></li>
+		</ul>
+	</aside>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>

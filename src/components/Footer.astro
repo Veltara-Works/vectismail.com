@@ -12,7 +12,7 @@ const showByline = slug.startsWith('guides/') || slug.startsWith('getting-starte
 {showByline && (
 	<p class="doc-byline">
 		<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="Ian Holt" width="28" height="28" loading="lazy" decoding="async" />
-		<span>Written by Ian Holt</span>
+		<span>Written by <a href="/about/">Ian Holt</a></span>
 	</p>
 )}
 <footer class="doc-footer">
@@ -41,6 +41,12 @@ const showByline = slug.startsWith('guides/') || slug.startsWith('getting-starte
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	.doc-byline a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 2px;
 	}
 
 	.byline-avatar {

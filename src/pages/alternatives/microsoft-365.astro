@@ -1,0 +1,430 @@
+---
+import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
+const title = 'Microsoft 365 Alternative — Self-Hosted Email with Vectis Mail'
+const description = 'Self-hosted Microsoft 365 / Exchange Online alternative for email. Own your mailboxes on your own server for a flat price, not per-seat licensing.'
+const url = 'https://vectismail.com/alternatives/microsoft-365/'
+const ogImage = 'https://vectismail.com/og/alternatives-microsoft-365.png'
+const datePublished = '2026-06-21'
+const dateModified = '2026-06-21'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Vectis Mail vs Microsoft 365 — self-hosted email alternative to Exchange Online" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://vectismail.com/alternatives/" },
+					{ "@type": "ListItem", "position": 3, "name": "Microsoft 365", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Vectis Mail vs Microsoft 365",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.webp" }
+				}
+			},
+			{
+				"@type": "Product",
+				"name": "Vectis Mail",
+				"description": "Self-hosted, declarative email server: Postfix/Dovecot/Rspamd with a REST API, React admin UI, and atomic update orchestrator. A flat-priced, self-hosted alternative to Microsoft 365 / Exchange Online for email.",
+				"url": "https://vectismail.com/",
+				"brand": { "@type": "Brand", "name": "Vectis Mail" },
+				"offers": [
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
+					{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is there a self-hosted alternative to Microsoft 365 for email?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Vectis Mail is a self-hosted email server you run on your own VPS — Postfix, Dovecot, and Rspamd packaged with a REST API, a React admin UI, and an atomic update orchestrator. It replaces the email half of Microsoft 365 (the Exchange Online mailboxes), giving you full IMAP/SMTP mailboxes, your own domains, DKIM/SPF/DMARC, and webmail for a flat price instead of per-user-per-month licensing. It does not replace Office apps (Word, Excel, PowerPoint) or Teams — those are a separate need." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Vectis Mail replace Office apps and Teams?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Vectis Mail is email only. It replaces Exchange Online — the mailbox and mail-delivery half of Microsoft 365 — not the Office apps (Word, Excel, PowerPoint), Teams, SharePoint, or OneDrive. If your organisation depends on those, you either keep a Microsoft 365 subscription for them, or pair Vectis Mail with a separate productivity suite. Be honest with yourself about which half you actually need before switching: Vectis Mail is the right answer for the mailbox half, not the whole suite." }
+					},
+					{
+						"@type": "Question",
+						"name": "How does Vectis Mail pricing compare to Microsoft 365 per-user licensing?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Microsoft 365 and Exchange Online are priced per user per month. Exchange Online Plan 1 is about $4/user/month and Plan 2 about $8/user/month on annual commitment; Microsoft 365 Business Standard rises to $14/user/month from 1 July 2026. That bill scales linearly with headcount. Vectis Mail is flat: Starter is $0 self-hosted, and Pro is $39 USD per tenant per month for unlimited mailboxes and domains. At 50 mailboxes, Business Standard runs about $700/month while Vectis Mail Pro plus a VPS is roughly $59/month — the gap widens with every seat you add." }
+					},
+					{
+						"@type": "Question",
+						"name": "Can I keep my domain and use standard email clients with Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Vectis Mail uses standard IMAP, SMTP, and POP3 with your own domain, so Outlook, Apple Mail, Thunderbird, and mobile clients connect the same way they do to any standard mail server, plus a bundled Roundcube webmail. Because everything is standard protocols on your domain, there is no Microsoft tenant to lock you in — migrating in or out is plain IMAP sync, not a proprietary export." }
+					},
+					{
+						"@type": "Question",
+						"name": "Where does my email live with Vectis Mail versus Microsoft 365?",
+						"acceptedAnswer": { "@type": "Answer", "text": "With Microsoft 365 your mailboxes live inside Microsoft's tenant on Microsoft's infrastructure, under their jurisdiction and subject to tenant-level outages. With Vectis Mail your mailboxes live on a server you control, in the region and provider you choose. The message store is on your filesystem and the audit trail is in your own Postgres. For data-residency, sovereignty, and jurisdiction questions, the answer becomes 'where did you deploy the server' instead of 'trust the vendor.'" }
+					},
+					{
+						"@type": "Question",
+						"name": "When does Microsoft 365 still make more sense than Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "When your organisation genuinely runs on Office apps and Teams day to day, when you need a vendor-supplied SOC 2 / ISO 27001 / HIPAA BAA as a hard procurement gate, or when you have nobody to run a VPS and 'never think about infrastructure' is worth the per-seat premium. Vectis Mail is email infrastructure you operate; Microsoft 365 is a managed productivity suite. If you need the suite, keep it — Vectis Mail only competes for the mailbox." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Alternatives · Self-Hosted Email</div>
+		<h1>Microsoft 365 alternative.<br/><span>Own your mailboxes, don't license them.</span></h1>
+		<p class="alt-lead">
+			Vectis Mail is a self-hosted email server you run on your own VPS — full IMAP/SMTP
+			mailboxes, your domains, DKIM/SPF/DMARC, webmail and a REST API, for a flat price
+			instead of per-seat licensing. To be clear up front: it replaces the
+			<strong>email half of Microsoft 365</strong> — Exchange Online — not the Office apps
+			or Teams. If you live in Word, Excel and Teams all day, that's a different need;
+			if what you actually pay Microsoft for is mailboxes, read on.
+		</p>
+		<div class="alt-meta">
+			<span>Last updated <time datetime={dateModified}>21 June 2026</time></span>
+			<span>·</span>
+			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Email-to-email comparison: Vectis Mail vs the Exchange Online half of Microsoft 365. Current as of June 2026.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Vectis Mail</th><th>Microsoft 365 (Exchange Online)</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">What it is</th><td>Self-hosted email server (you run it)</td><td>Managed email inside Microsoft's cloud, part of a productivity suite</td></tr>
+					<tr><th scope="row">Pricing model</th><td><strong>Flat per tenant</strong> — $0 Starter / $39 USD Pro per month</td><td>Per user, per month (scales with headcount)</td></tr>
+					<tr><th scope="row">Mailboxes</th><td><strong>Unlimited (Pro)</strong>; 25/domain on Starter</td><td>One licensed mailbox per paid user</td></tr>
+					<tr><th scope="row">Domains</th><td>Up to 3 (Starter) · <strong>unlimited (Pro)</strong></td><td>Multiple domains per tenant</td></tr>
+					<tr><th scope="row">Where mail lives</th><td><strong>Your server, your region, your jurisdiction</strong></td><td>Microsoft's tenant + datacentres</td></tr>
+					<tr><th scope="row">Protocols</th><td>Standard IMAP / SMTP / POP3 + Roundcube webmail</td><td>Exchange / Outlook (IMAP/SMTP available, MAPI-native)</td></tr>
+					<tr><th scope="row">Mailbox storage</th><td>Bounded only by your disk</td><td>50 GB (Plan 1) / 100 GB (Plan 2) per mailbox</td></tr>
+					<tr><th scope="row">REST API for sending</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>Graph API (suite-wide, not a flat-priced sending service)</td></tr>
+					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>Via Graph subscriptions (more involved)</td></tr>
+					<tr><th scope="row">Spam filtering</th><td>Rspamd + optional ClamAV, your own rules</td><td>Exchange Online Protection (managed)</td></tr>
+					<tr><th scope="row">Office apps (Word/Excel/PPT)</th><td><strong>No</strong> — email only</td><td><strong>Yes</strong> (Standard/Premium)</td></tr>
+					<tr><th scope="row">Teams / SharePoint / OneDrive</th><td><strong>No</strong></td><td><strong>Yes</strong></td></tr>
+					<tr><th scope="row">Calendar / contacts</th><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (full Exchange calendaring)</td></tr>
+					<tr><th scope="row">Vendor compliance attestations</th><td>You are the data custodian</td><td><strong>SOC 2 / ISO 27001 / HIPAA BAA</strong></td></tr>
+					<tr><th scope="row">Lock-in</th><td>Standard protocols, data in your Postgres + filesystem</td><td>Microsoft tenant; migration is a project</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
+			Microsoft 365 / Exchange Online pricing and storage retrieved 21 June 2026 from Microsoft. See sources below. Vectis Mail figures per <a href="/pricing/">/pricing</a>.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The verdict</h2>
+		<div class="verdict-grid">
+			<div class="verdict-card verdict-win">
+				<h3>Choose Vectis Mail when…</h3>
+				<ul>
+					<li>Email is the part of Microsoft 365 you actually use, and you're paying per seat for mailboxes you could own outright.</li>
+					<li>Your headcount is growing and the per-user bill grows with it — a flat $39/month stops the linear climb.</li>
+					<li><strong>Data sovereignty, residency, or jurisdiction</strong> matters: your mail belongs on a server you control, in a region you choose, not in Microsoft's tenant.</li>
+					<li>You want to be immune to tenant-level outages and provider lock-in — standard IMAP/SMTP on your own domain, your data in your own Postgres.</li>
+					<li>You're a developer or agency that wants a real sending API, inbound webhooks, and per-domain control over the mail stack.</li>
+				</ul>
+			</div>
+			<div class="verdict-card verdict-stay">
+				<h3>Stay on Microsoft 365 when…</h3>
+				<ul>
+					<li><strong>Your team runs on Office apps and Teams.</strong> Vectis Mail is email only — it does not replace Word, Excel, PowerPoint, Teams, SharePoint, or OneDrive. If those are load-bearing, you still need a suite.</li>
+					<li><strong>You need a vendor-supplied compliance attestation</strong> — SOC 2, ISO 27001, or a signed HIPAA BAA — as a hard procurement gate. Self-hosting shifts that burden onto you.</li>
+					<li><strong>You have nobody to run a server</strong> and "never think about infrastructure" is worth the per-seat premium. Vectis Mail is infrastructure you operate.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Own your mailboxes instead of licensing them</h2>
+		<p>
+			The framing Microsoft sells is a subscription: every employee is a "seat," and every
+			seat is a recurring per-user charge for as long as they work there. Email — one of the
+			oldest, most standardised technologies on the internet — gets billed like a SaaS product
+			you rent forever.
+		</p>
+		<p>
+			Vectis Mail inverts that. You run the server, so a mailbox is just a row in your own
+			database and a maildir on your own disk. Adding the 10th mailbox or the 500th costs the
+			same: nothing extra. Your mail lives where you deployed it — on a VPS in the region and
+			jurisdiction you chose — not inside a Microsoft tenant subject to Microsoft's terms,
+			Microsoft's jurisdiction, and Microsoft's tenant-wide outages. When a provider has a bad
+			day, a tenant-level Exchange Online incident takes everyone down at once; a server you
+			control has a blast radius of exactly your own organisation.
+		</p>
+		<p>
+			And because it's all standard IMAP, SMTP, and POP3 on your own domain, there is no
+			proprietary tenant to escape later. Migrating in is an IMAP sync; migrating out, if you
+			ever wanted to, is the same. That's the difference between owning your mailboxes and
+			licensing them.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Flat price vs per-seat licensing</h2>
+		<p>
+			Microsoft 365 and Exchange Online are priced per user per month, so the bill tracks your
+			headcount. As of June 2026, Exchange Online Plan 1 is about <strong>$4/user/month</strong>
+			(50 GB mailbox) and Plan 2 about <strong>$8/user/month</strong> (100 GB) on annual
+			commitment. The fuller suites cost more, and Microsoft is <strong>raising prices from
+			1 July 2026</strong>: Business Basic goes to $7/user/month and Business Standard to
+			$14/user/month — increases Microsoft has tied to bundling Copilot Chat and added features.
+		</p>
+		<p>
+			Vectis Mail is flat. Starter is $0 self-hosted (up to 3 domains, 25 mailboxes per domain);
+			Pro is <strong>$39 USD per tenant per month</strong> for unlimited domains and unlimited
+			mailboxes. Add a VPS to run it on and your fully-loaded cost is roughly $59/month whether
+			you host 10 mailboxes or 500. Here's the same workforce, two billing models:
+		</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th>Mailboxes</th><th>Vectis Mail Pro (+ $20/mo VPS)</th><th>Exchange Online Plan 1 (~$4/user)</th><th>M365 Business Standard (~$14/user, Jul 2026)</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">10 users</th><td><strong>$59/mo flat</strong></td><td>~$40/mo</td><td>~$140/mo</td></tr>
+					<tr><th scope="row">50 users</th><td><strong>$59/mo flat</strong></td><td>~$200/mo</td><td>~$700/mo</td></tr>
+					<tr><th scope="row">200 users</th><td><strong>$59/mo flat</strong></td><td>~$800/mo</td><td>~$2,800/mo</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
+			Honest caveat: the Business Standard column buys the whole Office suite + Teams, not just
+			email — it's not a like-for-like mailbox comparison. The Exchange Online Plan 1 column is
+			the closest apples-to-apples (email only), and even there Vectis Mail Pro pulls ahead past
+			roughly 15 mailboxes. Per-user figures are Microsoft's; see sources.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Email vs the whole suite — read this before you switch</h2>
+		<div class="feature-card" style="margin-top: 0.5rem;">
+			<h3>The one thing we won't pretend about</h3>
+			<p style="margin-bottom: 0.75rem;">
+				Microsoft 365 is a <strong>productivity suite</strong>, and email is only one slice of it.
+				The subscription also bundles Word, Excel, and PowerPoint; Teams for chat and meetings;
+				SharePoint for documents; and OneDrive for storage. <strong>Vectis Mail replaces the email
+				half — Exchange Online — and nothing else.</strong>
+			</p>
+			<p style="margin-bottom: 0.75rem;">
+				If your organisation genuinely runs on Office apps and Teams every day, swapping the whole
+				suite for Vectis Mail would leave a hole where your documents and meetings used to be. That
+				is not what this page is arguing. Most teams that move to Vectis Mail do one of two things:
+				keep a smaller Microsoft 365 footprint for the apps that matter while moving mailboxes off
+				the per-seat email licence, or pair Vectis Mail with a separate productivity suite.
+			</p>
+			<p>
+				The honest test: open your last month's Microsoft 365 usage. If the value you got was
+				mailboxes — receiving, sending, your team's @yourdomain addresses — Vectis Mail is the right
+				replacement. If the value was collaborative documents and Teams calls, it isn't, and you
+				should keep the suite. We'd rather you make the right call than churn in a month.
+			</p>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Migrating email off Microsoft 365</h2>
+		<p>
+			Because Exchange Online speaks standard IMAP, moving mailboxes to Vectis Mail is mechanical
+			rather than proprietary. The typical sequence:
+		</p>
+		<ol class="alt-steps">
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Add your domain(s) and publish the DKIM/SPF/DMARC records it generates — but leave MX pointed at Microsoft for now.</li>
+			<li><strong>Create the mailboxes</strong> in Vectis Mail to match your existing users (or import them via the API for larger lists).</li>
+			<li><strong>Sync mail with <code>imapsync</code></strong>: copy each Exchange Online mailbox into Vectis Mail over IMAP. Run an initial pass days ahead, then a final delta sync at cutover.</li>
+			<li><strong>Export calendar / contacts</strong> if you use them — Vectis Mail doesn't host calendaring yet (Phase 4 roadmap), so keep that on a suite or another tool. This is the step to plan around.</li>
+			<li><strong>Warm your sending IP</strong> if you send volume. A fresh VPS IP has no reputation; follow the <a href="/deliverability/">dual-send warmup playbook</a> so there's no day-one deliverability gap.</li>
+			<li><strong>Cut MX over</strong> to the Vectis Mail server once mailboxes are synced. Mail flows through Vectis Mail as DNS propagates.</li>
+			<li><strong>Verify and decommission</strong>: watch logs for a few days, then drop the Exchange Online email licences you no longer need.</li>
+		</ol>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>A note on deliverability</h2>
+		<p>
+			Microsoft delivers your mail from warm, well-reputed IP pools, so you never think about it.
+			On a fresh self-hosted VPS, your IP has no reputation on day one and major providers will
+			throttle until you establish a pattern over 2–4 weeks. This is real, and we don't hide it.
+		</p>
+		<p>
+			The good news: you never switch cold. The <a href="/deliverability/">dual-send warmup
+			playbook</a> keeps your current provider delivering while your own IP warms, so there's no
+			day-one gap — just an overlap window you control. Once warm, a self-hosted IP with correct
+			DKIM, SPF, DMARC, MTA-STS, and PTR records (all configured by default in Vectis Mail) is
+			functionally equivalent for inbox placement. Read the full honest answer on
+			<a href="/deliverability/">Will my mail land?</a>
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is there a self-hosted alternative to Microsoft 365 for email?</h3>
+				<p>
+					Yes. Vectis Mail is a self-hosted email server you run on your own VPS — Postfix,
+					Dovecot, and Rspamd packaged with a REST API, a React admin UI, and an atomic update
+					orchestrator. It replaces the email half of Microsoft 365 (the Exchange Online
+					mailboxes): full IMAP/SMTP mailboxes, your own domains, DKIM/SPF/DMARC, and
+					<a href="/pricing/">Roundcube webmail</a> for a flat price instead of per-user-per-month
+					licensing. It does not replace Office apps or Teams — that's a separate need.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Vectis Mail replace Office apps and Teams?</h3>
+				<p>
+					<strong>No. Vectis Mail is email only.</strong> It replaces Exchange Online — the mailbox
+					and mail-delivery half of Microsoft 365 — not Word, Excel, PowerPoint, Teams, SharePoint,
+					or OneDrive. If your organisation depends on those, you either keep a Microsoft 365
+					subscription for them or pair Vectis Mail with a separate productivity suite. Be honest
+					about which half you actually need before switching.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>How does Vectis Mail pricing compare to Microsoft 365 per-user licensing?</h3>
+				<p>
+					Microsoft 365 and Exchange Online are priced per user per month. Exchange Online Plan 1
+					is about $4/user/month and Plan 2 about $8/user/month on annual commitment; Microsoft 365
+					Business Standard rises to $14/user/month from 1 July 2026. That bill scales with
+					headcount. Vectis Mail is flat: Starter is $0 self-hosted, Pro is $39 USD per tenant per
+					month for unlimited mailboxes and domains. At 50 mailboxes, Business Standard runs about
+					$700/month while Vectis Mail Pro plus a VPS is roughly $59/month — and the gap widens with
+					every seat. See <a href="/pricing/">pricing</a>.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Can I keep my domain and use standard email clients?</h3>
+				<p>
+					Yes. Vectis Mail uses standard IMAP, SMTP, and POP3 with your own domain, so Outlook,
+					Apple Mail, Thunderbird, and mobile clients connect the way they do to any standard mail
+					server, plus a bundled Roundcube webmail. Because it's standard protocols on your domain,
+					there's no Microsoft tenant to lock you in — migrating in or out is plain IMAP sync, not a
+					proprietary export.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Where does my email live with Vectis Mail versus Microsoft 365?</h3>
+				<p>
+					With Microsoft 365 your mailboxes live inside Microsoft's tenant, under their jurisdiction
+					and subject to tenant-level outages. With Vectis Mail they live on a server you control, in
+					the region and provider you choose. The message store is on your filesystem; the audit
+					trail is in your own Postgres. For data-residency and sovereignty questions, the answer
+					becomes "where did you deploy the server" instead of "trust the vendor."
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>When does Microsoft 365 still make more sense?</h3>
+				<p>
+					When your organisation genuinely runs on Office apps and Teams; when you need a
+					vendor-supplied SOC 2 / ISO 27001 / HIPAA BAA as a hard procurement gate; or when you have
+					nobody to run a VPS and "never think about infrastructure" is worth the per-seat premium.
+					Vectis Mail is email infrastructure you operate; Microsoft 365 is a managed productivity
+					suite. If you need the suite, keep it — Vectis Mail only competes for the mailbox.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="cta-section">
+		<h2>Try Vectis Mail</h2>
+		<p>Own your mailboxes. Flat price, your server, standard protocols.</p>
+		<div class="hero-buttons">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
+			<a href="/pricing/" class="btn-secondary">View Pricing</a>
+		</div>
+	</div>
+
+	<section class="section other-alts">
+		<h2>Other Vectis Mail alternatives</h2>
+		<p class="subtitle">Comparing the big cloud suites and email APIs? Read the one that matches.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/google-workspace/" class="feature-card alt-index-card">
+				<h3>vs Google Workspace &rarr;</h3>
+				<p>The other per-seat cloud suite. Own your mailboxes flat instead of paying per Gmail user, month after month.</p>
+			</a>
+			<a href="/alternatives/proton-mail/" class="feature-card alt-index-card">
+				<h3>vs Proton Mail &rarr;</h3>
+				<p>Privacy-focused hosted email vs self-hosted sovereignty. Your server, your jurisdiction, standard protocols.</p>
+			</a>
+			<a href="/alternatives/sendgrid/" class="feature-card alt-index-card">
+				<h3>vs SendGrid &rarr;</h3>
+				<p>Same REST API, no per-email pricing. Flat $0–$59/mo covers unlimited sending volume.</p>
+			</a>
+		</div>
+	</section>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>Microsoft 365 Business plans + pricing: <a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener noreferrer">microsoft.com/microsoft-365/business</a> (retrieved 2026-06-21)</li>
+			<li>Exchange Online Plan 1 / Plan 2 pricing + mailbox storage (50 GB / 100 GB): <a href="https://www.microsoft.com/en-us/microsoft-365/exchange/compare-microsoft-exchange-online-plans" target="_blank" rel="noopener noreferrer">microsoft.com/microsoft-365/exchange</a> (retrieved 2026-06-21)</li>
+			<li>1 July 2026 Microsoft 365 commercial price increase (Business Basic → $7, Standard → $14): Microsoft partner announcements (retrieved 2026-06-21)</li>
+			<li>Vectis Mail pricing: <a href="/pricing/">/pricing</a></li>
+			<li>Vectis Mail installation + migration: <a href="/getting-started/installation/">/getting-started/installation</a></li>
+			<li>Vectis Mail deliverability + warmup playbook: <a href="/deliverability/">/deliverability</a></li>
+		</ul>
+	</aside>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>
