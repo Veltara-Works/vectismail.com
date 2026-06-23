@@ -67,13 +67,14 @@ const dateModified = '2026-06-21'
 			},
 			{
 				"@type": "Product",
+				"image": ogImage,
 				"name": "Vectis Mail",
 				"description": "Self-hosted, declarative email platform with flat per-tenant pricing. The same flat-rate, domain-unlimited ethos Migadu fans love, but it runs on your own server: full REST API, inbound webhooks, custom branding, and an orchestrator that automates updates and backups.",
 				"url": "https://vectismail.com/",
 				"brand": { "@type": "Brand", "name": "Vectis Mail" },
 				"offers": [
-					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD" },
-					{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
+					{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+					{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M", "billingIncrement": 1, "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "tenant" } } }
 				]
 			},
 			{
