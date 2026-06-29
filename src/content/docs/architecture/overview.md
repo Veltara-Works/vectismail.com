@@ -62,7 +62,7 @@ Vectis runs 10 containers (9 if ClamAV is disabled):
 | **Postgres** | Primary database | data |
 | **Valkey** | Session cache, rate limiting, Rspamd data | data |
 | **Orchestrator** | Update lifecycle, Docker socket access | orchestrator, data |
-| **acme.sh** | Mail TLS certificate management | frontend |
+| **cert-extractor** | Mirrors Traefik's Let's Encrypt cert to the mail services | frontend, mail |
 
 The admin UI is not a separate container. The React SPA is compiled to static files and served directly by the Go API container.
 

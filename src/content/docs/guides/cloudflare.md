@@ -1,6 +1,6 @@
 ---
 title: "Cloudflare Integration"
-description: "How to use Cloudflare DNS with Vectis Mail. Covers MX and mail hostname records (DNS-only mode), SPF/DKIM/DMARC TXT records, DNS-01 challenges for TLS certificates, and common Cloudflare configuration mistakes."
+description: "How to use Cloudflare DNS with Vectis Mail. Covers MX and mail hostname records (DNS-only mode), SPF/DKIM/DMARC TXT records, how automatic HTTP-01 TLS issuance works behind Cloudflare, and common Cloudflare configuration mistakes."
 faq:
   - q: "Can I run a self-hosted mail server behind Cloudflare?"
     a: "Yes for your website and the admin/API over HTTPS, but the mail records themselves must be DNS-only (grey cloud), never proxied (orange cloud). SMTP, IMAP, and POP3 aren't HTTP and can't pass through Cloudflare's proxy, so proxying the mail hostname breaks delivery."
@@ -97,43 +97,11 @@ Then access the admin dashboard at `https://admin.example.com/admin` and keep `m
 
 Note: This requires additional Traefik configuration to accept traffic for both hostnames.
 
-## DNS-01 challenges for TLS certificates
+## TLS certificates with Cloudflare DNS
 
-Cloudflare DNS is ideal for DNS-01 TLS certificate challenges. This method is useful when:
+Vectis issues its Let's Encrypt certificate automatically using the **HTTP-01** challenge (Traefik on port 80), so built-in issuance does not use Cloudflare's API. For this to work, make sure your mail hostname's A record is set to **DNS only** (grey cloud) — see below — and that port 80 is reachable.
 
-- Port 80 is blocked or restricted on your server
-- You want to issue certificates before pointing DNS to your server
-- You need wildcard certificates
-
-### Setting up a Cloudflare API token
-
-1. Log into the Cloudflare dashboard
-2. Go to **My Profile** > **API Tokens** > **Create Token**
-3. Use the **Edit zone DNS** template, or create a custom token with:
-   - **Permissions**: Zone > DNS > Edit
-   - **Zone Resources**: Include > Specific zone > `example.com`
-4. Copy the generated token
-
-### Configuring Vectis
-
-Add the token to `/etc/vectis/secrets.yaml`:
-
-```yaml
-cloudflare:
-  api_token: "your-cloudflare-api-token-here"
-```
-
-Set restrictive permissions on the file:
-
-```bash
-chmod 600 /etc/vectis/secrets.yaml
-```
-
-The acme.sh sidecar will use this token to create temporary `_acme-challenge` TXT records during certificate issuance and renewal, then clean them up automatically.
-
-### Token security
-
-The Cloudflare API token only needs DNS Edit permission for the specific zone. Do not use a Global API Key -- it grants full account access. Create a scoped token with the minimum permissions required.
+If you can't open port 80, or you want a **wildcard certificate**, obtain one yourself with a DNS-01 challenge (for example using your own [acme.sh](https://github.com/acmesh-official/acme.sh) or certbot with their Cloudflare DNS plugin and a scoped **Zone > DNS > Edit** API token), then point Vectis at it with `provider: custom` in `config.yaml`. With a custom certificate you own renewal. See [TLS certificates](/guides/tls-certificates) for the full custom-certificate setup.
 
 ## Cloudflare DNS settings to check
 
@@ -252,6 +220,6 @@ No. PTR records are configured at your VPS provider's control panel, not in Clou
 ## Next steps
 
 - [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
-- [TLS certificates](/guides/tls-certificates) for DNS-01 challenge details
+- [TLS certificates](/guides/tls-certificates) for automatic HTTP-01 issuance and custom (wildcard / DNS-01) certificates
 - [DKIM, SPF & DMARC](/guides/dkim-spf-dmarc) for authentication deep dive
 - [Troubleshooting](/guides/troubleshooting) for diagnosing DNS-related issues
