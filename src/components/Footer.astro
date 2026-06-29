@@ -2,12 +2,19 @@
 // Custom Starlight Footer override.
 // Adds a site-wide footer with links matching the marketing pages.
 import type { Props } from '@astrojs/starlight/props'
+import SubscribeForm from './SubscribeForm.astro'
 
 // Author byline on narrative content (guides + getting-started tutorials),
 // not on reference docs (API / CLI / architecture). A3 (AI-SEO): visible
 // byline pairs with the Person author in the page's Article/HowTo schema.
 const slug = Astro.locals.starlightRoute?.id ?? ''
 const showByline = slug.startsWith('guides/') || slug.startsWith('getting-started')
+
+// Product-updates capture on docs pages — the marketing SiteFooter (which
+// carries it elsewhere) isn't rendered inside Starlight, so docs/guide readers
+// previously had no way to subscribe. Lead with the self-hosting angle, since
+// that's what brought a docs reader here. source records the page slug.
+const captureSource = slug ? `docs:${slug}` : 'docs'
 ---
 {showByline && (
 	<p class="doc-byline">
@@ -15,6 +22,14 @@ const showByline = slug.startsWith('guides/') || slug.startsWith('getting-starte
 		<span>Written by <a href="/about/">Ian Holt</a></span>
 	</p>
 )}
+<div class="doc-subscribe-wrap">
+	<SubscribeForm
+		source={captureSource}
+		heading="New self-hosting guides, in your inbox"
+		blurb="Occasional email when we publish a new guide or ship a release. No spam, unsubscribe anytime."
+		compact
+	/>
+</div>
 <footer class="doc-footer">
 	<div class="doc-footer-inner">
 		<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
@@ -55,6 +70,12 @@ const showByline = slug.startsWith('guides/') || slug.startsWith('getting-starte
 		border-radius: 50%;
 		object-fit: cover;
 		flex-shrink: 0;
+	}
+
+	.doc-subscribe-wrap {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
 	}
 
 	.doc-footer {
