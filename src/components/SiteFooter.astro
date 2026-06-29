@@ -1,7 +1,26 @@
 ---
 // Standard drop-in footer for every marketing page on vectismail.com.
 // Change the markup here and every page picks it up on next build.
+// Includes the product-updates email capture (posts to /api/subscribe).
 ---
+<section class="footer-subscribe" aria-labelledby="footer-subscribe-h">
+	<div class="footer-subscribe-inner">
+		<div>
+			<h2 id="footer-subscribe-h">Get product updates</h2>
+			<p>Occasional email on new releases and self-hosting guides. No spam.</p>
+		</div>
+		<form id="subscribeForm" class="subscribe-form" novalidate>
+			<label class="sr-only" for="subscribeEmail">Email address</label>
+			<input id="subscribeEmail" name="email" type="email" inputmode="email" autocomplete="email"
+				required placeholder="you@example.com" />
+			<!-- Honeypot: hidden from humans, bots fill it. -->
+			<input class="subscribe-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+			<button type="submit" class="btn-primary">Subscribe</button>
+		</form>
+		<p id="subscribeStatus" class="subscribe-status" role="status" aria-live="polite"></p>
+	</div>
+</section>
+
 <footer class="footer">
 	<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
 	<div>
@@ -13,3 +32,108 @@
 		<a href="/terms/">Terms</a>
 	</div>
 </footer>
+
+<style>
+	.footer-subscribe {
+		border-top: 1px solid var(--sl-color-gray-5, #2a2a2e);
+		padding: 2.5rem 1.5rem 0;
+	}
+	.footer-subscribe-inner {
+		max-width: 960px;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem 2rem;
+	}
+	.footer-subscribe h2 {
+		margin: 0 0 0.25rem;
+		font-size: 1.1rem;
+	}
+	.footer-subscribe p {
+		margin: 0;
+		font-size: 0.9rem;
+		opacity: 0.8;
+	}
+	.subscribe-form {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+	.subscribe-form input[type="email"] {
+		padding: 0.55rem 0.75rem;
+		border: 1px solid var(--sl-color-gray-5, #3a3a3e);
+		border-radius: 6px;
+		background: var(--sl-color-black, #0c0c0d);
+		color: inherit;
+		font-size: 0.95rem;
+		min-width: 240px;
+	}
+	.subscribe-form .btn-primary {
+		white-space: nowrap;
+	}
+	.subscribe-hp {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+	}
+	.subscribe-status {
+		max-width: 960px;
+		margin: 0.75rem auto 0;
+		font-size: 0.9rem;
+		min-height: 1.2em;
+	}
+	.subscribe-status.ok { color: #4ade80; }
+	.subscribe-status.err { color: #f87171; }
+	.sr-only {
+		position: absolute;
+		width: 1px; height: 1px;
+		padding: 0; margin: -1px;
+		overflow: hidden; clip: rect(0 0 0 0);
+		white-space: nowrap; border: 0;
+	}
+</style>
+
+<script>
+	const form = document.getElementById('subscribeForm') as HTMLFormElement | null;
+	const statusEl = document.getElementById('subscribeStatus');
+	const emailEl = document.getElementById('subscribeEmail') as HTMLInputElement | null;
+	form?.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		if (!emailEl || !statusEl) return;
+		const email = emailEl.value.trim();
+		const company = (form.querySelector('input[name="company"]') as HTMLInputElement | null)?.value || '';
+		if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+			statusEl.textContent = 'Please enter a valid email address.';
+			statusEl.className = 'subscribe-status err';
+			return;
+		}
+		const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+		if (btn) btn.disabled = true;
+		statusEl.textContent = 'Subscribing…';
+		statusEl.className = 'subscribe-status';
+		try {
+			const res = await fetch('/api/subscribe', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email, company, source: 'footer' }),
+			});
+			if (res.ok) {
+				form.reset();
+				statusEl.textContent = "You're on the list — thanks!";
+				statusEl.className = 'subscribe-status ok';
+			} else {
+				statusEl.textContent = 'Something went wrong. Please try again.';
+				statusEl.className = 'subscribe-status err';
+			}
+		} catch {
+			statusEl.textContent = 'Network error. Please try again.';
+			statusEl.className = 'subscribe-status err';
+		} finally {
+			if (btn) btn.disabled = false;
+		}
+	});
+</script>
