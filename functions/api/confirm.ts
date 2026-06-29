@@ -34,27 +34,40 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
   }
 
   try {
-    // Idempotent: confirm on first click; a second click on the same link is a
-    // no-op that still lands on the thank-you page. COALESCE keeps the original
-    // confirmed_at if it was already set.
-    const result = await ctx.env.NEWSLETTER_DB
-      .prepare(
-        `UPDATE subscribers
-         SET status = 'confirmed',
-             confirmed_at = COALESCE(confirmed_at, ?),
-             unsubscribed_at = NULL
-         WHERE token = ?`
-      )
-      .bind(new Date().toISOString(), token)
-      .run();
+    // Look up the row first, then branch on status — this avoids relying on
+    // UPDATE row-change counts (ambiguous across engines) AND keeps an
+    // explicit opt-out sticky: an `unsubscribed` row must NOT be resurrected
+    // by re-hitting an old confirm link (re-subscribing happens via the form,
+    // which issues a fresh pending token).
+    const row = await ctx.env.NEWSLETTER_DB
+      .prepare("SELECT status FROM subscribers WHERE token = ?")
+      .bind(token)
+      .first<{ status: string }>();
 
-    const changed = (result.meta?.changes ?? 0) > 0;
-    if (!changed) {
+    if (!row) {
       return notice(
         "Link expired",
         "This confirmation link is invalid or has expired. Try subscribing again from the site."
       );
     }
+
+    if (row.status === "unsubscribed") {
+      // Don't silently re-add someone who opted out.
+      return notice(
+        "Link no longer valid",
+        "This address was unsubscribed. If you'd like product updates again, re-subscribe from the site."
+      );
+    }
+
+    if (row.status === "pending") {
+      await ctx.env.NEWSLETTER_DB
+        .prepare(
+          "UPDATE subscribers SET status = 'confirmed', confirmed_at = ? WHERE token = ? AND status = 'pending'"
+        )
+        .bind(new Date().toISOString(), token)
+        .run();
+    }
+    // status === 'confirmed' (already confirmed): fall through — idempotent.
   } catch (e) {
     console.error("newsletter confirm failed", String(e));
     return notice("Something went wrong", "Please try again in a moment.");

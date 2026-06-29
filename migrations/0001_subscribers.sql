@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS subscribers (
   status          TEXT NOT NULL DEFAULT 'pending',  -- pending | confirmed | unsubscribed
   token           TEXT NOT NULL,                    -- opaque, unguessable; used for confirm + unsubscribe links
   source          TEXT,                             -- where the signup came from (footer, docs:<slug>, …)
-  created_at      TEXT NOT NULL,                    -- ISO-8601 UTC, first signup
+  created_at      TEXT NOT NULL,                    -- ISO-8601 UTC, last signup / token-issued (the resend throttle reads this)
   confirmed_at    TEXT,                             -- ISO-8601 UTC, set on confirm
   unsubscribed_at TEXT                              -- ISO-8601 UTC, set on unsubscribe
 );
