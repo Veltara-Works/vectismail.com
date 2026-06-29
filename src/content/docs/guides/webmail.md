@@ -17,7 +17,7 @@ https://webmail.<your-mail-domain>
 
 For example, on a Vectis install with hostname `mail.example.com` the
 webmail URL is `https://webmail.example.com`. TLS is provisioned
-automatically via Traefik + acme.sh.
+automatically by Traefik (Let's Encrypt).
 
 ## Signing in
 

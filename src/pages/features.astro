@@ -42,7 +42,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 		"offers": [
 			{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "description": "Up to 3 domains, 25 mailboxes per domain. Free forever." },
 			{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "description": "Unlimited domains and mailboxes, unlimited send volume (never per email), per-domain analytics, OIDC SSO, priority support." },
-			{ "@type": "Offer", "name": "Enterprise", "price": "499", "priceCurrency": "USD", "description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on, a business-hours support SLA (first-response targets), and GDPR compliance tooling (DSAR export & erasure, data-retention controls). Sold via talk-to-us." }
+			{ "@type": "Offer", "name": "Enterprise", "price": "499", "priceCurrency": "USD", "description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on, SCIM 2.0 provisioning, a business-hours support SLA (first-response targets), and GDPR DSAR export & erasure. Sold via talk-to-us." }
 		],
 		"publisher": {
 			"@type": "Organization",
@@ -69,7 +69,9 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 			"Per-domain analytics dashboard — Pro",
 			"Per-domain spam controls (thresholds, greylisting, allow/block lists) — Pro",
 			"SAML 2.0 SSO (Okta, Entra ID, ADFS) — Enterprise",
-			"GDPR compliance tooling: DSAR export & erasure, data-retention controls — Enterprise",
+			"SCIM 2.0 provisioning — Enterprise",
+			"GDPR DSAR export & erasure — Enterprise",
+			"Data-retention sweeper (config-based PII purge) — all tiers",
 			"Business-hours support SLA (first-response targets) — Enterprise",
 			"Roundcube webmail with Vectis skin"
 		],
@@ -215,12 +217,12 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 					<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>SAML 2.0 SSO</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>GDPR DSAR export &amp; erasure</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
-					<tr><td>Data-retention controls (PII purge)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+					<tr><td>Data-retention sweeper (config-based PII purge)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Support</td><td>Community</td><td>Priority email</td><td>Priority email + SLA</td></tr>
 					<tr><td>Support SLA (first-response targets)</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>Critical security-patch commitment</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>Advanced deliverability monitoring</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
-					<tr><td>SCIM provisioning</td><td>&mdash;</td><td>&mdash;</td><td>Roadmap</td></tr>
+					<tr><td>SCIM 2.0 provisioning</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 				</tbody>
 			</table>
 		</div>

@@ -175,20 +175,20 @@ Send a test to [mail-tester.com](https://www.mail-tester.com). A score below 7/1
 **Symptom**: Postfix or Dovecot fail to start. Logs show `cannot load certificate` or `SSL certificate not found`.
 
 ```bash
-# Check acme.sh sidecar logs
-vectis logs acme --tail 50
-docker logs vectis-acme --tail 50
+# Check the cert-extractor and Traefik (the cert pipeline)
+docker logs vectis-cert-extractor --tail 50
+docker logs vectis-traefik --tail 50 | grep -iE 'acme|error|ratelimit'
 
 # Verify certificate files exist
 docker exec vectis-postfix ls -la /etc/ssl/mail/
 ```
 
 **Common causes**:
-- The acme.sh sidecar has not completed initial certificate issuance
-- Port 80 is not reachable (required for HTTP-01 challenges)
-- DNS-01 challenge is misconfigured (wrong Cloudflare API token)
+- Traefik has not completed initial certificate issuance (HTTP-01)
+- Port 80 is not reachable (required for the HTTP-01 challenge)
+- The hostname's A record is wrong, or Let's Encrypt rate-limited the account
 
-**Solution**: Check the acme.sh logs for the specific error. If using HTTP-01, ensure port 80 is open. If using DNS-01, verify the Cloudflare API token in `secrets.yaml`.
+**Solution**: Confirm port 80 is open and your hostname resolves to this server, then check the Traefik logs for the specific ACME error. The extractor writes a short-lived self-signed placeholder so mail services still start while issuance is pending. (On a custom certificate, supply valid PEM files and run `vectis config apply`.)
 
 ### Certificate expired
 
@@ -198,8 +198,9 @@ docker exec vectis-postfix ls -la /etc/ssl/mail/
 # Check certificate expiry
 docker exec vectis-postfix openssl x509 -in /etc/ssl/mail/fullchain.pem -noout -dates
 
-# Force renewal
-docker exec vectis-acme acme.sh --renew --domain mail.example.com --force
+# Traefik renews automatically; inspect its ACME activity if a renewal is overdue
+docker logs vectis-traefik --tail 100 | grep -iE 'acme|renew|error'
+docker logs vectis-cert-extractor --tail 50
 ```
 
 ### Certificate hostname mismatch
@@ -400,7 +401,7 @@ docker logs vectis-postfix --tail 200
 | Container | Typical crash reason | Solution |
 |-----------|---------------------|----------|
 | Postfix | Invalid `main.cf` configuration | Run `vectis config validate` and fix errors |
-| Dovecot | Missing TLS certificate | Ensure acme.sh has issued certificates |
+| Dovecot | Missing TLS certificate | Ensure Traefik has issued the cert and the cert-extractor has mirrored it |
 | Rspamd | Corrupted neural network data | Delete Rspamd data volume and restart |
 | ClamAV | Out of memory during signature update | Increase memory limits or disable ClamAV |
 | Postgres | Corrupted data files | Restore from backup: `vectis backup restore` |
