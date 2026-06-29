@@ -38,10 +38,10 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 		"operatingSystem": "Linux",
 		"description": description,
 		"url": "https://vectismail.com/features/",
-		"softwareVersion": "0.1.12",
+		"softwareVersion": "0.1.35",
 		"offers": [
 			{ "@type": "Offer", "name": "Starter", "price": "0", "priceCurrency": "USD", "description": "Up to 3 domains, 25 mailboxes per domain. Free forever." },
-			{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "description": "Unlimited domains and mailboxes, unlimited send volume (never per email), per-domain analytics, OIDC SSO, priority support." },
+			{ "@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "USD", "description": "Unlimited domains and mailboxes, unlimited send volume (never per email), per-domain analytics, custom admin branding, OIDC SSO, priority support." },
 			{ "@type": "Offer", "name": "Enterprise", "price": "499", "priceCurrency": "USD", "description": "From $499 USD per tenant per month, flat — never per seat; custom pricing for larger organisations. Everything in Pro plus SAML 2.0 single sign-on, SCIM 2.0 provisioning, a business-hours support SLA (first-response targets), and GDPR DSAR export & erasure. Sold via talk-to-us." }
 		],
 		"publisher": {
@@ -68,6 +68,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 			"IP warmup + RBL monitoring",
 			"Per-domain analytics dashboard — Pro",
 			"Per-domain spam controls (thresholds, greylisting, allow/block lists) — Pro",
+			"Custom admin branding (name, colour, logo) — Pro",
 			"SAML 2.0 SSO (Okta, Entra ID, ADFS) — Enterprise",
 			"SCIM 2.0 provisioning — Enterprise",
 			"GDPR DSAR export & erasure — Enterprise",
@@ -215,6 +216,7 @@ const description = 'Full-stack email platform: Postfix, Dovecot, Rspamd, webmai
 					<tr><td>Per-domain greylisting toggle</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Per-domain allow / block lists</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>OIDC SSO (Google, Azure AD, Keycloak)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Custom admin branding (name, colour, logo)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>SAML 2.0 SSO</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>GDPR DSAR export &amp; erasure</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
 					<tr><td>Data-retention sweeper (config-based PII purge)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
