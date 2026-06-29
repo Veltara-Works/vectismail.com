@@ -23,7 +23,9 @@ export default defineConfig({
 			// (Search Console flags "submitted URL marked noindex" otherwise).
 			filter: (page) =>
 				!page.includes('/account/billing/done') &&
-				!page.includes('/feedback/thanks'),
+				!page.includes('/feedback/thanks') &&
+				!page.includes('/newsletter/confirmed') &&
+				!page.includes('/newsletter/unsubscribed'),
 		}),
 		starlight({
 			title: 'Vectis Mail',

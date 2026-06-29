@@ -4,3 +4,11 @@ name = "vectismail"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "dist"
 
+# Newsletter v2 subscriber list (double opt-in). Bound into the Pages Functions
+# as env.NEWSLETTER_DB. Schema: migrations/0001_subscribers.sql
+# (apply with: wrangler d1 execute vectismail-newsletter --remote --file=…).
+[[d1_databases]]
+binding = "NEWSLETTER_DB"
+database_name = "vectismail-newsletter"
+database_id = "9b9c0f52-f284-468c-af85-a00e113d8627"
+
