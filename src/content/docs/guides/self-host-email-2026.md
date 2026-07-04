@@ -99,13 +99,13 @@ This is where most "should I self-host" conversations stall. Let's be precise ab
 
 If you've published clean SPF/DKIM/DMARC and have a clean PTR, you've already cleared the bar that 80% of self-hosted servers fail. This is the single highest-leverage hour of work in self-hosting email.
 
-For the step-by-step record formats see [DKIM, SPF & DMARC Configuration](/guides/dkim-spf-dmarc).
+For the step-by-step record formats see [DKIM, SPF & DMARC Configuration](/guides/dkim-spf-dmarc/).
 
 ### What's actually hard
 
 Three things genuinely separate decent self-hosted setups from bad ones in 2026:
 
-**1. IP reputation on a fresh IP.** Major providers (Gmail, Outlook, Yahoo) have no history for a new IP and will rate-limit, defer, or reject mail until they see a consistent, well-behaved pattern. The fix is a 30-day warmup schedule — Vectis Mail builds one in; on a hand-rolled Postfix stack you'll either write your own ramp logic or use [the public RFC-shaped schedule](/guides/ip-warmup).
+**1. IP reputation on a fresh IP.** Major providers (Gmail, Outlook, Yahoo) have no history for a new IP and will rate-limit, defer, or reject mail until they see a consistent, well-behaved pattern. The fix is a 30-day warmup schedule — Vectis Mail builds one in; on a hand-rolled Postfix stack you'll either write your own ramp logic or use [the public RFC-shaped schedule](/guides/ip-warmup/).
 
 **2. Gmail's 2024 bulk-sender rules.** Anyone sending 5,000+ messages/day to Gmail addresses must pass DMARC alignment, support one-click List-Unsubscribe ([RFC 8058](https://www.rfc-editor.org/rfc/rfc8058)), and keep their spam-complaint rate under 0.3%. These rules went live February 2024 and Yahoo matched them ([Google's Email sender guidelines](https://support.google.com/a/answer/81126)). If you're at this volume, your stack must support `List-Unsubscribe-Post` headers natively — most modern self-host stacks do; some legacy ones still don't.
 
@@ -257,4 +257,4 @@ Skipping the PTR record. Without a valid reverse-DNS entry pointing at your mail
 
 ---
 
-If you'd rather read more before deciding: see [Best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026/) for an honest comparison of every option by buyer type, [Self-hosted email vs Google Workspace & Microsoft 365](/guides/self-hosted-email-vs-google-workspace-microsoft-365/) for the per-seat cost comparison against the big hosted suites, [Email deliverability best practices](/guides/deliverability) for the deep technical detail, the [IP warmup guide](/guides/ip-warmup) for what month-one looks like, and the [alternatives](/alternatives/) pages for the head-to-head against each self-host stack. If you're ready to try the platform itself: [Getting started](/getting-started/) walks through a working install on a fresh VPS, and [How to migrate without downtime](/guides/migrate-to-self-hosted-email/) covers switching from your current provider safely.
+If you'd rather read more before deciding: see [Best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026/) for an honest comparison of every option by buyer type, [Self-hosted email vs Google Workspace & Microsoft 365](/guides/self-hosted-email-vs-google-workspace-microsoft-365/) for the per-seat cost comparison against the big hosted suites, [Email deliverability best practices](/guides/deliverability/) for the deep technical detail, the [IP warmup guide](/guides/ip-warmup/) for what month-one looks like, and the [alternatives](/alternatives/) pages for the head-to-head against each self-host stack. If you're ready to try the platform itself: [Getting started](/getting-started/) walks through a working install on a fresh VPS, and [How to migrate without downtime](/guides/migrate-to-self-hosted-email/) covers switching from your current provider safely.

@@ -410,8 +410,8 @@ BIMI is optional. It displays your brand logo next to authenticated mail in supp
 
 - [Email deliverability best practices](/guides/deliverability/) for a comprehensive guide to inbox placement
 - [IP warmup for new servers](/guides/ip-warmup/) if this is a fresh IP address
-- [Cloudflare integration](/guides/cloudflare) for managing DNS records in Cloudflare
-- [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
+- [Cloudflare integration](/guides/cloudflare/) for managing DNS records in Cloudflare
+- [DNS setup quickstart](/getting-started/dns-setup/) for a condensed record reference
 - [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026/) if you're still choosing a platform
 
 ### Skip the manual setup

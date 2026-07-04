@@ -313,6 +313,6 @@ curl https://mail.example.com/api/v1/domains/0192abc0-.../deliverability \
 
 ## Related
 
-- [Mailboxes API](/api/mailboxes) -- create mailboxes under a domain
-- [Aliases API](/api/aliases) -- create aliases under a domain
-- [CLI domain commands](/cli/commands#domain-management) -- manage domains from the command line
+- [Mailboxes API](/api/mailboxes/) -- create mailboxes under a domain
+- [Aliases API](/api/aliases/) -- create aliases under a domain
+- [CLI domain commands](/cli/commands/#domain-management) -- manage domains from the command line

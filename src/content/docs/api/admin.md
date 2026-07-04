@@ -491,5 +491,5 @@ Exports the full audit log. Requires `super_admin` role.
 ## Related
 
 - [API Overview](/api/) -- authentication methods and response format
-- [Domains API](/api/domains) -- resources managed by RBAC
-- [CLI Commands](/cli/commands) -- manage admins from the command line
+- [Domains API](/api/domains/) -- resources managed by RBAC
+- [CLI Commands](/cli/commands/) -- manage admins from the command line

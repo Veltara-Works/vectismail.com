@@ -26,7 +26,7 @@ howToSteps:
     text: Configure your IMAP / SMTP client with the settings the wizard prints to start using the mailbox.
 ---
 
-After [installing Vectis Mail](/getting-started/installation), open the admin URL in your browser. The **Setup Wizard** will walk you through five steps: add domain → DNS records → verify → create mailbox → deliverability review.
+After [installing Vectis Mail](/getting-started/installation/), open the admin URL in your browser. The **Setup Wizard** will walk you through five steps: add domain → DNS records → verify → create mailbox → deliverability review.
 
 ## Setup at a glance
 
@@ -44,7 +44,7 @@ Navigate to `https://your-hostname/admin` and sign in with the admin email and p
 
 ![Vectis Mail admin login screen](/screenshots/installation/01-login.png)
 
-If you lost the admin password, see [Lost the admin password?](/getting-started/installation#lost-the-admin-password) on the install page.
+If you lost the admin password, see [Lost the admin password?](/getting-started/installation/#lost-the-admin-password) on the install page.
 
 ## Setup Wizard
 
@@ -197,5 +197,5 @@ curl -X POST https://your-hostname/api/v1/send \
 
 ## Next steps
 
-- [Configure DNS records](/getting-started/dns-setup) for full deliverability
-- [Set up DKIM, SPF, and DMARC](/guides/dkim-spf-dmarc)
+- [Configure DNS records](/getting-started/dns-setup/) for full deliverability
+- [Set up DKIM, SPF, and DMARC](/guides/dkim-spf-dmarc/)

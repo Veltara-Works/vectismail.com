@@ -77,7 +77,7 @@ Self-hosting email is not free of trade-offs, and pretending otherwise would be 
 
 - **The suite.** No Docs/Sheets, Word/Excel, Drive/OneDrive, or Teams/Meet. If your team needs those, you still need a suite (or open-source equivalents) for them — see the hybrid below.
 - **You carry the ops.** Patching, backups, monitoring, and the occasional 2 a.m. issue are yours. A good platform shrinks this to roughly half an hour a week at steady state, but it is not zero.
-- **Deliverability is on you.** Google and Microsoft manage IP reputation invisibly. Self-hosted, you own a clean IP, correct authentication, and a warmup period. Modern stacks automate most of it — [see our deliverability guide](/guides/deliverability) — but the responsibility shifts to you.
+- **Deliverability is on you.** Google and Microsoft manage IP reputation invisibly. Self-hosted, you own a clean IP, correct authentication, and a warmup period. Modern stacks automate most of it — [see our deliverability guide](/guides/deliverability/) — but the responsibility shifts to you.
 
 ## When each option makes sense
 
@@ -94,7 +94,7 @@ For most small teams the answer isn't all-or-nothing.
 
 The cheapest sensible setup for a lot of growing teams is **hybrid**: keep a small number of Workspace or Microsoft 365 seats for the people who genuinely need Docs, Excel, or Teams, and move your **mailboxes** — especially shared inboxes, role accounts, and the long tail of staff who only really use email — to a self-hosted platform.
 
-You pay the suite only for the seats that use the suite, and email stops being a per-user charge across the whole company. Run the two side by side during migration (a [dual-send overlap](/guides/deliverability) protects deliverability while your new IP warms up), then cut over the mailboxes when you're confident.
+You pay the suite only for the seats that use the suite, and email stops being a per-user charge across the whole company. Run the two side by side during migration (a [dual-send overlap](/guides/deliverability/) protects deliverability while your new IP warms up), then cut over the mailboxes when you're confident.
 
 ## How Vectis Mail fits
 
@@ -137,7 +137,7 @@ It widens the gap. Google raised Workspace prices 17–22% in January 2025 when 
 
 - [Vectis Mail vs Google Workspace](/alternatives/google-workspace/) — the head-to-head if you're leaving Workspace for self-hosted email
 - [Vectis Mail vs Microsoft 365](/alternatives/microsoft-365/) — the head-to-head if you're leaving Microsoft 365 / Exchange Online
-- [Should you self-host email? The 2026 decision guide](/guides/self-host-email-2026) — the full TCO and deliverability reality check
-- [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026) — an honest 8-way platform comparison
-- [Email deliverability best practices](/guides/deliverability) — how to land in the inbox once you've moved
+- [Should you self-host email? The 2026 decision guide](/guides/self-host-email-2026/) — the full TCO and deliverability reality check
+- [The best self-hosted email servers in 2026](/guides/best-self-hosted-email-servers-2026/) — an honest 8-way platform comparison
+- [Email deliverability best practices](/guides/deliverability/) — how to land in the inbox once you've moved
 - [Pricing](/pricing/) — Vectis Mail's flat, never-per-send plans

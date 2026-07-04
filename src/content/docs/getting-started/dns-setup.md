@@ -25,7 +25,7 @@ howToSteps:
 
 Proper DNS configuration is essential for email deliverability. This guide covers all the records you need.
 
-> **Tip:** You usually don't have to construct these by hand. When you add a domain in the [Setup Wizard](/getting-started/first-domain#step-2--publish-dns-records), Vectis generates every record below pre-filled for your domain, with a **Copy Value** button on each:
+> **Tip:** You usually don't have to construct these by hand. When you add a domain in the [Setup Wizard](/getting-started/first-domain/#step-2--publish-dns-records), Vectis generates every record below pre-filled for your domain, with a **Copy Value** button on each:
 >
 > ![Setup Wizard step 2 — DNS records with Copy Value buttons for MX, SPF, DKIM, DMARC, and Verification TXT](/screenshots/installation/03-wizard-step2-dns-records.png)
 >
@@ -131,6 +131,6 @@ Or check in the dashboard under **Deliverability** — it shows a green/yellow/r
 
 ## Next Steps
 
-- [Detailed DKIM, SPF & DMARC guide](/guides/dkim-spf-dmarc)
-- [Deliverability best practices](/guides/deliverability)
-- [IP warmup for new servers](/guides/ip-warmup)
+- [Detailed DKIM, SPF & DMARC guide](/guides/dkim-spf-dmarc/)
+- [Deliverability best practices](/guides/deliverability/)
+- [IP warmup for new servers](/guides/ip-warmup/)

@@ -101,7 +101,7 @@ Note: This requires additional Traefik configuration to accept traffic for both 
 
 Vectis issues its Let's Encrypt certificate automatically using the **HTTP-01** challenge (Traefik on port 80), so built-in issuance does not use Cloudflare's API. For this to work, make sure your mail hostname's A record is set to **DNS only** (grey cloud) — see below — and that port 80 is reachable.
 
-If you can't open port 80, or you want a **wildcard certificate**, obtain one yourself with a DNS-01 challenge (for example using your own [acme.sh](https://github.com/acmesh-official/acme.sh) or certbot with their Cloudflare DNS plugin and a scoped **Zone > DNS > Edit** API token), then point Vectis at it with `provider: custom` in `config.yaml`. With a custom certificate you own renewal. See [TLS certificates](/guides/tls-certificates) for the full custom-certificate setup.
+If you can't open port 80, or you want a **wildcard certificate**, obtain one yourself with a DNS-01 challenge (for example using your own [acme.sh](https://github.com/acmesh-official/acme.sh) or certbot with their Cloudflare DNS plugin and a scoped **Zone > DNS > Edit** API token), then point Vectis at it with `provider: custom` in `config.yaml`. With a custom certificate you own renewal. See [TLS certificates](/guides/tls-certificates/) for the full custom-certificate setup.
 
 ## Cloudflare DNS settings to check
 
@@ -219,7 +219,7 @@ No. PTR records are configured at your VPS provider's control panel, not in Clou
 
 ## Next steps
 
-- [DNS setup quickstart](/getting-started/dns-setup) for a condensed record reference
-- [TLS certificates](/guides/tls-certificates) for automatic HTTP-01 issuance and custom (wildcard / DNS-01) certificates
-- [DKIM, SPF & DMARC](/guides/dkim-spf-dmarc) for authentication deep dive
-- [Troubleshooting](/guides/troubleshooting) for diagnosing DNS-related issues
+- [DNS setup quickstart](/getting-started/dns-setup/) for a condensed record reference
+- [TLS certificates](/guides/tls-certificates/) for automatic HTTP-01 issuance and custom (wildcard / DNS-01) certificates
+- [DKIM, SPF & DMARC](/guides/dkim-spf-dmarc/) for authentication deep dive
+- [Troubleshooting](/guides/troubleshooting/) for diagnosing DNS-related issues

@@ -251,7 +251,7 @@ Once the cert has issued, opening the admin URL in your browser should show the 
 
 ![Vectis Mail admin login screen](/screenshots/installation/01-login.png)
 
-Sign in with the admin email and password from the banner. From here, the [Your First Domain](/getting-started/first-domain) guide walks through the Setup Wizard to add a domain and create your first mailbox.
+Sign in with the admin email and password from the banner. From here, the [Your First Domain](/getting-started/first-domain/) guide walks through the Setup Wizard to add a domain and create your first mailbox.
 
 If the admin URL refuses to connect from your laptop:
 
@@ -279,5 +279,5 @@ This regenerates affected service configs and reloads the relevant containers.
 
 ## Next steps
 
-- [Add your first domain](/getting-started/first-domain)
-- [Configure DNS records](/getting-started/dns-setup) — the per-mail-domain records (MX, SPF, DKIM, DMARC)
+- [Add your first domain](/getting-started/first-domain/)
+- [Configure DNS records](/getting-started/dns-setup/) — the per-mail-domain records (MX, SPF, DKIM, DMARC)
