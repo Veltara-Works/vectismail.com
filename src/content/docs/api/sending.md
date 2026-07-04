@@ -180,6 +180,19 @@ curl -X POST https://mail.example.com/api/v1/send \
   }'
 ```
 
+### Size limits
+
+The **total message size** (headers, body, and all attachments combined) must not
+exceed **50 MB** by default. This is the server's `message_size_limit`, configurable
+per install up to a hard maximum of 100 MB.
+
+Because attachments are transmitted as base64, the encoded `content` is roughly
+33% larger than the raw file — so the practical raw-attachment ceiling under the
+default 50 MB limit is about **37 MB** across all attachments in a single message.
+
+> The web client (webmail) applies its own **25 MB** per-message attachment-upload
+> limit in the compose UI, independent of the API limit above.
+
 ## Custom headers
 
 You can include custom headers on outgoing messages. All custom header keys must start with `X-` to avoid conflicts with standard email headers.
