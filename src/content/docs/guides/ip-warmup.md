@@ -215,7 +215,7 @@ After day 30, Vectis automatically deactivates the warmup entry for the IP. From
 
 - All sending limits are removed
 - The IP is considered fully warmed
-- You should continue to follow [deliverability best practices](/guides/deliverability) to maintain your reputation
+- You should continue to follow [deliverability best practices](/guides/deliverability/) to maintain your reputation
 
 Your IP's reputation is not permanent. Even after warmup, sudden volume spikes, high bounce rates, or spam complaints can damage it. Treat warmup as the foundation, not a one-time task.
 
@@ -235,7 +235,7 @@ Sending password reset emails to inactive accounts or re-engagement campaigns du
 
 ### Not setting up authentication first
 
-SPF, DKIM, and DMARC must be fully configured and passing before you start warmup. Sending unauthenticated mail from a new IP is a recipe for immediate blocking. See the [DKIM, SPF & DMARC guide](/guides/dkim-spf-dmarc).
+SPF, DKIM, and DMARC must be fully configured and passing before you start warmup. Sending unauthenticated mail from a new IP is a recipe for immediate blocking. See the [DKIM, SPF & DMARC guide](/guides/dkim-spf-dmarc/).
 
 ### Sharing an IP with untrusted senders
 
@@ -281,6 +281,6 @@ Yes. If your deployment sends from multiple outbound IPs (for example, separate 
 
 ## Next steps
 
-- [DKIM, SPF & DMARC configuration](/guides/dkim-spf-dmarc) -- set up authentication before warmup
-- [Email deliverability best practices](/guides/deliverability) -- maintain your reputation after warmup
-- [DNS setup](/getting-started/dns-setup) -- ensure PTR, MX, and A records are correct
+- [DKIM, SPF & DMARC configuration](/guides/dkim-spf-dmarc/) -- set up authentication before warmup
+- [Email deliverability best practices](/guides/deliverability/) -- maintain your reputation after warmup
+- [DNS setup](/getting-started/dns-setup/) -- ensure PTR, MX, and A records are correct
