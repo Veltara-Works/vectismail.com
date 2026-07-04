@@ -120,6 +120,12 @@ export default defineConfig({
 						{ label: 'Overview', slug: 'architecture/overview' },
 					],
 				},
+				{
+					label: 'Release Notes',
+					items: [
+						{ label: 'Release Highlights', slug: 'release-notes' },
+					],
+				},
 			],
 		}),
 	],
