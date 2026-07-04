@@ -312,11 +312,20 @@ Check deliverability: vectis domain check example.com
 
 ### vectis domain remove
 
-Removes a domain. Fails if mailboxes or aliases still exist.
+Removes a domain. Fails if mailboxes or aliases still exist (remove those first). Destructive, so it requires `--confirm`.
 
 ```bash
-vectis domain remove --name example.com
+vectis domain remove --name example.com --confirm
 ```
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--name NAME` | Domain to remove (required). |
+| `--confirm` | Required to proceed with the destructive removal. |
+
+After removal, run `vectis config apply` so DKIM and spam config no longer reference the domain.
 
 ---
 
@@ -335,7 +344,7 @@ vectis domain list --json
 | Flag | Description |
 |------|-------------|
 | `--active-only` | Show only active domains. |
-| `--format table\|json` | Output format. |
+| `--json` | Output as JSON instead of a table. |
 
 ---
 
@@ -370,22 +379,37 @@ vectis mailbox add --email alice@example.com --display-name "Alice Johnson" --qu
 
 ### vectis mailbox remove
 
-Deletes a mailbox.
+Deletes a mailbox by email address. Destructive, so it requires `--confirm`. Only the mailbox metadata is removed; the on-disk maildir is owned by Dovecot and left untouched.
 
 ```bash
-vectis mailbox remove --email alice@example.com
+vectis mailbox remove --email alice@example.com --confirm
 ```
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--email ADDRESS` | Mailbox to remove (required). |
+| `--confirm` | Required to proceed with the destructive removal. |
 
 ---
 
 ### vectis mailbox list
 
-Lists mailboxes for a domain.
+Lists mailboxes. Without a flag it lists every mailbox across all domains; pass `--domain` to scope to one domain.
 
 ```bash
+vectis mailbox list
 vectis mailbox list --domain example.com
 vectis mailbox list --domain example.com --json
 ```
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--domain NAME` | Only list mailboxes for this domain (default: all domains). |
+| `--json` | Output as JSON instead of a table. |
 
 ## Log viewing
 
