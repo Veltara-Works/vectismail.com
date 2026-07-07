@@ -7,7 +7,7 @@ const description = 'Vectis Mail for SaaS: transactional sending, inbound webhoo
 const url = 'https://vectismail.com/for/saas/'
 const ogImage = 'https://vectismail.com/og/for-saas.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-06-08'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -83,7 +83,7 @@ const dateModified = '2026-06-08'
 					{
 						"@type": "Question",
 						"name": "What about data sovereignty for selling to regulated buyers?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail runs on your VPS. Email content, metadata, and analytics live in your Postgres. You choose where that data resides (EU VPS, sovereign cloud, on-prem, whatever fits your jurisdiction) and who has access. For SaaS selling into healthcare, government, financial services, or EU public sector, that's often the deal-maker. Managed providers (SendGrid, Postmark, AWS SES) put your customer email content on their US-primary infrastructure regardless of where your customers are." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail runs on your VPS. Email content, metadata, and analytics live in your Postgres. You choose where that data resides (EU VPS, sovereign cloud, on-prem, whatever fits your jurisdiction) and who has access. For SaaS selling into healthcare, government, financial services, or EU public sector, that's often the deal-maker. Managed providers (SendGrid, Postmark, AWS SES) host your customer email content on their infrastructure. Some offer a regional or EU data-residency option, but the servers, access, and jurisdiction terms stay theirs — with Vectis Mail the data lives on infrastructure you control." }
 					},
 					{
 						"@type": "Question",
@@ -116,7 +116,7 @@ const dateModified = '2026-06-08'
 			compounds in your favour as you grow.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -140,7 +140,7 @@ const dateModified = '2026-06-08'
 			</div>
 			<div class="feature-card">
 				<h3>4. Data sovereignty closes deals</h3>
-				<p>Selling into healthcare, government, financial services, or EU public sector? Buyers increasingly require email content + metadata to stay in their jurisdiction. Vectis Mail runs on your VPS, so you choose where the data lives. Managed providers can't make that promise.</p>
+				<p>Selling into healthcare, government, financial services, or EU public sector? Buyers increasingly require email content + metadata to stay in their jurisdiction. Vectis Mail runs on your VPS, so you choose where the data lives and who can touch it. With a managed provider the content sits on their infrastructure — even a regional option runs on their servers, under their control.</p>
 			</div>
 			<div class="feature-card">
 				<h3>5. Reply-handling is part of the product</h3>
@@ -167,22 +167,22 @@ const dateModified = '2026-06-08'
 					</tr>
 				</thead>
 				<tbody>
-					<tr><td>10,000</td><td><strong>$59</strong></td><td>$19.95</td><td>$15–18</td></tr>
-					<tr><td>100,000</td><td><strong>$59</strong></td><td>~$89.95</td><td>~$134</td></tr>
-					<tr><td>500,000</td><td><strong>$59</strong></td><td>~$120</td><td>~$654</td></tr>
-					<tr><td>1,000,000</td><td><strong>$59</strong></td><td>~$150–250</td><td>~$1,200</td></tr>
-					<tr><td>5,000,000</td><td><strong>$59</strong>*</td><td>~$2,000+</td><td>~$6,000</td></tr>
+					<tr><td>10,000</td><td><strong>$39/mo flat</strong></td><td>$19.95</td><td>$15–18</td></tr>
+					<tr><td>100,000</td><td><strong>$39/mo flat</strong></td><td>~$89.95</td><td>~$134</td></tr>
+					<tr><td>500,000</td><td><strong>$39/mo flat</strong></td><td>~$120</td><td>~$654</td></tr>
+					<tr><td>1,000,000</td><td><strong>$39/mo flat</strong></td><td>~$150–250</td><td>~$1,200</td></tr>
+					<tr><td>5,000,000</td><td><strong>$39/mo</strong> (may need a larger VPS at this scale)</td><td>~$2,000+</td><td>~$6,000</td></tr>
 				</tbody>
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			*At 5M+ emails/mo, you may want a larger VPS, but the Pro tier itself stays flat. Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> retrieved 2026-05-13.
+			Vectis Mail is the flat $39/mo Pro tier; add a ~$20/mo VPS to host it for an all-in of about $59/mo at any volume. Provider pricing per Twilio's published Email API pricing + Postmark's published pricing, retrieved 2026-05-13.
 		</p>
 		<p style="margin-top: 1.25rem;">
 			The exact crossover depends on which provider you're comparing against, but the
-			pattern is consistent: by the time you're sending six-figure email volumes a month,
-			Vectis Mail saves enough to fund a full-time engineer. By a million emails, it's a
-			rounding-error decision in the other direction.
+			pattern is consistent: past a few hundred thousand emails a month,
+			the flat cost is a fraction of per-email pricing, and by a million or more a month the
+			annual difference runs well into five figures — while your Vectis Mail bill stays flat.
 		</p>
 	</section>
 
@@ -300,8 +300,9 @@ const dateModified = '2026-06-08'
 					your Postgres. You choose where that data resides (EU VPS, sovereign cloud,
 					on-prem, whatever fits your jurisdiction) and who has access. For SaaS
 					selling into healthcare, government, financial services, or EU public sector,
-					that's often the deal-maker. Managed providers put customer email content on
-					their US-primary infrastructure regardless of where your customers are.
+					that's often the deal-maker. Managed providers host customer email content on
+					their infrastructure. Some offer a regional or EU-residency option, but the
+						servers and access stay under their control, not yours.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -342,7 +343,7 @@ const dateModified = '2026-06-08'
 		<p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Free Starter tier &middot; No credit card required &middot; Source-available</p>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>7 July 2026</time></p>
 
 
 	</main>

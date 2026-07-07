@@ -7,7 +7,7 @@ const description = 'Vectis Mail for enterprises: self-hosted, data-sovereign em
 const url = 'https://vectismail.com/for/enterprises/'
 const ogImage = 'https://vectismail.com/og/for-enterprises.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-06-08'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -65,8 +65,8 @@ const dateModified = '2026-06-08'
 				"mainEntity": [
 					{
 						"@type": "Question",
-						"name": "What's available today vs the planned Enterprise tier?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Today, Vectis Mail ships Starter (free) and Pro ($39 USD/tenant/month). Both are fully self-hosted on your infrastructure with BSL 1.1 source available. Pro adds unlimited domains, per-domain analytics, advanced spam controls, OIDC SSO, and priority support. The dedicated Enterprise tier (gated on Phase 4 work) will add clustering for HA, stronger multi-tenancy isolation guarantees, audit-report packs (SOC 2 evidence, compliance evidence), and dedicated support SLAs. Enterprise tier launches later in 2026; the timeline depends on multi-tenancy hardening shipping properly first." }
+						"name": "What's available today, and what's on the roadmap?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail ships three tiers today, all self-hosted with BSL 1.1 source available: Starter (free), Pro ($39 USD/tenant/month), and Enterprise (from $499 USD/tenant/month, flat, never per seat). Pro adds unlimited domains, per-domain analytics, advanced spam controls, OIDC SSO, and priority support. Enterprise adds SAML 2.0 SSO, SCIM 2.0 provisioning, GDPR DSAR export & erasure, a business-hours support SLA, and a critical security-patch commitment. On the roadmap: multi-node clustering with HA, hardened cross-tenant isolation, audit-evidence packs, and advanced deliverability monitoring." }
 					},
 					{
 						"@type": "Question",
@@ -81,17 +81,17 @@ const dateModified = '2026-06-08'
 					{
 						"@type": "Question",
 						"name": "Do you offer enterprise support / SLAs?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Pro includes priority email support today. Dedicated SLA-backed support (guaranteed response times, named contacts, escalation paths) lands with the Enterprise tier. If you need that earlier, get in touch. We can put together a custom support agreement until the Enterprise tier lands." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Pro includes priority email support. Enterprise (from $499 USD/tenant/month) adds a business-hours support SLA with first-response targets by severity: P1 4 business hours, P2 8 business hours, P3 2 business days, P4 3 business days (9am-5pm AEST, Mon-Fri, excluding AU public holidays). These are first-response targets, not resolution times. 24/7 priority response is available as a custom add-on. Because Vectis Mail is self-hosted, there is no uptime SLA." }
 					},
 					{
 						"@type": "Question",
 						"name": "How does Vectis Mail handle multi-tenancy at enterprise scale?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail isolates at the domain level — every domain has its own DKIM keys, analytics, and spam controls. Today's domain-level isolation is suitable for trusted-tenant scenarios (multiple internal business units, multiple managed customer brands under one operator). Strict cross-tenant security isolation guarantees, the level you'd want before running mutually-distrustful tenants on shared infrastructure, land with the Enterprise tier. Until then, the safe answer for security-sensitive tenant pairs is one install per tenant boundary." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail isolates at the domain level — every domain has its own DKIM keys, analytics, and spam controls. Today's domain-level isolation is suitable for trusted-tenant scenarios (multiple internal business units, multiple managed customer brands under one operator). Strict cross-tenant security isolation guarantees, the level you'd want before running mutually-distrustful tenants on shared infrastructure, are on the Enterprise roadmap. Until then, the safe answer for security-sensitive tenant pairs is one install per tenant boundary." }
 					},
 					{
 						"@type": "Question",
 						"name": "How do I get started with a pilot or proof of concept?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Two paths. (1) Self-serve: install Vectis Mail on a sandbox VPS, evaluate Pro features for free (the Pro upgrade unlocks a 30-day grace period before billing kicks in). (2) Guided: contact us with your environment details, compliance requirements, and timelines; we'll scope a pilot that addresses your specific procurement gates. Some enterprise teams prefer to validate the architecture first, then layer compliance work on top." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Two paths. (1) Self-serve: install Vectis Mail on a sandbox VPS and evaluate the platform, including Pro features, before committing to billing. (2) Guided: contact us with your environment details, compliance requirements, and timelines; we'll scope a pilot that addresses your specific procurement gates. Some enterprise teams prefer to validate the architecture first, then layer compliance work on top." }
 					}
 				]
 			}
@@ -108,16 +108,17 @@ const dateModified = '2026-06-08'
 		<h1>Vectis Mail for enterprises.<br/><span>Email infrastructure on your terms — your servers, your data, your audit trail.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is self-hosted email infrastructure for enterprises that need data
-			sovereignty, audit trails, multi-domain hosting, and source-available code. Pro tier
-			today covers the Vectis Mail platform. The dedicated Enterprise tier lands later
-			in 2026, adding clustering, hardened multi-tenancy, audit-report packs, and
-			SLA-backed support. We're transparent about what's in the box today and what's
+			sovereignty, audit trails, multi-domain hosting, and source-available code. The Enterprise tier is live
+			today — from $499 USD/tenant/month, flat, never per seat — adding SAML 2.0 SSO,
+			SCIM 2.0 provisioning, GDPR DSAR export &amp; erasure, and a business-hours support
+			SLA on top of Pro. Clustering, hardened multi-tenancy, and audit-evidence packs
+			remain on the roadmap; we're transparent about what's in the box today and what's
 			coming.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
-			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by Ian Holt</span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
@@ -135,7 +136,7 @@ const dateModified = '2026-06-08'
 			</div>
 			<div class="feature-card">
 				<h3>3. Domain-level isolation from the database up</h3>
-				<p>Every domain has its own DKIM keys, and Pro adds per-domain analytics, advanced spam controls, and per-domain rate limiting. Domain-level isolation is suitable today for trusted-tenant scenarios: internal business units, managed customer brands. Strict cross-tenant isolation guarantees land with the Enterprise tier.</p>
+				<p>Every domain has its own DKIM keys, and Pro adds per-domain analytics, advanced spam controls, and per-domain rate limiting. Domain-level isolation is suitable today for trusted-tenant scenarios: internal business units, managed customer brands. Strict cross-tenant isolation guarantees are on the Enterprise roadmap.</p>
 			</div>
 			<div class="feature-card">
 				<h3>4. Atomic updates with rollback</h3>
@@ -153,40 +154,45 @@ const dateModified = '2026-06-08'
 	</section>
 
 	<section class="section">
-		<h2>What the Enterprise tier will add</h2>
-		<p class="subtitle">Phase 4 roadmap, landing later in 2026. We're publishing the scope so you can plan against it.</p>
+		<h2>What the Enterprise tier includes today</h2>
+		<p class="subtitle">The Enterprise tier is live now — from $499 USD/tenant/month, flat, never per seat, custom above. Everything in Pro, plus:</p>
 
-		<h3 class="alt-h3">Clustering + high availability</h3>
+		<h3 class="alt-h3">SAML 2.0 single sign-on</h3>
 		<p>
-			Multi-node Vectis Mail clusters with active/active or active/passive failover.
-			Shared Postgres backend with replication, shared maildir on durable storage,
-			distributed sender pool. Targets: 99.95%+ availability SLA, sub-minute failover,
-			graceful node-drain for maintenance windows.
+			Enterprise SAML 2.0 SSO for Okta, Microsoft Entra ID, ADFS, and any
+			SAML-compliant IdP — alongside the OIDC SSO (Google, Azure AD, Keycloak) that
+			ships on Pro. Centralise authentication under your existing identity provider.
 		</p>
 
-		<h3 class="alt-h3">Hardened multi-tenancy isolation</h3>
+		<h3 class="alt-h3">SCIM 2.0 provisioning</h3>
 		<p>
-			Strict cross-tenant security guarantees suitable for mutually-distrustful tenants
-			on shared infrastructure: namespace-level isolation for storage, per-tenant
-			encryption-at-rest keys, audit-grade tenant-access logging. The level required for
-			"run competing brands on one cluster" or "host customer email infrastructure as a
-			service" use cases.
+			Automated user provisioning and de-provisioning via SCIM 2.0. Wire Vectis Mail
+			into your identity provider so mailbox lifecycle follows your directory —
+			joiners, movers, and leavers handled without manual admin.
 		</p>
 
-		<h3 class="alt-h3">Audit-evidence packs</h3>
+		<h3 class="alt-h3">GDPR DSAR export &amp; erasure</h3>
 		<p>
-			Pre-built evidence packs that slot into your SOC 2, HIPAA, or ISO 27001 audit
-			work: configuration attestations, change-management logs, access logs, retention
-			policies, encryption verification. Built for procurement teams that need to answer
-			"prove your email infrastructure is compliant" without burning weeks of evidence
-			gathering.
+			Data-subject access request tooling: export or erase a subject's personal data
+			on request, with the audit trail to prove it. Built for teams answering
+			GDPR / CCPA requests on a clock. (The config-based data-retention sweeper ships
+			on every tier.)
 		</p>
 
-		<h3 class="alt-h3">SLA-backed support</h3>
+		<h3 class="alt-h3">Business-hours support SLA</h3>
 		<p>
-			Guaranteed response times (P1 in 1 hour, P2 in 4 hours, etc.), named technical
-			contacts, escalation paths, scheduled architecture reviews. The shape Enterprise
-			procurement expects from infrastructure vendors.
+			First-response targets by severity, 9am–5pm AEST (Mon–Fri, excl. AU public
+			holidays): P1 (production mail flow down) 4 business hours, P2 (major feature
+			degraded) 8 business hours, P3 2 business days, P4 3 business days. These are
+			first-response targets, not resolution times, covering the Vectis Mail software.
+			24/7 priority response is available as a custom add-on. Because Vectis Mail is
+			self-hosted, there is no uptime SLA — your server's availability is yours to run.
+		</p>
+
+		<h3 class="alt-h3">Critical security-patch commitment</h3>
+		<p>
+			We commit to issuing critical security patches promptly and prioritising
+			confirmed critical fixes into the next patch release.
 		</p>
 
 		<h3 class="alt-h3">Custom contract terms</h3>
@@ -194,6 +200,15 @@ const dateModified = '2026-06-08'
 			Bespoke licensing, indemnification clauses, custom DPA, MSA negotiation. Pro is
 			a click-through; Enterprise is a negotiated contract designed to slot into your
 			procurement framework.
+		</p>
+
+		<h3 class="alt-h3" style="margin-top: 2rem;">On the Enterprise roadmap</h3>
+		<p>
+			Still ahead, and we publish it so you can plan against it: multi-node clustering
+			with HA failover, hardened cross-tenant isolation for mutually-distrustful
+			tenants on shared infrastructure, pre-built audit-evidence packs
+			(SOC 2 / HIPAA / ISO 27001), and advanced deliverability monitoring. See
+			"Gaps we'll close" below for where each one stands today.
 		</p>
 	</section>
 
@@ -223,7 +238,7 @@ const dateModified = '2026-06-08'
 			</div>
 			<div class="feature-card">
 				<h3>Pricing for enterprise volume?</h3>
-				<p>Pro at $39 USD/tenant/month covers the platform today. Enterprise tier pricing is custom, sized by deployment (number of clusters, SLA tier, support depth, custom terms). Talk to us with your environment details; we'll scope a quote.</p>
+				<p>Pro is $39 USD/tenant/month. Enterprise starts at $499 USD/tenant/month — flat, never per seat — with custom pricing for larger organisations, sized by deployment (SLA tier, support depth, custom terms). Talk to us with your environment details; we'll scope a quote.</p>
 			</div>
 		</div>
 	</section>
@@ -234,7 +249,7 @@ const dateModified = '2026-06-08'
 		<div class="feature-grid" style="margin-top: 1.25rem;">
 			<div class="feature-card">
 				<h3>Vendor-side SOC 2 report</h3>
-				<p>Not available today. The Enterprise tier adds compliance evidence packs that slot into your own audit work. If a vendor-side SOC 2 is a hard procurement gate today, factor in the Phase 4 timeline.</p>
+				<p>Not available today. The Enterprise roadmap adds compliance evidence packs that slot into your own audit work. If a vendor-side SOC 2 is a hard procurement gate today, factor in the roadmap timeline.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Cluster mode + HA failover</h3>
@@ -242,7 +257,7 @@ const dateModified = '2026-06-08'
 			</div>
 			<div class="feature-card">
 				<h3>Strict cross-tenant isolation</h3>
-				<p>Today's tenancy isolation is suitable for trusted-tenant scenarios. For mutually-distrustful tenant pairs on shared infrastructure, the safe answer today is one Vectis install per tenant boundary. Enterprise tier ships hardened isolation for shared-tenancy use cases.</p>
+				<p>Today's tenancy isolation is suitable for trusted-tenant scenarios. For mutually-distrustful tenant pairs on shared infrastructure, the safe answer today is one Vectis install per tenant boundary. Hardened isolation for shared-tenancy use cases is on the Enterprise roadmap.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Calendar / contacts (CalDAV / CardDAV)</h3>
@@ -257,14 +272,14 @@ const dateModified = '2026-06-08'
 			<div class="alt-faq-q">
 				<h3>What's available today vs the planned Enterprise tier?</h3>
 				<p>
-					Today, Vectis Mail ships Starter (free) and Pro ($39 USD/tenant/month). Both are
-					fully self-hosted on your infrastructure with BSL 1.1 source available. Pro
-					adds unlimited domains, per-domain analytics, advanced spam controls, OIDC SSO,
-					and priority support. The dedicated Enterprise tier (gated on Phase 4 work)
-					will add clustering for HA, stronger multi-tenancy isolation guarantees,
-					audit-report packs (SOC 2 evidence, compliance evidence), and dedicated
-					support SLAs. Enterprise tier launches later in 2026; the timeline depends
-					on multi-tenancy hardening shipping properly first.
+					Vectis Mail ships three tiers today, all self-hosted with BSL 1.1 source
+					available: Starter (free), Pro ($39 USD/tenant/month), and Enterprise (from
+					$499 USD/tenant/month, flat, never per seat). Pro adds unlimited domains,
+					per-domain analytics, advanced spam controls, OIDC SSO, and priority support.
+					Enterprise adds SAML 2.0 SSO, SCIM 2.0 provisioning, GDPR DSAR export &amp;
+					erasure, a business-hours support SLA, and a critical security-patch
+					commitment. On the roadmap: multi-node clustering with HA, hardened
+					cross-tenant isolation, audit-evidence packs, and deliverability monitoring.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -293,10 +308,13 @@ const dateModified = '2026-06-08'
 			<div class="alt-faq-q">
 				<h3>Do you offer enterprise support / SLAs?</h3>
 				<p>
-					Pro includes priority email support today. Dedicated SLA-backed support (
-					guaranteed response times, named contacts, escalation paths) lands with
-					the Enterprise tier. If you need that earlier, <a href="/talk-to-us/?segment=enterprise">get in touch</a>
-					. We can put together a custom support agreement until the Enterprise tier lands.
+					Yes. Pro includes priority email support. Enterprise (from $499 USD/tenant/month)
+					adds a business-hours support SLA with first-response targets by severity —
+					P1 (production mail flow down) 4 business hours, P2 8 business hours, P3 2
+					business days, P4 3 business days (9am–5pm AEST, Mon–Fri, excl. AU public
+					holidays). These are first-response targets, not resolution times, and 24/7
+					priority response is a custom add-on. Because Vectis Mail is self-hosted, there
+					is no uptime SLA. Need it scoped? <a href="/talk-to-us/?segment=enterprise">Get in touch</a>.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -307,16 +325,15 @@ const dateModified = '2026-06-08'
 					trusted-tenant scenarios (multiple internal business units, multiple managed
 					customer brands under one operator). Strict cross-tenant security isolation
 					guarantees (the level you'd want before running mutually-distrustful tenants
-					on shared infrastructure) land with the Enterprise tier. Until then, the safe
+					on shared infrastructure) are on the Enterprise roadmap. Until then, the safe
 					answer for security-sensitive tenant pairs is one install per tenant boundary.
 				</p>
 			</div>
 			<div class="alt-faq-q">
 				<h3>How do I get started with a pilot or proof of concept?</h3>
 				<p>
-					Two paths. (1) Self-serve: install Vectis Mail on a sandbox VPS, evaluate Pro
-					features for free (the Pro upgrade unlocks a 30-day grace period before
-					billing kicks in). (2) Guided: <a href="/talk-to-us/?segment=enterprise">contact us</a>
+					Two paths. (1) Self-serve: install Vectis Mail on a sandbox VPS, and evaluate the platform,
+					including Pro features, before committing to billing. (2) Guided: <a href="/talk-to-us/?segment=enterprise">contact us</a>
 					with your environment details, compliance requirements, and timelines; we'll
 					scope a pilot that addresses your specific procurement gates. Some
 					enterprise teams prefer to validate the architecture first, then layer
@@ -328,7 +345,7 @@ const dateModified = '2026-06-08'
 
 	<div class="cta-section">
 		<h2>Let's talk about your environment</h2>
-		<p>Enterprise procurement isn't self-serve. Tell us what you need; we'll scope the right path: pilot, Pro evaluation, or Enterprise tier scoping for Phase 4.</p>
+		<p>Enterprise procurement isn't self-serve. Tell us what you need; we'll scope the right path: pilot, Pro evaluation, or Enterprise onboarding.</p>
 		<div class="hero-buttons">
 			<a href="/talk-to-us/?segment=enterprise" class="btn-primary">Contact Sales</a>
 			<a href="/pricing/" class="btn-secondary">View Current Pricing</a>
@@ -336,7 +353,7 @@ const dateModified = '2026-06-08'
 		<p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Source-available &middot; Self-hosted &middot; No lock-in &middot; Pro is self-serve today</p>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>7 July 2026</time></p>
 
 	</main>
 
