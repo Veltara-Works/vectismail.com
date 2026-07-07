@@ -1,6 +1,6 @@
 ---
 title: DNS Setup
-description: Configure MX, A, PTR, SPF, DKIM, and DMARC records for your Vectis Mail server.
+description: "Configure the MX, A, PTR, SPF, DKIM, and DMARC DNS records your Vectis Mail server needs for reliable delivery and inbox placement, with copy-paste examples."
 howToName: Configure DNS records for a Vectis Mail server
 howToSteps:
   - name: MX record

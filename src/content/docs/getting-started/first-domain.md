@@ -1,6 +1,6 @@
 ---
 title: Your First Domain
-description: Walk through the Setup Wizard to add a domain, publish DNS records, verify ownership, and create your first mailbox.
+description: "Walk through the Vectis Mail Setup Wizard to add your first domain: publish DNS records, verify ownership, and create a working mailbox in minutes."
 howToName: Add your first domain in Vectis Mail
 howToSteps:
   - name: Log in to the admin UI

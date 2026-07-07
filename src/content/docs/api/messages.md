@@ -1,6 +1,6 @@
 ---
 title: "Messages & Storage API"
-description: "Query message history with filtering, pagination, and full-text search across sent and received emails via the Vectis Mail API."
+description: "Query message history via the Vectis Mail REST API with filtering, pagination, and full-text search across every sent and received email in your mail store."
 ---
 
 The Messages API provides access to metadata for all messages that pass through your Vectis server -- both inbound and outbound. Message metadata is stored automatically when mail is sent via the [Sending API](/api/sending/) or received by Postfix.

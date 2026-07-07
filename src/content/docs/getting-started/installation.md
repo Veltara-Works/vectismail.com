@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Step-by-step install of Vectis Mail on a fresh Ubuntu VPS.
+description: "Step-by-step guide to installing Vectis Mail on a fresh Ubuntu VPS — one command to a working, TLS-secured mail server with mailboxes and a sending API."
 howToName: Install Vectis Mail on a fresh Ubuntu VPS
 howToSteps:
   - name: Prerequisites

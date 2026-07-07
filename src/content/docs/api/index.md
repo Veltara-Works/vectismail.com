@@ -1,6 +1,6 @@
 ---
 title: "API Overview & Authentication"
-description: "Base URL, authentication methods, response format, error codes, pagination, and rate limiting for the Vectis Mail REST API."
+description: "Base URL, authentication, response format, error codes, pagination, and rate limiting for the Vectis Mail REST API — start here to make your first call."
 ---
 
 The Vectis Mail API is a RESTful JSON API for managing domains, mailboxes, aliases, sending email, and administering your mail server. All endpoints are versioned under a single base path.

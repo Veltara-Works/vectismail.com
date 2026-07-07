@@ -1,6 +1,6 @@
 ---
 title: "Aliases API"
-description: "Create, list, update, and delete email aliases and catch-all addresses via the Vectis Mail API."
+description: "Create, list, update, and delete email aliases and catch-all addresses via the Vectis Mail REST API — full request, response, and error reference."
 ---
 
 Aliases forward incoming mail to one or more destination addresses. They take effect immediately via Postfix SQL lookups -- no service reload is needed.

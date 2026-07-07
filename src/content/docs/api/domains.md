@@ -1,6 +1,6 @@
 ---
 title: "Domains API"
-description: "Create, list, update, and delete mail domains. Manage DKIM keys and run deliverability checks via the Vectis Mail API."
+description: "Create, list, update, and delete mail domains via the Vectis Mail REST API — manage DKIM keys, verify ownership, and run deliverability checks from code."
 ---
 
 Domains are the core organisational unit in Vectis. Each domain is stored in Postgres and picked up by Postfix and Dovecot via live SQL lookups -- no service reload is needed when you add or modify a domain.

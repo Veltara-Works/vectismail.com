@@ -1,6 +1,6 @@
 ---
 title: "CLI Overview"
-description: "Introduction to the Vectis CLI, installation lifecycle, global flags, and how the CLI relates to the API server."
+description: "Introduction to the Vectis Mail CLI: the install and upgrade lifecycle, global flags, and how the command-line tool relates to the REST API server."
 ---
 
 The `vectis` CLI is a single Go binary that serves as both the command-line management tool and the API server. It is the primary interface for installing, configuring, and operating a Vectis mail server.

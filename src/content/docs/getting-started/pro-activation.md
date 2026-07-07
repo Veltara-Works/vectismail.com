@@ -1,6 +1,6 @@
 ---
 title: Activating Pro
-description: How to activate your Pro subscription on a Vectis install after purchasing through ValidonX.
+description: "How to activate Vectis Mail Pro on your install after checkout — enter your license key to unlock unlimited domains, mailboxes, and send volume."
 howToName: Activate Vectis Mail Pro
 howToSteps:
   - name: Get your subscription details

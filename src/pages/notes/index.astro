@@ -5,7 +5,7 @@ import SiteNav from "../../components/SiteNav.astro"
 import { getCollection } from 'astro:content'
 
 const title = 'Notes — Vectis Mail'
-const description = 'Essays, analysis, and field-notes from the people building Vectis Mail. Published when there is something worth saying.'
+const description = "Essays, analysis, and field-notes on self-hosted email and deliverability from the people building Vectis Mail — published when there's something worth saying."
 const url = 'https://vectismail.com/notes/'
 
 const notes = (await getCollection('notes')).sort(

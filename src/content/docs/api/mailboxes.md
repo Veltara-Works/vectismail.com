@@ -1,6 +1,6 @@
 ---
 title: "Mailboxes API"
-description: "Create, list, update, and delete mailboxes via the Vectis Mail API. Manage quotas, passwords, and display names."
+description: "Create, list, update, and delete mailboxes via the Vectis Mail REST API — manage quotas, passwords, and display names with full request/response examples."
 ---
 
 Mailboxes represent individual email accounts within a domain. Each mailbox has a local part (the part before `@`), a password hashed with Argon2id, a quota, and a Maildir on disk. Postfix and Dovecot pick up new mailboxes immediately via SQL lookups -- no service reload is needed.

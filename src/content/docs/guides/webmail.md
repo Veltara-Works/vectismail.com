@@ -1,6 +1,6 @@
 ---
 title: Webmail (Roundcube)
-description: Accessing the built-in Roundcube webmail and managing user filters.
+description: "Access the built-in Roundcube webmail that ships with Vectis Mail: log in, read and send mail in the browser, and manage per-user Sieve filters."
 ---
 
 Vectis ships with [Roundcube](https://roundcube.net/) webmail enabled by

@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: What Vectis Mail is, who it's for, and what you get out of the box.
+description: "What Vectis Mail is, who it's for, and what you get out of the box: mailboxes, a sending API, webhooks, spam filtering, and browser webmail on your own VPS."
 ---
 
 Vectis Mail is a containerised, self-hosted email platform. It packages Postfix, Dovecot, Rspamd, Traefik, Postgres, and Valkey into a single deployment managed through one configuration file and a REST API.
