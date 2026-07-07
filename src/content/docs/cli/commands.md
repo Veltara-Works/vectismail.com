@@ -250,29 +250,6 @@ vectis config apply
 
 **Exit codes:** `0` = applied successfully, `1` = partial failure, `2` = validation failed (no changes made).
 
----
-
-### vectis config get
-
-Displays a specific configuration value.
-
-```bash
-vectis config get hostname
-vectis config get rspamd.spam_threshold
-```
-
----
-
-### vectis config set
-
-Sets a configuration value in `config.yaml`.
-
-```bash
-vectis config set rspamd.spam_threshold 12.0
-```
-
-The change is written to `config.yaml` but not applied until you run `vectis config apply`.
-
 ## Domain management
 
 ### vectis domain add
@@ -573,8 +550,6 @@ vectis backup restore /var/vectis/backups/vectis-20260404-120000.tar.gz --confir
 | `vectis serve` | Start the API server. |
 | `vectis status` | Show service status. |
 | `vectis health` | Show detailed health checks. |
-| `vectis config get KEY` | Get a config value. |
-| `vectis config set KEY VALUE` | Set a config value. |
 | `vectis config validate` | Validate configuration files. |
 | `vectis config diff` | Show pending config changes. |
 | `vectis config apply` | Apply config changes. |
