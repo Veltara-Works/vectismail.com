@@ -35,7 +35,7 @@ Both suites price per user, per month, billed annually (month-to-month is ~20% m
 
 *Prices as of 2026 from the official [Google Workspace](https://workspace.google.com/pricing) and [Microsoft 365](https://www.microsoft.com/en-us/microsoft-365/business) pages — always check current rates. Google Workspace caps Starter/Standard/Plus at 300 users.*
 
-Compare that with a self-hosted platform like **Vectis Mail**: a flat **$39/month** for unlimited mailboxes within your install and three domains included, running on a VPS you own (typically $15–20/month). Call it **~$59/month all-in** — and crucially, **that number does not move when you add a mailbox.**
+Compare that with a self-hosted platform like **Vectis Mail**: a flat **$39/month** for unlimited mailboxes within your install and three domains included, running on a VPS you own (typically ~$20/month). Call it **~$59/month all-in** — and crucially, **that number does not move when you add a mailbox.**
 
 ## Where the lines cross
 

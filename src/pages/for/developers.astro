@@ -3,7 +3,7 @@ import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
 const title = 'Vectis Mail for Developers — Self-Hosted Email With a Real API'
-const description = 'Vectis Mail for developers: self-hosted email with a real REST API, declarative YAML config, runs on a $20 VPS. Free Starter tier, source-available under BSL 1.1.'
+const description = 'Vectis Mail for developers: self-hosted email with a real REST API, declarative YAML config, runs on a ~$20 VPS. Free Starter tier, source-available under BSL 1.1.'
 const url = 'https://vectismail.com/for/developers/'
 const ogImage = 'https://vectismail.com/og/for-developers.png'
 const datePublished = '2026-05-13'
@@ -71,7 +71,7 @@ const dateModified = '2026-05-13'
 					{
 						"@type": "Question",
 						"name": "What VPS do I need for a small side project?",
-						"acceptedAnswer": { "@type": "Answer", "text": "The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on Ubuntu 22.04+): the same spec we use for the cost math on every other page. That's the comfort zone for production use, including Rspamd's memory needs and the observability stack. The hard minimum from the install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume personal use, but Pro features and the spam stack run more cleanly with the recommended spec." }
+						"acceptedAnswer": { "@type": "Answer", "text": "The recommended baseline is a ~$20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on Ubuntu 22.04+): the same spec we use for the cost math on every other page. That's the comfort zone for production use, including Rspamd's memory needs and the observability stack. The hard minimum from the install docs is 2 vCPU / 4 GB / 40 GB, which works for very low-volume personal use, but Pro features and the spam stack run more cleanly with the recommended spec." }
 					},
 					{
 						"@type": "Question",
@@ -105,12 +105,12 @@ const dateModified = '2026-05-13'
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">For developers · Self-hosted · Source-available · Real API</div>
-		<h1>Vectis Mail for developers.<br/><span>Email infrastructure you own, on a $20 VPS.</span></h1>
+		<h1>Vectis Mail for developers.<br/><span>Email infrastructure you own, on a ~$20 VPS.</span></h1>
 		<p class="alt-lead">
 			Vectis Mail is the email platform for solo developers, indie hackers, and small
 			teams who want to own their infrastructure instead of paying SendGrid every month
 			for a side project. Starter is free forever: full REST API, inbound webhooks,
-			IMAP/POP3 mailboxes, monitoring. Runs comfortably on a $20/month VPS.
+			IMAP/POP3 mailboxes, monitoring. Runs comfortably on a ~$20/month VPS.
 			Source-available under BSL 1.1; free to self-host and modify.
 		</p>
 		<div class="alt-meta">
@@ -129,7 +129,7 @@ const dateModified = '2026-05-13'
 				<p>Up to 3 domains, 25 mailboxes per domain, full REST API, inbound webhooks, monitoring, backups, all in Starter. Not freemium-tease where every interesting feature is gated. The Pro tier is for scale + advanced features, not for unlocking the API.</p>
 			</div>
 			<div class="feature-card">
-				<h3>2. Runs comfortably on a $20 VPS</h3>
+				<h3>2. Runs comfortably on a ~$20 VPS</h3>
 				<p>A 4 vCPU / 8 GB / 80 GB Ubuntu host (Hetzner, DigitalOcean, or Vultr, all around $20/month at that spec) is the recommended baseline. The whole stack (Postfix, Dovecot, Rspamd, Traefik, the API, the React dashboard, plus the optional Prometheus/Grafana/Loki observability profile) fits with room for sending growth. Same spec as the recommendation on the install docs.</p>
 			</div>
 			<div class="feature-card">
@@ -174,7 +174,7 @@ const dateModified = '2026-05-13'
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + Google Workspace public pricing retrieved 2026-05-13. Vectis Mail Starter covers up to 3 domains and 25 mailboxes per domain, which fits the vast majority of personal projects. The $20 VPS line matches the same baseline used on every other Vectis Mail page; the install docs cite 2 vCPU / 4 GB / 40 GB as the hard minimum if you're sending very low volume and want a cheaper host.
+			Provider pricing per <a href="https://www.twilio.com/en-us/products/email-api/pricing" target="_blank" rel="noopener noreferrer">twilio.com/en-us/products/email-api/pricing</a> + Google Workspace public pricing retrieved 2026-05-13. Vectis Mail Starter covers up to 3 domains and 25 mailboxes per domain, which fits the vast majority of personal projects. The ~$20 VPS line matches the same baseline used on every other Vectis Mail page; the install docs cite 2 vCPU / 4 GB / 40 GB as the hard minimum if you're sending very low volume and want a cheaper host.
 		</p>
 	</section>
 
@@ -261,7 +261,7 @@ const dateModified = '2026-05-13'
 			<div class="alt-faq-q">
 				<h3>What VPS do I need for a small side project?</h3>
 				<p>
-					The recommended baseline is a $20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on
+					The recommended baseline is a ~$20/month VPS (4 vCPU, 8 GB RAM, 80 GB SSD on
 					Ubuntu 22.04+): the same spec we use for the cost math on every other Vectis
 					Mail page. That's the comfort zone for production use, including
 					Rspamd's memory needs and the observability stack. The hard minimum from the
@@ -319,7 +319,7 @@ const dateModified = '2026-05-13'
 
 	<div class="cta-section">
 		<h2>Try Vectis Mail</h2>
-		<p>Starter is free forever. Spin up a $20 VPS, install in 20 minutes, send your first transactional email.</p>
+		<p>Starter is free forever. Spin up a ~$20 VPS, install in 20 minutes, send your first transactional email.</p>
 		<div class="hero-buttons">
 			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
 			<a href="/pricing/" class="btn-secondary">View Pricing</a>

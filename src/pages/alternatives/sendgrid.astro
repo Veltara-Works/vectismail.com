@@ -88,7 +88,7 @@ const dateModified = '2026-07-07'
 					{
 						"@type": "Question",
 						"name": "What does SendGrid cost vs self-hosting Vectis Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "SendGrid's cheapest paid tier is $19.95/month for 50,000 emails (Essentials). Pro starts at $89.95/month for 100,000+ emails. At 1 million emails per month, expect $89.95+ in base fees plus dedicated IP charges ($30/month per IP). Vectis Mail self-hosted on a $20/month VPS handles the same volume for the cost of the VPS plus optionally $39 USD/tenant/month for the Pro tier: about $59/month total at any sending volume." }
+						"acceptedAnswer": { "@type": "Answer", "text": "SendGrid's cheapest paid tier is $19.95/month for 50,000 emails (Essentials). Pro starts at $89.95/month for 100,000+ emails. At 1 million emails per month, expect $89.95+ in base fees plus dedicated IP charges ($30/month per IP). Vectis Mail self-hosted on a ~$20/month VPS handles the same volume for the cost of the VPS plus optionally $39 USD/tenant/month for the Pro tier: about $59/month total at any sending volume." }
 					},
 					{
 						"@type": "Question",
@@ -146,7 +146,7 @@ const dateModified = '2026-07-07'
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
-					<tr><th>Monthly volume</th><th>Vectis Mail (Pro + $20/mo VPS)</th><th>SendGrid (Email API)</th></tr>
+					<tr><th>Monthly volume</th><th>Vectis Mail (Pro + ~$20/mo VPS)</th><th>SendGrid (Email API)</th></tr>
 				</thead>
 				<tbody>
 					<tr><th scope="row">10,000 emails</th><td><strong>$59/mo flat</strong></td><td>$19.95 (Essentials)</td></tr>
@@ -158,7 +158,7 @@ const dateModified = '2026-07-07'
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			SendGrid pricing per Twilio's published Email API pricing, retrieved 2026-05-12. Vectis Mail assumes a $20/mo VPS + Pro tier; Starter tier ($0) works for installs with up to 3 domains and 25 mailboxes per domain.
+			SendGrid pricing per Twilio's published Email API pricing, retrieved 2026-05-12. Vectis Mail assumes a ~$20/mo VPS + Pro tier; Starter tier ($0) works for installs with up to 3 domains and 25 mailboxes per domain.
 		</p>
 	</section>
 
@@ -202,7 +202,7 @@ const dateModified = '2026-07-07'
 		<p>
 			Vectis Mail prices per tenant. Starter is free forever; Pro is $39 USD per tenant
 			per month for unlimited domains, unlimited mailboxes, unlimited email volume.
-			Add a $20/month VPS to host it and your fully-loaded cost is $59/month whether
+			Add a ~$20/month VPS to host it and your fully-loaded cost is $59/month whether
 			you send 10,000 or 10 million emails. One Pro subscription covers unlimited
 			Vectis Mail installs, useful for SaaS resellers and agencies running mail for
 			client domains.
@@ -322,7 +322,7 @@ const dateModified = '2026-07-07'
 					SendGrid's cheapest paid tier is $19.95/month for 50,000 emails
 					(Essentials). Pro starts at $89.95/month for 100,000+ emails. At 1 million
 					emails per month, expect $89.95+ in base fees plus dedicated IP charges
-					($30/month per IP). Vectis Mail self-hosted on a $20/month VPS handles the
+					($30/month per IP). Vectis Mail self-hosted on a ~$20/month VPS handles the
 					same volume for the cost of the VPS plus optionally $39 USD/tenant/month for
 					the Pro tier: about $59/month total at any sending volume.
 				</p>
