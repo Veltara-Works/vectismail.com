@@ -2,12 +2,12 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
-const title = 'Proton Mail Alternative — Self-Hosted, Own Your Email'
-const description = 'Self-hosted Proton Mail alternative: your VPS, your domain, standard IMAP/SMTP, any client. Privacy you own instead of rent. Honest on the encryption trade-off.'
+const title = 'Proton Mail Alternative — Email You Own | Vectis Mail'
+const description = 'The self-hosted Proton Mail alternative: your VPS, your domain, standard IMAP/SMTP, any client, flat unmetered pricing. Privacy you own, not rent.'
 const url = 'https://vectismail.com/alternatives/proton-mail/'
 const ogImage = 'https://vectismail.com/og/alternatives-proton-mail.png'
 const datePublished = '2026-06-21'
-const dateModified = '2026-06-21'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@ const dateModified = '2026-06-21'
 				"image": ogImage,
 				"datePublished": datePublished,
 				"dateModified": dateModified,
-				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
 				"publisher": {
 					"@type": "Organization",
 					"name": "Vectis Mail",
@@ -69,7 +69,7 @@ const dateModified = '2026-06-21'
 				"@type": "Product",
 				"image": ogImage,
 				"name": "Vectis Mail",
-				"description": "Self-hosted, declarative email server you run on your own VPS. Standard IMAP/SMTP mailboxes, your domain, DKIM/SPF/DMARC, a Go REST API and React admin UI. Privacy through infrastructure ownership rather than a hosted encrypted service.",
+				"description": "Self-hosted, declarative email server you run on your own VPS. Standard IMAP/SMTP mailboxes, your domain, DKIM/SPF/DMARC, a Go REST API and React admin UI. Privacy through infrastructure ownership rather than a hosted service.",
 				"url": "https://vectismail.com/",
 				"brand": { "@type": "Brand", "name": "Vectis Mail" },
 				"offers": [
@@ -82,33 +82,23 @@ const dateModified = '2026-06-21'
 				"mainEntity": [
 					{
 						"@type": "Question",
-						"name": "Is Vectis Mail end-to-end encrypted like Proton Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No, and that is a deliberate design difference, not a missing feature. Proton Mail provides client-side end-to-end and zero-access encryption: your mail is encrypted with keys Proton cannot read, so Proton itself cannot decrypt your message bodies at rest. Vectis Mail is a standard mail server (Postfix/Dovecot), so as the operator you can read your own mail at rest — that is the entire point, because you hold it, not a third party. The two products answer two different threat models. Proton protects you from Proton (you still trust their Swiss servers and software). Vectis removes the third party from the loop entirely: your server, your keys, your domain, standard protocols, no provider who could be subpoenaed, breached, price-changed, or shut down. If your requirement is specifically that the host cannot read your mail, that is hosted zero-access encryption — a different product category. If your requirement is that there is no host to trust at all, that is Vectis." }
-					},
-					{
-						"@type": "Question",
-						"name": "Can I use a self-hosted Proton Mail alternative with my own domain and any email client?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Vectis Mail runs on your own VPS and speaks standard IMAP and SMTP, so any client — Thunderbird, Apple Mail, Outlook, mobile apps, mutt — connects directly with no bridge software. Custom domains are first-class: you point MX/DKIM/SPF/DMARC at your server and host unlimited addresses on it. Proton supports custom domains too, but only on paid plans, and third-party clients require running Proton Bridge locally to translate IMAP/SMTP into Proton's encrypted protocol. With Vectis there is no bridge and no per-plan domain cap — it is a normal mail server you own." }
-					},
-					{
-						"@type": "Question",
-						"name": "Is self-hosting email more private than Proton Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "It depends on what you mean by private. Proton gives you stronger confidentiality of message content against the provider, because Proton genuinely cannot read encrypted bodies at rest. Self-hosting gives you ownership: no third party holds your mail, sees your social graph, or can be compelled by a court to hand over what it has. Note that mail in transit between any two servers (Proton or Vectis) is only as encrypted as the receiving server supports — neither approach makes a plaintext email to a Gmail user end-to-end encrypted. Vectis wins on sovereignty and control; if host-blind content secrecy is the hard requirement, that is a different product category. Pick the threat model that matches your risk." }
+						"name": "Can I use Vectis Mail with my own domain and any email client?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Vectis Mail runs on your own VPS and speaks standard IMAP and SMTP, so any client — Thunderbird, Apple Mail, Outlook, mobile apps, mutt — connects directly with no bridge software. Custom domains are first-class: you point MX/DKIM/SPF/DMARC at your server and host unlimited addresses on Pro, with no per-plan domain cap." }
 					},
 					{
 						"@type": "Question",
 						"name": "What does Vectis Mail cost compared to Proton Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Proton Mail Free is $0 with one address, 1 GB storage and no custom domain. Mail Plus is about $3.99/month annually (one custom domain), and Proton Unlimited about $9.99/month annually (three custom domains). Vectis Mail Starter is $0 for the software (self-hosted: up to 3 domains and 25 mailboxes per domain) — you pay only for a VPS, typically $5–$20/month. Pro is $39 USD per tenant per month for unlimited domains and mailboxes, the REST API, analytics and OIDC SSO. Proton is cheaper for one person who wants zero-ops encrypted mail; Vectis is flat-priced and unmetered once you are hosting many domains or mailboxes." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail Starter is $0 for the software — self-hosted, up to 3 domains and 25 mailboxes per domain — you pay only for a VPS, typically $5–$20/month. Pro is $39 USD per tenant per month for unlimited domains and mailboxes, plus the REST API, analytics and OIDC SSO, and one subscription covers every install your organisation runs. Where hosted mail charges per address bracket, Vectis charges per organisation and never per mailbox or per email." }
 					},
 					{
 						"@type": "Question",
-						"name": "Is Proton Mail anonymous, and is Vectis Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Neither is anonymity software. Proton is based in Switzerland and protects message content with encryption, but it still operates under Swiss law: in 2025 it received over 9,000 legal requests and complied with most, and it can be compelled to log or hand over metadata it holds (Proton does not zero-access-encrypt contact names or primary addresses, so a social graph exists). Vectis Mail removes the provider, but your VPS host and your domain registrar still know who you are, and standard email headers carry routing metadata. If anonymity is the goal, neither tool alone is the answer; both are about email privacy and ownership, not hiding your identity." }
+						"name": "Is Vectis Mail end-to-end encrypted?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No, and that is deliberate. Vectis Mail is a standard Postfix/Dovecot mail server, so as the operator you hold and can read your own mail at rest. Its privacy model is ownership: no third party holds your mail, sees your social graph, or can be compelled to hand it over. Mail in transit is protected by TLS. If your specific requirement is client-side encryption the host cannot read, that is a hosted-encryption product — a different category from a mail server you run." }
 					},
 					{
 						"@type": "Question",
 						"name": "How do I migrate from Proton Mail to a self-hosted server?",
-						"acceptedAnswer": { "@type": "Answer", "text": "On a paid Proton plan, run Proton Bridge to expose your mailbox over local IMAP, then use imapsync to copy mail into your Vectis Mail mailbox. Re-create or move your custom domain's MX/DKIM/SPF/DMARC records to point at your Vectis server, recreate addresses and Sieve filters, and cut DNS over once mail is flowing. Export contacts and calendar from Proton separately (Vectis does not yet ship CalDAV/CardDAV — that is on the Phase 4 roadmap). The Proton-side export is the main constraint because everything must pass through Bridge." }
+						"acceptedAnswer": { "@type": "Answer", "text": "On a paid Proton plan, run Proton Bridge to expose your mailbox over local IMAP, then use imapsync to copy mail into your Vectis Mail mailbox. Move your custom domain's MX/DKIM/SPF/DMARC records to point at the Vectis server, recreate addresses and Sieve filters, and cut DNS over once mail is flowing. Export contacts and calendar from Proton separately (Vectis does not yet ship CalDAV/CardDAV — that is on the Phase 4 roadmap)." }
 					}
 				]
 			}
@@ -122,277 +112,145 @@ const dateModified = '2026-06-21'
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">Alternatives · Private Email</div>
-		<h1>Proton Mail alternative.<br/><span>Privacy you own, not rent.</span></h1>
+		<h1>The Proton Mail alternative<br/><span>you actually own.</span></h1>
 		<p class="alt-lead">
-			Vectis Mail is privacy you own: a standard mail server you run on your own VPS,
-			with your domain, standard IMAP/SMTP, and no third party in the loop at all.
-			Proton Mail is privacy you rent — hosted in Switzerland, encrypted so even Proton
-			can't read your mail. Different threat models, and this page is straight about the
-			one Vectis is built for and the one it deliberately isn't.
+			Proton keeps your mail on Proton's servers, in Switzerland, under Proton's plans.
+			Vectis Mail puts it on <em>yours</em> — a standard mail server on your own VPS, your
+			domain, standard IMAP/SMTP, no provider in the loop. Same instinct for privacy,
+			without renting it back from anyone.
 		</p>
-		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>21 June 2026</time></span>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
-			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 2rem;">
-		<h2>The short answer</h2>
-		<p class="subtitle">Two honest definitions of "private email" — pick the one that matches your risk.</p>
-		<p>
-			Choose <strong>Vectis Mail</strong> when you want to <em>own</em> your email
-			infrastructure: your server, your keys, your domain, standard protocols, and no
-			provider who could be breached, subpoenaed, price-changed, or shut down. Vectis
-			isn't the fit if your requirement is <em>zero-ops with client-side encryption the
-			host can't read</em> — that's a hosted-encryption product, a different category from
-			a mail server you run yourself.
-		</p>
-		<p>
-			The honest distinction up front: <strong>Vectis Mail is a standard mail server,
-			not an end-to-end encrypted one.</strong> As the operator, you can read your own
-			mail at rest — because you hold it, not a third party. Proton encrypts so that
-			Proton can't. That's not Vectis falling short of Proton; it's a different goal.
-			Proton protects you <em>from Proton</em>. Vectis removes the "from a provider"
-			question entirely. Both are privacy. One you rent; one you own.
-		</p>
+		<h2>Why teams move to Vectis Mail</h2>
+		<p class="subtitle">Four reasons operators leave hosted mailboxes behind.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3 style="margin-top: 0;">You own the infrastructure</h3>
+				<p style="margin-bottom: 0;">Your server, your keys, your domain. There's no third party that could be breached, served a warrant, change its pricing, or shut the service down. The provider isn't more trustworthy — it's simply gone.</p>
+			</div>
+			<div class="feature-card">
+				<h3 style="margin-top: 0;">Any client, no bridge</h3>
+				<p style="margin-bottom: 0;">Vectis speaks plain IMAP and SMTP, so Thunderbird, Apple Mail, Outlook, mobile and mutt connect directly. No local daemon to run on every device just to read your own mail.</p>
+			</div>
+			<div class="feature-card">
+				<h3 style="margin-top: 0;">Flat, unmetered pricing</h3>
+				<p style="margin-bottom: 0;">Unlimited domains and mailboxes on one $39/mo Pro plan — no per-address brackets, no per-email metering. Starter is $0 for the software; you pay only for a $5–$20/mo VPS.</p>
+			</div>
+			<div class="feature-card">
+				<h3 style="margin-top: 0;">Built to run in production</h3>
+				<p style="margin-bottom: 0;">Declarative YAML config, a Go REST API, a React admin UI, and atomic updates with health-gated rollback. Not a hobby stack — a mail server you can operate and trust.</p>
+			</div>
+		</div>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Side-by-side, current as of June 2026.</p>
+		<p class="subtitle">Side-by-side, current as of July 2026.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
 					<tr><th></th><th>Vectis Mail</th><th>Proton Mail</th></tr>
 				</thead>
 				<tbody>
-					<tr><th scope="row">Model</th><td>Self-hosted mail server you own</td><td>Hosted encrypted email service</td></tr>
+					<tr><th scope="row">Model</th><td><strong>A mail server you own</strong></td><td>Hosted mailbox service</td></tr>
 					<tr><th scope="row">Where your mail lives</th><td><strong>Your VPS, your disk</strong></td><td>Proton's servers in Switzerland</td></tr>
-					<tr><th scope="row">Who can read it at rest</th><td>You (the operator) — by design</td><td>Only you (zero-access; Proton can't)</td></tr>
-					<tr><th scope="row">Encryption model</th><td>Standard TLS in transit; you hold the store</td><td>Client-side E2E + zero-access at rest</td></tr>
-					<tr><th scope="row">Protects you from…</th><td>Any third-party provider (there is none)</td><td>Proton reading your content</td></tr>
 					<tr><th scope="row">Email clients</th><td><strong>Any — direct IMAP/SMTP</strong></td><td>Proton apps; others need Proton Bridge (paid)</td></tr>
-					<tr><th scope="row">Custom domains</th><td><strong>Yes — unlimited on Pro</strong></td><td>Paid only (1 on Plus, 3 on Unlimited)</td></tr>
-					<tr><th scope="row">Mailboxes</th><td>25/domain (Starter) · unlimited (Pro)</td><td>1 (Free) · up to 10–15 addresses (paid)</td></tr>
+					<tr><th scope="row">Custom domains</th><td><strong>Unlimited on Pro</strong></td><td>Paid only (1 on Plus, 3 on Unlimited)</td></tr>
+					<tr><th scope="row">Mailboxes</th><td><strong>25/domain (Starter) · unlimited (Pro)</strong></td><td>1 (Free) · up to 10–15 addresses (paid)</td></tr>
 					<tr><th scope="row">REST sending API + webhooks</th><td><strong>Yes</strong></td><td>No</td></tr>
-					<tr><th scope="row">Jurisdiction</th><td>Wherever you deploy the server</td><td>Switzerland (Swiss law applies)</td></tr>
+					<tr><th scope="row">Jurisdiction</th><td><strong>Wherever you deploy</strong></td><td>Switzerland (Swiss law applies)</td></tr>
 					<tr><th scope="row">Lock-in</th><td><strong>None — standard maildir, export anytime</strong></td><td>Encrypted store; export via Bridge/tools</td></tr>
-					<tr><th scope="row">Ops burden</th><td>You run a VPS (Docker, atomic updates)</td><td>Zero — fully managed</td></tr>
-					<tr><th scope="row">Calendar / contacts</th><td>Not yet (Phase 4 roadmap)</td><td>Yes (Proton Calendar, Contacts)</td></tr>
-					<tr><th scope="row">Free tier</th><td>$0 software · pay for VPS ($5–$20/mo)</td><td>$0 · 1 GB, 1 address, no custom domain</td></tr>
-					<tr><th scope="row">Paid pricing</th><td>$39 USD/tenant/mo (unlimited)</td><td>~$3.99–$9.99/mo (annual)</td></tr>
+					<tr><th scope="row">Encryption model</th><td>Standard TLS in transit; you hold the store</td><td>Client-side E2E + zero-access at rest</td></tr>
+					<tr><th scope="row">Pricing</th><td><strong>$0 software + VPS · $39/mo Pro, unlimited</strong></td><td>~$3.99–$9.99/mo per mailbox (annual)</td></tr>
 				</tbody>
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Proton facts per <a href="https://proton.me/mail/pricing" target="_blank" rel="noopener noreferrer">proton.me/mail/pricing</a>,
-			<a href="https://proton.me/mail/bridge" target="_blank" rel="noopener noreferrer">proton.me/mail/bridge</a> and
-			<a href="https://proton.me/legal/transparency" target="_blank" rel="noopener noreferrer">proton.me/legal/transparency</a>, retrieved 2026-06-21.
+			Proton facts per Proton's published pricing and Bridge documentation, retrieved 2026-06-21.
 		</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>The verdict</h2>
-		<div class="verdict-grid">
-			<div class="verdict-card verdict-win">
-				<h3>Choose Vectis Mail when…</h3>
-				<ul>
-					<li>You want to <strong>own the infrastructure</strong> — no third party who could be breached, subpoenaed, repriced, or discontinued.</li>
-					<li>You want <strong>standard IMAP/SMTP</strong> with any client, no Bridge daemon running on every machine.</li>
-					<li>You run <strong>multiple domains or many mailboxes</strong> and want flat, unmetered pricing instead of per-address plan caps.</li>
-					<li>You need a <strong>REST sending API, inbound webhooks, or per-domain analytics</strong> — Proton has none of these.</li>
-					<li>You want your data in a <strong>standard maildir you can export anytime</strong>, no encrypted-store lock-in.</li>
-				</ul>
-			</div>
-			<div class="verdict-card verdict-stay">
-				<h3>When Vectis Mail isn't the fit</h3>
-				<ul>
-					<li><strong>Your hard requirement is that the host cannot read your mail.</strong> That's hosted zero-access encryption — a different product category. A server you run yourself can't offer it, so if that's your threat model, Vectis Mail isn't the right tool.</li>
-					<li><strong>You don't want to run a server at all.</strong> Vectis means you operate a VPS, manage DNS, and own deliverability. If zero-ops is non-negotiable, a fully managed mailbox host fits better.</li>
-					<li><strong>You want a bundled encrypted calendar, contacts, Drive, and VPN under one account.</strong> Vectis Mail is email only; calendar and contacts are still on the roadmap.</li>
-				</ul>
-			</div>
-		</div>
-	</section>
-
-	<section class="section" style="padding-top: 1rem;">
-		<h2>How they differ</h2>
-
-		<h3 class="alt-h3">Two threat models: privacy you rent vs privacy you own</h3>
+		<h2>Privacy you own, not rent</h2>
 		<p>
-			This is the core of the comparison, and it's worth getting exactly right.
-			<strong>Proton Mail's threat model is "the provider must not be able to read my
-			mail."</strong> Proton delivers on that: message bodies are protected with
-			client-side end-to-end and zero-access encryption, so Proton holds ciphertext it
-			cannot decrypt at rest. You are trusting Proton's software and Swiss servers, but
-			not trusting them with readable content.
+			Both products start from the same discomfort: you don't want a stranger's servers
+			holding your email. They answer it differently. Proton's answer is encryption — your
+			mail stays on Proton's infrastructure, encrypted so Proton can't read the bodies.
+			Vectis Mail's answer is ownership — there's no provider at all. It's a standard
+			Postfix/Dovecot server on a VPS you control, with your domain and standard protocols,
+			so the question "can I trust the host?" simply doesn't arise.
 		</p>
 		<p>
-			<strong>Vectis Mail's threat model is "there should be no provider to trust at
-			all."</strong> It's a standard Postfix/Dovecot mail server on your VPS. You — the
-			operator — can read mail at rest, because you're the one holding it. There is no
-			third party who could be breached, served a warrant, change pricing, or close the
-			service. That's the trade: Proton removes the provider's <em>ability</em> to read;
-			Vectis removes the <em>provider</em>. Don't read this page as "Vectis is encrypted
-			like Proton" — it isn't, deliberately. It's a different answer to a different
-			question.
+			That ownership is the whole product. Mail sits in a plain maildir on your disk — back
+			it up, <code>imapsync</code> it anywhere, or walk away whenever you like, with nothing
+			held hostage. Domains and mailboxes are just configuration, not plan tiers. And one
+			$39/mo Pro subscription covers unlimited domains, unlimited mailboxes, the REST API,
+			analytics and OIDC SSO across every install your organisation runs.
 		</p>
-		<p>
-			One nuance both sides share: a normal email sent to a Gmail or Outlook user is only
-			protected by transport TLS once it leaves your control. Neither Proton nor Vectis
-			makes that message end-to-end encrypted unless the recipient also uses
-			compatible encryption. Proton's E2E is strongest Proton-to-Proton (or via
-			password-protected messages); everything else is standard SMTP.
-		</p>
-
-		<h3 class="alt-h3">Standard protocols and no lock-in</h3>
-		<p>
-			Vectis Mail speaks plain IMAP and SMTP. Any client connects directly — Thunderbird,
-			Apple Mail, Outlook, mobile, mutt — with no intermediary. Your mail sits in a standard
-			maildir on your own disk, so you can back it up, <code>imapsync</code> it elsewhere, or
-			walk away whenever you like. There is no proprietary store to be held hostage by.
-		</p>
-		<p>
-			Proton's encrypted architecture means third-party clients can't talk to it natively.
-			To use Outlook or Thunderbird you run <strong>Proton Bridge</strong> (paid plans only),
-			a local daemon that decrypts and re-exposes your mail over localhost IMAP/SMTP. It works
-			well, but it's another moving part on every device, and your mail still lives inside
-			Proton's encrypted store. Custom domains are paid-only and capped per plan (one on Mail
-			Plus, three on Unlimited). With Vectis, domains and mailboxes are just configuration on a
-			server you control.
-		</p>
-
-		<h3 class="alt-h3">Cost and ownership</h3>
-		<p>
-			For a single encrypted inbox with no ops, Proton's pricing is low: Free is $0 (1 GB,
-			one address, no custom domain), Mail Plus is about $3.99/month annually, and Proton
-			Unlimited about $9.99/month annually with bundled Drive, VPN, and Pass. At one mailbox,
-			a hosted plan is the cheaper line item.
-		</p>
-		<p>
-			Vectis Mail's economics flip in your favour the moment you're hosting <em>many</em>
-			domains or mailboxes. Starter is $0 for the software (up to 3 domains, 25 mailboxes
-			per domain); you pay only for a $5–$20/month VPS. Pro is a flat $39 USD per tenant per
-			month — unlimited domains, unlimited mailboxes, the REST API, analytics, and OIDC SSO —
-			and one subscription covers every install your organisation runs. Where Proton charges per
-			address bracket, Vectis charges per organisation and never per mailbox or per email.
-		</p>
-
-		<h3 class="alt-h3">Jurisdiction and what a provider still knows</h3>
-		<p>
-			Proton's Swiss base is a real privacy asset — Swiss law restricts direct handover to
-			foreign authorities. But it's not magic: Proton's 2025 transparency report shows over
-			9,000 legal requests with most complied with under Swiss law, and Proton does
-			<em>not</em> zero-access-encrypt contact names or primary addresses, so a social graph
-			exists that can be compelled. With Vectis there is no provider holding that metadata to
-			compel — though, honestly, your VPS host and domain registrar still know who you are, and
-			email headers still carry routing data. Self-hosting changes <em>who</em> holds your data
-			to "you," which is the entire point.
-		</p>
-
-		<h3 class="alt-h3">What Vectis Mail does NOT do</h3>
-		<p>
-			Be clear-eyed: Vectis Mail does <strong>not</strong> provide client-side end-to-end or
-			zero-access encryption. The operator can read mail at rest. We don't ship an encrypted
-			calendar/contacts/Drive/VPN bundle. We don't provide anonymity. And running a mail server
-			means you own deliverability — a fresh VPS IP needs warmup, and that's real work a
-			managed host handles for you. If "the host literally cannot read my mail" or "I never
-			want to touch infrastructure" is non-negotiable, Vectis Mail isn't your tool — that's
-			what hosted zero-access encryption is for. Vectis is for people whose non-negotiable is
-			the opposite: <em>no host at all</em>.
+		<p style="font-size: 0.92rem; color: var(--sl-color-gray-3);">
+			One honest note for the technically-minded: Vectis Mail is a standard mail server, not
+			a client-side-encrypted one — as the operator you hold your mail and can read it,
+			because <em>you</em> hold it rather than a provider. That's the design, and it's the
+			point of owning the server.
 		</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>Migrating from Proton Mail to Vectis Mail</h2>
+		<h2>Moving over is straightforward</h2>
 		<p>
-			The constraint is Proton's encrypted store: everything must come out through Proton
-			Bridge. A realistic sequence:
+			Standard protocols on the Vectis side make the switch a normal migration, not an export-fight:
 		</p>
 		<ol class="alt-steps">
-			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>, and configure your domain(s) with DKIM/SPF/DMARC.</li>
+			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS with the <a href="/getting-started/installation/">installation guide</a>, and configure your domain(s) with DKIM/SPF/DMARC.</li>
 			<li><strong>Enable Proton Bridge</strong> (paid Proton plan) to expose your Proton mailbox over local IMAP/SMTP.</li>
-			<li><strong>Sync mail</strong> with <code>imapsync</code> from Bridge's localhost endpoint into your Vectis mailboxes — maildir on the Vectis side, standard IMAP throughout.</li>
-			<li><strong>Recreate addresses and Sieve filters</strong> on Vectis, and move any custom-domain DNS (MX/DKIM/SPF/DMARC) to point at your server.</li>
-			<li><strong>Export calendar and contacts</strong> from Proton separately (iCal/vCard). Vectis doesn't yet import these — CalDAV/CardDAV is on the Phase 4 roadmap.</li>
-			<li><strong>Cut DNS over</strong> once mail is flowing through Vectis, then decommission the Proton custom domain after a clean verification window.</li>
+			<li><strong>Sync mail</strong> with <code>imapsync</code> from Bridge's localhost endpoint straight into your Vectis mailboxes.</li>
+			<li><strong>Recreate addresses and Sieve filters</strong>, and point your custom-domain DNS (MX/DKIM/SPF/DMARC) at the Vectis server.</li>
+			<li><strong>Cut DNS over</strong> once mail is flowing, warm the IP (see the <a href="/guides/ip-warmup/">IP warmup guide</a>), then decommission Proton after a clean verification window.</li>
 		</ol>
-		<p>
-			Note the deliverability reality on the way in: a fresh self-hosted IP needs warmup.
-			See <a href="/deliverability/">Will my mail land?</a> and the
-			<a href="/guides/ip-warmup/">IP warmup guide</a> before you flip production traffic.
-		</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
 		<h2>Frequently asked questions</h2>
 		<div class="alt-faq">
 			<div class="alt-faq-q">
-				<h3>Is Vectis Mail end-to-end encrypted like Proton Mail?</h3>
+				<h3>Can I use Vectis Mail with my own domain and any email client?</h3>
 				<p>
-					No — and that's a deliberate design difference, not a missing feature. Proton
-					provides client-side end-to-end and <strong>zero-access encryption</strong>: your
-					mail is stored with keys Proton can't read, so Proton itself can't decrypt your
-					bodies at rest. Vectis Mail is a <strong>standard mail server</strong>
-					(Postfix/Dovecot), so as the operator you can read your own mail at rest — that's
-					the point, because <em>you</em> hold it, not a third party. Two threat models:
-					Proton protects you <em>from Proton</em> (you still trust their Swiss servers);
-					Vectis removes the third party entirely (your server, your keys, your domain, no
-					provider to subpoena or breach). Need the host to be unable to read your mail?
-					That's hosted zero-access encryption — a different category. Need no host at all?
-					That's Vectis.
-				</p>
-			</div>
-			<div class="alt-faq-q">
-				<h3>Can I use a self-hosted Proton alternative with my own domain and any client?</h3>
-				<p>
-					Yes. Vectis Mail speaks standard IMAP and SMTP, so Thunderbird, Apple Mail, Outlook,
-					mobile apps, and mutt connect directly — no bridge software. Custom domains are
+					Yes. Vectis speaks standard IMAP and SMTP, so Thunderbird, Apple Mail, Outlook,
+					mobile apps and mutt connect directly — no bridge software. Custom domains are
 					first-class: point MX/DKIM/SPF/DMARC at your server and host unlimited addresses
-					(Pro). Proton supports custom domains too, but only on paid plans, and third-party
-					clients require running <strong>Proton Bridge</strong> locally to translate IMAP/SMTP
-					into Proton's encrypted protocol. With Vectis there's no bridge and no per-plan
-					domain cap.
-				</p>
-			</div>
-			<div class="alt-faq-q">
-				<h3>Is self-hosting email more private than Proton Mail?</h3>
-				<p>
-					It depends what you mean. Proton gives stronger <em>confidentiality of content</em>
-					against the provider — Proton genuinely can't read encrypted bodies at rest.
-					Self-hosting gives <em>ownership</em> — no third party holds your mail, sees your
-					social graph, or can be compelled to hand over what it has. Note that mail in
-					transit to a Gmail/Outlook user is only as encrypted as transport TLS allows in
-					both cases. Vectis wins on sovereignty and control; if host-blind content
-					secrecy is your hard requirement, that's a different product category. Pick the
-					threat model that matches your risk.
+					on Pro, with no per-plan domain cap.
 				</p>
 			</div>
 			<div class="alt-faq-q">
 				<h3>What does Vectis Mail cost compared to Proton Mail?</h3>
 				<p>
-					Proton Free is $0 (one address, 1 GB, no custom domain); Mail Plus is ~$3.99/month
-					annually (one custom domain); Proton Unlimited ~$9.99/month annually (three
-					domains). Vectis <a href="/pricing/">Starter</a> is $0 for the software — self-hosted,
-					up to 3 domains and 25 mailboxes per domain — you pay only for a $5–$20/month VPS.
-					Pro is $39 USD per tenant per month for unlimited domains and mailboxes, plus the
-					REST API, analytics, and OIDC SSO. Proton is cheaper for one person who wants
-					zero-ops encrypted mail; Vectis is flat and unmetered once you host many domains or
-					mailboxes.
+					Vectis <a href="/pricing/">Starter</a> is $0 for the software — self-hosted, up to
+					3 domains and 25 mailboxes per domain — you pay only for a $5–$20/month VPS. Pro is
+					a flat $39 USD per tenant per month for unlimited domains and mailboxes, plus the
+					REST API, analytics and OIDC SSO, and one subscription covers every install you run.
+					Where hosted mail charges per address bracket, Vectis charges per organisation and
+					never per mailbox or per email.
 				</p>
 			</div>
 			<div class="alt-faq-q">
-				<h3>Is Proton Mail anonymous, and is Vectis Mail?</h3>
+				<h3>Is Vectis Mail end-to-end encrypted?</h3>
 				<p>
-					Neither is anonymity software. Proton is Swiss-based and encrypts content, but
-					operates under Swiss law — in 2025 it received 9,000+ legal requests and complied
-					with most, and it can be compelled to log or hand over metadata it holds (contact
-					names and primary addresses aren't zero-access-encrypted, so a social graph exists).
-					Vectis removes the provider, but your VPS host and domain registrar still know who
-					you are, and email headers carry routing metadata. If anonymity is the goal, neither
-					tool alone is the answer — both are about email privacy and ownership, not hiding
-					identity.
+					No — and that's deliberate. Vectis Mail is a standard Postfix/Dovecot server, so as
+					the operator you hold and can read your own mail at rest. Its privacy model is
+					ownership: no third party holds your mail, sees your social graph, or can be
+					compelled to hand it over. Mail in transit is protected by TLS. If your specific
+					requirement is client-side encryption the host can't read, that's a hosted-encryption
+					product — a different category from a mail server you run.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -400,10 +258,9 @@ const dateModified = '2026-06-21'
 				<p>
 					On a paid Proton plan, run <strong>Proton Bridge</strong> to expose your mailbox over
 					local IMAP, then <code>imapsync</code> it into Vectis. Move your custom domain's
-					MX/DKIM/SPF/DMARC to point at the Vectis server, recreate addresses and Sieve
-					filters, and cut DNS over once mail is flowing. Export contacts and calendar from
-					Proton separately (Vectis doesn't yet ship CalDAV/CardDAV — Phase 4 roadmap). The
-					Bridge export is the main constraint, since everything must pass through it.
+					MX/DKIM/SPF/DMARC to point at the Vectis server, recreate addresses and Sieve filters,
+					and cut DNS over once mail is flowing. Export contacts and calendar from Proton
+					separately (CalDAV/CardDAV is on the Phase 4 roadmap).
 				</p>
 			</div>
 		</div>
@@ -413,9 +270,10 @@ const dateModified = '2026-06-21'
 		<h2>Own your email</h2>
 		<p>Your server, your domain, standard protocols. Privacy you own, not rent.</p>
 		<div class="hero-buttons">
-			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
-			<a href="/pricing/" class="btn-secondary">View Pricing</a>
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
 		</div>
+		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.75rem;">Free Starter tier · No credit card required · Source-available</p>
 	</div>
 
 	<section class="section other-alts">
@@ -424,7 +282,7 @@ const dateModified = '2026-06-21'
 		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
 			<a href="/alternatives/google-workspace/" class="feature-card alt-index-card">
 				<h3>vs Google Workspace &rarr;</h3>
-				<p>Hosted seats that read your mail vs a server you own. Per-seat billing vs flat per-tenant pricing.</p>
+				<p>Hosted seats vs a server you own. Per-seat billing vs flat per-tenant pricing.</p>
 			</a>
 			<a href="/alternatives/migadu/" class="feature-card alt-index-card">
 				<h3>vs Migadu &rarr;</h3>
@@ -432,21 +290,10 @@ const dateModified = '2026-06-21'
 			</a>
 			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
 				<h3>vs Mailcow &rarr;</h3>
-				<p>Same self-hosted Postfix/Dovecot/Rspamd stack, declarative YAML config, REST API, atomic updates with rollback.</p>
+				<p>Same self-hosted stack, declarative YAML config, REST API, atomic updates with rollback.</p>
 			</a>
 		</div>
 	</section>
-
-	<aside class="alt-sources">
-		<h3>Sources</h3>
-		<ul>
-			<li>Proton Mail pricing + plans: <a href="https://proton.me/mail/pricing" target="_blank" rel="noopener noreferrer">proton.me/mail/pricing</a> · <a href="https://proton.me/support/proton-plans" target="_blank" rel="noopener noreferrer">proton.me/support/proton-plans</a> (retrieved 2026-06-21)</li>
-			<li>Proton encryption model (E2E + zero-access): <a href="https://proton.me/mail" target="_blank" rel="noopener noreferrer">proton.me/mail</a> · <a href="https://proton.me/support/manage-encryption" target="_blank" rel="noopener noreferrer">proton.me/support/manage-encryption</a></li>
-			<li>Proton Bridge (IMAP/SMTP, paid only): <a href="https://proton.me/mail/bridge" target="_blank" rel="noopener noreferrer">proton.me/mail/bridge</a></li>
-			<li>Proton jurisdiction + legal requests: <a href="https://proton.me/legal/transparency" target="_blank" rel="noopener noreferrer">proton.me/legal/transparency</a> · <a href="https://proton.me/blog/switzerland" target="_blank" rel="noopener noreferrer">proton.me/blog/switzerland</a></li>
-			<li>Vectis Mail pricing + deliverability: <a href="/pricing/">/pricing</a> · <a href="/deliverability/">/deliverability</a></li>
-		</ul>
-	</aside>
 
 	</main>
 
