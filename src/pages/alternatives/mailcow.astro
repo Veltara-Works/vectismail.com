@@ -3,11 +3,11 @@ import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
 const title = 'Mailcow Alternative — Vectis Mail vs Mailcow'
-const description = 'Vectis Mail vs Mailcow: same self-hosted philosophy with a modern surface: declarative YAML, REST API, atomic updates. When to switch and when to stay.'
+const description = 'The self-hosted Mailcow alternative built for operators: declarative YAML config, a Go REST API, and atomic updates with health-gated rollback. Own your mail stack.'
 const url = 'https://vectismail.com/alternatives/mailcow/'
 const ogImage = 'https://vectismail.com/og/alternatives-mailcow.png'
 const datePublished = '2026-05-12'
-const dateModified = '2026-06-08'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@ const dateModified = '2026-06-08'
 				"image": ogImage,
 				"datePublished": datePublished,
 				"dateModified": dateModified,
-				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
 				"publisher": {
 					"@type": "Organization",
 					"name": "Vectis Mail",
@@ -104,13 +104,8 @@ const dateModified = '2026-06-08'
 						"@type": "Question",
 						"name": "Can I migrate from Mailcow to Vectis Mail without downtime?",
 						"acceptedAnswer": { "@type": "Answer", "text": "A short cutover window (typically 30–60 minutes during DNS propagation) is realistic for small installs. Both servers can run in parallel during preparation: mailboxes sync via imapsync, DKIM keys roll over with overlap, and the final MX switch is the only customer-visible change. Larger installs benefit from a staged migration over a few days." }
-					},
-					{
-						"@type": "Question",
-						"name": "Why would I stay on Mailcow?",
-						"acceptedAnswer": { "@type": "Answer", "text": "You need SOGo groupware (calendar/contacts) and can't move that out separately. You value 12 years of production maturity over Vectis Mail's newer codebase. You already have a ServerCow support contract that's working for you. If none of those apply, Vectis Mail's modern surface is the better call." }
 					}
-				]
+					]
 			}
 		]
 	})} />
@@ -122,18 +117,22 @@ const dateModified = '2026-06-08'
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">Alternatives · Self-Hosted</div>
-		<h1>Mailcow alternative.<br/><span>Modern surface, same control.</span></h1>
+		<h1>The Mailcow alternative<br/><span>built for operators.</span></h1>
 		<p class="alt-lead">
-			Vectis Mail uses the same Postfix/Dovecot/Rspamd
-			stack as Mailcow. The differences: declarative YAML config, a 40+ endpoint REST API,
-			inbound webhooks, and atomic updates with automatic rollback.
-			Half the containers, none of the bash. A modern alternative to Mailcow for teams
-			who want the same self-hosted control with developer-friendly ergonomics.
+			Both are self-hosted Docker stacks on the same Postfix/Dovecot/Rspamd core.
+			The difference is the operating model: Vectis Mail runs from a single declarative
+			<code>config.yaml</code>, a Go REST API, and atomic updates with health-gated
+			rollback — where Mailcow leans on a bash env file, a web UI, and a manual
+			<code>update.sh</code>. Same self-hosted control, driven as code.
 		</p>
-		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
-			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
@@ -147,7 +146,7 @@ const dateModified = '2026-06-08'
 				</thead>
 				<tbody>
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
-					<tr><th scope="row">Container count (default)</th><td><strong>14</strong></td><td>25+ <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer" style="color: var(--sl-color-accent); font-size: 0.85em;">[1]</a></td></tr>
+					<tr><th scope="row">Container count (default)</th><td><strong>14</strong></td><td>25+</td></tr>
 					<tr><th scope="row">Configuration model</th><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
 					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
@@ -155,39 +154,28 @@ const dateModified = '2026-06-08'
 					<tr><th scope="row">Update model</th><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Manual <code>update.sh</code> script</td></tr>
 					<tr><th scope="row">Per-domain analytics</th><td><strong>Yes</strong> (Pro)</td><td>No</td></tr>
 					<tr><th scope="row">Webmail</th><td>Roundcube</td><td>SOGo</td></tr>
-					<tr><th scope="row">Calendar / contacts (CalDAV/CardDAV)</th><td>Not yet (Phase 4 roadmap)</td><td><strong>Yes</strong> (SOGo)</td></tr>
+					<tr><th scope="row">Calendar / contacts (CalDAV/CardDAV)</th><td>Not yet (Phase 4 roadmap)</td><td>Yes (SOGo)</td></tr>
 					<tr><th scope="row">Admin UI</th><td>React SPA</td><td>PHP / Twig</td></tr>
 					<tr><th scope="row">License</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>GPL-3.0</td></tr>
 					<tr><th scope="row">Pricing</th><td>$0 Starter · $39 USD/tenant/month Pro</td><td>$0 · paid ServerCow support optional</td></tr>
-					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td><strong>12+ years</strong>, large community</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td>12+ years, large community</td></tr>
 				</tbody>
 			</table>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>The verdict</h2>
-		<div class="verdict-grid">
-			<div class="verdict-card verdict-win">
-				<h3>Choose Vectis Mail when…</h3>
-				<ul>
-					<li>You want one config file, not a bash env + web UI dance.</li>
-					<li>You need a real sending API + inbound webhooks (replacing SendGrid/Postmark) alongside mailboxes.</li>
-					<li>You run a SaaS and need domain-scoped API keys with rate limiting.</li>
-					<li>You value orchestrated updates with automatic rollback over manual <code>update.sh</code>.</li>
-					<li>You want per-domain analytics, IP warmup tracking, and built-in observability.</li>
-					<li>You don't want a bash env file as your source of truth.</li>
-				</ul>
-			</div>
-			<div class="verdict-card verdict-stay">
-				<h3>Stay on Mailcow when…</h3>
-				<ul>
-					<li>You need SOGo groupware (calendar/contacts) and can't migrate that out separately.</li>
-					<li>You already have a ServerCow support contract that works for you.</li>
-					<li>You value 12 years of mindshare over Vectis Mail's newer codebase.</li>
-					<li>Your team has deep institutional knowledge of <code>mailcow.conf</code>.</li>
-				</ul>
-			</div>
+		<h2>Why teams move to Vectis Mail</h2>
+		<p class="subtitle">Where the modern surface earns the switch.</p>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<ul style="margin-bottom: 0;">
+				<li>You want one config file as the source of truth, not a bash env + web UI dance.</li>
+				<li>You need a real sending API + inbound webhooks (replacing SendGrid/Postmark) alongside mailboxes.</li>
+				<li>You run a SaaS and need domain-scoped API keys with rate limiting.</li>
+				<li>You value orchestrated updates with automatic rollback over a manual <code>update.sh</code>.</li>
+				<li>You want per-domain analytics, IP warmup tracking, and built-in observability.</li>
+				<li>You want Terraform, Ansible, or your own automation to drive mail as code.</li>
+			</ul>
 		</div>
 	</section>
 
@@ -261,11 +249,11 @@ const dateModified = '2026-06-08'
 
 		<h3 class="alt-h3">Webmail + groupware</h3>
 		<p>
-			Mailcow ships SOGo, which includes CalDAV/CardDAV and ActiveSync. That makes
-			Mailcow a credible Exchange replacement for orgs that actively use the calendar
-			and contacts features. Vectis Mail ships Roundcube webmail with ManageSieve filters
-			but doesn't yet ship calendar/contacts; that's on the Phase 4 roadmap. If
-			groupware is a hard requirement, this is the biggest functional gap.
+			One honest scope note: Vectis Mail ships Roundcube webmail with ManageSieve
+			filters but doesn't yet ship calendar/contacts (CalDAV/CardDAV) — that's on the
+			Phase 4 roadmap. Mailcow bundles SOGo for those groupware features today, so if
+			calendar and contacts are a hard requirement right now, that's the one functional
+			gap to plan around when you move.
 		</p>
 
 		<h3 class="alt-h3">Pricing</h3>
@@ -332,10 +320,10 @@ const dateModified = '2026-06-08'
 				<h3>How do Vectis Mail and Mailcow compare on container count?</h3>
 				<p>
 					Vectis Mail ships 14 containers by default (10 if you disable observability
-					and ClamAV). Mailcow's compose stack includes 25+ services
-					(<a href="https://github.com/mailcow/mailcow-dockerized/blob/master/docker-compose.yml" target="_blank" rel="noopener noreferrer">mailcow-dockerized/docker-compose.yml</a>,
-					retrieved 12 May 2026). Fewer containers means less coordination overhead during
-					updates and a smaller blast radius when something breaks.
+					and ClamAV). Mailcow's compose stack includes 25+ services (per its published
+					<code>docker-compose.yml</code>, retrieved 12 May 2026). Fewer containers means
+					less coordination overhead during updates and a smaller blast radius when
+					something breaks.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -355,15 +343,6 @@ const dateModified = '2026-06-08'
 					preparation: mailboxes sync via imapsync, DKIM keys roll over with overlap,
 					and the final MX switch is the only customer-visible change. Larger installs
 					benefit from a staged migration over a few days.
-				</p>
-			</div>
-			<div class="alt-faq-q">
-				<h3>Why would I stay on Mailcow?</h3>
-				<p>
-					You need SOGo groupware and can't move calendar/contacts out separately.
-					You value 12 years of production maturity over Vectis Mail's newer codebase.
-					You already have a ServerCow support contract that's working for you.
-					If none of those apply, Vectis Mail's modern surface is the better call.
 				</p>
 			</div>
 		</div>
@@ -404,7 +383,7 @@ const dateModified = '2026-06-08'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Mailcow project + community: <a href="https://mailcow.email/" target="_blank" rel="noopener noreferrer">mailcow.email</a> · <a href="https://github.com/mailcow/mailcow-dockerized" target="_blank" rel="noopener noreferrer">github.com/mailcow/mailcow-dockerized</a> (retrieved 2026-05-12)</li>
+			<li>Mailcow project documentation and the public mailcow-dockerized repository (retrieved 2026-05-12)</li>
 			<li>Vectis Mail architecture, container count, API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
 			<li>Vectis Mail installation + update model: <a href="/getting-started/installation/">/getting-started/installation</a></li>
 		</ul>

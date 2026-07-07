@@ -3,10 +3,10 @@ import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
 const title = 'Vectis Mail alternatives — side-by-side comparisons'
-const description = 'Side-by-side comparisons of Vectis Mail vs Mailcow, Stalwart, Mox, iRedMail, Mail-in-a-Box, SendGrid, and Postmark. Self-hosted vs managed, free vs metered, proven stack vs from-scratch.'
+const description = 'Eleven honest side-by-side comparisons of Vectis Mail vs Proton Mail, Google Workspace, Microsoft 365, Migadu, SendGrid, Postmark, Mailcow, iRedMail, Mail-in-a-Box, Mox and Stalwart. Self-hosted email you own, on standard IMAP/SMTP.'
 const url = 'https://vectismail.com/alternatives/'
 const ogImage = 'https://vectismail.com/og/default.png'
-const dateModified = '2026-06-08'
+const dateModified = '2026-07-07'
 
 type Alt = {
 	href: string
@@ -39,11 +39,11 @@ const live: Alt[] = [
 	{
 		href: '/alternatives/mox/',
 		title: 'vs Mox',
-		tagline: 'Mox is a lovely personal mail server. Vectis is the multi-tenant platform you graduate to the day an app starts sending.',
+		tagline: 'The multi-tenant platform you graduate to the day an app starts sending — RBAC, domain-scoped API keys and a support SLA on the proven Postfix/Dovecot/Rspamd engine.',
 		bullets: [
 			'Multi-tenant RBAC + domain-scoped API keys',
 			'IP warmup, Rspamd + ClamAV, per-domain analytics',
-			'A vendor and a support SLA, not a solo project',
+			'A vendor and a support SLA behind it',
 		],
 	},
 	{
@@ -207,7 +207,7 @@ const upcoming: { title: string; tagline: string }[] = []
 					{
 						"@type": "Question",
 						"name": "Is there a Vectis Mail alternative for Mailu, Modoboa, docker-mailserver, Mailgun, AWS SES, or Resend?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Not yet. The current five comparisons cover the highest-search-volume products in our market. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the public roadmap for the next batch of comparison pages. If you want one prioritised, contact us and we'll sequence the next set based on real reader demand." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Not yet. The current 11 comparisons cover the highest-search-volume products in our market. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the public roadmap for the next batch of comparison pages. If you want one prioritised, contact us and we'll sequence the next set based on real reader demand." }
 					}
 				]
 			}
@@ -221,21 +221,28 @@ const upcoming: { title: string; tagline: string }[] = []
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">Compare · Side-by-side</div>
-		<h1>Vectis Mail alternatives.<br/><span>Where each one fits.</span></h1>
+		<h1>Why teams move<br/><span>to Vectis Mail.</span></h1>
 		<p class="alt-lead">
-			Each comparison below leads with where the other product wins, where Vectis Mail wins,
-			and a realistic migration path. These are written
-			by the team that runs Vectis Mail in production at validonx.com,
-			pharlux.com, scrutique.com, and other Veltara Works infrastructure.
+			Eleven side-by-side comparisons of Vectis Mail against the hosted services and
+			self-hosted stacks teams are leaving behind. Each one is honest about what the other
+			product does today, then shows where owning your mail server on Vectis Mail is the
+			stronger fit — and exactly how to migrate across. Written by the team that runs Vectis
+			Mail in production across Veltara Works infrastructure.
 		</p>
-		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 1.5rem;">
 		<h2>Direct comparisons</h2>
-		<p class="subtitle">Each page has a side-by-side table, a clear verdict, and a migration walk-through.</p>
+		<p class="subtitle">Each page has a side-by-side table, a clear read on where Vectis Mail is the stronger fit, and a migration walk-through.</p>
 		<div class="feature-grid" style="margin-top: 1.5rem;">
 			{live.map((a) => (
 				<a href={a.href} class="feature-card alt-index-card">
@@ -281,7 +288,7 @@ const upcoming: { title: string; tagline: string }[] = []
 			</div>
 			<div class="feature-card">
 				<h3>Is there a comparison for Mailu, docker-mailserver, Mailgun, AWS SES, or Resend?</h3>
-				<p>Not yet. The current five cover the highest-search-volume products. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the roadmap for the next batch. Want one prioritised? <a href="/contact/">Contact us</a> and we'll sequence the next set based on real reader demand.</p>
+				<p>Not yet. The current 11 cover the highest-search-volume products. Mailu, Modoboa, Poste.io, docker-mailserver, Mailgun, AWS SES, and Resend are on the roadmap for the next batch. Want one prioritised? <a href="/contact/">Contact us</a> and we'll sequence the next set based on real reader demand.</p>
 			</div>
 		</div>
 	</section>
@@ -293,7 +300,7 @@ const upcoming: { title: string; tagline: string }[] = []
 		</div>
 	</section>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>8 June 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>7 July 2026</time></p>
 
 
 	</main>

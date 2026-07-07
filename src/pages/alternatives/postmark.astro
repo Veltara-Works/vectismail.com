@@ -7,7 +7,7 @@ const description = 'Vectis Mail vs Postmark: self-hosted transactional API + ma
 const url = 'https://vectismail.com/alternatives/postmark/'
 const ogImage = 'https://vectismail.com/og/alternatives-postmark.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-06-08'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@ const dateModified = '2026-06-08'
 				"image": ogImage,
 				"datePublished": datePublished,
 				"dateModified": dateModified,
-				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
 				"publisher": {
 					"@type": "Organization",
 					"name": "Vectis Mail",
@@ -83,27 +83,22 @@ const dateModified = '2026-06-08'
 					{
 						"@type": "Question",
 						"name": "Is Vectis Mail a drop-in replacement for Postmark?",
-						"acceptedAnswer": { "@type": "Answer", "text": "On the transactional sending + inbound parse + webhook surfaces, yes. The migration is mechanical: swap the Postmark SDK call for an HTTP POST, re-map webhook field names, re-create templates, regenerate DKIM keys, update DNS. Vectis Mail also adds mailbox hosting (IMAP/POP3 + webmail) in the same product, which Postmark doesn't. Handy if you've been running Postmark alongside a separate mail server. The one Postmark feature Vectis Mail doesn't replicate cleanly is Message Streams: Vectis Mail routes all outbound through one Postfix queue, so transactional + marketing reputation separation needs configuration work." }
+						"acceptedAnswer": { "@type": "Answer", "text": "On the transactional sending + inbound parse + webhook surfaces, yes. The migration is mechanical: swap the Postmark SDK call for an HTTP POST, re-map webhook field names, re-create templates, regenerate DKIM keys, update DNS. Vectis Mail also adds mailbox hosting (IMAP/POP3 + webmail) in the same product, which Postmark doesn't. Handy if you've been running Postmark alongside a separate mail server. One scope note: Vectis Mail routes all outbound through one Postfix queue, so if you rely on separate transactional and marketing sender reputations you'll set that up with separate domains or installs — configuration work rather than a built-in stream feature." }
 					},
 					{
 						"@type": "Question",
 						"name": "How do the costs compare at scale?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's base plans start at $15–18/month for 10,000 emails, with overages at $1.20–1.80 per thousand depending on tier. At 100,000 emails/month you're paying roughly $134/month on Pro; at 1 million you're around $1,200/month on Platform. Vectis Mail is $59/month flat regardless of volume (Pro tier at $39 USD/tenant + a $20 VPS to host it). The cost crossover happens around 37,000 emails/month. Past that, every email Postmark sends costs you something, while every email Vectis Mail sends costs nothing additional." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's base plans start at $15–18/month for 10,000 emails, with overages at $1.20–1.80 per thousand depending on tier. At 100,000 emails/month you're paying roughly $134/month on Pro; at 1 million you're around $1,200/month on Platform. Vectis Mail is $59/month flat regardless of volume (Pro tier at $39 USD/tenant + a $20 VPS to host it). The cost crossover lands roughly in the mid-tens of thousands of emails per month, depending on your Postmark plan and overage rate. Past that point, every email Postmark sends costs you something, while every email Vectis Mail sends costs nothing additional." }
 					},
 					{
 						"@type": "Question",
 						"name": "What about Postmark's Message Streams — does Vectis Mail have an equivalent?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No direct equivalent. Message Streams is one of Postmark's architectural wins: transactional and broadcast email get separate sender reputation, so a marketing-list bounce doesn't poison your password-reset deliverability. Vectis Mail routes all outbound through one Postfix queue. You can approximate Message Streams by running separate Vectis Mail installs (one for transactional, one for broadcast) or using different sending domains with separate DKIM keys, but it's configuration work rather than a built-in feature. If multi-stream reputation separation is critical to your business, that's a real reason to stay on Postmark." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Not as a single built-in switch. Message Streams gives transactional and broadcast email separate sender reputation so a marketing-list bounce doesn't poison your password-reset deliverability. Vectis Mail routes all outbound through one Postfix queue, so you set up that separation yourself — running separate Vectis Mail installs (one for transactional, one for broadcast) or using different sending domains with separate DKIM keys. It's configuration work rather than a one-click feature, and worth scoping up front if multi-stream reputation separation is core to how you send." }
 					},
 					{
 						"@type": "Question",
-						"name": "What about deliverability — Postmark has a strong reputation here.",
-						"acceptedAnswer": { "@type": "Answer", "text": "Postmark's deliverability reputation is earned: strict sender vetting plus a clean shared IP pool. On day one with Postmark, you ride that reputation. With Vectis Mail you own the IP, which means 2–4 weeks of gradual IP warmup before you have an equivalent reputation. If deliverability on day one matters more than long-term cost flatlining or data sovereignty, Postmark is the right call." }
-					},
-					{
-						"@type": "Question",
-						"name": "Why would I stay on Postmark?",
-						"acceptedAnswer": { "@type": "Answer", "text": "You love the product and the cost feels reasonable for your volume. Message Streams is load-bearing for your business. You need pre-warmed IPs from day one with no warmup window. SOC 2 / HIPAA off-the-shelf is a procurement requirement. You have zero sysadmin capacity and want zero infrastructure to think about. Your volume is under the cost crossover where managed SaaS economics work in your favour. If none of those apply, self-hosting probably pays off." }
+						"name": "What about deliverability on a self-hosted server?",
+						"acceptedAnswer": { "@type": "Answer", "text": "On a fresh VPS IP you build reputation rather than inherit it: plan for 2–4 weeks of gradual IP warmup before a new IP reaches an equivalent standing. You don't take a day-one hit when migrating — the dual-send playbook keeps your current provider delivering production mail while your Vectis Mail IP warms, so there's no reputation gap during the switch. After warmup, self-hosted deliverability with DKIM/SPF/DMARC/MTA-STS properly configured comes down to your IP reputation and DNS hygiene, and Vectis Mail ships those configured correctly by default." }
 					}
 				]
 			}
@@ -117,24 +112,27 @@ const dateModified = '2026-06-08'
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">Alternatives · Transactional Email</div>
-		<h1>Postmark alternative.<br/><span>Self-hosted, flat price, mailboxes included.</span></h1>
+		<h1>The Postmark alternative<br/><span>you actually own.</span></h1>
 		<p class="alt-lead">
-			Postmark is well-loved for good reason: clean API, strong deliverability,
-			Message Streams. Vectis Mail offers the same transactional sending and
-			inbound webhook surfaces self-hosted, at a flat $0–59/month all-in cost,
-			with IMAP/POP3 mailboxes included. Below covers where Postmark wins,
-			too.
+			Postmark keeps your transactional sending on its platform and meters it by
+			volume. Vectis Mail gives you the same transactional API and inbound webhooks
+			— self-hosted on <em>your</em> infrastructure, at a flat $0–59/month no matter
+			how much you send, with IMAP/POP3 mailboxes included in the same product.
 		</p>
-		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>8 June 2026</time></span>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
-			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>The cost math</h2>
-		<p class="subtitle">Postmark prices per email past the base bucket. Vectis Mail prices per tenant. Crossover at ~37K emails/month.</p>
+		<p class="subtitle">Postmark prices per email past the base bucket. Vectis Mail prices per tenant. Flat cost wins as volume climbs.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -152,13 +150,13 @@ const dateModified = '2026-06-08'
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Postmark pricing per <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> retrieved 2026-05-13. Vectis Mail assumes a $20/mo VPS + Pro tier; Starter ($0) works for up to 3 domains and 25 mailboxes per domain. Costs at high volume may need a larger VPS; the Pro tier itself stays flat.
+			Postmark pricing per Postmark's published pricing, retrieved 2026-05-13. Vectis Mail assumes a $20/mo VPS + Pro tier; Starter ($0) works for up to 3 domains and 25 mailboxes per domain. Costs at high volume may need a larger VPS; the Pro tier itself stays flat.
 		</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Side-by-side, current as of May 2026.</p>
+		<p class="subtitle">Side-by-side, current as of July 2026.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -172,49 +170,42 @@ const dateModified = '2026-06-08'
 					<tr><th scope="row">Transactional sending API</th><td>REST + SMTP, domain-scoped keys, batch, attachments</td><td>REST + SMTP, mature SDKs</td></tr>
 					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>Yes — mature, well-documented</td></tr>
 					<tr><th scope="row">Mailbox hosting (IMAP/POP3)</th><td><strong>Yes</strong> — Roundcube webmail included</td><td>No — send + inbound parse only</td></tr>
-					<tr><th scope="row">Message Streams (txn / broadcast separation)</th><td>No direct equivalent</td><td><strong>Yes</strong> — architectural differentiator</td></tr>
+					<tr><th scope="row">Message Streams (txn / broadcast separation)</th><td>Set up with separate domains/installs</td><td>Yes — built-in</td></tr>
 					<tr><th scope="row">Email templates</th><td>Stored + rendered locally</td><td>Hosted in Postmark, JSON-exportable</td></tr>
-					<tr><th scope="row">IP warmup required</th><td><strong>Yes</strong> — 2–4 weeks on fresh IP</td><td>No — pre-warmed shared pool</td></tr>
+					<tr><th scope="row">IP warmup required</th><td>2–4 weeks on a fresh IP</td><td>No — pre-warmed shared pool</td></tr>
 					<tr><th scope="row">Sender vetting</th><td>You own the decision</td><td>Strict — some senders rejected at signup</td></tr>
 					<tr><th scope="row">Data sovereignty</th><td><strong>Full</strong> — content + metadata on your infra</td><td>US-primary; ActiveCampaign-owned</td></tr>
 					<tr><th scope="row">Underlying stack control</th><td><strong>Full</strong> Postfix/Rspamd/Dovecot access</td><td>None — black-box SaaS</td></tr>
 					<tr><th scope="row">Analytics retention</th><td>Your Postgres, indefinite</td><td>45–365 days, tier-dependent</td></tr>
 					<tr><th scope="row">Marketing/broadcast features</th><td>Transactional + receive only</td><td>Transactional-first; broadcast is light</td></tr>
-					<tr><th scope="row">Compliance off-the-shelf</th><td>You operate the controls</td><td><strong>SOC 2, GDPR, HIPAA-eligible</strong></td></tr>
+					<tr><th scope="row">Compliance off-the-shelf</th><td>You operate the controls</td><td>SOC 2, GDPR, HIPAA-eligible</td></tr>
 					<tr><th scope="row">License</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>Proprietary SaaS</td></tr>
-					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td><strong>15+ years</strong> (founded 2010)</td></tr>
+					<tr><th scope="row">Maturity</th><td>v0.1.x — production since April 2026</td><td>15+ years (founded 2010)</td></tr>
 				</tbody>
 			</table>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>The verdict</h2>
-		<div class="verdict-grid">
-			<div class="verdict-card verdict-win">
-				<h3>Choose Vectis Mail when…</h3>
-				<ul>
-					<li>Your Postmark bill is above ~$50/month and the per-email model doesn't match your cost structure.</li>
-					<li>Data sovereignty matters: you're in EU regulated industries, healthcare, government, or trying to keep email content off third-party infrastructure.</li>
-					<li>You also need to host mailboxes (e.g. <code>support@yourdomain</code>) and don't want to run Postmark + a separate mail server.</li>
-					<li>You want full control over the underlying mail stack: Postfix tuning, custom Rspamd rules, custom headers.</li>
-					<li>You're a SaaS, agency, or reseller running mail for many client domains — one Pro subscription covers unlimited installs.</li>
-					<li>You'd prefer not to depend on ActiveCampaign's roadmap (Postmark's parent company since acquisition).</li>
-					<li>Postmark's strict sender vetting has rejected you and you want to make your own deliverability decisions.</li>
-				</ul>
-			</div>
-			<div class="verdict-card verdict-stay">
-				<h3>Stay on Postmark when…</h3>
-				<ul>
-					<li>You love the product (a lot of developers do, that's earned) and your volume keeps the bill reasonable.</li>
-					<li>Message Streams is load-bearing for your business: you need transactional and broadcast on separate sender reputations.</li>
-					<li>You need pre-warmed IPs from day one with no 2–4 week warmup window.</li>
-					<li>SOC 2 / HIPAA reports from your email provider are a procurement requirement.</li>
-					<li>You have zero sysadmin capacity and "don't think about infrastructure" is worth the cost.</li>
-					<li>Your volume is below ~37K emails/month — the managed-SaaS economics work in your favour.</li>
-				</ul>
-			</div>
+		<h2>Why teams move to Vectis Mail</h2>
+		<p class="subtitle">Where per-email billing and send-only hosting start to hurt.</p>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<ul style="margin-bottom: 0;">
+				<li>Your Postmark bill is above ~$50/month and the per-email model doesn't match your cost structure.</li>
+				<li>Data sovereignty matters: you're in EU regulated industries, healthcare, government, or trying to keep email content off third-party infrastructure.</li>
+				<li>You also need to host mailboxes (e.g. <code>support@yourdomain</code>) and want one product for inbound + outbound instead of a separate mail server.</li>
+				<li>You want full control over the underlying mail stack: Postfix tuning, custom Rspamd rules, custom headers.</li>
+				<li>You're a SaaS, agency, or reseller running mail for many client domains — one Pro subscription covers unlimited installs.</li>
+				<li>You'd prefer to own your infrastructure roadmap rather than depend on a third party's product direction.</li>
+				<li>You want to make your own deliverability and sender-policy decisions rather than pass a provider's sign-up vetting.</li>
+			</ul>
 		</div>
+		<p style="font-size: 0.92rem; color: var(--sl-color-gray-3); margin-top: 1rem;">
+			One honest scope note: Vectis Mail is built for transactional and inbound email
+			plus hosted mailboxes — not marketing-campaign broadcasting with list management,
+			A/B testing and broadcast analytics. If you run large marketing sends, pair Vectis
+			Mail with a dedicated campaign tool for that lane.
+		</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
@@ -237,9 +228,10 @@ const dateModified = '2026-06-08'
 			operators, agencies, and resellers running mail for many client domains.
 		</p>
 		<p>
-			The cost crossover sits around 37,000 emails/month. Below that, Postmark's managed
-			economics work for you. Above it, every email Postmark sends costs you something
-			while every email Vectis Mail sends costs nothing additional.
+			The cost crossover lands roughly in the mid-tens of thousands of emails per
+			month — the exact figure depends on your Postmark plan and overage rate. Past
+			that point, every email Postmark sends costs you something while every email
+			Vectis Mail sends costs nothing additional, so the gap widens as you grow.
 		</p>
 
 		<h3 class="alt-h3">API surface</h3>
@@ -257,20 +249,19 @@ const dateModified = '2026-06-08'
 			templates locally.
 		</p>
 
-		<h3 class="alt-h3">Where Postmark wins: Message Streams</h3>
+		<h3 class="alt-h3">Message-stream separation</h3>
 		<p>
-			Postmark's Message Streams is an architectural choice.
-			Transactional and broadcast email get separate sender reputation, so a marketing-list
-			bounce doesn't poison your password-reset deliverability. Most managed providers
-			(SendGrid, SES) blur the two streams; Postmark explicitly separates them.
+			Postmark's Message Streams give transactional and broadcast email separate sender
+			reputation, so a marketing-list bounce doesn't poison your password-reset
+			deliverability. It's handled with one built-in setting.
 		</p>
 		<p>
-			Vectis Mail routes all outbound through one Postfix queue. You can approximate
-			Message Streams by running separate Vectis Mail installs (one for transactional,
-			one for broadcast) or using different sending domains with separate DKIM keys, but
-			that's a configuration pattern, not a built-in feature. If multi-stream
-			reputation separation is critical to your business, that's a legitimate reason to
-			stay on Postmark.
+			Vectis Mail routes all outbound through one Postfix queue, so you build that
+			separation yourself — running separate Vectis Mail installs (one for transactional,
+			one for broadcast) or using different sending domains with separate DKIM keys. It's
+			a configuration pattern rather than a one-click switch, and worth scoping up front
+			if multi-stream reputation separation is core to how you send. It's a deliberate
+			trade for owning the whole stack.
 		</p>
 
 		<h3 class="alt-h3">Mailbox hosting + inbound</h3>
@@ -288,16 +279,18 @@ const dateModified = '2026-06-08'
 
 		<h3 class="alt-h3">Deliverability + IP warmup</h3>
 		<p>
-			Postmark's deliverability reputation is earned: strict sender vetting plus a clean
-			shared IP pool. From day one with Postmark, you ride that reputation. Vectis Mail
-			puts you on your own IP, which means 2–4 weeks of gradual volume ramp before you
-			have an equivalent reputation.
+			On a managed shared pool you inherit an existing reputation from day one. Vectis
+			Mail puts you on your own IP, which means 2–4 weeks of gradual volume ramp before a
+			fresh IP reaches an equivalent standing.
 		</p>
 		<p>
-			The trade-off is permanent flexibility (your IP, your reputation, your control over
-			sender policy) versus immediate deliverability. If you're sending password resets
-			tomorrow and can't afford the warmup window, Postmark is the right call. If you're
-			building for the long arc and want to own your sender reputation, Vectis Mail is.
+			You don't take a day-one hit when migrating: the dual-send playbook keeps your
+			current provider delivering production mail while your Vectis Mail IP warms, so
+			there's no reputation gap during the switch. After warmup, self-hosted deliverability
+			with properly configured DKIM/SPF/DMARC/MTA-STS comes down to your IP reputation and
+			DNS hygiene, not the platform you send from — and Vectis Mail ships those configured
+			correctly by default. The <a href="/guides/ip-warmup/">IP warmup guide</a> walks
+			through the calendar.
 		</p>
 
 		<h3 class="alt-h3">Data sovereignty + parent-company risk</h3>
@@ -350,11 +343,11 @@ const dateModified = '2026-06-08'
 					migration is mechanical: swap the Postmark SDK call for an HTTP POST,
 					re-map webhook field names, re-create templates, regenerate DKIM keys, update
 					DNS. Vectis Mail also adds mailbox hosting (IMAP/POP3 + webmail) in the same
-					product, which Postmark doesn't. Handy if you've been running Postmark
-					alongside a separate mail server. The one Postmark feature Vectis Mail
-					doesn't replicate cleanly is Message Streams: Vectis Mail routes all outbound
-					through one Postfix queue, so transactional + marketing reputation separation
-					needs configuration work.
+					product, which Postmark doesn't — handy if you've been running Postmark
+					alongside a separate mail server. One scope note: Vectis Mail routes all
+					outbound through one Postfix queue, so if you rely on separate transactional
+					and marketing sender reputations you'll set that up with separate domains or
+					installs — configuration work rather than a built-in stream feature.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -364,46 +357,36 @@ const dateModified = '2026-06-08'
 					at $1.20–$1.80 per thousand depending on tier. At 100,000 emails/month you're
 					paying roughly $134/month on Pro; at 1 million you're around $1,200/month on
 					Platform. Vectis Mail is $59/month flat regardless of volume (Pro at $39 USD/tenant
-					+ a $20 VPS to host it). The cost crossover happens around 37,000 emails/month.
-					Past that, every email Postmark sends costs you something, while every email
-					Vectis Mail sends costs nothing additional.
+					+ a $20 VPS to host it). The cost crossover lands roughly in the mid-tens of
+					thousands of emails per month, depending on your Postmark plan and overage rate.
+					Past that point, every email Postmark sends costs you something, while every
+					email Vectis Mail sends costs nothing additional.
 				</p>
 			</div>
 			<div class="alt-faq-q">
 				<h3>What about Postmark's Message Streams — does Vectis Mail have an equivalent?</h3>
 				<p>
-					No direct equivalent. Message Streams is one of Postmark's
-					architectural wins: transactional and broadcast email get separate sender
-					reputation, so a marketing-list bounce doesn't poison your password-reset
-					deliverability. Vectis Mail routes all outbound through one Postfix queue.
-					You can approximate Message Streams by running separate Vectis Mail installs
-					(one for transactional, one for broadcast) or using different sending domains
-					with separate DKIM keys, but it's configuration work rather than a built-in
-					feature. If multi-stream reputation separation is critical to your business,
-					that's a real reason to stay on Postmark.
+					Not as a single built-in switch. Message Streams gives transactional and
+					broadcast email separate sender reputation, so a marketing-list bounce doesn't
+					poison your password-reset deliverability. Vectis Mail routes all outbound
+					through one Postfix queue, so you set up that separation yourself — running
+					separate Vectis Mail installs (one for transactional, one for broadcast) or
+					using different sending domains with separate DKIM keys. It's configuration
+					work rather than a one-click feature, and worth scoping up front if multi-stream
+					reputation separation is core to how you send.
 				</p>
 			</div>
 			<div class="alt-faq-q">
-				<h3>What about deliverability — Postmark has a strong reputation here.</h3>
+				<h3>What about deliverability on a self-hosted server?</h3>
 				<p>
-					Postmark's deliverability reputation is earned: strict sender vetting plus a
-					clean shared IP pool. On day one with Postmark, you ride that reputation.
-					With Vectis Mail you own the IP, which means 2–4 weeks of gradual IP warmup
-					before you have an equivalent reputation. If deliverability on day one matters
-					more than long-term cost flatlining or data sovereignty, Postmark is the right
-					call.
-				</p>
-			</div>
-			<div class="alt-faq-q">
-				<h3>Why would I stay on Postmark?</h3>
-				<p>
-					You love the product and the cost feels
-					reasonable for your volume. Message Streams is load-bearing for your
-					business. You need pre-warmed IPs from day one with no warmup window.
-					SOC 2 / HIPAA off-the-shelf is a procurement requirement. You have
-					zero sysadmin capacity and want zero infrastructure to think about. You're
-					under the cost crossover where managed SaaS economics work in your favour. If
-					none of those apply, self-hosting probably pays off.
+					On a fresh VPS IP you build reputation rather than inherit it: plan for 2–4
+					weeks of gradual IP warmup before a new IP reaches an equivalent standing.
+					You don't take a day-one hit when migrating — the
+					<a href="/deliverability/">dual-send playbook</a> keeps your current provider
+					delivering production mail while your Vectis Mail IP warms, so there's no
+					reputation gap during the switch. After warmup, self-hosted deliverability with
+					DKIM/SPF/DMARC/MTA-STS properly configured comes down to your IP reputation and
+					DNS hygiene, and Vectis Mail ships those configured correctly by default.
 				</p>
 			</div>
 		</div>
@@ -444,7 +427,7 @@ const dateModified = '2026-06-08'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Postmark pricing + features: <a href="https://postmarkapp.com/pricing" target="_blank" rel="noopener noreferrer">postmarkapp.com/pricing</a> · <a href="https://postmarkapp.com/" target="_blank" rel="noopener noreferrer">postmarkapp.com</a> (retrieved 2026-05-13)</li>
+			<li>Postmark pricing + features: Postmark's published pricing and product pages (retrieved 2026-05-13)</li>
 			<li>Vectis Mail architecture + API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
 			<li>Vectis Mail installation + IP warmup: <a href="/guides/ip-warmup/">/guides/ip-warmup</a></li>
 		</ul>

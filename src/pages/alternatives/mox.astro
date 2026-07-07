@@ -3,11 +3,11 @@ import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
 const title = 'Mox Alternative — Vectis Mail vs Mox'
-const description = 'Vectis Mail vs Mox: Mox is a lovely single-binary mail server for one person and one domain. Vectis Mail is the multi-tenant platform you move to when email becomes infrastructure — domain-scoped API keys, per-domain analytics, IP warmup, Rspamd + ClamAV, and a support SLA.'
+const description = 'Vectis Mail vs Mox: Mox is a single-binary mail server for personal, single-domain use. Vectis Mail is the multi-tenant platform you move to when email becomes infrastructure — domain-scoped API keys, per-domain analytics, IP warmup, Rspamd + ClamAV, and a support SLA.'
 const url = 'https://vectismail.com/alternatives/mox/'
 const ogImage = 'https://vectismail.com/og/alternatives-mox.png'
 const datePublished = '2026-06-14'
-const dateModified = '2026-06-14'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@ const dateModified = '2026-06-14'
 				"image": ogImage,
 				"datePublished": datePublished,
 				"dateModified": dateModified,
-				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
 				"publisher": {
 					"@type": "Organization",
 					"name": "Vectis Mail",
@@ -83,7 +83,7 @@ const dateModified = '2026-06-14'
 					{
 						"@type": "Question",
 						"name": "What's the difference between Mox and Vectis Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Scale and scope. Mox is a beautifully simple single Go binary built for low-maintenance personal email — one person, one domain, minimal moving parts. Vectis Mail is a multi-tenant platform for when email becomes infrastructure: sending on behalf of an app, hosting mail for many domains or clients, warming a dedicated IP, with role-based access, domain-scoped API keys, per-domain analytics, Rspamd + ClamAV, atomic updates with rollback, and a support SLA. Mox is where you start; Vectis is where you go when one mailbox becomes a mail operation." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Scale and scope. Mox is a single Go binary built for low-maintenance personal email — a personal, single-domain server with minimal moving parts. Vectis Mail is a multi-tenant platform for when email becomes infrastructure: sending on behalf of an app, hosting mail for many domains or clients, warming a dedicated IP, with role-based access, domain-scoped API keys, per-domain analytics, Rspamd + ClamAV, atomic updates with rollback, and a support SLA. Vectis Mail is where you go when one mailbox becomes a mail operation." }
 					},
 					{
 						"@type": "Question",
@@ -92,8 +92,8 @@ const dateModified = '2026-06-14'
 					},
 					{
 						"@type": "Question",
-						"name": "Is Mox more secure than Vectis Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Mox is ahead on modern SMTP transport security — DANE, MTA-STS, DNSSEC and REQUIRETLS are first-class, and that's a genuine strength. But weigh what actually determines whether your mail reaches the inbox: SPF, DKIM, DMARC, a clean IP, careful warmup and reputation monitoring. That's the game for nearly every sender, and it's exactly where Vectis Mail invests — full Rspamd, ClamAV, a 30-day IP-warmup ramp, RBL monitoring and per-domain deliverability analytics. DANE hardens the transport; deliverability wins the inbox." }
+						"name": "What about DANE and modern SMTP transport security?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Mox implements DANE, MTA-STS, DNSSEC and REQUIRETLS at the transport layer. What actually determines whether your mail reaches the inbox, though, is SPF, DKIM, DMARC, a clean IP, careful warmup and reputation monitoring — and that's exactly where Vectis Mail invests: full Rspamd, ClamAV, a 30-day IP-warmup ramp, RBL monitoring and per-domain deliverability analytics. Transport security hardens how mail travels; deliverability tooling decides whether it arrives." }
 					},
 					{
 						"@type": "Question",
@@ -102,8 +102,8 @@ const dateModified = '2026-06-14'
 					},
 					{
 						"@type": "Question",
-						"name": "When is Mox the right choice over Vectis Mail?",
-						"acceptedAnswer": { "@type": "Answer", "text": "When it's genuinely just your own personal email and always will be: one person, one or two domains, no app sending on your behalf, no customers, and you want the smallest possible thing to run — one MIT-licensed binary you upgrade by replacing the file. Mox is excellent at that, and its permissive licence is a real plus there. The moment an application starts sending through it, or you add a second customer, you're running a platform — and that's what Vectis Mail is for." }
+						"name": "Is Vectis Mail overkill for a single personal mailbox?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is built for the platform case — multi-tenant, application sending, many domains, IP warmup, and a support SLA. If you only ever need a single personal mailbox on one domain, with no application sending on your behalf and no customers, you won't use most of that machinery. The line is simple: the moment an application starts sending through your server, or you add a second customer, you're running a platform — and that's the job Vectis Mail is built for." }
 					}
 				]
 			}
@@ -119,16 +119,20 @@ const dateModified = '2026-06-14'
 		<div class="hero-badge">Alternatives · Self-Hosted</div>
 		<h1>Mox alternative.<br/><span>For when it's not just your inbox anymore.</span></h1>
 		<p class="alt-lead">
-			Mox is a genuinely lovely single-binary mail server — perfect for one person, one domain,
-			run-and-forget. Vectis Mail is what you reach for when email becomes infrastructure:
+			Mox is a single-binary mail server aimed at personal, single-domain, run-and-forget use.
+			Vectis Mail is what you reach for when email becomes infrastructure:
 			sending on behalf of an app, hosting mail for clients, warming a dedicated IP, answering
 			to customers. Same modern ideas — built for the multi-tenant, production case, with the
 			deliverability tooling and the support line that case demands.
 		</p>
-		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>14 June 2026</time></span>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
-			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
@@ -141,43 +145,36 @@ const dateModified = '2026-06-14'
 					<tr><th></th><th>Vectis Mail</th><th>Mox</th></tr>
 				</thead>
 				<tbody>
-					<tr><th scope="row">Built for</th><td><strong>Multi-tenant platform — apps, agencies, many domains</strong></td><td>Single-operator personal / small server</td></tr>
+					<tr><th scope="row">Built for</th><td><strong>Multi-tenant platform — apps, agencies, many domains</strong></td><td>Personal / single-domain server</td></tr>
 					<tr><th scope="row">Multi-tenant + RBAC</th><td><strong>Role-based access · domain-scoped API keys · React admin</strong></td><td>Multiple domains; no real multi-tenant model</td></tr>
 					<tr><th scope="row">Transactional sending</th><td><strong>API keys · per-domain rate limits · delivery analytics</strong></td><td>webapi (HTTP send) + delivery webhooks</td></tr>
 					<tr><th scope="row">Deliverability tooling</th><td><strong>30-day IP warmup · RBL monitoring · per-domain analytics</strong></td><td>Reputation tracking; no warmup scheduler</td></tr>
 					<tr><th scope="row">Antispam + antivirus</th><td><strong>Full Rspamd + ClamAV</strong></td><td>Built-in reputation + per-user Bayesian</td></tr>
 					<tr><th scope="row">Updates</th><td><strong>Atomic 6-phase orchestrator — auto-rollback on failure</strong></td><td>Replace the binary + restart</td></tr>
 					<tr><th scope="row">Backups + observability</th><td><strong>Scheduled backup/restore · built-in metrics + health alerts</strong></td><td>Bring your own</td></tr>
-					<tr><th scope="row">Support</th><td><strong>Pro $39/tenant/mo · Enterprise from $499 with response SLA</strong></td><td>Community — one maintainer</td></tr>
+					<tr><th scope="row">Support</th><td><strong>Pro $39/tenant/mo · Enterprise from $499 with response SLA</strong></td><td>Community support, no SLA</td></tr>
 					<tr><th scope="row">Webmail</th><td>Roundcube bundled</td><td>Built-in webmail</td></tr>
 					<tr><th scope="row">Transport security</th><td>TLS 1.2+ · SPF/DKIM/DMARC</td><td>+ DANE · MTA-STS · DNSSEC · REQUIRETLS</td></tr>
 					<tr><th scope="row">Footprint + licence</th><td>Container stack · BSL 1.1 → Apache 2.0 after 4y</td><td>One binary, zero deps · MIT</td></tr>
 				</tbody>
 			</table>
 		</div>
-		<p class="subtitle" style="margin-top: 0.75rem; font-size: 0.9rem;">Mox's single-binary simplicity, MIT licence and DANE/MTA-STS support are real strengths for a personal server — <a href="#deliverability">we cover where they matter</a>. If you're sending for an app or a roster of clients, the top of this table is the list that decides it.</p>
+		<p class="subtitle" style="margin-top: 0.75rem; font-size: 0.9rem;">Mox's single-binary simplicity, MIT licence and DANE/MTA-STS support suit a personal server — <a href="#deliverability">we cover where transport security fits</a>. If you're sending for an app or a roster of clients, the top of this table is the list that decides it.</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>The verdict</h2>
+		<h2>Why teams move to Vectis Mail</h2>
+		<p class="subtitle">The line is simple: the moment an app sends through your server, or you add a second customer, you're running a platform.</p>
 		<div class="verdict-grid">
 			<div class="verdict-card verdict-win">
-				<h3>Choose Vectis Mail when…</h3>
+				<h3>Teams move to Vectis Mail when…</h3>
 				<ul>
 					<li>An application sends email on your behalf, or you host mail for more than one domain or customer.</li>
 					<li>You need multi-tenant RBAC and an API key scoped to each customer's domain.</li>
 					<li>Inbox placement is mission-critical and you want Rspamd + ClamAV, a real IP-warmup ramp, and per-domain deliverability analytics.</li>
 					<li>You want updates that snapshot and roll themselves back, scheduled backups, and built-in monitoring.</li>
-					<li>You need a vendor and a response SLA — someone to call — not a single-maintainer community project.</li>
+					<li>You need a vendor and a response SLA — someone to call — with a company accountable behind the product.</li>
 				</ul>
-			</div>
-			<div class="verdict-card verdict-stay">
-				<h3>Mox is the better buy when…</h3>
-				<ul>
-					<li>It's genuinely just your own personal email — one person, a domain or two — and it always will be.</li>
-					<li>You want the smallest possible thing to run: one MIT-licensed binary, upgraded by replacing the file.</li>
-				</ul>
-				<p style="margin-top: 0.85rem; font-size: 0.9rem; opacity: 0.85;">The moment an app starts sending through it, or you add a second customer, you're running a platform — and that's a different job.</p>
 			</div>
 		</div>
 	</section>
@@ -212,9 +209,8 @@ const dateModified = '2026-06-14'
 
 		<h3 id="deliverability" class="alt-h3">DANE is real — but deliverability wins the inbox</h3>
 		<p>
-			Let's be straight: Mox's modern transport security is excellent and ahead of us. DANE,
-			MTA-STS, DNSSEC and REQUIRETLS are first-class, and if downgrade-resistant SMTP is central
-			to your threat model, weigh that honestly.
+			On transport security, Mox implements DANE, MTA-STS, DNSSEC and REQUIRETLS at the SMTP
+			layer. If downgrade-resistant SMTP is central to your threat model, weigh that for yourself.
 		</p>
 		<p>
 			But for almost every sender, that's not what decides whether mail lands. Inbox placement
@@ -227,10 +223,10 @@ const dateModified = '2026-06-14'
 
 		<h3 class="alt-h3">Who do you call?</h3>
 		<p>
-			Mox is the work of one excellent maintainer — which is part of its charm and, for a
-			business, part of the risk. When production mail is down and your customers aren't getting
-			password resets, "open a GitHub issue" is not an incident response. Vectis Mail has a
-			company behind it and a response SLA on the Enterprise tier, with priority support on Pro.
+			Mox is a community open-source project with no commercial vendor or support line behind it —
+			which, for a business, is part of the risk. When production mail is down and your customers
+			aren't getting password resets, "open a GitHub issue" is not an incident response. Vectis Mail
+			has a company behind it and a response SLA on the Enterprise tier, with priority support on Pro.
 			You're buying not just the software but someone who is accountable when it matters.
 		</p>
 	</section>
@@ -254,13 +250,13 @@ const dateModified = '2026-06-14'
 			<div class="alt-faq-q">
 				<h3>What's the difference between Mox and Vectis Mail?</h3>
 				<p>
-					Scale and scope. Mox is a beautifully simple single Go binary built for
-					low-maintenance personal email — one person, one domain, minimal moving parts. Vectis
-					Mail is a multi-tenant platform for when email becomes infrastructure: sending on
-					behalf of an app, hosting mail for many domains or clients, warming a dedicated IP,
-					with RBAC, domain-scoped API keys, per-domain analytics, Rspamd + ClamAV, atomic
-					updates with rollback, and a support SLA. Mox is where you start; Vectis is where you
-					go when one mailbox becomes a mail operation.
+					Scale and scope. Mox is a single Go binary built for
+					low-maintenance personal email — a personal, single-domain server with minimal moving
+					parts. Vectis Mail is a multi-tenant platform for when email becomes infrastructure:
+					sending on behalf of an app, hosting mail for many domains or clients, warming a
+					dedicated IP, with RBAC, domain-scoped API keys, per-domain analytics, Rspamd + ClamAV,
+					atomic updates with rollback, and a support SLA. Vectis Mail is where you go when one
+					mailbox becomes a mail operation.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -275,15 +271,14 @@ const dateModified = '2026-06-14'
 				</p>
 			</div>
 			<div class="alt-faq-q">
-				<h3>Is Mox more secure than Vectis Mail?</h3>
+				<h3>What about DANE and modern SMTP transport security?</h3>
 				<p>
-					Mox is ahead on modern SMTP transport security — DANE, MTA-STS, DNSSEC and REQUIRETLS
-					are first-class, a genuine strength. But weigh what actually determines whether your
-					mail reaches the inbox: SPF, DKIM, DMARC, a clean IP, careful warmup and reputation
-					monitoring. That's the game for nearly every sender, and it's exactly where Vectis
-					Mail invests — full Rspamd, ClamAV, a 30-day warmup ramp, RBL monitoring and
-					per-domain deliverability analytics. DANE hardens the transport; deliverability wins
-					the inbox.
+					Mox implements DANE, MTA-STS, DNSSEC and REQUIRETLS at the transport layer. What
+					actually determines whether your mail reaches the inbox, though, is SPF, DKIM, DMARC,
+					a clean IP, careful warmup and reputation monitoring — and that's exactly where Vectis
+					Mail invests: full Rspamd, ClamAV, a 30-day warmup ramp, RBL monitoring and
+					per-domain deliverability analytics. Transport security hardens how mail travels;
+					deliverability tooling decides whether it arrives.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -298,14 +293,14 @@ const dateModified = '2026-06-14'
 				</p>
 			</div>
 			<div class="alt-faq-q">
-				<h3>When is Mox the right choice over Vectis Mail?</h3>
+				<h3>Is Vectis Mail overkill for a single personal mailbox?</h3>
 				<p>
-					When it's genuinely just your own personal email and always will be: one person, one
-					or two domains, no app sending on your behalf, no customers, and you want the
-					smallest possible thing to run — one MIT-licensed binary you upgrade by replacing the
-					file. Mox is excellent at that, and its permissive licence is a real plus there. The
-					moment an application starts sending through it, or you add a second customer, you're
-					running a platform — and that's what Vectis Mail is for.
+					Vectis Mail is built for the platform case — multi-tenant, application sending, many
+					domains, IP warmup, and a support SLA. If you only ever need a single personal mailbox
+					on one domain, with no application sending on your behalf and no customers, you won't
+					use most of that machinery. The line is simple: the moment an application starts
+					sending through your server, or you add a second customer, you're running a platform —
+					and that's the job Vectis Mail is built for.
 				</p>
 			</div>
 		</div>
@@ -346,7 +341,7 @@ const dateModified = '2026-06-14'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Mox project + docs: <a href="https://www.xmox.nl/" target="_blank" rel="noopener noreferrer">xmox.nl</a> · <a href="https://www.xmox.nl/features/" target="_blank" rel="noopener noreferrer">Features</a> · <a href="https://github.com/mjl-/mox" target="_blank" rel="noopener noreferrer">github.com/mjl-/mox</a> · <a href="https://pkg.go.dev/github.com/mjl-/mox/webapi" target="_blank" rel="noopener noreferrer">webapi docs</a> (retrieved 2026-06-14)</li>
+			<li>Mox project, features and webapi documentation, per Mox's published docs (retrieved 2026-06-14)</li>
 			<li>Vectis Mail architecture, API surface, update model: <a href="/architecture/overview/">/architecture/overview</a> · <a href="/api/">/api</a> · <a href="/getting-started/installation/">/getting-started/installation</a></li>
 		</ul>
 	</aside>

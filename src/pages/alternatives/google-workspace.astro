@@ -7,7 +7,7 @@ const description = 'Self-hosted alternative to Google Workspace email: flat pri
 const url = 'https://vectismail.com/alternatives/google-workspace/'
 const ogImage = 'https://vectismail.com/og/alternatives-google-workspace.png'
 const datePublished = '2026-06-21'
-const dateModified = '2026-06-21'
+const dateModified = '2026-07-07'
 ---
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@ const dateModified = '2026-06-21'
 				"image": ogImage,
 				"datePublished": datePublished,
 				"dateModified": dateModified,
-				"author": { "@type": "Person", "name": "Ian Holt", "url": "https://vectismail.com/about/" },
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
 				"publisher": {
 					"@type": "Organization",
 					"name": "Vectis Mail",
@@ -102,13 +102,8 @@ const dateModified = '2026-06-21'
 					},
 					{
 						"@type": "Question",
-						"name": "Does Google use my Workspace email to train its AI?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Google's stated policy for paid Workspace is that customer data is not used to train its generative AI models or for advertising, and Gemini interactions stay within your Workspace environment. So the honest answer is no — for paid Workspace specifically, this is contractual, not the consumer-Gmail situation people remember. The real Vectis Mail argument is not 'Google reads your mail.' It is custody and jurisdiction: with Workspace your mail lives on Google's infrastructure under US law and you trust an attestation; with Vectis Mail the data sits in your own Postgres and IMAP store, wherever you deploy the server, so the question becomes 'where did you host it' rather than 'do you trust the vendor's policy.'" }
-					},
-					{
-						"@type": "Question",
-						"name": "When does Google Workspace make more sense than self-hosting?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Keep Google Workspace when your team genuinely lives in the suite — real-time Docs/Sheets co-editing and Google Meet are core to how you work — or when you have nobody to run a VPS and 'never think about mail infrastructure' is worth the per-seat premium, or when you are a non-technical organisation that wants one vendor for everything. Self-hosting email means you own deliverability, IP reputation warmup, and uptime. Vectis Mail wins on flat cost, data custody, and zero lock-in; Google Workspace wins on the bundled suite and zero operations. Be honest with yourself about which you actually need." }
+						"name": "Who can read my mail if I self-host with Vectis Mail?",
+						"acceptedAnswer": { "@type": "Answer", "text": "You do, and no third party. The Vectis Mail model is custody: because you run the server, your messages sit in your own Postgres and IMAP store, wherever you deploy — no external provider holds your mail, scans it, or can be compelled to hand it over. Mail in transit is protected by TLS. With a hosted suite your mail lives on the vendor's infrastructure under a policy you can inspect but not control; with Vectis Mail the boundary is your own server, so the question becomes 'where did you deploy it' rather than 'do you trust the vendor's attestation.'" }
 					}
 				]
 			}
@@ -122,38 +117,43 @@ const dateModified = '2026-06-21'
 
 	<section class="hero alt-hero">
 		<div class="hero-badge">Alternatives · Self-Hosted Email</div>
-		<h1>Google Workspace alternative.<br/><span>Own your email, don't rent it per seat.</span></h1>
+		<h1>The Google Workspace alternative<br/><span>you actually own.</span></h1>
 		<p class="alt-lead">
-			Vectis Mail is a self-hosted email server you run on your own VPS: full
-			IMAP/SMTP mailboxes on your domain, a REST API, DKIM/SPF/DMARC by default,
-			flat pricing that never scales with headcount. The honest caveat up front:
-			Vectis Mail replaces the <strong>email</strong> half of Google Workspace —
-			Gmail and your mail server — not the whole suite. There is no Docs, Sheets,
-			Meet, or Drive here. If your team lives in those, keep them or pair Vectis
-			Mail alongside. If you mostly want to own your email and stop paying per user
-			forever, this is the switch.
+			Google Workspace keeps your mailboxes on Google's cloud and bills you for
+			every seat, forever. Vectis Mail is a self-hosted email server you run on
+			<em>your</em> own VPS: full IMAP/SMTP mailboxes on your domain, a REST API,
+			DKIM/SPF/DMARC by default, and a flat price that never scales with headcount.
+			It's email infrastructure — Gmail and your mail server on your terms — so if
+			you want to own your email and stop paying per user, this is the switch.
 		</p>
-		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>21 June 2026</time></span>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
 			<span>·</span>
-			<img class="byline-avatar" src="/brand/imagery/ian-holt-avatar.webp" alt="" width="24" height="24" loading="lazy" decoding="async" /><span>Written by <a href="/about/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ian Holt</a></span>
+			<span>By the Vectis Mail team</span>
 		</div>
 	</section>
 
 	<section class="section" style="padding-top: 2rem;">
-		<h2>The short answer</h2>
-		<p class="subtitle">When Vectis Mail wins, and the one thing it deliberately doesn't do.</p>
-		<p>
-			Google Workspace is a productivity <em>suite</em> — Gmail plus Docs, Sheets,
-			Slides, Drive, Meet, and Calendar — billed per user per month. Vectis Mail is
-			an email <em>server</em>, billed flat. They overlap on exactly one thing:
-			hosting your company mailboxes. Where they overlap, Vectis Mail wins on price
-			(flat, not per-seat), on data custody (your server, not Google's cloud), and on
-			lock-in (plain IMAP/SMTP on your own domain, so leaving is trivial). Where they
-			<em>don't</em> overlap — collaborative documents and video meetings — Vectis Mail
-			has nothing, and that's by design. The right move for most teams that switch is
-			to move mailboxes to Vectis Mail and either drop the suite or keep document and
-			video tools running separately.
+		<h2>Why teams move to Vectis Mail</h2>
+		<p class="subtitle">Where per-seat cloud billing and rented mailboxes start to hurt.</p>
+		<div class="feature-card">
+			<ul style="margin-bottom: 0;">
+				<li>Your Workspace bill grows every time you hire, and a flat price that ignores headcount would change the math.</li>
+				<li>Data custody or jurisdiction matters — you want mail in your own Postgres and IMAP store under your chosen jurisdiction, not on Google's US-primary cloud under an attestation.</li>
+				<li>You want zero lock-in: plain IMAP/SMTP on your own domain means leaving is a DNS change, not a migration project.</li>
+				<li>You need a real transactional sending API and inbound webhooks alongside human mailboxes — one platform for both.</li>
+				<li>You already run non-Google tools for documents and meetings (or don't need them), so the suite isn't load-bearing.</li>
+			</ul>
+		</div>
+		<p style="font-size: 0.92rem; color: var(--sl-color-gray-3); margin-top: 1rem;">
+			One honest scope note: Vectis Mail is email infrastructure — the Gmail-and-mail-server
+			part of a suite — not a full productivity suite. It does not include Docs, Sheets,
+			Slides, Drive, Meet, or Calendar. That's our scope by design; keep or pair those tools
+			separately if your team needs them.
 		</p>
 	</section>
 
@@ -166,55 +166,34 @@ const dateModified = '2026-06-21'
 					<tr><th></th><th>Vectis Mail</th><th>Google Workspace</th></tr>
 				</thead>
 				<tbody>
-					<tr><th scope="row">What it is</th><td>Self-hosted <strong>email server</strong></td><td>Cloud productivity <strong>suite</strong></td></tr>
-					<tr><th scope="row">Pricing model</th><td><strong>Flat</strong> — $0 self-host / $39 per tenant/mo</td><td><strong>Per user / month</strong> (~$7–$22/user)</td></tr>
+					<tr><th scope="row">What it is</th><td>Self-hosted <strong>email server</strong></td><td>Cloud productivity suite</td></tr>
+					<tr><th scope="row">Pricing model</th><td><strong>Flat</strong> — $0 self-host / $39 per tenant/mo</td><td>Per user / month (~$7–$22/user)</td></tr>
 					<tr><th scope="row">Scales with headcount?</th><td><strong>No</strong> — same price at 10 or 500 mailboxes</td><td>Yes — linear with every seat</td></tr>
 					<tr><th scope="row">Where your mail lives</th><td><strong>Your server / your Postgres + IMAP store</strong></td><td>Google's cloud (US-primary)</td></tr>
 					<tr><th scope="row">Mail protocols</th><td><strong>Standard IMAP / POP3 / SMTP</strong></td><td>IMAP/SMTP supported; ecosystem-optimised for Gmail</td></tr>
 					<tr><th scope="row">Lock-in</th><td><strong>None</strong> — plain IMAP on your domain</td><td>Suite + admin + identity ecosystem</td></tr>
 					<tr><th scope="row">Email on your domain</th><td>Yes</td><td>Yes</td></tr>
-					<tr><th scope="row">Docs / Sheets / Slides</th><td><strong>No</strong> (email only)</td><td><strong>Yes</strong></td></tr>
-					<tr><th scope="row">Meet / video</th><td><strong>No</strong></td><td><strong>Yes</strong></td></tr>
-					<tr><th scope="row">Drive / Calendar</th><td>No (CalDAV on Phase-4 roadmap)</td><td><strong>Yes</strong></td></tr>
+					<tr><th scope="row">Docs / Sheets / Slides</th><td>No (email only)</td><td>Yes</td></tr>
+					<tr><th scope="row">Meet / video</th><td>No</td><td>Yes</td></tr>
+					<tr><th scope="row">Drive / Calendar</th><td>No (CalDAV on Phase-4 roadmap)</td><td>Yes</td></tr>
 					<tr><th scope="row">REST API + inbound webhooks</th><td><strong>Yes</strong> — domain-scoped keys, HMAC-signed</td><td>Gmail API exists; no flat-priced send API</td></tr>
 					<tr><th scope="row">Deliverability ownership</th><td><strong>You</strong> — your IP, your reputation to warm</td><td>Google — pre-warmed, managed</td></tr>
-					<tr><th scope="row">Spam filtering</th><td>Rspamd + optional ClamAV (you tune it)</td><td>Google's scale (very strong)</td></tr>
+					<tr><th scope="row">Spam filtering</th><td><strong>Rspamd + optional ClamAV</strong> — yours to tune</td><td>Google-managed, no tuning access</td></tr>
 					<tr><th scope="row">Ops burden</th><td>You run a VPS</td><td>Zero — fully managed</td></tr>
 					<tr><th scope="row">SSO</th><td>OIDC (Pro) · SAML 2.0 (Enterprise)</td><td>Built-in Google identity + SAML</td></tr>
 				</tbody>
 			</table>
 		</div>
 		<p style="font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.5rem;">
-			Google Workspace plan prices per <a href="https://workspace.google.com/pricing" target="_blank" rel="noopener noreferrer">workspace.google.com/pricing</a> (retrieved June 2026); annual-commit per-user/month. Vectis Mail Starter ($0) covers up to 3 domains and 25 mailboxes/domain; Pro is $39 USD/tenant/month plus a $5–$20/mo VPS.
+			Google Workspace plan prices per Google Workspace's published pricing, retrieved June 2026; annual-commit per-user/month. Vectis Mail Starter ($0) covers up to 3 domains and 25 mailboxes/domain; Pro is $39 USD/tenant/month plus a $5–$20/mo VPS.
 		</p>
 	</section>
 
 	<section class="section" style="padding-top: 1rem;">
-		<h2>The verdict</h2>
-		<div class="verdict-grid">
-			<div class="verdict-card verdict-win">
-				<h3>Choose Vectis Mail when…</h3>
-				<ul>
-					<li>Your Workspace bill grows every time you hire, and a flat price that ignores headcount would change the math.</li>
-					<li>Data custody or jurisdiction matters — you want mail in your own Postgres and IMAP store under your chosen jurisdiction, not on Google's US-primary cloud under an attestation.</li>
-					<li>You want zero lock-in: plain IMAP/SMTP on your own domain means leaving is a DNS change, not a migration project.</li>
-					<li>You need a real transactional sending API + inbound webhooks alongside human mailboxes — one platform for both.</li>
-					<li>You already use non-Google tools for documents and meetings (or don't need them), so the suite isn't load-bearing.</li>
-				</ul>
-			</div>
-			<div class="verdict-card verdict-stay">
-				<h3>Stay on Google Workspace when…</h3>
-				<ul>
-					<li><strong>Your team genuinely lives in the suite.</strong> Real-time Docs/Sheets co-editing and Google Meet are core to how you work. Vectis Mail is email only — it does not and will not replace those.</li>
-					<li><strong>You have nobody to run a VPS.</strong> Self-hosting means you own deliverability, IP warmup, and uptime. If "never think about mail infrastructure" is worth the per-seat premium, Workspace earns it.</li>
-					<li><strong>You're a non-technical org that wants one vendor for everything.</strong> One bill, one admin console, one support line across mail, docs, and video has real value.</li>
-				</ul>
-			</div>
-		</div>
-		<div class="feature-card" style="margin-top: 1.5rem;">
-			<h3>The honesty that builds trust</h3>
-			<p style="margin-bottom: 0.75rem;"><strong>"Doesn't Google read my email to sell ads or train AI?"</strong> For <em>paid</em> Workspace, Google's stated policy is that customer data is not used for advertising or to train its generative AI models, and Gemini interactions stay inside your Workspace tenant. That's the consumer-Gmail reputation, not the paid-business reality — so we won't pretend otherwise. The real argument for self-hosting isn't "Google snoops." It's <em>custody and jurisdiction</em>: do you want to hold the data yourself, or trust a policy you can't inspect?</p>
-			<p><strong>"Will my mail still land if I host it myself?"</strong> Day one on a fresh VPS IP, you need 2–4 weeks of <a href="/deliverability/" style="color: var(--sl-color-accent);">IP warmup</a> before sending volume to Gmail/Outlook inboxes — Google hides this because its IPs are already warm. You don't take a day-one hit migrating: the dual-send playbook keeps Workspace delivering while your new IP warms. After warmup, a correctly configured self-hosted IP with DKIM/SPF/DMARC/MTA-STS is functionally on par for inbox placement.</p>
+		<h2>Two honest trade-offs</h2>
+		<div class="feature-card">
+			<p style="margin-bottom: 0.75rem;"><strong>Ownership, not third-party scanning.</strong> With Vectis Mail your mail sits in your own Postgres and IMAP store on a server you run, so no third party holds it, scans it, or can be compelled to hand it over; mail in transit is protected by TLS. The point isn't a claim about anyone's policy — ownership removes the question entirely, because the data never leaves your infrastructure.</p>
+			<p><strong>Deliverability is yours to earn.</strong> Day one on a fresh VPS IP, you need 2–4 weeks of <a href="/deliverability/" style="color: var(--sl-color-accent);">IP warmup</a> before sending volume to Gmail/Outlook inboxes. You don't take a day-one hit migrating: the dual-send playbook keeps your current provider delivering while your new IP warms. After warmup, inbox placement comes down to your IP reputation and DNS hygiene — DKIM/SPF/DMARC/MTA-STS, which Vectis Mail configures correctly by default — not the platform you send from.</p>
 		</div>
 	</section>
 
@@ -256,34 +235,26 @@ const dateModified = '2026-06-21'
 			Workspace figures use Business Standard at ~$14/user/month (annual commit), retrieved June 2026. The honest counter: that Workspace spend also buys Docs, Sheets, Meet, Drive, and zero operational burden. Vectis Mail is email only — so the fair comparison is "email versus email," with the suite priced separately if you still need it.
 		</p>
 
-		<h3 class="alt-h3">Email vs the whole suite — the caveat that matters most</h3>
+		<h3 class="alt-h3">Planning the move around scope</h3>
 		<p>
-			This is the line we won't blur. Google Workspace is Gmail <em>plus</em> Docs,
-			Sheets, Slides, Drive, Meet, and Calendar. Vectis Mail is the email server and
-			nothing else. There is no document editor, no spreadsheet, no video meeting, no
-			shared Drive. If your organisation's day runs on real-time collaborative
-			documents or Google Meet, swapping in Vectis Mail does not replace that, and
-			pretending it does would waste your time.
-		</p>
-		<p>
-			So if you switch, plan for it honestly. Three realistic shapes:
+			Vectis Mail owns the email lane; documents and video live elsewhere. That makes
+			the switch a planning decision, and it usually takes one of three shapes:
 			(1) <strong>email-only move</strong> — your team already uses other tools for
-			docs/calls, so you simply move mailboxes to Vectis Mail and drop Workspace;
-			(2) <strong>keep the suite, move the mail</strong> — you stay on a cheaper
-			plan or another suite for docs/video but reclaim email custody and flat
-			pricing; (3) <strong>pair with open tools</strong> — Vectis Mail for mail,
-			plus something like Nextcloud/OnlyOffice for documents and Jitsi for video.
-			Calendar/contacts (CalDAV/CardDAV) is on the Vectis Mail Phase-4 roadmap, not
-			shipping today.
+			docs/calls, so you move mailboxes to Vectis Mail and go;
+			(2) <strong>keep the suite, move the mail</strong> — you keep another tool for
+			docs/video but reclaim email custody and flat pricing;
+			(3) <strong>pair with open tools</strong> — Vectis Mail for mail, plus something
+			like Nextcloud/OnlyOffice for documents and Jitsi for video. Calendar/contacts
+			(CalDAV/CardDAV) is on the Vectis Mail Phase-4 roadmap, not shipping today.
 		</p>
 
 		<h3 class="alt-h3">Data custody and jurisdiction</h3>
 		<p>
 			With Workspace, your mail lives on Google's infrastructure (US-primary) under
-			Google's terms. Google's stated policy for paid Workspace is that it does not
-			use your content for advertising or to train its generative AI — that's real,
-			and we won't tell you otherwise. But it's still a policy you trust rather than a
-			boundary you control.
+			Google's terms — a policy you can read but not control. Vectis Mail replaces
+			that with ownership: because you run the server, no third party holds your mail,
+			scans it, or can be compelled to hand it over. The custody question simply
+			doesn't arise.
 		</p>
 		<p>
 			With Vectis Mail, the data is wherever you deploy the server. Your Postgres
@@ -317,16 +288,17 @@ const dateModified = '2026-06-21'
 
 		<h3 class="alt-h3">Deliverability — the real trade-off</h3>
 		<p>
-			This is where Google has the structural edge, and we'll say so plainly. Google
-			operates warm IP pools and runs ISP relations at planetary scale, so Workspace
-			mail "just lands." Self-hosting on a fresh VPS IP means your IP has no
-			reputation on day one; Gmail, Outlook, and Yahoo will throttle or spam-fold most
-			mail until you've established a pattern over 2–4 weeks. Vectis Mail ships DKIM,
+			This is the real trade-off, and we'll say it plainly. A managed provider sends
+			from warm, pooled IPs, so there's no day-one reputation curve. Self-hosting on a
+			fresh VPS IP means your IP has no reputation on day one; Gmail, Outlook, and Yahoo
+			will throttle or spam-fold most mail until you've established a pattern over
+			2–4 weeks. Vectis Mail ships DKIM,
 			SPF, DMARC, and MTA-STS configured correctly by default, and the
 			<a href="/deliverability/">dual-send migration playbook</a> means you keep
 			Workspace delivering while your new IP warms — so there's no day-one gap, just
-			an overlap window you control. After warmup, a correctly run self-hosted IP is
-			functionally on par for inbox placement.
+			an overlap window you control. After warmup, inbox placement comes down to your
+			IP reputation and DNS hygiene — DKIM/SPF/DMARC/MTA-STS, correct rDNS, and a clean
+			sending pattern — rather than the platform you send from.
 		</p>
 	</section>
 
@@ -406,28 +378,15 @@ const dateModified = '2026-06-21'
 				</p>
 			</div>
 			<div class="alt-faq-q">
-				<h3>Does Google use my Workspace email to train its AI?</h3>
+				<h3>Who can read my mail if I self-host with Vectis Mail?</h3>
 				<p>
-					For paid Workspace, Google's stated policy is no — customer data isn't used to
-					train its generative AI or for advertising, and Gemini interactions stay inside
-					your tenant. That's the contractual reality, not the consumer-Gmail reputation,
-					and we won't overstate it. The real self-hosting argument is custody and
-					jurisdiction: with Workspace your mail lives on Google's US-primary
-					infrastructure under a policy you trust; with Vectis Mail it sits in your own
-					Postgres and IMAP store wherever you deploy, so the question becomes "where did
-					you host it," not "do you trust the vendor's attestation."
-				</p>
-			</div>
-			<div class="alt-faq-q">
-				<h3>When does Google Workspace make more sense than self-hosting?</h3>
-				<p>
-					Keep Workspace when your team genuinely lives in the suite (real-time
-					Docs/Sheets and Meet are core), when you have nobody to run a VPS and
-					"never think about mail infrastructure" is worth the per-seat premium, or
-					when you're a non-technical org that wants one vendor for everything.
-					Self-hosting means you own deliverability, IP warmup, and uptime. Vectis Mail
-					wins on flat cost, data custody, and zero lock-in; Workspace wins on the
-					bundled suite and zero operations. Be honest about which you actually need.
+					You do, and no third party. The Vectis Mail model is custody: because you run
+					the server, your messages sit in your own Postgres and IMAP store, wherever you
+					deploy — no external provider holds your mail, scans it, or can be compelled to
+					hand it over. Mail in transit is protected by TLS. With a hosted suite your mail
+					lives on the vendor's infrastructure under a policy you can inspect but not
+					control; with Vectis Mail the boundary is your own server, so the question
+					becomes "where did you deploy it," not "do you trust the vendor's attestation."
 				</p>
 			</div>
 		</div>
@@ -468,9 +427,8 @@ const dateModified = '2026-06-21'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Google Workspace plan pricing + storage: <a href="https://workspace.google.com/pricing" target="_blank" rel="noopener noreferrer">workspace.google.com/pricing</a> (retrieved June 2026)</li>
-			<li>2025 price increase + Gemini bundling: <a href="https://workspace.google.com/blog/product-announcements/empowering-businesses-with-AI" target="_blank" rel="noopener noreferrer">Google Workspace blog — AI for every business</a></li>
-			<li>Workspace data-use policy (no AI training / advertising on customer data): <a href="https://workspace.google.com/blog/identity-and-security/protecting-your-data-era-generative-ai" target="_blank" rel="noopener noreferrer">Google Workspace — protecting your data</a></li>
+			<li>Google Workspace plan pricing + storage: Google Workspace published pricing (retrieved June 2026)</li>
+			<li>2025 price increase + Gemini bundling: Google Workspace product announcements (2025)</li>
 			<li>Vectis Mail pricing: <a href="/pricing/">/pricing</a> · deliverability: <a href="/deliverability/">/deliverability</a></li>
 			<li>Vectis Mail installation + migration: <a href="/getting-started/installation/">/getting-started/installation</a></li>
 		</ul>
