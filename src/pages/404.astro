@@ -1,0 +1,51 @@
+---
+import "../styles/custom.css"
+import SiteFooter from "../components/SiteFooter.astro"
+import SiteNav from "../components/SiteNav.astro"
+const title = 'Page not found (404) — Vectis Mail'
+const description = 'That page could not be found. Head back to the Vectis Mail homepage, or jump to pricing, features, or support.'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Vectis Mail" />
+	<meta name="theme-color" content="#0C0C0D" />
+	<meta name="robots" content="noindex, follow" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="section" style="max-width: 640px;">
+		<h1>Page not found</h1>
+		<p class="subtitle">We couldn't find the page you were after. It may have moved, or the link that brought you here might be out of date.</p>
+
+		<div class="feature-card" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+			<h3 style="margin-top: 0;">Where to next</h3>
+			<ul style="margin-top: 0.75rem; margin-bottom: 0; line-height: 1.9;">
+				<li><a href="/" style="color: var(--sl-color-accent);">Homepage</a> — what Vectis Mail is and who it's for</li>
+				<li><a href="/features/" style="color: var(--sl-color-accent);">Features</a> — the full capability list</li>
+				<li><a href="/pricing/" style="color: var(--sl-color-accent);">Pricing</a> — plans and what's included</li>
+				<li><a href="/getting-started/" style="color: var(--sl-color-accent);">Documentation</a> — install and setup guides</li>
+				<li><a href="/contact/" style="color: var(--sl-color-accent);">Contact</a> — get in touch with the team</li>
+			</ul>
+		</div>
+
+		<a href="/" class="btn-primary" style="display: inline-block;">Back to vectismail.com</a>
+	</section>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>
