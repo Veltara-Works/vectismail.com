@@ -215,9 +215,7 @@ const dateModified = '2026-07-07'
 			inbound parsing.
 		</p>
 		<p>
-			SendGrid's API is mature, has SDKs in every language, and has 15+ years of
-			documentation + Stack Overflow answers behind it. Vectis Mail's API is
-			younger but covers the same ground; see the <a href="/api/">API Reference</a>
+			SendGrid and Vectis Mail both use an API; see the <a href="/api/">API Reference</a>
 			for the full surface. Migration from SendGrid is mostly mechanical: replace
 			the <code>sg.send()</code> call with an HTTP POST, map webhook event field
 			names (the shape is similar but not identical), re-create templates.
@@ -253,7 +251,7 @@ const dateModified = '2026-07-07'
 
 		<h3 class="alt-h3">Deliverability</h3>
 		<p>
-			This is the real trade-off: SendGrid maintains warm IP pools, has
+			One trade-off: SendGrid maintains warm IP pools, has
 			ISP relations staff, and runs blocklist removal at scale. Self-hosting on a
 			fresh VPS IP means your IP has no reputation on day one: Google, Microsoft,
 			and Yahoo will throttle or spam-fold most mail until you've established a
