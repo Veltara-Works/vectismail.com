@@ -240,12 +240,10 @@ const dateModified = '2026-07-07'
 			inbound parsing.
 		</p>
 		<p>
-			Postmark's API is mature, has SDKs in every major language, and has 15 years of
-			documentation + community knowledge behind it. Vectis Mail's API is younger but
-			covers the same ground; see the <a href="/api/">API Reference</a> for the full
-			surface. Migration is mostly mechanical: replace the Postmark SDK call with an HTTP
-			POST, re-map webhook field names (similar shape, different keys), re-create
-			templates locally.
+			Postmark and Vectis Mail both use an API; see the <a href="/api/">API Reference</a>
+			for the full surface. Migration is mostly mechanical: replace the Postmark SDK call
+			with an HTTP POST, re-map webhook field names (similar shape, different keys),
+			re-create templates locally.
 		</p>
 
 		<h3 class="alt-h3">Message-stream separation</h3>
@@ -296,7 +294,7 @@ const dateModified = '2026-07-07'
 		<p>
 			Postmark stores email content + metadata on US-primary infrastructure. Postmark
 			itself was acquired by ActiveCampaign, whose strategic focus is marketing automation
-			rather than transactional infrastructure. The product is still well-maintained today,
+			rather than transactional infrastructure. The product is still maintained today,
 			but the roadmap depends on a parent company whose primary business is elsewhere.
 			That's worth weighing if you're planning a multi-year infrastructure bet.
 		</p>
