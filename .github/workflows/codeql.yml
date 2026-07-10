@@ -1,0 +1,45 @@
+name: CodeQL
+
+# Advanced CodeQL setup for the marketing site — replaces the managed "default
+# setup" so scanning runs on PULL REQUESTS + a WEEKLY sweep only, NOT on every
+# push to main (the org shares one 3,000-min/month Actions pool). Scopes to the
+# client-side JavaScript/TypeScript — dropping the default setup's redundant
+# python/javascript/typescript language jobs on a mostly-static Astro site.
+#
+# ⚠️ To take effect, DISABLE the managed default setup first:
+#   repo Settings → Code security → CodeQL analysis → switch off "Default setup".
+# The two configurations cannot both be active.
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    # Mondays 16:07 UTC — weekly full sweep.
+    - cron: '7 16 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  # Cancel superseded PR runs; let the weekly sweep complete.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+  security-events: write   # upload results to the Security tab
+
+jobs:
+  analyze:
+    name: Analyze (javascript-typescript)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: /language:javascript-typescript
