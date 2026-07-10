@@ -9,12 +9,9 @@ name: npm audit
 # transitive issue without a pin-breaking bump), while CRITICAL blocks.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/npm-audit.yml'
+  # PR gate + weekly sweep (shared-org Actions minute pool). Deploys are
+  # wrangler-native and not driven by this workflow, so the push-to-main run
+  # was redundant with the PR run and the weekly schedule below.
   pull_request:
     branches: [main]
     paths:
@@ -25,6 +22,11 @@ on:
     # Mondays 15:41 UTC — surface newly-disclosed advisories.
     - cron: '41 15 * * 1'
   workflow_dispatch:
+
+concurrency:
+  # Cancel superseded PR runs; let scheduled sweeps complete.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
