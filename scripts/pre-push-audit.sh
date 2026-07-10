@@ -46,7 +46,7 @@ gate(){
   local name="$1"; shift
   local advisory=0
   if [ "${1:-}" = "--advisory" ]; then advisory=1; shift; fi
-  [ "$1" = "--" ] && shift
+  [ "${1:-}" = "--" ] && shift
   printf '%s▶ %s%s\n' "$B" "$name" "$Z"
   local out rc
   out="$("$@" 2>&1)"; rc=$?
@@ -73,9 +73,12 @@ secret_scan(){
 if command -v gitleaks >/dev/null 2>&1; then gate "gitleaks secret scan" -- secret_scan
 else skip "gitleaks secret scan" "gitleaks not installed"; fi
 
-# ensure deps present (quiet) before the build/check gates
+# ensure deps present before the build/check gates. Suppress only stdout
+# progress noise — keep stderr visible and fail hard, so a real dependency
+# problem surfaces here instead of as a confusing build error two gates later.
 if [ ! -d node_modules ]; then
-  echo "${D}installing deps (npm ci)...${Z}"; npm ci >/dev/null 2>&1 || true
+  echo "${D}installing deps (npm ci)...${Z}"
+  npm ci >/dev/null || { echo "${R}npm ci failed — fix dependencies before re-running.${Z}" >&2; exit 1; }
 fi
 
 # 2) astro build — types, imports, content collections, MDX (hard gate)
