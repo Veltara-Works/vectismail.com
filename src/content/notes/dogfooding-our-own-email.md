@@ -1,6 +1,6 @@
 ---
 title: "We run our own email on Vectis Mail"
-description: "Before we asked anyone else to trust Vectis Mail with their email, we moved our own onto it — every domain we operate, the licensing path, and the forms on this very site. Here's what running it in production taught us."
+description: "Before asking anyone to trust Vectis Mail with their email, we moved our own onto it — every domain, the licensing path, and the forms on this very site."
 pubDate: 2026-06-08
 excerpt: "There are no customer logos to show you yet. So here's the next best proof: every piece of email infrastructure Veltara Works depends on already runs on Vectis Mail."
 ---

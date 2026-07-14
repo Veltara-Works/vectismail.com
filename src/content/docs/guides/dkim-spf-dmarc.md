@@ -1,6 +1,6 @@
 ---
 title: "SPF, DKIM & DMARC: The Complete Email Authentication Guide (2026)"
-description: "SPF, DKIM, and DMARC explained — how the three email-authentication standards work together, copy-paste DNS records, recommended TTLs, the Gmail/Yahoo bulk-sender rules, and how to check every record passes."
+description: "SPF, DKIM and DMARC explained: how the three standards work together, copy-paste DNS records, the Gmail/Yahoo bulk-sender rules, and how to verify each."
 lastUpdated: 2026-06-21
 faq:
   - q: "What's the difference between SPF, DKIM, and DMARC?"

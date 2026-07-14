@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting"
-description: "Common issues and solutions for Vectis Mail. Diagnose mail delivery failures, spam classification, TLS certificate problems, authentication errors, DNS misconfigurations, Postfix queue issues, Dovecot connection failures, and container crashes."
+description: "Troubleshoot Vectis Mail: diagnose delivery failures, spam classification, TLS and auth errors, DNS issues, Postfix queue problems, and Dovecot failures."
 ---
 
 This guide covers the most common issues you will encounter running a Vectis Mail server, with concrete diagnostic steps and solutions. Start with [checking service health](#checking-service-health), then find your specific issue below.

@@ -1,6 +1,6 @@
 ---
 title: "Self-Hosted Email vs Google Workspace & Microsoft 365: Cost & Control (2026)"
-description: "An honest 2026 cost-and-control comparison of self-hosted email versus Google Workspace and Microsoft 365 — the real per-seat math, where the lines cross, the 2025–2026 price increases, and when each option actually makes sense."
+description: "Self-hosted email vs Google Workspace and Microsoft 365 in 2026: the per-seat math, where the lines cross, the 2025-2026 price rises, and when each option wins."
 lastUpdated: 2026-06-14
 faq:
   - q: "Is self-hosted email cheaper than Google Workspace or Microsoft 365?"

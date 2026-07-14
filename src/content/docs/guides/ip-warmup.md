@@ -1,6 +1,6 @@
 ---
 title: "IP Warmup for New Mail Servers"
-description: "A complete guide to IP warmup for new mail servers. Learn why warmup matters, follow Vectis Mail's 30-day warmup schedule, use the warmup API, monitor progress, and avoid common mistakes that damage sender reputation."
+description: "A complete guide to IP warmup for new mail servers: why it matters, Vectis Mail's 30-day schedule, the warmup API, monitoring progress, and mistakes to avoid."
 faq:
   - q: "How long does email IP warmup take?"
     a: "Vectis Mail's built-in warmup runs 30 days, starting at 50 messages/day and ramping to 200,000/day, holding each level for two days to establish a consistent pattern. After day 30 the warmup auto-completes and sending limits are removed."

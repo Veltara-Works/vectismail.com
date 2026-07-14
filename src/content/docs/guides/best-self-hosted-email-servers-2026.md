@@ -1,6 +1,6 @@
 ---
 title: "Best Self-Hosted Email Servers in 2026: An Honest 8-Way Comparison"
-description: "An honest 2026 comparison of the 8 best self-hosted email servers and email server software — Mailcow, iRedMail, Mail-in-a-Box, Mailu, docker-mailserver, Stalwart, Mox and Vectis Mail — with a clear pick for each buyer type: teams, agencies, individuals, developers and Exchange replacement."
+description: "Honest 2026 comparison of the 8 best self-hosted email servers — Mailcow, Stalwart, iRedMail — with a clear pick for your team, agency or personal setup."
 lastUpdated: 2026-06-21
 faq:
   - q: "What is the best self-hosted email server in 2026?"

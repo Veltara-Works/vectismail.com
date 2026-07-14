@@ -1,6 +1,6 @@
 ---
 title: "TLS Certificates"
-description: "How Vectis Mail provisions TLS certificates: a single Let's Encrypt certificate issued by Traefik over HTTP-01, automatically mirrored to Postfix and Dovecot, plus custom (bring-your-own) certificates and TLS 1.2+ enforcement across SMTP, IMAP, POP3, and HTTPS."
+description: "How Vectis Mail issues TLS certificates: automatic Let's Encrypt via Traefik, mirrored to Postfix and Dovecot, plus bring-your-own certs and TLS 1.2+."
 faq:
   - q: "Does Vectis Mail handle TLS certificates automatically?"
     a: "Yes. By default Traefik issues a single Let's Encrypt certificate for your mail hostname over the HTTP-01 challenge and renews it automatically. A small cert-extractor sidecar mirrors that certificate into the mail-certs volume so Postfix and Dovecot (SMTP/IMAP/POP3) serve the same cert, reloading them whenever it rotates — no manual intervention."

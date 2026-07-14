@@ -1,6 +1,6 @@
 ---
 title: Release Highlights
-description: A curated tour of what has shipped in Vectis Mail since general availability — spam filtering, backup & DR, native migration, SSO, and the security-hardening and supply-chain work behind the current release.
+description: "What's shipped in Vectis Mail since GA: spam filtering, backup & DR, native migration, SSO, plus the security and supply-chain hardening in this release."
 ---
 
 Vectis Mail ships on a fast, steady cadence. This page is a **curated tour of the

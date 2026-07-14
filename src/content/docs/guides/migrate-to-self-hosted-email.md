@@ -1,6 +1,6 @@
 ---
 title: "How to Migrate to a Self-Hosted Email Server Without Downtime (2026)"
-description: "A step-by-step 2026 guide to migrating email to a self-hosted server with zero downtime — the dual-send overlap, syncing mailboxes with imapsync, handling SPF/DKIM/DMARC during cutover, and the MX switch. Plus provider-specific notes for SendGrid, Google Workspace, Microsoft 365, mailcow and iRedMail."
+description: "Migrate email to a self-hosted server in 2026 with zero downtime: the dual-send overlap, imapsync mailbox sync, SPF/DKIM/DMARC, and the MX cutover."
 lastUpdated: 2026-06-14
 faq:
   - q: "Can I migrate email to a self-hosted server without downtime?"

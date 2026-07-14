@@ -1,6 +1,6 @@
 ---
 title: "Should You Self-Host Email? The 2026 Decision Guide"
-description: "An honest 2026 decision guide for self-hosting email. TCO math vs SendGrid, Postmark, Mailgun and Google Workspace; the real deliverability bar; when SaaS still wins; when self-hosting wins; and the minimum viable self-host stack."
+description: "An honest 2026 guide to self-hosting email: TCO vs SendGrid, Postmark and Google Workspace, the deliverability bar, when SaaS wins, and the minimal stack."
 lastUpdated: 2026-06-21
 faq:
   - q: "Is self-hosting email illegal in 2026?"

@@ -1,6 +1,6 @@
 ---
 title: "Where Are Mailcow's DKIM Keys? Finding, Backing Up & Fixing DKIM Signing"
-description: "Modern mailcow stores DKIM private keys in Redis, not in /data/dkim — which is why migrations and backups break signing. Here's exactly where the keys live, how to export them, and how to fix the most common mailcow DKIM signing failures."
+description: "Modern mailcow stores DKIM keys in Redis, not /data/dkim — which breaks backups and signing. Where they live, how to export them, and how to fix signing errors."
 lastUpdated: 2026-06-14
 faq:
   - q: "Where does mailcow store DKIM keys?"

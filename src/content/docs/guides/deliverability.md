@@ -1,6 +1,6 @@
 ---
 title: "Email Deliverability Best Practices"
-description: "A comprehensive guide to email deliverability for self-hosted mail servers. Covers DNS authentication, IP reputation management, content best practices, bounce handling, FBL processing, RBL monitoring, and using the Vectis deliverability dashboard."
+description: "Email deliverability for self-hosted mail servers: DNS authentication, IP reputation, bounce handling, FBL/RBL monitoring, and the Vectis dashboard."
 faq:
   - q: "What's a good bounce rate and complaint rate for a self-hosted mail server?"
     a: "Keep your hard bounce rate below 2% (below 1% during IP warmup) and your spam-complaint rate below 0.1% — about one complaint per 1,000 messages. Remove hard-bouncing addresses immediately, and drop anyone who files a spam complaint from all future mail."

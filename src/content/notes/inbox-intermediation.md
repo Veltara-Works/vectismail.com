@@ -1,6 +1,6 @@
 ---
 title: "The other half of the email intermediation problem"
-description: "Jacques Corby-Tuech documented how Google, Yahoo, Microsoft and Apple have turned inboxes into parsers. The conversation has focused on senders. Here's what it means if you receive email — and what self-hosting actually changes."
+description: "Google, Yahoo, Microsoft and Apple turned inboxes into parsers. Here's what that means if you receive email — and what self-hosting actually changes."
 pubDate: 2026-05-26
 excerpt: "The deliverability-focused conversation is incomplete. Provider-side ML now decides what you see when you receive email too — and that side is the part you can actually do something about."
 ---

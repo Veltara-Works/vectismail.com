@@ -1,6 +1,6 @@
 ---
 title: "Self-Hosted Email for Small Business: The 2026 Guide"
-description: "A practical 2026 guide to self-hosted email for small businesses and startups: what it actually costs vs Google Workspace and Microsoft 365, the deliverability bar, how much ops time it really takes, when to stay on SaaS, and a defensible starter stack."
+description: "Self-hosted email for small business in 2026: real costs vs Google Workspace and Microsoft 365, the deliverability bar, and a defensible starter stack."
 lastUpdated: 2026-06-16
 faq:
   - q: "Is self-hosted email a good idea for a small business in 2026?"

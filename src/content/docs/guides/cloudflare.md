@@ -1,6 +1,6 @@
 ---
 title: "Cloudflare Integration"
-description: "How to use Cloudflare DNS with Vectis Mail. Covers MX and mail hostname records (DNS-only mode), SPF/DKIM/DMARC TXT records, how automatic HTTP-01 TLS issuance works behind Cloudflare, and common Cloudflare configuration mistakes."
+description: "Using Cloudflare DNS with Vectis Mail: MX and mail-hostname records (DNS-only), SPF/DKIM/DMARC, how HTTP-01 TLS works behind Cloudflare, and mistakes to avoid."
 faq:
   - q: "Can I run a self-hosted mail server behind Cloudflare?"
     a: "Yes for your website and the admin/API over HTTPS, but the mail records themselves must be DNS-only (grey cloud), never proxied (orange cloud). SMTP, IMAP, and POP3 aren't HTTP and can't pass through Cloudflare's proxy, so proxying the mail hostname breaks delivery."
