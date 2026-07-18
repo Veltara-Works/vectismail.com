@@ -11,12 +11,12 @@
     "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.39.3",
-    "astro": "6.4.8",
+    "@astrojs/starlight": "^0.41.3",
+    "astro": "7.1.1",
     "sharp": "^0.35.3"
   },
   "overrides": {
-    "vite": "^7.3.5",
+    "vite": "^8.0.13",
     "js-yaml": "^4.2.0",
     "postcss": "^8.5.15",
     "devalue": "^5.8.1"
