@@ -32,6 +32,15 @@ export default defineConfig({
 			description: 'Self-hosted email platform with declarative config, sending API, and enterprise features.',
 			lastUpdated: true,
 			favicon: '/favicon.svg',
+			// Starlight 0.41 ships its own built-in /404 route, which collides
+			// with our branded src/pages/404.astro (SiteNav/SiteFooter, noindex).
+			// Disable Starlight's so ours wins — without this Astro 7 warns on the
+			// static-route collision (and future majors hard-error on it).
+			disable404Route: true,
+			// The newer Shiki bundled by Starlight 0.41 dropped the `dns` grammar,
+			// so our ```dns zone-record fences fall back to txt and spam build
+			// warnings. Alias `dns` to plaintext to render cleanly and silence them.
+			expressiveCode: { shiki: { langAlias: { dns: 'plaintext' } } },
 			head: [
 				{
 					tag: 'link',
