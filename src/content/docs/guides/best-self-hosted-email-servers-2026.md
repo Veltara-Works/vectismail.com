@@ -1,6 +1,6 @@
 ---
-title: "Best Self-Hosted Email Servers in 2026: An Honest 8-Way Comparison"
-description: "Honest 2026 comparison of the 8 best self-hosted email servers — Mailcow, Stalwart, iRedMail — with a clear pick for your team, agency or personal setup."
+title: "Best Self-Hosted Email Servers 2026: 8 Compared, 1 Pick"
+description: "Which self-hosted email server should you actually run in 2026? A straight comparison of 8 options — mailboxes, sending API, ops burden — with one clear pick."
 lastUpdated: 2026-06-21
 faq:
   - q: "What is the best self-hosted email server in 2026?"
