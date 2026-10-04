@@ -1,0 +1,31 @@
+---
+// "Latest release: v0.1.49 · 4 October 2026". Rendered under the copyright
+// line in both the marketing footer (SiteFooter) and the docs footer (Footer).
+// Data comes from the release manifest at build time; renders nothing if the
+// manifest couldn't be read.
+import { getLatestRelease, formatReleaseDate } from '../lib/latest-release'
+
+const release = await getLatestRelease()
+---
+{release && (
+	<span class="release-line">
+		{/* explicit spaces: compressHTML strips the whitespace between inline elements */}
+		Latest release:{' '}
+		<a href={release.notesUrl} target="_blank" rel="noopener noreferrer">{release.version}</a>
+		{' '}&middot;{' '}
+		<time datetime={release.releasedAt.toISOString().slice(0, 10)}>{formatReleaseDate(release.releasedAt)}</time>
+	</span>
+)}
+
+<style>
+	.release-line {
+		display: block;
+		margin-top: 0.3rem;
+		opacity: 0.85;
+	}
+	.release-line a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+</style>

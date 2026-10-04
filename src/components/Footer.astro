@@ -3,6 +3,7 @@
 // Adds a site-wide footer with links matching the marketing pages.
 import type { Props } from '@astrojs/starlight/props'
 import SubscribeForm from './SubscribeForm.astro'
+import ReleaseLine from './ReleaseLine.astro'
 
 // Author byline on narrative content (guides + getting-started tutorials),
 // not on reference docs (API / CLI / architecture). A3 (AI-SEO): visible
@@ -32,7 +33,10 @@ const captureSource = slug ? `docs:${slug}` : 'docs'
 </div>
 <footer class="doc-footer">
 	<div class="doc-footer-inner">
-		<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
+		<span>
+			&copy; 2026 Veltara Works&trade;. All rights reserved.
+			<ReleaseLine />
+		</span>
 		<nav>
 			<a href="/">Home</a>
 			<a href="/features/">Features</a>

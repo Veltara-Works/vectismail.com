@@ -4,11 +4,15 @@
 // The product-updates capture lives in the shared <SubscribeForm> component
 // (double opt-in via /api/subscribe), reused by the docs footer too.
 import SubscribeForm from "./SubscribeForm.astro"
+import ReleaseLine from "./ReleaseLine.astro"
 ---
 <SubscribeForm source="footer" />
 
 <footer class="footer">
-	<span>&copy; 2026 Veltara Works&trade;. All rights reserved.</span>
+	<span>
+		&copy; 2026 Veltara Works&trade;. All rights reserved.
+		<ReleaseLine />
+	</span>
 	<div>
 		<a href="/getting-started/">Docs</a> &nbsp;&middot;&nbsp;
 		<a href="/deliverability/">Deliverability</a> &nbsp;&middot;&nbsp;
