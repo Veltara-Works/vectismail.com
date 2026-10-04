@@ -52,7 +52,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 		"featureList": [
 			"Postfix MTA (inbound + outbound SMTP)",
 			"Dovecot IMAP/POP3/LMTP with ManageSieve",
-			"Rspamd spam filtering (Bayes + neural)",
+			"Rspamd spam filtering (self-learning Bayes classifier)",
 			"ClamAV antivirus (optional, profile-gated)",
 			"REST sending API + batch sending (up to 100 messages per call)",
 			"Inbound webhooks (HMAC-SHA256 signed, exponential-backoff retry)",
@@ -105,7 +105,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 		<div class="feature-grid">
 			<div class="feature-card"><h3>Postfix MTA</h3><p>Battle-tested mail transfer agent handling inbound and outbound SMTP. Virtual domain hosting with SQL-driven lookups — no config reload needed when adding domains or mailboxes.</p></div>
 			<div class="feature-card"><h3>Dovecot IMAP/POP3</h3><p>IMAP and POP3 access with SSL/TLS, Argon2id password hashing, per-mailbox quotas, and LMTP delivery. ManageSieve for server-side filter rules.</p></div>
-			<div class="feature-card"><h3>Rspamd Spam Filtering</h3><p>ML-based spam detection with Bayes classifier, neural network training, DKIM verification, SPF checks, greylisting, and configurable score thresholds.</p></div>
+			<div class="feature-card"><h3>Rspamd Spam Filtering</h3><p>Spam detection with a self-learning Bayes classifier, DKIM verification, SPF checks, greylisting, and configurable score thresholds.</p></div>
 			<div class="feature-card"><h3>ClamAV Antivirus</h3><p>Optional antivirus scanning for inbound mail. Profile-gated — enable it in config.yaml when you need it, omit the container when you don't.</p></div>
 		</div>
 	</section>
@@ -203,7 +203,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 				<tbody>
 					<tr><td>Postfix MTA (inbound + outbound SMTP)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Dovecot IMAP / POP3 / ManageSieve</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-					<tr><td>Rspamd spam filtering (Bayes + neural)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Rspamd spam filtering (Bayes classifier)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>ClamAV antivirus (optional)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Sending API + batch sending</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Inbound webhooks (HMAC-signed)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>

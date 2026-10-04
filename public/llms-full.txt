@@ -61,7 +61,7 @@ VPS, no Docker, no ClickHouse).
 - `orchestrator` — Go binary, the update orchestrator (holds Docker socket)
 - `postfix` — MTA (inbound + outbound SMTP)
 - `dovecot` — IMAP/POP3/LMTP + ManageSieve
-- `rspamd` — spam filtering with Bayes + neural ML
+- `rspamd` — spam filtering with a self-learning Bayes classifier
 - `clamav` — antivirus (optional; profile-gated)
 - `postgres` — main database (domains, mailboxes, messages, audit log)
 - `valkey` — cache + session store (Redis-compatible fork)
@@ -101,8 +101,8 @@ certificates (bring your own) are also supported via `tls.provider: custom`.
 - **Dovecot IMAP/POP3** — IMAP and POP3 access with SSL/TLS, Argon2id
   password hashing, per-mailbox quotas, and LMTP delivery. ManageSieve for
   server-side filter rules.
-- **Rspamd spam filtering** — ML-based detection with Bayes classifier,
-  neural network training, DKIM verification, SPF checks, greylisting, and
+- **Rspamd spam filtering** — detection with a self-learning Bayes classifier,
+  DKIM verification, SPF checks, greylisting, and
   configurable score thresholds.
 - **ClamAV antivirus** — Optional. Profile-gated: enable in `config.yaml`
   when needed, omit the container when you don't.

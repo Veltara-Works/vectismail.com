@@ -360,7 +360,7 @@ free -h
 |---------|-------------|-------|
 | Postfix | 30-80 MB | Increases with queue size |
 | Dovecot | 50-200 MB | Scales with concurrent IMAP connections |
-| Rspamd | 200-500 MB | Neural network and Bayes classifier |
+| Rspamd | 200-500 MB | Rules, maps and per-message scoring (Bayes statistics live in Valkey) |
 | ClamAV | 800 MB - 1.5 GB | Virus signature database |
 | Postgres | 100-300 MB | Depends on shared_buffers config |
 | Valkey | 30-100 MB | Depends on cached data |
@@ -402,7 +402,7 @@ docker logs vectis-postfix --tail 200
 |-----------|---------------------|----------|
 | Postfix | Invalid `main.cf` configuration | Run `vectis config validate` and fix errors |
 | Dovecot | Missing TLS certificate | Ensure Traefik has issued the cert and the cert-extractor has mirrored it |
-| Rspamd | Corrupted neural network data | Delete Rspamd data volume and restart |
+| Rspamd | Invalid custom Lua or `local.d` config | Check `docker logs vectis-rspamd`, then `docker exec vectis-rspamd rspamadm configtest` |
 | ClamAV | Out of memory during signature update | Increase memory limits or disable ClamAV |
 | Postgres | Corrupted data files | Restore from backup: `vectis backup restore` |
 
