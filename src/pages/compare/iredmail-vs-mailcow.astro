@@ -1,0 +1,377 @@
+---
+import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
+const title = 'iRedMail vs Mailcow (2026) — Which Self-Hosted Mail Server?'
+const description = "iRedMail and Mailcow compared: OS-native vs Docker, OpenLDAP vs none, SOGo groupware, updates, and pricing — plus where a third option, Vectis Mail, fits in."
+const url = 'https://vectismail.com/compare/iredmail-vs-mailcow/'
+const ogImage = 'https://vectismail.com/og/compare-iredmail-vs-mailcow.png'
+const datePublished = '2026-10-04'
+const dateModified = '2026-10-04'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="iRedMail vs Mailcow — self-hosted mail server comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "iRedMail vs Mailcow", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "iRedMail vs Mailcow",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.webp" }
+				}
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is iRedMail or Mailcow better?",
+						"acceptedAnswer": { "@type": "Answer", "text": "It depends on your constraints, not on which is objectively better. Choose iRedMail if you can't run Docker, need an OpenLDAP backend, or deploy to FreeBSD/OpenBSD. Choose Mailcow if you want a Docker-based stack with a polished web UI and SOGo calendar/contacts bundled in. Both build on the same Postfix + Dovecot core, so mail delivery itself is comparably solid either way — the real decision is deployment model and admin surface, not mail quality." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does iRedMail or Mailcow use Docker?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Mailcow is Docker-only — it ships as mailcow-dockerized, a compose stack of 25+ services. iRedMail is OS-native: its installer script lays Postfix, Dovecot, Roundcube, Nginx, Fail2ban, and SpamAssassin directly onto the host, with no container runtime involved. If your environment prohibits Docker, iRedMail is the one that fits; if you want everything isolated and restartable independently, Mailcow's containers do that." }
+					},
+					{
+						"@type": "Question",
+						"name": "Which has calendar and contacts (CalDAV/CardDAV)?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Mailcow bundles SOGo by default, so calendar and contacts work out of the box. iRedMail can also run SOGo, but it's an optional add-on to the base install rather than a default component — so Mailcow gets you there with fewer steps if groupware is a requirement from day one." }
+					},
+					{
+						"@type": "Question",
+						"name": "Do either have a transactional sending API?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Neither iRedMail nor Mailcow ships a REST API for programmatic sending, inbound webhooks, or per-domain analytics — both are classic mailbox-hosting stacks where the only way to send mail programmatically is SMTP submission with a mailbox's own credentials. If you need a sending API alongside mailbox hosting, that's the gap a platform like Vectis Mail is built to close." }
+					},
+					{
+						"@type": "Question",
+						"name": "What's a third option if neither iRedMail nor Mailcow fits?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is a Docker-based self-hosted mail platform (same Postfix/Dovecot/Rspamd core) built around a declarative config.yaml, a 40+ endpoint REST API for sending and inbound webhooks, and atomic updates with automatic rollback. It doesn't run on BSD and doesn't yet ship calendar/contacts — so it's not a fit for every case either, but it's worth a look if the gap in both iRedMail and Mailcow is 'no API' or 'no safe update story'." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Comparison · Self-Hosted Email</div>
+		<h1>iRedMail <span>vs</span> Mailcow</h1>
+		<p class="alt-lead">
+			Two long-running self-hosted mail stacks, same Postfix + Dovecot core underneath,
+			very different deployment models: iRedMail installs straight onto the OS with no
+			Docker required, Mailcow is a 25+ service Docker Compose stack with a polished web
+			UI and SOGo groupware built in. Neither ships a transactional sending API. If that
+			gap matters to you, we're a third option — more on that below.
+		</p>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>4 October 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Side-by-side, current as of October 2026.</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>iRedMail</th><th>Mailcow</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot</td><td>Postfix · Dovecot</td></tr>
+					<tr><th scope="row">Deployment</th><td><strong>OS-native</strong> (no Docker)</td><td>Docker Compose, 25+ services</td></tr>
+					<tr><th scope="row">Supported OS</th><td>Linux + FreeBSD + OpenBSD</td><td>Linux (wherever Docker runs)</td></tr>
+					<tr><th scope="row">Backend storage</th><td><strong>OpenLDAP, MySQL, MariaDB, or PostgreSQL</strong></td><td>SQL (bundled MySQL/MariaDB container)</td></tr>
+					<tr><th scope="row">Antispam default</th><td>SpamAssassin (Rspamd configurable)</td><td>Rspamd</td></tr>
+					<tr><th scope="row">Webmail</th><td>Roundcube (SOGo optional)</td><td>SOGo</td></tr>
+					<tr><th scope="row">Calendar / contacts</th><td>Optional add-on (SOGo)</td><td><strong>Yes, bundled by default</strong></td></tr>
+					<tr><th scope="row">Configuration model</th><td>Files + iRedAdmin web panel</td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
+					<tr><th scope="row">REST API for config</th><td>No</td><td>Minimal admin API only</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td>No</td><td>No</td></tr>
+					<tr><th scope="row">Update model</th><td>Manual, scripted package upgrade</td><td>Manual <code>update.sh</code></td></tr>
+					<tr><th scope="row">Automatic rollback</th><td>No</td><td>No</td></tr>
+					<tr><th scope="row">Pricing</th><td>Free (paid Enterprise Edition + iRedAdmin-Pro available, quote-based)</td><td>Free (paid ServerCow support optional)</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Deployment model</h3>
+		<p>
+			This is the decision that actually matters between these two. iRedMail's installer
+			script lays Postfix, Dovecot, Roundcube, Nginx, Fail2ban, and SpamAssassin directly
+			onto the host OS — no container runtime, no Docker daemon. That's a deliberate fit
+			for sysadmin teams who prohibit container runtimes on policy grounds, run on BSD, or
+			want the smallest possible runtime surface between the mail server and the kernel.
+		</p>
+		<p>
+			Mailcow is the opposite bet: a Docker Compose stack of 25+ services, each isolated
+			and independently restartable. If your environment already standardises on
+			containers, that isolation is a feature — a broken component restarts on its own
+			without touching the rest of the stack. If your environment prohibits Docker
+			entirely, Mailcow is a non-starter and iRedMail is the only one of the two that fits.
+		</p>
+
+		<h3 class="alt-h3">Backend flexibility</h3>
+		<p>
+			iRedMail is unusually flexible on storage: OpenLDAP, MySQL, MariaDB, or PostgreSQL,
+			your choice at install time. The OpenLDAP option matters specifically for shops that
+			already run centralised directory services and want mail accounts to live there
+			rather than in a separate database. Mailcow doesn't offer that choice — it ships
+			with its own bundled SQL database container as part of the compose stack.
+		</p>
+
+		<h3 class="alt-h3">Groupware (calendar + contacts)</h3>
+		<p>
+			Mailcow bundles SOGo by default, so CalDAV/CardDAV calendar and contacts work out of
+			the box with no extra configuration. iRedMail can also run SOGo — it's explicitly
+			supported — but it's an optional add-on to the base install rather than a default
+			component, so there are more steps between "fresh install" and "calendar working."
+			If groupware is a hard requirement from day one, that's a real point in Mailcow's
+			favour.
+		</p>
+
+		<h3 class="alt-h3">Admin surface</h3>
+		<p>
+			iRedMail's day-two admin surface is the iRedAdmin web panel plus direct file edits
+			in <code>/etc/postfix</code>, <code>/etc/dovecot</code>, and <code>/etc/nginx</code>
+			for anything the panel doesn't cover. Mailcow's admin surface is a single, more
+			comprehensive web UI covering domains, mailboxes, DKIM, and the SOGo groupware
+			config in one place, backed by the bash-style <code>mailcow.conf</code> for
+			lower-level settings. Neither exposes its configuration as code — there's no
+			declarative file you diff and apply, and no API for driving either one with
+			Terraform or Ansible.
+		</p>
+
+		<h3 class="alt-h3">Programmatic sending</h3>
+		<p>
+			Neither ships a transactional sending API. Both are classic mailbox-hosting stacks:
+			the only way to send mail programmatically is SMTP submission, authenticating as a
+			real mailbox with its own username and password. Mailcow's API is administrative —
+			domain and mailbox CRUD — not a sending surface. iRedMail has no REST API at all.
+			If you need both real mailboxes <em>and</em> a sending API for transactional email,
+			neither of these two is built for that out of the box.
+		</p>
+
+		<h3 class="alt-h3">Updates</h3>
+		<p>
+			Both treat updates as a manual, operator-supervised procedure. iRedMail's update
+			path is a documented sequence of package upgrades and file diffs. Mailcow's is a
+			single <code>update.sh</code> script that pulls new images and restarts containers.
+			Neither takes an automatic pre-update snapshot, runs a health-check gate, or
+			auto-rolls-back on failure — if an update breaks something, recovery in both cases
+			is whatever the operator does by hand.
+		</p>
+
+		<h3 class="alt-h3">Pricing</h3>
+		<p>
+			Both are free to self-host. iRedMail splits into three editions: the open-source
+			base (free), iRedMail Enterprise Edition (one-time per-server payment), and
+			iRedAdmin-Pro (annual subscription for advanced admin features) — pricing on the
+			paid tiers isn't published; you contact iRedMail for a quote. Mailcow's revenue
+			comes from optional ServerCow support contracts rather than a paid product tier —
+			the software itself stays GPL-3.0 either way.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Who each is best for</h2>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3>Choose iRedMail if</h3>
+				<ul style="margin-bottom: 0;">
+					<li>Your environment prohibits Docker or any container runtime.</li>
+					<li>You deploy to FreeBSD or OpenBSD, not just Linux.</li>
+					<li>You already run OpenLDAP and want mail accounts to live there.</li>
+					<li>You want the smallest possible runtime surface between mail and the kernel.</li>
+				</ul>
+			</div>
+			<div class="feature-card">
+				<h3>Choose Mailcow if</h3>
+				<ul style="margin-bottom: 0;">
+					<li>You're already standardised on Docker and want per-service isolation.</li>
+					<li>You want calendar and contacts (SOGo) working with no extra setup.</li>
+					<li>You'd rather manage everything through one comprehensive web UI.</li>
+					<li>You value a decade-plus of community mindshare and documentation.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The third option: Vectis Mail</h2>
+		<p>
+			If what's missing from <em>both</em> iRedMail and Mailcow is a programmatic sending
+			API, a declarative config you can diff and apply, or an update path that doesn't
+			depend on the operator remembering to supervise it — that's specifically the gap
+			Vectis Mail is built to close. Same self-hosted control, same proven mail core
+			(Postfix, Dovecot, and Rspamd by default), different operating model:
+		</p>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<ul style="margin-bottom: 0;">
+				<li>One <code>config.yaml</code> as the source of truth — <code>vectis apply</code> diffs desired vs. running state and regenerates only what changed.</li>
+				<li>A 40+ endpoint REST API: transactional sending (single + batch, attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox/domain/alias CRUD, analytics, audit logs.</li>
+				<li>Atomic 6-phase updates (snapshot, migrate, pull, deploy, health-check, complete) with automatic rollback on any phase failure.</li>
+				<li>Domain-scoped API keys with per-domain rate limits — the multi-tenant pattern neither iRedMail nor Mailcow ships out of the box.</li>
+			</ul>
+		</div>
+		<p style="margin-top: 1rem;">
+			To be equally honest about where Vectis Mail <em>doesn't</em> fit: it's Docker-only
+			(no BSD, no OS-native path), and it doesn't yet ship calendar/contacts — that's on
+			the roadmap, not shipped today. If either of those is a hard requirement, this isn't
+			your answer either. See the dedicated <a href="/alternatives/iredmail/">Vectis Mail
+			vs iRedMail</a> and <a href="/alternatives/mailcow/">Vectis Mail vs Mailcow</a>
+			comparisons for the full detail on each.
+		</p>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is iRedMail or Mailcow better?</h3>
+				<p>
+					It depends on your constraints, not on which is objectively better. Choose
+					iRedMail if you can't run Docker, need an OpenLDAP backend, or deploy to
+					FreeBSD/OpenBSD. Choose Mailcow if you want a Docker-based stack with a
+					polished web UI and SOGo calendar/contacts bundled in. Both build on the same
+					Postfix + Dovecot core, so mail delivery itself is comparably solid either
+					way — the real decision is deployment model and admin surface, not mail
+					quality.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does iRedMail or Mailcow use Docker?</h3>
+				<p>
+					Mailcow is Docker-only — it ships as mailcow-dockerized, a compose stack of
+					25+ services. iRedMail is OS-native: its installer script lays Postfix,
+					Dovecot, Roundcube, Nginx, Fail2ban, and SpamAssassin directly onto the host,
+					with no container runtime involved. If your environment prohibits Docker,
+					iRedMail is the one that fits; if you want everything isolated and
+					restartable independently, Mailcow's containers do that.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Which has calendar and contacts (CalDAV/CardDAV)?</h3>
+				<p>
+					Mailcow bundles SOGo by default, so calendar and contacts work out of the
+					box. iRedMail can also run SOGo, but it's an optional add-on to the base
+					install rather than a default component — so Mailcow gets you there with
+					fewer steps if groupware is a requirement from day one.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Do either have a transactional sending API?</h3>
+				<p>
+					No. Neither iRedMail nor Mailcow ships a REST API for programmatic sending,
+					inbound webhooks, or per-domain analytics — both are classic mailbox-hosting
+					stacks where the only way to send mail programmatically is SMTP submission
+					with a mailbox's own credentials. If you need a sending API alongside mailbox
+					hosting, that's the gap a platform like Vectis Mail is built to close.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>What's a third option if neither iRedMail nor Mailcow fits?</h3>
+				<p>
+					Vectis Mail is a Docker-based self-hosted mail platform (same
+					Postfix/Dovecot/Rspamd core) built around a declarative <code>config.yaml</code>,
+					a 40+ endpoint REST API for sending and inbound webhooks, and atomic updates
+					with automatic rollback. It doesn't run on BSD and doesn't yet ship
+					calendar/contacts — so it's not a fit for every case either, but it's worth a
+					look if the gap in both iRedMail and Mailcow is "no API" or "no safe update
+					story."
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section other-alts">
+		<h2>Related comparisons</h2>
+		<p class="subtitle">See how Vectis Mail itself compares to each.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/iredmail/" class="feature-card alt-index-card">
+				<h3>Vectis Mail vs iRedMail &rarr;</h3>
+				<p>REST API, declarative YAML, and Rspamd by default vs iRedMail's OS-native, file-configured stack.</p>
+			</a>
+			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
+				<h3>Vectis Mail vs Mailcow &rarr;</h3>
+				<p>Declarative config and a transactional sending API vs Mailcow's web-UI-driven, admin-only surface.</p>
+			</a>
+			<a href="/guides/best-self-hosted-email-servers-2026/" class="feature-card alt-index-card">
+				<h3>Best self-hosted email servers (2026) &rarr;</h3>
+				<p>The whole landscape by buyer type — seven options including both of these, compared side by side.</p>
+			</a>
+		</div>
+	</section>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>iRedMail project documentation (installer, editions, supported platforms) — retrieved 2026-10-04</li>
+			<li>Mailcow project documentation and the public mailcow-dockerized repository — retrieved 2026-10-04</li>
+			<li>Vectis Mail architecture, API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
+		</ul>
+	</aside>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>

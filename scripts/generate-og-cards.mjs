@@ -11,6 +11,8 @@
 //   - alt:      "ALTERNATIVE TO X" headline; matches existing mailcow/sendgrid PNGs
 //   - usecase:  "BUILT FOR X" headline; big benefit line; for /for/* pages
 //   - pillar:   "GUIDE · 2026" tag; big multi-line title; for cornerstone content
+//   - compare:  "COMPARISON" tag; two competitor names, neither is Vectis Mail;
+//               Vectis gets a small third-option line at the bottom, not top billing
 
 import sharp from 'sharp'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
@@ -105,6 +107,23 @@ ${wings(80, 90, 140)}
 </svg>`
 }
 
+function compareCard({ productA, productB, subhead, slug }) {
+	const url = `vectismail.com/compare/${slug}`
+	const pairLen = (productA + productB).length
+	const headSize = pairLen > 20 ? 58 : (pairLen > 15 ? 70 : 82)
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+${backdrop()}
+${wings(80, 90, 140)}
+<text x="270" y="138" font-family="Inter, sans-serif" font-weight="700" font-size="32" letter-spacing="3" fill="${GRAY3}">COMPARISON</text>
+<text x="270" y="230" font-family="Inter, sans-serif" font-weight="800" font-size="${headSize}" fill="${WHITE}">${esc(productA)}</text>
+<text x="270" y="${headSize > 70 ? 300 : 290}" font-family="Inter, sans-serif" font-weight="800" font-size="${headSize}" fill="${GRAY2}">vs ${esc(productB)}</text>
+
+<text x="80" y="440" font-family="Inter, sans-serif" font-weight="500" font-size="30" fill="${GRAY2}">${esc(subhead)}</text>
+<text x="80" y="486" font-family="Inter, sans-serif" font-weight="700" font-size="30" fill="${CYAN}">+ where Vectis Mail fits in</text>
+<text x="80" y="590" font-family="Inter, sans-serif" font-weight="700" font-size="26" fill="${CYAN}">${esc(url)}</text>
+</svg>`
+}
+
 function pillarCard({ tag, titleTop, titleBot, subhead, url }) {
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 ${backdrop()}
@@ -138,6 +157,9 @@ const cards = [
 	{ file: 'for-agencies.png',    svg: usecaseCard({ audience: 'AGENCIES',      headline: 'One platform, every client',   subhead: 'Multi-tenant mail hosting with per-client domains, quotas, billing.', slug: 'agencies' }) },
 	{ file: 'for-developers.png',  svg: usecaseCard({ audience: 'DEVELOPERS',    headline: 'REST API. CLI. Webhooks.',     subhead: 'The email infra you would build yourself — already shipped.',         slug: 'developers' }) },
 	{ file: 'for-enterprises.png', svg: usecaseCard({ audience: 'ENTERPRISES',   headline: 'Sovereign email infra',        subhead: 'Self-hosted control, audit trails, on-prem deploy — no per-seat tax.', slug: 'enterprises' }) },
+
+	// Competitor-vs-competitor (neither is Vectis Mail)
+	{ file: 'compare-iredmail-vs-mailcow.png', svg: compareCard({ productA: 'iRedMail', productB: 'Mailcow', subhead: 'OS-native vs Docker — two self-hosted mail stacks, compared.', slug: 'iredmail-vs-mailcow' }) },
 
 	// Pillar guides
 	{ file: 'guides-self-host-email-2026.png', svg: pillarCard({

@@ -56,6 +56,8 @@ iRedMail installs straight onto the operating system — no Docker required — 
 - **Best for:** environments that prohibit container runtimes, need LDAP as the mail backend, or run on BSD.
 - **The trade-off:** setup is script-driven, the admin surface is dated, and day-two operations (updates, backups, rollback) are yours to design. There is no declarative config and no transactional sending API. See the [iRedMail comparison](/alternatives/iredmail/).
 
+Deciding between these two specifically, independent of Vectis Mail? See the direct [iRedMail vs Mailcow comparison](/compare/iredmail-vs-mailcow/).
+
 ### Mail-in-a-Box — dead-simple for one
 
 Mail-in-a-Box does one thing extremely well: stand up a complete personal mail server with a single command and almost no decisions. It bundles Nextcloud for calendar and contacts and carries a CC0 public-domain license — zero lock-in, zero strings.
