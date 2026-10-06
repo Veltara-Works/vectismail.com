@@ -7,7 +7,7 @@ const description = "iRedMail and Mailcow compared: OS-native vs Docker, OpenLDA
 const url = 'https://vectismail.com/compare/iredmail-vs-mailcow/'
 const ogImage = 'https://vectismail.com/og/compare-iredmail-vs-mailcow.png'
 const datePublished = '2026-10-04'
-const dateModified = '2026-10-04'
+const dateModified = '2026-10-06'
 ---
 <html lang="en">
 <head>
@@ -113,7 +113,7 @@ const dateModified = '2026-10-04'
 			gap matters to you, we're a third option — more on that below.
 		</p>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>4 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -262,7 +262,7 @@ const dateModified = '2026-10-04'
 		</p>
 		<div class="feature-card" style="margin-top: 1.5rem;">
 			<ul style="margin-bottom: 0;">
-				<li>One <code>config.yaml</code> as the source of truth — <code>vectis apply</code> diffs desired vs. running state and regenerates only what changed.</li>
+				<li>Domains, mailboxes and API keys managed from a dashboard or the REST API, with no restarts; stack settings in one declarative <code>config.yaml</code> that <code>vectis config apply</code> diffs against the running state, regenerating only what changed.</li>
 				<li>A 40+ endpoint REST API: transactional sending (single + batch, attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox/domain/alias CRUD, analytics, audit logs.</li>
 				<li>Atomic 6-phase updates (snapshot, migrate, pull, deploy, health-check, complete) with automatic rollback on any phase failure.</li>
 				<li>Domain-scoped API keys with per-domain rate limits — the multi-tenant pattern neither iRedMail nor Mailcow ships out of the box.</li>

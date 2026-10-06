@@ -28,11 +28,18 @@ Vectis Mail is a containerised, self-hosted email platform. It packages Postfix,
 
 ## How it works
 
-1. You write a `config.yaml` describing your mail server
-2. Vectis generates all service configs (Postfix, Dovecot, Rspamd, Traefik)
-3. Docker Compose runs the full stack
-4. Domains and mailboxes are stored in Postgres — no reload needed for changes
-5. The admin UI and API give you full control
+1. **Run the installer.** It asks for two things: your mail server's hostname
+   (detected for you where it can be) and an email address for TLS certificates.
+   It generates every password and key itself.
+2. **Vectis builds and runs the whole mail stack** (Postfix, Dovecot, Rspamd and
+   Traefik) with every service config generated for you.
+3. **Add domains and mailboxes from the admin dashboard.** They take effect
+   immediately, with no restarts.
+4. **Manage the rest from the dashboard or the REST API:** DKIM keys, backups,
+   updates, and per-domain spam controls on Pro.
+5. **Prefer configuration as code?** Advanced settings live in one readable
+   `config.yaml` you can keep in version control and apply with a single
+   command. You never have to touch it.
 
 ## Next steps
 

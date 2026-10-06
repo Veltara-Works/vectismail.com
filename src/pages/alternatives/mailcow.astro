@@ -7,7 +7,7 @@ const description = "The self-hosted Mailcow alternative for operators: declarat
 const url = 'https://vectismail.com/alternatives/mailcow/'
 const ogImage = 'https://vectismail.com/og/alternatives-mailcow.png'
 const datePublished = '2026-05-12'
-const dateModified = '2026-07-07'
+const dateModified = '2026-10-06'
 ---
 <html lang="en">
 <head>
@@ -120,17 +120,18 @@ const dateModified = '2026-07-07'
 		<h1>The Mailcow alternative<br/><span>built for operators.</span></h1>
 		<p class="alt-lead">
 			Both are self-hosted Docker stacks on the same Postfix/Dovecot/Rspamd core.
-			The difference is the operating model: Vectis Mail runs from a single declarative
-			<code>config.yaml</code>, a Go REST API, and atomic updates with health-gated
-			rollback — where Mailcow leans on a bash env file, a web UI, and a manual
-			<code>update.sh</code>. Same self-hosted control, driven as code.
+			The difference is the operating model: Vectis Mail runs from an admin dashboard and a
+			Go REST API, generates every service config from one declarative <code>config.yaml</code>,
+			and ships atomic updates with health-gated rollback — where Mailcow leans on a bash env
+			file, a web UI, and a manual <code>update.sh</code>. Same self-hosted control, driven as
+			code whenever you want it.
 		</p>
 		<div class="hero-buttons" style="margin-top: 1.5rem;">
 			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
 			<a href="/pricing/" class="btn-secondary">View pricing</a>
 		</div>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -147,7 +148,7 @@ const dateModified = '2026-07-07'
 				<tbody>
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
 					<tr><th scope="row">Container count (default)</th><td><strong>14</strong></td><td>25+</td></tr>
-					<tr><th scope="row">Configuration model</th><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
+					<tr><th scope="row">Configuration model</th><td><strong>Dashboard + REST API, with every service config generated from one declarative <code>config.yaml</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
 					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
 					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
@@ -189,11 +190,13 @@ const dateModified = '2026-07-07'
 			then restarting services. There's no API for config-as-code.
 		</p>
 		<p>
-			Vectis Mail uses a single <code>config.yaml</code> as the source of truth.
-			<code>vectis apply</code> diffs the desired state against running state, regenerates
-			affected service configs (Postfix, Dovecot, Rspamd, Traefik), and reloads only what
-			changed. The same operations are also exposed via the REST API, so Terraform, Ansible,
-			or your own automation can manage Vectis Mail declaratively.
+			Vectis Mail splits the job cleanly. Domains, mailboxes, aliases and API keys are
+			managed from the admin dashboard or the REST API and take effect immediately, with no
+			restart. Stack-level settings live in one declarative <code>config.yaml</code>, which
+			the installer writes for you: <code>vectis config apply</code> diffs it against the
+			running state, regenerates the affected service configs (Postfix, Dovecot, Rspamd,
+			Traefik), and reloads only what changed. Everything is also exposed via the REST API,
+			so Ansible, Terraform or your own scripts can drive Vectis Mail as code.
 		</p>
 
 		<h3 class="alt-h3">API surface</h3>

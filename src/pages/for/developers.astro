@@ -7,7 +7,7 @@ const description = "Vectis Mail for developers: self-hosted email with a real R
 const url = 'https://vectismail.com/for/developers/'
 const ogImage = 'https://vectismail.com/og/for-developers.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-07-07'
+const dateModified = '2026-10-06'
 ---
 <html lang="en">
 <head>
@@ -81,7 +81,7 @@ const dateModified = '2026-07-07'
 					{
 						"@type": "Question",
 						"name": "Do I need to learn Postfix and Dovecot config to use this?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, and Traefik configs from one config.yaml. You write declarative intent (which domains, which mailboxes, which API keys) and run vectis apply. The system regenerates affected service configs and reloads what changed. You can read the generated configs to learn what's happening underneath, but you don't have to write any of them." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, and Traefik configs for you. Domains, mailboxes and API keys live in Postgres and are managed from the dashboard or the REST API, taking effect immediately. Stack-level settings live in one config.yaml that vectis config apply turns into service configs, reloading only what changed. You can read the generated configs to learn what's happening underneath, but you don't have to write any of them." }
 					},
 					{
 						"@type": "Question",
@@ -114,7 +114,7 @@ const dateModified = '2026-07-07'
 			Source-available under BSL 1.1; free to self-host and modify.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -133,8 +133,8 @@ const dateModified = '2026-07-07'
 				<p>A 4 vCPU / 8 GB / 80 GB Ubuntu host is the recommended baseline — about $20/month on Hetzner at that spec. DigitalOcean and Vultr price the equivalent higher (nearer $40–48), so Hetzner is the value pick for the full baseline. The whole stack (Postfix, Dovecot, Rspamd, Traefik, the API, the React dashboard, plus the optional Prometheus/Grafana/Loki observability profile) fits with room for sending growth. Same spec as the recommendation on the install docs.</p>
 			</div>
 			<div class="feature-card">
-				<h3>3. One YAML config, no Postfix wizardry</h3>
-				<p>Declarative <code>config.yaml</code> + <code>vectis apply</code>. You write intent (domains, mailboxes, API keys); the system generates Postfix, Dovecot, Rspamd, Traefik configs and reloads what changed. Audit the generated configs if you want, but you don't have to write them.</p>
+				<h3>3. No Postfix wizardry</h3>
+				<p>Domains, mailboxes and API keys come from the dashboard or the REST API and take effect immediately. Stack-level settings live in one declarative <code>config.yaml</code>: <code>vectis config apply</code> generates the Postfix, Dovecot, Rspamd and Traefik configs and reloads only what changed. Audit the generated configs if you want, but you never write them.</p>
 			</div>
 			<div class="feature-card">
 				<h3>4. Source-available, no licensing lock-in</h3>
@@ -283,9 +283,10 @@ const dateModified = '2026-07-07'
 				<h3>Do I need to learn Postfix and Dovecot config?</h3>
 				<p>
 					No. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, and Traefik
-					configs from one <code>config.yaml</code>. You write declarative intent
-					(which domains, which mailboxes, which API keys) and run <code>vectis apply</code>.
-					The system regenerates affected service configs and reloads what changed.
+					configs for you. Domains, mailboxes and API keys live in Postgres and are
+					managed from the dashboard or the REST API, taking effect immediately.
+					Stack-level settings live in one <code>config.yaml</code> that
+					<code>vectis config apply</code> turns into service configs, reloading only what changed.
 					You can read the generated configs to learn what's happening underneath, but
 					you don't have to write any of them.
 				</p>
@@ -327,7 +328,7 @@ const dateModified = '2026-07-07'
 		<p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Free Starter tier &middot; No credit card required &middot; Source-available</p>
 	</div>
 
-	<p class="page-meta">Last updated <time datetime={dateModified}>7 July 2026</time></p>
+	<p class="page-meta">Last updated <time datetime={dateModified}>6 October 2026</time></p>
 
 
 	</main>

@@ -66,7 +66,7 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 			{
 				"@type": "Question",
 				"name": "Should I use Vectis Mail instead of setting up Postfix manually?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Yes, in almost every case. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs from a single YAML file with one apply command. Atomic updates with automatic rollback, built-in metrics and health alerts (optional Grafana + Loki dashboards), and a 40+ endpoint REST API ship in the box. Skip weeks of config tuning; production-ready in minutes." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Yes, in almost every case. Vectis Mail generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs for you: the installer asks for a hostname and an email address, and day-to-day changes happen in the admin dashboard. Atomic updates with automatic rollback, built-in metrics and health alerts (optional Grafana + Loki dashboards), and a 40+ endpoint REST API ship in the box. Skip weeks of config tuning; production-ready in minutes." }
 			}
 		]
 	})} />
@@ -159,12 +159,12 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 
 	<section class="section">
 		<h2>What that looks like in the box</h2>
-		<p class="subtitle">The moats above, made concrete — every capability configured and managed through a single YAML file.</p>
+		<p class="subtitle">The moats above, made concrete — managed from one dashboard, with every service config generated for you.</p>
 		<div class="feature-grid">
 			<div class="feature-card">
 				<div class="icon icon-blue">&#9881;</div>
-				<h3>Your whole mail stack in one file</h3>
-				<p>One config.yaml defines your entire mail stack. Change a setting, run apply, and Vectis generates Postfix, Dovecot, Rspamd, and Traefik configs automatically.</p>
+				<h3>No mail-server configs to write</h3>
+				<p>Vectis generates and maintains every Postfix, Dovecot, Rspamd and Traefik config for you. Day-to-day changes happen in the dashboard; advanced settings live in one readable config file for anyone who prefers configuration as code.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-cyan">&#9889;</div>
@@ -223,7 +223,7 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 			</a>
 			<a href="/getting-started/" class="feature-card alt-index-card">
 				<h3>vs Manual Postfix Setup &rarr;</h3>
-				<p>Skip weeks of config tuning. Vectis generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs from a single YAML file. Production-ready in minutes.</p>
+				<p>Skip weeks of config tuning. Vectis generates and manages Postfix, Dovecot, Rspamd, Traefik, and DKIM configs for you. Production-ready in minutes.</p>
 			</a>
 		</div>
 		<p class="subtitle" style="margin-top: 1.5rem;">

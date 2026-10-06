@@ -7,7 +7,7 @@ const description = 'Vectis Mail vs iRedMail: modern declarative surface, REST A
 const url = 'https://vectismail.com/alternatives/iredmail/'
 const ogImage = 'https://vectismail.com/og/alternatives-iredmail.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-07-07'
+const dateModified = '2026-10-06'
 ---
 <html lang="en">
 <head>
@@ -130,7 +130,7 @@ const dateModified = '2026-07-07'
 				<a href="/pricing/" class="btn-secondary">View pricing</a>
 			</div>
 			<div class="alt-meta" style="margin-top: 1.25rem;">
-				<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
+				<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
 				<span>·</span>
 				<span>By the Vectis Mail team</span>
 			</div>
@@ -148,7 +148,7 @@ const dateModified = '2026-07-07'
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
 					<tr><th scope="row">Deployment model</th><td>Docker Compose</td><td>OS-native (installer script, no containers)</td></tr>
 					<tr><th scope="row">Supported OS</th><td>Linux (Ubuntu, Debian, RHEL family)</td><td>Linux + FreeBSD + OpenBSD</td></tr>
-					<tr><th scope="row">Configuration model</th><td><strong>Declarative YAML + <code>vectis apply</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
+					<tr><th scope="row">Configuration model</th><td><strong>Dashboard + REST API, with every service config generated from one declarative <code>config.yaml</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
 					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
 					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
@@ -178,7 +178,7 @@ const dateModified = '2026-07-07'
 				<li>You value orchestrated updates with automatic rollback over a documented manual procedure.</li>
 				<li>You want Rspamd’s modern heuristics out of the box, with a Lua extension surface for custom rules.</li>
 				<li>You want per-domain analytics, IP warmup tracking, and built-in observability.</li>
-				<li>You’d rather declare mail in YAML and <code>vectis apply</code> than hand-edit config files and restart services.</li>
+				<li>You’d rather manage mail from a dashboard and an API, with every service config generated for you, than hand-edit config files and restart services.</li>
 			</ul>
 		</div>
 	</section>
@@ -232,11 +232,13 @@ const dateModified = '2026-07-07'
 			There's no config-as-code surface.
 		</p>
 		<p>
-			Vectis Mail uses a single <code>config.yaml</code> as the source of truth.
-			<code>vectis apply</code> diffs the desired state against running state, regenerates
-			affected service configs (Postfix, Dovecot, Rspamd, Traefik), and reloads only what
-			changed. The same operations are exposed via the REST API, so Terraform, Ansible,
-			or your own automation can manage Vectis Mail declaratively.
+			Vectis Mail splits the job cleanly. Domains, mailboxes, aliases and API keys are
+			managed from the admin dashboard or the REST API and take effect immediately, with no
+			restart. Stack-level settings live in one declarative <code>config.yaml</code>, which
+			the installer writes for you: <code>vectis config apply</code> diffs it against the
+			running state, regenerates the affected service configs (Postfix, Dovecot, Rspamd,
+			Traefik), and reloads only what changed. Everything is also exposed via the REST API,
+			so Ansible, Terraform or your own scripts can drive Vectis Mail as code.
 		</p>
 
 		<h3 class="alt-h3">Antispam</h3>
