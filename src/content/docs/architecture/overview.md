@@ -164,7 +164,7 @@ Postgres is the primary data store. All tables use UUIDv7 primary keys (time-sor
 
 | Table | Purpose | Key fields |
 |-------|---------|------------|
-| `domains` | Mail domains | name, active, dkim_selector, spam_threshold, max_mailboxes |
+| `domains` | Mail domains | name, active, dkim_selector, max_mailboxes, per-domain spam overrides (Pro) |
 | `mailboxes` | Email accounts | domain_id, local_part, password_hash (Argon2id), quota_mb |
 | `aliases` | Mail forwarding | domain_id, source_local_part, destination |
 | `admins` | Admin accounts | email, password_hash, role, totp_secret, totp_enabled |

@@ -105,7 +105,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 		<div class="feature-grid">
 			<div class="feature-card"><h3>Postfix MTA</h3><p>Battle-tested mail transfer agent handling inbound and outbound SMTP. Virtual domain hosting with SQL-driven lookups — no config reload needed when adding domains or mailboxes.</p></div>
 			<div class="feature-card"><h3>Dovecot IMAP/POP3</h3><p>IMAP and POP3 access with SSL/TLS, Argon2id password hashing, per-mailbox quotas, and LMTP delivery. ManageSieve for server-side filter rules.</p></div>
-			<div class="feature-card"><h3>Rspamd Spam Filtering</h3><p>Spam detection with a self-learning Bayes classifier, DKIM verification, SPF checks, greylisting, and configurable score thresholds.</p></div>
+			<div class="feature-card"><h3>Rspamd Spam Filtering</h3><p>Spam detection with a self-learning Bayes classifier, DKIM verification, SPF checks, greylisting, and configurable score thresholds. Mail that forges a domain publishing a DMARC <code>p=reject</code> policy is rejected at SMTP.</p></div>
 			<div class="feature-card"><h3>ClamAV Antivirus</h3><p>Optional antivirus scanning for inbound mail. Profile-gated — enable it in config.yaml when you need it, omit the container when you don't.</p></div>
 		</div>
 	</section>
@@ -125,6 +125,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 		<h2>Pro &mdash; Advanced Spam Filtering</h2>
 		<p class="subtitle">Per-domain spam controls beyond the Starter defaults.</p>
 		<div class="feature-grid">
+			<div class="feature-card"><h3>Per-Domain Spam Threshold</h3><p>Set the score at which mail to one domain is marked as spam and filed to Junk, independent of the system default. Leave it unset and the domain follows the global setting.</p></div>
 			<div class="feature-card"><h3>Per-Domain Reject Threshold</h3><p>Override the global Rspamd reject score per domain. Tighten one domain to reject earlier without changing the rest.</p></div>
 			<div class="feature-card"><h3>Per-Domain Greylisting</h3><p>Enable or disable greylisting on a per-domain basis. Trade off first-message delay against spam reduction wherever it matters.</p></div>
 			<div class="feature-card"><h3>Allow / Block Lists</h3><p>Per-domain allow and block lists at both email-address and sender-domain scope. Edits take effect within seconds &mdash; no restart, no config file editing.</p></div>
@@ -136,6 +137,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 		<p class="subtitle">Built for production from day one.</p>
 		<div class="feature-grid">
 			<div class="feature-card"><h3>Atomic Updates</h3><p>6-phase orchestrator: snapshot, migrate, pull, deploy, health check, complete. Automatic rollback on failure. Advisory lock prevents concurrent operations.</p></div>
+			<div class="feature-card"><h3>Verified Releases</h3><p>Every release is signed with an offline Ed25519 key. <code>vectis verify</code> proves your server runs exactly what was published for its version &mdash; every container image by digest and the CLI binary by hash &mdash; re-checks on a schedule, and emails you if anything stops matching.</p></div>
 			<div class="feature-card"><h3>Backup & Restore</h3><p>Scheduled backups with AES-256-GCM encryption. Database, mail data, DKIM keys, and config archived. One-click restore from the dashboard.</p></div>
 			<div class="feature-card"><h3>RBAC + MFA</h3><p>Three-tier roles: super_admin, admin, domain_admin. TOTP multi-factor auth. OIDC SSO with Google, Azure AD, and Keycloak. API key management with domain scoping.</p></div>
 			<div class="feature-card"><h3>Observability</h3><p>Prometheus-format metrics and health alerts built in; optional Grafana dashboards and Loki log aggregation (off by default). Per-domain analytics on Pro. Everything you need to monitor at scale.</p></div>
@@ -211,7 +213,9 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 					<tr><td>Engagement tracking (opens, clicks)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Admin dashboard + Roundcube webmail</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>DKIM / SPF / DMARC + automatic TLS</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>DMARC enforcement (rejects forged <code>p=reject</code> senders)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Atomic updates with auto-rollback</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Signed releases + <code>vectis verify</code> (scheduled)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Backup &amp; restore (AES-256-GCM)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>RBAC (super_admin / admin / domain_admin) + TOTP MFA</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Metrics + health alerts (Grafana + Loki optional)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
@@ -219,6 +223,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 					<tr><td>Domains</td><td>Up to 3</td><td>Unlimited</td><td>Unlimited</td></tr>
 					<tr><td>Mailboxes per domain</td><td>Up to 25</td><td>Unlimited</td><td>Unlimited</td></tr>
 					<tr><td>Per-domain analytics dashboard</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+					<tr><td>Per-domain spam (Junk) threshold</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Per-domain reject threshold (Rspamd)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Per-domain greylisting toggle</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
 					<tr><td>Per-domain allow / block lists</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
@@ -245,7 +250,7 @@ const description = 'The full Vectis Mail feature set: Postfix, Dovecot, and Rsp
 		<p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Free Starter tier &middot; No credit card required &middot; Source-available</p>
 	</section>
 
-	<p class="page-meta">Last updated <time datetime="2026-07-07">7 July 2026</time></p>
+	<p class="page-meta">Last updated <time datetime="2026-10-06">6 October 2026</time></p>
 
 	</main>
 

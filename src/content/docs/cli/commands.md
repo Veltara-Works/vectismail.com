@@ -265,7 +265,6 @@ vectis domain add --name example.com
 | Flag | Description |
 |------|-------------|
 | `--name DOMAIN` | Domain name (required). |
-| `--spam-threshold N` | Per-domain Rspamd score threshold. |
 | `--max-mailboxes N` | Maximum number of mailboxes. |
 | `--no-dkim` | Skip DKIM key generation. |
 
@@ -484,6 +483,49 @@ Updates the Vectis CLI binary, orchestrator, and API containers.
 vectis update self
 ```
 
+## Verification commands
+
+### vectis verify
+
+Proves this server runs exactly what was published for its version. It fetches the signed release manifest for the running version, checks its Ed25519 signature, then compares every deployed container image (by registry digest) and the installed `vectis` binary (by SHA-256) against it.
+
+```bash
+sudo vectis verify
+```
+
+**Example output:**
+
+```
+  [PASS] manifest               signed manifest for v0.1.50 verified (Ed25519) from https://dl.vectismail.com/v0.1.50/release.json
+  [PASS] image api              sha256:2e50e2e0e10f...
+  [PASS] image postfix          sha256:053bd473ac48...
+  ...
+  [PASS] binary                 /usr/local/bin/vectis sha256 18f4fdceebf1...
+vectis verify: PASS: this box runs exactly what was published for v0.1.50
+```
+
+Optional services you haven't enabled (webmail, ClamAV, the certificate extractor) are skipped. A missing core service is a failure.
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | Print the report as JSON. |
+| `--alert-to ADDRESS` | Email this address on a failure, and once when the server matches again. |
+| `--alert-from ADDRESS` | Sender for alert emails. Required with `--alert-to`; use an address your mail domain is allowed to send as. |
+
+**Exit codes:** `0` = everything matches, `1` = something does **not** match what was published (treat it as a security alert), `2` = unverifiable, e.g. no network or a development build. An exit code of `2` is never a sign of tampering.
+
+---
+
+### vectis verify install-timer
+
+Installs and enables a systemd timer that runs `vectis verify` every 6 hours for the 48 hours after an update, then daily. Each run is logged to the journal, and failures are emailed if you pass `--alert-to`.
+
+```bash
+sudo vectis verify install-timer --alert-to you@example.com --alert-from vectis-verify@example.com
+```
+
 ## Backup commands
 
 ### vectis backup create
@@ -565,6 +607,8 @@ vectis backup restore /var/vectis/backups/vectis-20260404-120000.tar.gz --confir
 | `vectis update apply` | Apply an update plan. |
 | `vectis update rollback` | Roll back the last update. |
 | `vectis update self` | Update the Vectis binary. |
+| `vectis verify` | Prove the server runs exactly what was published. |
+| `vectis verify install-timer` | Schedule `vectis verify` with email alerts. |
 | `vectis backup create` | Create a backup. |
 | `vectis backup list` | List backups. |
 | `vectis backup restore` | Restore from a backup. |

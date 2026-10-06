@@ -43,7 +43,6 @@ curl "https://mail.example.com/api/v1/domains?active=true&limit=10" \
       "active": true,
       "dkim_enabled": true,
       "dkim_selector": "202604",
-      "spam_threshold": 15.0,
       "max_mailboxes": null,
       "mailbox_count": 5,
       "alias_count": 3,
@@ -75,8 +74,12 @@ Creates a new domain. Automatically generates a DKIM key pair and configures Rsp
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `name` | string | Yes | Fully qualified domain name (e.g. `example.com`). |
-| `spam_threshold` | number | No | Rspamd score threshold. Default: `15.0`. |
 | `max_mailboxes` | integer | No | Maximum mailboxes allowed. Null = unlimited. |
+| `spam_threshold` | number | No | **Pro.** Per-domain spam score: mail at or above it is marked as spam and filed to Junk. 0.1&ndash;999.9, one decimal place. Omit to use the system default (`rspamd.spam_threshold` in `config.yaml`). |
+| `reject_threshold` | number | No | **Pro.** Per-domain reject score: mail at or above it is rejected at SMTP. 0.1&ndash;999.9. Omit to use the system default. |
+| `greylist_enabled` | boolean | No | **Pro.** Turn greylisting on or off for this domain. Omit to follow the system setting. |
+
+The three per-domain spam overrides need a Pro licence (the `advanced_spam` feature). When a domain has no override, the field is omitted from responses and the system-wide value applies.
 
 **Example:**
 
@@ -97,7 +100,6 @@ curl -X POST https://mail.example.com/api/v1/domains \
     "active": true,
     "dkim_enabled": true,
     "dkim_selector": "202604",
-    "spam_threshold": 15.0,
     "max_mailboxes": null,
     "dkim_record": {
       "type": "TXT",
@@ -125,6 +127,8 @@ curl -X POST https://mail.example.com/api/v1/domains \
 |------|--------|-------------|
 | `DOMAIN_EXISTS` | 409 | Domain already registered. |
 | `MISSING_FIELDS` | 400 | `name` is required. |
+| `INVALID_THRESHOLD` | 400 | A threshold is outside 0.1&ndash;999.9. |
+| `FEATURE_NOT_AVAILABLE` | 403 | A per-domain spam override was set without a Pro licence. |
 
 ## Get domain
 
@@ -152,14 +156,19 @@ Updates domain settings. Only the fields you include in the request body are cha
 | Field | Type | Description |
 |-------|------|-------------|
 | `active` | boolean | Enable or disable the domain. |
-| `spam_threshold` | number | Per-domain Rspamd score threshold. |
 | `max_mailboxes` | integer/null | Maximum mailboxes. Null = unlimited. |
+| `spam_threshold` | number/null | **Pro.** Per-domain spam (Junk) score. `null` clears the override. |
+| `reject_threshold` | number/null | **Pro.** Per-domain SMTP reject score. `null` clears the override. |
+| `greylist_enabled` | boolean/null | **Pro.** Per-domain greylisting. `null` returns the domain to the system setting. |
+
+For the three spam overrides, a field you leave out is unchanged, and an explicit `null` clears the override so the domain follows the system-wide value again. Setting a value needs a Pro licence; clearing one works on any plan.
 
 ```bash
+# Pro: file mail to this domain as spam from a score of 5.0, and keep the system reject score
 curl -X PATCH https://mail.example.com/api/v1/domains/0192abc0-... \
   -H "Authorization: Bearer vectis_sk_abc123..." \
   -H "Content-Type: application/json" \
-  -d '{"spam_threshold": 12.0, "active": true}'
+  -d '{"spam_threshold": 5.0, "reject_threshold": null}'
 ```
 
 ## Delete domain

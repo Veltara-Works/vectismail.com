@@ -8,7 +8,7 @@ milestones** rather than a per-commit changelog — for the full, version-by-ver
 detail (every fix and internal change), see the
 [GitHub Releases](https://github.com/Veltara-Works/vectis/releases).
 
-**Current stable release:** v0.1.39.
+**Current stable release:** v0.1.50.
 
 ## Foundation — general availability
 
@@ -20,9 +20,15 @@ standard protocols throughout.
 
 ## Spam filtering & deliverability
 
-- **Advanced per-domain spam filtering (Pro).** Per-domain reject thresholds,
-  greylisting toggles, and sender allow/block lists — tune one tenant without
-  touching the rest, with changes taking effect in seconds.
+- **Advanced per-domain spam filtering (Pro).** Per-domain spam (Junk) and reject
+  thresholds, greylisting toggles, and sender allow/block lists — tune one tenant
+  without touching the rest, with changes taking effect in seconds.
+- **DMARC enforcement.** Inbound mail that forges a domain publishing a DMARC
+  `p=reject` policy is rejected at SMTP, and `p=quarantine` forgeries are marked
+  as spam. On by default (`rspamd.enforce_dmarc`).
+- **Redis-backed filtering.** Rspamd shares the stack's Valkey store, so rate
+  limiting and reply tracking run out of the box, and greylisting works when you
+  turn it on (system-wide, or per domain on Pro).
 - **DKIM that heals itself.** Signing keys are generated, permissioned, and
   reconciled automatically across upgrades, closing the classic "unsigned mail
   after a config change" gap.
@@ -62,6 +68,11 @@ standard protocols throughout.
   product, and verified in-process before any self-update — defence against a
   compromised download origin. Releases also ship an SPDX SBOM and keyless cosign
   signatures for the binary and every container image.
+- **`vectis verify`.** Proves a server runs exactly what was published for its
+  version: the signed manifest, every container image by digest, and the CLI
+  binary by hash. Run it on demand, or install its timer to re-check on a
+  schedule and email you if anything stops matching. Every release has its own
+  signed manifest, and a published release can never be overwritten.
 
 ## Licensing
 
