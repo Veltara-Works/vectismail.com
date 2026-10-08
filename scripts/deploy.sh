@@ -7,7 +7,9 @@
 # `wrangler pages deploy` does NOT purge that cache, so without this step a
 # fresh deploy can serve stale HTML until the edge TTL expires. Hashed assets
 # under /_astro/* are content-addressed and safe to re-fetch, so a full
-# purge_everything is correct and cheap.
+# purge_everything is correct and cheap. The purge waits until the Pages
+# origin serves this build (dist/build-id.txt): purging during propagation
+# just lets the edge re-cache the old HTML.
 #
 # Cloudflare credentials for the purge are read from the environment (never
 # committed):
@@ -26,9 +28,32 @@ COMMIT_MSG="${1:-deploy}"
 echo "▶ Building…"
 npm run build
 
+# Per-build marker so we can tell when Pages is actually serving THIS build.
+BUILD_ID="$(date -u +%Y%m%dT%H%M%SZ)-$RANDOM$RANDOM"
+echo "$BUILD_ID" > dist/build-id.txt
+
 echo "▶ Deploying to Cloudflare Pages…"
 # --commit-message is passed explicitly to avoid wrangler's git-derived UTF-8 gotcha.
 npx wrangler pages deploy dist --commit-message="$COMMIT_MSG"
+
+# Wait for the production origin to switch over before purging. Pages takes
+# ~30s to propagate after wrangler returns; a purge inside that window lets
+# the next request re-cache the OLD HTML at the edge for the full edge TTL.
+ORIGIN="${PAGES_ORIGIN:-https://vectismail.pages.dev}"
+echo "▶ Waiting for $ORIGIN to serve build $BUILD_ID…"
+LIVE=0
+for _ in $(seq 1 60); do
+	if [[ "$(curl -s "$ORIGIN/build-id.txt?nc=$RANDOM" | tr -d '[:space:]')" == "$BUILD_ID" ]]; then
+		LIVE=1
+		echo "✓ New build is live on the origin."
+		break
+	fi
+	sleep 3
+done
+if [[ $LIVE -eq 0 ]]; then
+	echo "⚠ Origin still not serving build $BUILD_ID after 3 min; purging anyway."
+	echo "  Re-run the purge once it switches, or stale HTML may stay cached at the edge."
+fi
 
 echo "▶ Purging Cloudflare edge cache for $ZONE_NAME…"
 if [[ -n "${CLOUDFLARE_API_TOKEN:-}" ]]; then
