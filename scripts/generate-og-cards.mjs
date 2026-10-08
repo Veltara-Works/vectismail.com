@@ -165,8 +165,8 @@ const cards = [
 	// Pillar guides
 	{ file: 'guides-self-host-email-2026.png', svg: pillarCard({
 		tag: 'GUIDE · 2026',
-		titleTop: 'Should you self-host email?',
-		titleBot: 'The 2026 decision guide',
+		titleTop: 'Is self-hosting email worth it?',
+		titleBot: 'Costs, pros & cons in 2026',
 		subhead: 'TCO math, deliverability reality, when SaaS still wins, when self-hosting does.',
 		url: 'vectismail.com/guides/self-host-email-2026',
 	}) },

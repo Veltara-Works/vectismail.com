@@ -1,6 +1,6 @@
 ---
-title: "Should You Self-Host Email? The 2026 Decision Guide"
-description: "An honest 2026 guide to self-hosting email: TCO vs SendGrid, Postmark and Google Workspace, the deliverability bar, when SaaS wins, and the minimal stack."
+title: "Is Self-Hosting Email Worth It in 2026? Costs, Pros & Cons"
+description: "Is self-hosting email worth it in 2026? What it really costs (about $25–50/month for a small SaaS), the deliverability bar to clear, and when SaaS still wins."
 lastUpdated: 2026-06-21
 faq:
   - q: "Is self-hosting email illegal in 2026?"
