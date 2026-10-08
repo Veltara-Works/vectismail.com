@@ -7,7 +7,7 @@ const description = "iRedMail and Mailcow compared: OS-native vs Docker, OpenLDA
 const url = 'https://vectismail.com/compare/iredmail-vs-mailcow/'
 const ogImage = 'https://vectismail.com/og/compare-iredmail-vs-mailcow.png'
 const datePublished = '2026-10-04'
-const dateModified = '2026-10-06'
+const dateModified = '2026-10-08'
 ---
 <html lang="en">
 <head>
@@ -75,7 +75,7 @@ const dateModified = '2026-10-06'
 					{
 						"@type": "Question",
 						"name": "Does iRedMail or Mailcow use Docker?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Mailcow is Docker-only — it ships as mailcow-dockerized, a compose stack of 25+ services. iRedMail is OS-native: its installer script lays Postfix, Dovecot, Roundcube, Nginx, Fail2ban, and SpamAssassin directly onto the host, with no container runtime involved. If your environment prohibits Docker, iRedMail is the one that fits; if you want everything isolated and restartable independently, Mailcow's containers do that." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Mailcow is Docker-only — it ships as mailcow-dockerized, a compose stack of 18 services. iRedMail is OS-native: its installer script lays Postfix, Dovecot, Roundcube, Nginx, Fail2ban, and SpamAssassin directly onto the host, with no container runtime involved. If your environment prohibits Docker, iRedMail is the one that fits; if you want everything isolated and restartable independently, Mailcow's containers do that." }
 					},
 					{
 						"@type": "Question",
@@ -108,12 +108,12 @@ const dateModified = '2026-10-06'
 		<p class="alt-lead">
 			Two long-running self-hosted mail stacks, same Postfix + Dovecot core underneath,
 			very different deployment models: iRedMail installs straight onto the OS with no
-			Docker required, Mailcow is a 25+ service Docker Compose stack with a polished web
+			Docker required, Mailcow is an 18-service Docker Compose stack with a polished web
 			UI and SOGo groupware built in. Neither ships a transactional sending API. If that
 			gap matters to you, we're a third option — more on that below.
 		</p>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>8 October 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -129,7 +129,7 @@ const dateModified = '2026-10-06'
 				</thead>
 				<tbody>
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot</td><td>Postfix · Dovecot</td></tr>
-					<tr><th scope="row">Deployment</th><td><strong>OS-native</strong> (no Docker)</td><td>Docker Compose, 25+ services</td></tr>
+					<tr><th scope="row">Deployment</th><td><strong>OS-native</strong> (no Docker)</td><td>Docker Compose, 18 services</td></tr>
 					<tr><th scope="row">Supported OS</th><td>Linux + FreeBSD + OpenBSD</td><td>Linux (wherever Docker runs)</td></tr>
 					<tr><th scope="row">Backend storage</th><td><strong>OpenLDAP, MySQL, MariaDB, or PostgreSQL</strong></td><td>SQL (bundled MySQL/MariaDB container)</td></tr>
 					<tr><th scope="row">Antispam default</th><td>SpamAssassin (Rspamd configurable)</td><td>Rspamd</td></tr>
@@ -158,7 +158,7 @@ const dateModified = '2026-10-06'
 			want the smallest possible runtime surface between the mail server and the kernel.
 		</p>
 		<p>
-			Mailcow is the opposite bet: a Docker Compose stack of 25+ services, each isolated
+			Mailcow is the opposite bet: a Docker Compose stack of 18 services, each isolated
 			and independently restartable. If your environment already standardises on
 			containers, that isolation is a feature — a broken component restarts on its own
 			without touching the rest of the stack. If your environment prohibits Docker
@@ -301,7 +301,7 @@ const dateModified = '2026-10-06'
 				<h3>Does iRedMail or Mailcow use Docker?</h3>
 				<p>
 					Mailcow is Docker-only — it ships as mailcow-dockerized, a compose stack of
-					25+ services. iRedMail is OS-native: its installer script lays Postfix,
+					18 services. iRedMail is OS-native: its installer script lays Postfix,
 					Dovecot, Roundcube, Nginx, Fail2ban, and SpamAssassin directly onto the host,
 					with no container runtime involved. If your environment prohibits Docker,
 					iRedMail is the one that fits; if you want everything isolated and
