@@ -65,6 +65,8 @@ Mail-in-a-Box does one thing extremely well: stand up a complete personal mail s
 - **Best for:** an individual or a family who wants email that just works.
 - **The trade-off:** it is deliberately opinionated and not built for teams, many client domains, or a programmatic sending workload. Simplicity is the feature and also the ceiling. See the [Mail-in-a-Box comparison](/alternatives/mail-in-a-box/).
 
+Weighing it against Mailcow specifically? See the direct [Mailcow vs Mail-in-a-Box comparison](/compare/mailcow-vs-mail-in-a-box/).
+
 ### Mailu and docker-mailserver — the lightweight Docker options
 
 **Mailu** is a lighter Docker-based stack with a simple web admin — a reasonable middle ground if Mailcow feels heavy. **docker-mailserver** is the favourite of infrastructure-as-code teams: a single image configured entirely through files you keep in git, with no database and no web UI.

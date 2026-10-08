@@ -1,0 +1,382 @@
+---
+import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
+const title = 'Mailcow vs Mail-in-a-Box (2026): Which to Self-Host?'
+const description = "Mailcow vs Mail-in-a-Box: a 6 GiB Docker groupware stack vs a one-command 1 GB Ubuntu box. RAM, DNS, spam filtering, updates and backups, compared."
+const url = 'https://vectismail.com/compare/mailcow-vs-mail-in-a-box/'
+const ogImage = 'https://vectismail.com/og/compare-mailcow-vs-mail-in-a-box.png'
+const datePublished = '2026-10-08'
+const dateModified = '2026-10-08'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Mailcow vs Mail-in-a-Box — self-hosted mail server comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Mailcow vs Mail-in-a-Box", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Mailcow vs Mail-in-a-Box",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.webp" }
+				}
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is Mailcow or Mail-in-a-Box better?",
+						"acceptedAnswer": { "@type": "Answer", "text": "They're built for different jobs. Mail-in-a-Box is a one-command personal or small-organisation mail server for a fresh Ubuntu 22.04 machine, with almost nothing to configure. Mailcow is a full Docker groupware stack (SOGo, Rspamd, ClamAV) with a comprehensive admin UI and room to customise, at the cost of a much heavier footprint: 6 GiB RAM plus 1 GiB swap minimum. Pick on hardware budget and how much control you want, not on mail quality: both deliver mail through the same Postfix and Dovecot core." }
+					},
+					{
+						"@type": "Question",
+						"name": "How much RAM do Mailcow and Mail-in-a-Box need?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Mail-in-a-Box needs at least 512 MB and recommends 1 GB; its installer warns below 768 MB. Mailcow's documented minimum is 6 GiB RAM plus 1 GiB swap with the default configuration, with 8 GiB recommended for roughly 5 to 10 users, because it also runs SOGo, ClamAV, a full-text search engine and MariaDB." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Mail-in-a-Box run on Ubuntu 24.04?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. As of Mail-in-a-Box v77 (September 2026), its setup script checks for Ubuntu 22.04 and refuses to install on anything else, including Ubuntu 24.04. Mailcow runs on any Linux host that runs Docker on full virtualisation (KVM, ESX, Hyper-V), on x86_64 or ARM64, but not inside LXC or OpenVZ containers." }
+					},
+					{
+						"@type": "Question",
+						"name": "Do Mailcow and Mail-in-a-Box both have calendar and contacts?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes. Mailcow bundles SOGo, which provides webmail, CalDAV/CardDAV calendar and contacts, and Exchange ActiveSync. Mail-in-a-Box bundles Nextcloud for CalDAV/CardDAV and Z-Push for Exchange ActiveSync, alongside Roundcube webmail." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does either have a transactional sending API?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Both have an administrative API for managing users and aliases, but neither ships a REST API for programmatic sending, inbound webhooks, or per-domain analytics. Sending from an application means SMTP submission as a real mailbox. Vectis Mail is a self-hosted platform built to add that sending API alongside mailbox hosting." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Comparison · Self-Hosted Email</div>
+		<h1>Mailcow <span>vs</span> Mail-in-a-Box</h1>
+		<p class="alt-lead">
+			Two of the most popular ways to self-host email, with the same Postfix + Dovecot core
+			and opposite philosophies. Mail-in-a-Box is a one-command box for a fresh Ubuntu
+			22.04 machine that runs on 1 GB of RAM and deliberately has almost nothing to
+			configure. Mailcow is an 18-service Docker groupware stack with a comprehensive admin
+			UI, Rspamd and ClamAV, and a 6 GiB RAM floor. Neither ships a transactional sending
+			API. If that's the gap, we're a third option, covered below.
+		</p>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>8 October 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Side-by-side, current as of October 2026 (Mailcow 2026-09a, Mail-in-a-Box v77).</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Mailcow</th><th>Mail-in-a-Box</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot</td><td>Postfix · Dovecot</td></tr>
+					<tr><th scope="row">Deployment</th><td>Docker Compose, 18 services</td><td>One setup script, installs onto the OS</td></tr>
+					<tr><th scope="row">Supported OS</th><td>Any Linux running Docker (full VMs; not LXC/OpenVZ)</td><td>Ubuntu 22.04 LTS only, fresh machine</td></tr>
+					<tr><th scope="row">Minimum RAM</th><td>6 GiB + 1 GiB swap</td><td><strong>512 MB (1 GB recommended)</strong></td></tr>
+					<tr><th scope="row">Antispam / antivirus</th><td><strong>Rspamd + ClamAV</strong></td><td>SpamAssassin + Postgrey greylisting</td></tr>
+					<tr><th scope="row">Webmail</th><td>SOGo</td><td>Roundcube</td></tr>
+					<tr><th scope="row">Calendar / contacts</th><td>Yes (SOGo)</td><td>Yes (Nextcloud)</td></tr>
+					<tr><th scope="row">Exchange ActiveSync</th><td>Yes (SOGo)</td><td>Yes (Z-Push)</td></tr>
+					<tr><th scope="row">DNS</th><td>You run DNS elsewhere</td><td><strong>Runs its own authoritative DNS</strong> (or use external DNS)</td></tr>
+					<tr><th scope="row">Backups</th><td>Helper script you schedule</td><td><strong>Built in, nightly</strong> (local, rsync, S3, B2)</td></tr>
+					<tr><th scope="row">Customisation</th><td><strong><code>mailcow.conf</code>, per-service overrides, web UI</strong></td><td>None by design ("no user-configurable setup options")</td></tr>
+					<tr><th scope="row">Admin API</th><td>Yes</td><td>Yes (control-panel actions)</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td>No</td><td>No</td></tr>
+					<tr><th scope="row">Update model</th><td>Manual <code>update.sh</code></td><td>Re-run the setup script</td></tr>
+					<tr><th scope="row">Automatic rollback</th><td>No</td><td>No</td></tr>
+					<tr><th scope="row">License</th><td>GPL-3.0</td><td>CC0 1.0 (public domain)</td></tr>
+					<tr><th scope="row">Pricing</th><td>Free (paid ServerCow support optional)</td><td>Free (donations)</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Philosophy: appliance vs platform</h3>
+		<p>
+			Mail-in-a-Box's README states it plainly: there are no user-configurable setup
+			options; it "just works." You give it a fresh Ubuntu 22.04 machine and a hostname, and
+			it configures mail, webmail, calendar, DNS, TLS, backups, a firewall and monitoring
+			for you, making every decision on your behalf. That's the whole point: the fewer
+			knobs, the less there is to get wrong.
+		</p>
+		<p>
+			Mailcow is a platform you operate. It ships sensible defaults, but everything is
+			adjustable through <code>mailcow.conf</code>, per-service override files and a
+			comprehensive web UI covering domains, mailboxes, DKIM, quarantine, rate limits and
+			SOGo groupware. More to learn, much more you can shape.
+		</p>
+
+		<h3 class="alt-h3">Hardware and operating system</h3>
+		<p>
+			This is often the deciding factor. Mail-in-a-Box needs at least 512 MB of RAM (1 GB
+			recommended) and will happily run on the cheapest VPS tier. Mailcow's documented
+			minimum is 6 GiB of RAM plus 1 GiB of swap with the default configuration, rising to
+			8 GiB for about 5 to 10 users and roughly 16 GiB for a company with 15 ActiveSync
+			phones, because it also runs SOGo, ClamAV, a full-text search engine and MariaDB.
+		</p>
+		<p>
+			On the OS side, the constraint runs the other way. Mail-in-a-Box's setup script
+			refuses to install on anything except Ubuntu 22.04, so it can't use Ubuntu 24.04 or
+			any other distribution. Mailcow runs wherever Docker does on full virtualisation (KVM,
+			ESX, Hyper-V), on x86_64 or ARM64, but not inside LXC or OpenVZ containers or on a
+			NAS.
+		</p>
+
+		<h3 class="alt-h3">DNS</h3>
+		<p>
+			Mail-in-a-Box is unusual in running its own authoritative DNS server. Point your
+			domain's nameservers at the box and it publishes SPF, DKIM, DMARC, DNSSEC, DANE TLSA,
+			MTA-STS and SSHFP records automatically, which removes the most error-prone part of
+			running mail. If you'd rather keep DNS with your registrar, it lists the records to
+			copy across. Mailcow assumes you run DNS elsewhere and shows you the records to
+			create.
+		</p>
+
+		<h3 class="alt-h3">Spam filtering</h3>
+		<p>
+			Mailcow ships Rspamd, a modern scoring engine with DKIM signing, DMARC checks and a
+			web interface, plus ClamAV for attachment scanning. Mail-in-a-Box uses the older
+			SpamAssassin together with Postgrey greylisting, and doesn't include an antivirus
+			scanner.
+		</p>
+
+		<h3 class="alt-h3">Groupware</h3>
+		<p>
+			Both give you calendar, contacts and phone sync out of the box, through different
+			components. Mailcow's SOGo is one integrated groupware web app: webmail, CalDAV/CardDAV
+			and Exchange ActiveSync together. Mail-in-a-Box assembles the same capabilities from
+			Roundcube webmail, Nextcloud for CalDAV/CardDAV and Z-Push for ActiveSync.
+		</p>
+
+		<h3 class="alt-h3">Backups and updates</h3>
+		<p>
+			Mail-in-a-Box takes a nightly backup automatically with Duplicity, to local disk or
+			to remote storage over rsync, S3 or Backblaze B2, with no setup beyond choosing a
+			target. Mailcow ships a <code>backup_and_restore.sh</code> helper script that you
+			run or schedule yourself.
+		</p>
+		<p>
+			Neither has an automated update safety net. Mail-in-a-Box upgrades by re-running its
+			setup script, which works best on a box nobody has customised. Mailcow upgrades with
+			<code>update.sh</code>, which pulls new images and restarts containers. Neither takes
+			a pre-update snapshot, runs a health-check gate or rolls back on failure: if an update
+			breaks something, recovery is manual.
+		</p>
+
+		<h3 class="alt-h3">Programmatic sending</h3>
+		<p>
+			Neither ships a transactional sending API. Both expose an admin API for managing
+			users and aliases, but sending from an application means SMTP submission as a real
+			mailbox with its own username and password. There are no domain-scoped API keys, no
+			inbound webhooks and no per-domain analytics in either.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Who each is best for</h2>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3>Choose Mailcow if</h3>
+				<ul style="margin-bottom: 0;">
+					<li>You have 6–8 GiB of RAM to give it and want a full groupware suite.</li>
+					<li>You want Rspamd and ClamAV filtering rather than SpamAssassin.</li>
+					<li>You need to customise the stack and manage it from one admin UI.</li>
+					<li>You need a current OS: Ubuntu 24.04, Debian or ARM64.</li>
+				</ul>
+			</div>
+			<div class="feature-card">
+				<h3>Choose Mail-in-a-Box if</h3>
+				<ul style="margin-bottom: 0;">
+					<li>You're running mail for yourself, a family or a small organisation.</li>
+					<li>Your budget is a 1 GB VPS.</li>
+					<li>You want DNS, TLS and backups handled automatically.</li>
+					<li>You'd rather have no settings at all than the wrong ones.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The third option: Vectis Mail</h2>
+		<p>
+			If what's missing from <em>both</em> is a transactional sending API, a modern OS on
+			a mid-size VPS, or an update you don't have to supervise, that's the gap Vectis Mail
+			is built to close. It's self-hosted on the same proven Postfix and Dovecot core, with
+			Rspamd by default, installed by one guided command:
+		</p>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<ul style="margin-bottom: 0;">
+				<li>Runs on Ubuntu 24.04 LTS from 2 GB of RAM without ClamAV (4 GB recommended), so it's lighter than Mailcow and not tied to an older Ubuntu release.</li>
+				<li>Domains, mailboxes, aliases and API keys managed from an admin dashboard or the REST API, taking effect immediately with no restarts.</li>
+				<li>A 40+ endpoint REST API: transactional sending (single and batch, with attachments), HMAC-signed inbound webhooks, domain-scoped API keys with per-domain rate limits, and analytics.</li>
+				<li>Atomic 6-phase updates (snapshot, migrate, pull, deploy, health-check, complete) with automatic rollback, and <code>vectis verify</code> to prove the box runs exactly what was published.</li>
+			</ul>
+		</div>
+		<p style="margin-top: 1rem;">
+			To be equally clear about where Vectis Mail doesn't fit: it's Docker-only, and it
+			doesn't yet ship calendar, contacts or ActiveSync; those are on the roadmap, not
+			shipped today. If groupware is a day-one requirement, pair it with a dedicated
+			CalDAV/CardDAV service. See the dedicated <a href="/alternatives/mailcow/">Vectis
+			Mail vs Mailcow</a> and <a href="/alternatives/mail-in-a-box/">Vectis Mail vs
+			Mail-in-a-Box</a> comparisons for the full detail on each.
+		</p>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is Mailcow or Mail-in-a-Box better?</h3>
+				<p>
+					They're built for different jobs. Mail-in-a-Box is a one-command personal or
+					small-organisation mail server for a fresh Ubuntu 22.04 machine, with almost
+					nothing to configure. Mailcow is a full Docker groupware stack (SOGo, Rspamd,
+					ClamAV) with a comprehensive admin UI and room to customise, at the cost of a
+					much heavier footprint: 6 GiB RAM plus 1 GiB swap minimum. Pick on hardware
+					budget and how much control you want, not on mail quality: both deliver mail
+					through the same Postfix and Dovecot core.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>How much RAM do Mailcow and Mail-in-a-Box need?</h3>
+				<p>
+					Mail-in-a-Box needs at least 512 MB and recommends 1 GB; its installer warns
+					below 768 MB. Mailcow's documented minimum is 6 GiB RAM plus 1 GiB swap with
+					the default configuration, with 8 GiB recommended for roughly 5 to 10 users,
+					because it also runs SOGo, ClamAV, a full-text search engine and MariaDB.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Mail-in-a-Box run on Ubuntu 24.04?</h3>
+				<p>
+					No. As of Mail-in-a-Box v77 (September 2026), its setup script checks for
+					Ubuntu 22.04 and refuses to install on anything else, including Ubuntu 24.04.
+					Mailcow runs on any Linux host that runs Docker on full virtualisation (KVM,
+					ESX, Hyper-V), on x86_64 or ARM64, but not inside LXC or OpenVZ containers.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Do Mailcow and Mail-in-a-Box both have calendar and contacts?</h3>
+				<p>
+					Yes. Mailcow bundles SOGo, which provides webmail, CalDAV/CardDAV calendar and
+					contacts, and Exchange ActiveSync. Mail-in-a-Box bundles Nextcloud for
+					CalDAV/CardDAV and Z-Push for Exchange ActiveSync, alongside Roundcube webmail.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does either have a transactional sending API?</h3>
+				<p>
+					No. Both have an administrative API for managing users and aliases, but
+					neither ships a REST API for programmatic sending, inbound webhooks, or
+					per-domain analytics. Sending from an application means SMTP submission as a
+					real mailbox. Vectis Mail is a self-hosted platform built to add that sending
+					API alongside mailbox hosting.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section other-alts">
+		<h2>Related comparisons</h2>
+		<p class="subtitle">See how Vectis Mail itself compares to each.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
+				<h3>Vectis Mail vs Mailcow &rarr;</h3>
+				<p>A transactional sending API and atomic updates with rollback vs Mailcow's web-UI-driven, admin-only surface.</p>
+			</a>
+			<a href="/alternatives/mail-in-a-box/" class="feature-card alt-index-card">
+				<h3>Vectis Mail vs Mail-in-a-Box &rarr;</h3>
+				<p>Multi-domain mail with a sending API vs a one-command personal box on Ubuntu 22.04.</p>
+			</a>
+			<a href="/compare/iredmail-vs-mailcow/" class="feature-card alt-index-card">
+				<h3>iRedMail vs Mailcow &rarr;</h3>
+				<p>Another head-to-head: OS-native vs Docker, and OpenLDAP vs none.</p>
+			</a>
+			<a href="/guides/best-self-hosted-email-servers-2026/" class="feature-card alt-index-card">
+				<h3>Best self-hosted email servers (2026) &rarr;</h3>
+				<p>The whole landscape by buyer type, including both of these, compared side by side.</p>
+			</a>
+		</div>
+	</section>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>Mailcow documentation (system prerequisites) and the public mailcow-dockerized repository (docker-compose.yml, helper scripts, release 2026-09a) — retrieved 2026-10-08</li>
+			<li>Mail-in-a-Box README, CHANGELOG (v77, 26 September 2026) and setup/management scripts in its public repository — retrieved 2026-10-08</li>
+			<li>Vectis Mail system requirements: <a href="/getting-started/installation/">/getting-started/installation</a>; architecture: <a href="/architecture/overview/">/architecture/overview</a></li>
+		</ul>
+	</aside>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>
