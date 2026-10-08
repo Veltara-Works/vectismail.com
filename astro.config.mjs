@@ -2,6 +2,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
+import { lastmodByPath } from './scripts/sitemap-lastmod.mjs';
+
+const LASTMOD = lastmodByPath();
 
 export default defineConfig({
 	site: 'https://vectismail.com',
@@ -25,7 +28,16 @@ export default defineConfig({
 				!page.includes('/account/billing/done') &&
 				!page.includes('/feedback/thanks') &&
 				!page.includes('/newsletter/confirmed') &&
-				!page.includes('/newsletter/unsubscribed'),
+				!page.includes('/newsletter/unsubscribed') &&
+				// /upgrade/, /upgrade/success/, /upgrade/cancelled/ (checkout flow)
+				!page.includes('/upgrade/'),
+			// Honest per-page lastmod from git, so Google can tell which pages
+			// actually changed (see scripts/sitemap-lastmod.mjs).
+			serialize(item) {
+				const date = LASTMOD.get(new URL(item.url).pathname);
+				if (date) item.lastmod = date;
+				return item;
+			},
 		}),
 		starlight({
 			title: 'Vectis Mail',
