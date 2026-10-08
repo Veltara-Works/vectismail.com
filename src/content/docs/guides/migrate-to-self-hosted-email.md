@@ -1,5 +1,5 @@
 ---
-title: "How to Migrate to a Self-Hosted Email Server Without Downtime (2026)"
+title: "Migrate to Self-Hosted Email With Zero Downtime (2026)"
 description: "Migrate email to a self-hosted server in 2026 with zero downtime: the dual-send overlap, imapsync mailbox sync, SPF/DKIM/DMARC, and the MX cutover."
 lastUpdated: 2026-06-14
 faq:

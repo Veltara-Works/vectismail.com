@@ -1,5 +1,5 @@
 ---
-title: "SPF, DKIM & DMARC: The Complete Email Authentication Guide (2026)"
+title: "SPF, DKIM & DMARC Setup: Copy-Paste Records (2026)"
 description: "SPF, DKIM and DMARC explained: how the three standards work together, copy-paste DNS records, the Gmail/Yahoo bulk-sender rules, and how to verify each."
 lastUpdated: 2026-06-21
 faq:
