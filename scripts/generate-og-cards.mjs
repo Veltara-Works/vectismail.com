@@ -161,6 +161,7 @@ const cards = [
 	// Competitor-vs-competitor (neither is Vectis Mail)
 	{ file: 'compare-iredmail-vs-mailcow.png', svg: compareCard({ productA: 'iRedMail', productB: 'Mailcow', subhead: 'OS-native vs Docker — two self-hosted mail stacks, compared.', slug: 'iredmail-vs-mailcow' }) },
 	{ file: 'compare-mailcow-vs-mail-in-a-box.png', svg: compareCard({ productA: 'Mailcow', productB: 'Mail-in-a-Box', subhead: 'Docker groupware vs a one-command box, compared.', slug: 'mailcow-vs-mail-in-a-box' }) },
+	{ file: 'compare-stalwart-vs-mailcow.png', svg: compareCard({ productA: 'Stalwart', productB: 'Mailcow', subhead: 'Rust all-in-one vs a proven Docker stack, compared.', slug: 'stalwart-vs-mailcow' }) },
 
 	// Pillar guides
 	{ file: 'guides-self-host-email-2026.png', svg: pillarCard({

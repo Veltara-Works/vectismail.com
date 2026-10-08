@@ -81,6 +81,8 @@ Stalwart is an ambitious, modern mail server written in Rust, with first-class *
 - **Best for:** Exchange-replacement buyers who want JMAP, groupware, and clustering.
 - **The trade-off:** it is a from-scratch MTA, so you trade Postfix and Dovecot's decades of hardening for a newer (if well-engineered) codebase, and its centre of gravity is groupware rather than a transactional sending platform. See the [Stalwart comparison](/alternatives/stalwart/).
 
+Weighing it against Mailcow specifically? See the direct [Stalwart vs Mailcow comparison](/compare/stalwart-vs-mailcow/).
+
 ### Mox — the single-binary purist's choice
 
 Mox is a single Go binary that runs a complete modern mail server, MIT-licensed, with **DANE** and **MTA-STS** transport security built in and a strong focus on correctness and simplicity. For a personal or single-domain server run by someone who values one clean binary, it is a delight.

@@ -1,0 +1,392 @@
+---
+import '../../styles/custom.css'
+import SiteFooter from "../../components/SiteFooter.astro"
+import SiteNav from "../../components/SiteNav.astro"
+const title = 'Stalwart vs Mailcow (2026): Which Self-Hosted Mail Server?'
+const description = "Stalwart vs Mailcow: a pre-1.0 Rust all-in-one with JMAP and clustering vs a proven 18-service Docker stack. RAM, protocols, updates and licensing compared."
+const url = 'https://vectismail.com/compare/stalwart-vs-mailcow/'
+const ogImage = 'https://vectismail.com/og/compare-stalwart-vs-mailcow.png'
+const datePublished = '2026-10-09'
+const dateModified = '2026-10-09'
+---
+<html lang="en">
+<head>
+	<link rel="preload" href="/brand/fonts/Inter-VariableFont_opsz_wght.woff2" as="font" type="font/woff2" crossorigin />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+
+	<link rel="canonical" href={url} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Stalwart vs Mailcow — self-hosted mail server comparison" />
+	<meta property="og:site_name" content="Vectis Mail" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<meta name="theme-color" content="#0C0C0D" />
+
+	<script is:inline type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vectismail.com/" },
+					{ "@type": "ListItem", "position": 2, "name": "Stalwart vs Mailcow", "item": url }
+				]
+			},
+			{
+				"@type": "Article",
+				"@id": url + "#article",
+				"headline": "Stalwart vs Mailcow",
+				"description": description,
+				"url": url,
+				"image": ogImage,
+				"datePublished": datePublished,
+				"dateModified": dateModified,
+				"author": { "@type": "Organization", "name": "Vectis Mail", "url": "https://vectismail.com/" },
+				"publisher": {
+					"@type": "Organization",
+					"name": "Vectis Mail",
+					"logo": { "@type": "ImageObject", "url": "https://vectismail.com/brand/logos/vectis-mail-logo-white.webp" }
+				}
+			},
+			{
+				"@type": "FAQPage",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "Is Stalwart or Mailcow better?",
+						"acceptedAnswer": { "@type": "Answer", "text": "They make opposite bets. Mailcow assembles long-proven components (Postfix, Dovecot, Rspamd, SOGo, ClamAV) into an 18-service Docker stack with webmail, groupware and phone sync included. Stalwart reimplements every protocol in one Rust binary, adding JMAP, clustering and pluggable storage on a fraction of the RAM, but it is still pre-1.0 and has no bundled webmail. Choose on whether you value proven internals and a complete out-of-the-box suite (Mailcow) or a modern single binary that scales out (Stalwart)." }
+					},
+					{
+						"@type": "Question",
+						"name": "Is Stalwart production-ready?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.25 as of October 2026), and its own upgrade documentation says there is no automated upgrade tool yet: minor releases may require configuration changes or data migrations, so it recommends reading the release notes and upgrading only when necessary. Version 1.0 is planned to finalise the database schema." }
+					},
+					{
+						"@type": "Question",
+						"name": "How much RAM do Stalwart and Mailcow need?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Stalwart idles at roughly 100 MB, and its documentation says 1 GB of RAM is generally sufficient for 5 to 10 users. Mailcow's documented minimum is 6 GiB of RAM plus 1 GiB of swap with the default configuration, with 8 GiB recommended for about 5 to 10 users, because it runs SOGo, ClamAV, MariaDB and the rest of its 18-service stack." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Stalwart have webmail like Mailcow?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Stalwart's web interface is for administration and account self-service; it doesn't bundle a webmail client, so you add one yourself or rely on desktop and mobile mail apps. Mailcow bundles SOGo, which provides webmail, calendar, contacts and Exchange ActiveSync in one web app." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does either have a transactional sending API?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Not in the SendGrid sense. Stalwart offers JMAP, which can submit mail, plus event webhooks, so an application has to integrate against a mail protocol. Mailcow's API is administrative, and applications send through SMTP submission as a real mailbox. Neither offers domain-scoped sending keys, per-domain rate limits or delivery analytics. Vectis Mail is a self-hosted platform built to add that sending API alongside mailbox hosting." }
+					}
+				]
+			}
+		]
+	})} />
+</head>
+<body class="marketing-page">
+	<SiteNav />
+
+	<main>
+
+	<section class="hero alt-hero">
+		<div class="hero-badge">Comparison · Self-Hosted Email</div>
+		<h1>Stalwart <span>vs</span> Mailcow</h1>
+		<p class="alt-lead">
+			Two very different answers to the same question. Mailcow assembles the components
+			the internet already runs on (Postfix, Dovecot, Rspamd, SOGo) into an 18-service
+			Docker stack, with webmail and groupware included. Stalwart rewrites every protocol
+			from scratch in one Rust binary, adding JMAP, clustering and pluggable storage on a
+			fraction of the RAM, and it's still pre-1.0. Neither ships a transactional sending
+			API. If that's the gap, we're a third option, covered below.
+		</p>
+		<div class="alt-meta" style="margin-top: 1.25rem;">
+			<span>Last updated <time datetime={dateModified}>9 October 2026</time></span>
+			<span>·</span>
+			<span>By the Vectis Mail team</span>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 2rem;">
+		<h2>At a glance</h2>
+		<p class="subtitle">Side-by-side, current as of October 2026 (Stalwart v0.16.25, Mailcow 2026-09a).</p>
+		<div class="compare-table-wrap">
+			<table class="compare-table">
+				<thead>
+					<tr><th></th><th>Stalwart</th><th>Mailcow</th></tr>
+				</thead>
+				<tbody>
+					<tr><th scope="row">Architecture</th><td>One Rust binary, every protocol in one process</td><td>Docker Compose, 18 services</td></tr>
+					<tr><th scope="row">Mail engine</th><td>Written from scratch</td><td><strong>Postfix · Dovecot</strong> (decades in production)</td></tr>
+					<tr><th scope="row">Version</th><td>Pre-1.0 (v0.16.x)</td><td>Regular dated releases (2026-09a)</td></tr>
+					<tr><th scope="row">Runs on</th><td><strong>Linux, macOS, FreeBSD, Windows, or Docker</strong></td><td>Linux with Docker (full VMs; not LXC/OpenVZ)</td></tr>
+					<tr><th scope="row">RAM, 5–10 users</th><td><strong>~1 GB</strong> (~100 MB idle)</td><td>6 GiB + 1 GiB swap minimum; 8 GiB recommended</td></tr>
+					<tr><th scope="row">Protocols</th><td><strong>SMTP · IMAP · POP3 · JMAP · CalDAV · CardDAV · WebDAV</strong></td><td>SMTP · IMAP · POP3, plus CalDAV/CardDAV via SOGo</td></tr>
+					<tr><th scope="row">Webmail</th><td>Not bundled</td><td><strong>SOGo</strong></td></tr>
+					<tr><th scope="row">Exchange ActiveSync</th><td>No</td><td><strong>Yes (SOGo)</strong></td></tr>
+					<tr><th scope="row">Antispam</th><td>Built-in filter (classifier, Pyzor; LLM on Enterprise)</td><td>Rspamd</td></tr>
+					<tr><th scope="row">Antivirus</th><td>Via milter (run ClamAV yourself)</td><td><strong>ClamAV bundled</strong></td></tr>
+					<tr><th scope="row">Storage</th><td><strong>Pluggable: RocksDB, PostgreSQL, MySQL, SQLite, FoundationDB, S3, Azure, Redis</strong> (read replicas and sharding on Enterprise)</td><td>MariaDB + Dovecot mail storage</td></tr>
+					<tr><th scope="row">Clustering / HA</th><td><strong>Built in (multi-node, Kubernetes, Swarm)</strong></td><td>Single host</td></tr>
+					<tr><th scope="row">Directory / SSO</th><td>LDAP, OIDC, SQL; SCIM on Enterprise</td><td>LDAP, OIDC, Keycloak</td></tr>
+					<tr><th scope="row">Transactional sending API</th><td>No (JMAP submission + event webhooks)</td><td>No (SMTP submission)</td></tr>
+					<tr><th scope="row">Upgrades</th><td>Manual; minor releases may need config changes or migrations</td><td>Manual <code>update.sh</code></td></tr>
+					<tr><th scope="row">Automatic rollback</th><td>No</td><td>No</td></tr>
+					<tr><th scope="row">License</th><td>AGPL-3.0 + proprietary Enterprise license</td><td>GPL-3.0</td></tr>
+					<tr><th scope="row">Pricing</th><td>Free; Enterprise is a per-mailbox subscription</td><td>Free (paid ServerCow support optional)</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>How they differ</h2>
+
+		<h3 class="alt-h3">Proven components vs a clean rewrite</h3>
+		<p>
+			This is the real decision. Mailcow doesn't implement mail protocols itself: it
+			packages Postfix, Dovecot, Rspamd, SOGo, ClamAV and MariaDB, components with decades
+			of production hardening between them, into one managed Docker stack. Every strange
+			edge case in SMTP and IMAP has long since been hit and fixed upstream.
+		</p>
+		<p>
+			Stalwart takes the opposite approach: SMTP, IMAP, POP3, JMAP, CalDAV, CardDAV and
+			WebDAV, all reimplemented from scratch in memory-safe Rust and shipped as a single
+			binary, with a published security audit. That buys a coherent design and very modest
+			resource use. The cost is a younger codebase that is still pre-1.0: its own roadmap
+			says the next milestone is finalising the database schema before version 1.0.
+		</p>
+
+		<h3 class="alt-h3">Hardware</h3>
+		<p>
+			The gap is large. Stalwart idles at around 100 MB and documents 1 GB of RAM as
+			comfortable for 5 to 10 users. Mailcow's documented minimum is 6 GiB of RAM plus
+			1 GiB of swap, with 8 GiB recommended for the same 5 to 10 users, because it runs
+			SOGo, ClamAV, MariaDB and the rest of its stack. Stalwart also runs natively on Linux,
+			macOS, FreeBSD and Windows; Mailcow needs Linux with Docker on full virtualisation.
+		</p>
+
+		<h3 class="alt-h3">Protocols and clients</h3>
+		<p>
+			Stalwart is the more protocol-complete server: JMAP for mail, calendars and contacts,
+			plus CalDAV, CardDAV and WebDAV file storage, all built in. Mailcow covers SMTP, IMAP
+			and POP3 through Postfix and Dovecot, and gets calendar, contacts and Exchange
+			ActiveSync from SOGo.
+		</p>
+		<p>
+			The practical difference shows up in the browser and on phones. Mailcow's SOGo is a
+			full webmail and groupware web app, and ActiveSync means phones sync mail, calendar
+			and contacts natively. Stalwart's web interface is for administration and account
+			self-service, not reading mail, and it doesn't speak ActiveSync, so users rely on
+			IMAP, JMAP or DAV clients, or a webmail you add yourself.
+		</p>
+
+		<h3 class="alt-h3">Filtering</h3>
+		<p>
+			Mailcow ships Rspamd for spam and ClamAV for viruses, both preconfigured. Stalwart has
+			its own built-in spam filter with a statistical classifier, Pyzor and spam traps (LLM
+			analysis is an Enterprise feature); antivirus means running ClamAV yourself and
+			connecting it as a milter.
+		</p>
+
+		<h3 class="alt-h3">Scale and storage</h3>
+		<p>
+			If you need more than one machine, this is Stalwart's strongest ground. It clusters
+			natively, coordinates through peer-to-peer or Kafka, NATS or Redis, runs on Kubernetes
+			or Docker Swarm, and stores data in your choice of RocksDB, PostgreSQL, MySQL, SQLite,
+			FoundationDB, S3-compatible or Azure storage; read replicas and sharded storage are
+			Enterprise features. Mailcow is a single-host stack; high
+			availability means building replication and failover around it yourself.
+		</p>
+
+		<h3 class="alt-h3">Upgrades</h3>
+		<p>
+			Neither has an automated update safety net. Mailcow upgrades with
+			<code>update.sh</code>, which pulls new images and restarts containers. Stalwart's
+			documentation says plainly that there is no automated upgrade tool yet: patch releases
+			are safe, but minor releases may require configuration changes or data migrations, so
+			it recommends reading the release notes first and upgrading only when necessary.
+			Neither takes a pre-update snapshot, runs a health-check gate or rolls back on failure.
+		</p>
+
+		<h3 class="alt-h3">Licensing and cost</h3>
+		<p>
+			Mailcow is GPL-3.0 with no paid edition; its maintainers offer ServerCow support
+			contracts. Stalwart is dual-licensed: the AGPL-3.0 core is free, and a proprietary
+			Enterprise edition, priced per mailbox, adds multi-tenancy, SCIM provisioning, LLM spam
+			filtering, mail undelete, read replicas and sharded storage, live telemetry and priority
+			support.
+		</p>
+
+		<h3 class="alt-h3">Programmatic sending</h3>
+		<p>
+			Neither is a transactional sending platform. Stalwart's JMAP can submit mail and its
+			webhooks report events, but your application integrates against a mail protocol.
+			Mailcow's API is administrative, and applications send through SMTP submission as a
+			real mailbox. There are no domain-scoped sending keys, per-domain rate limits or
+			delivery analytics in either.
+		</p>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Who each is best for</h2>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
+			<div class="feature-card">
+				<h3>Choose Stalwart if</h3>
+				<ul style="margin-bottom: 0;">
+					<li>You want JMAP, or CalDAV/CardDAV/WebDAV built into the server itself.</li>
+					<li>You need clustering, high availability or a specific storage backend.</li>
+					<li>RAM is tight, or you want to run outside Docker or Linux.</li>
+					<li>You're comfortable with pre-1.0 software and reading release notes before each upgrade.</li>
+				</ul>
+			</div>
+			<div class="feature-card">
+				<h3>Choose Mailcow if</h3>
+				<ul style="margin-bottom: 0;">
+					<li>You want the proven Postfix and Dovecot core rather than a rewrite.</li>
+					<li>Your users need webmail and phone sync (ActiveSync) on day one.</li>
+					<li>You want Rspamd and ClamAV preconfigured.</li>
+					<li>You have 6–8 GiB of RAM for a single, self-contained host.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>The third option: Vectis Mail</h2>
+		<p>
+			If what's missing from <em>both</em> is a transactional sending API, a proven mail
+			core that doesn't need 6 GiB of RAM, or an update you don't have to supervise, that's
+			the gap Vectis Mail is built to close. It runs the same proven Postfix and Dovecot
+			core as Mailcow, with Rspamd by default, installed by one guided command:
+		</p>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<ul style="margin-bottom: 0;">
+				<li>Runs on Ubuntu 24.04 LTS from 2 GB of RAM without ClamAV (4 GB recommended), in 10 containers by default.</li>
+				<li>Domains, mailboxes, aliases and API keys managed from an admin dashboard or the REST API, taking effect immediately with no restarts.</li>
+				<li>A 40+ endpoint REST API: transactional sending (single and batch, with attachments), HMAC-signed inbound webhooks, domain-scoped API keys with per-domain rate limits, and analytics.</li>
+				<li>Atomic 6-phase updates (snapshot, migrate, pull, deploy, health-check, complete) with automatic rollback, and <code>vectis verify</code> to prove the box runs exactly what was published.</li>
+			</ul>
+		</div>
+		<p style="margin-top: 1rem;">
+			To be equally clear about where Vectis Mail doesn't fit: it's Docker-only and
+			single-node, and it doesn't ship JMAP, calendar, contacts or ActiveSync today. If
+			groupware or a multi-node cluster is the core requirement, it isn't your answer. See
+			the dedicated <a href="/alternatives/stalwart/">Vectis Mail vs Stalwart</a> and
+			<a href="/alternatives/mailcow/">Vectis Mail vs Mailcow</a> comparisons for the full
+			detail on each.
+		</p>
+		<div class="hero-buttons" style="margin-top: 1.5rem;">
+			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
+			<a href="/pricing/" class="btn-secondary">View pricing</a>
+		</div>
+	</section>
+
+	<section class="section" style="padding-top: 1rem;">
+		<h2>Frequently asked questions</h2>
+		<div class="alt-faq">
+			<div class="alt-faq-q">
+				<h3>Is Stalwart or Mailcow better?</h3>
+				<p>
+					They make opposite bets. Mailcow assembles long-proven components (Postfix,
+					Dovecot, Rspamd, SOGo, ClamAV) into an 18-service Docker stack with webmail,
+					groupware and phone sync included. Stalwart reimplements every protocol in one
+					Rust binary, adding JMAP, clustering and pluggable storage on a fraction of the
+					RAM, but it is still pre-1.0 and has no bundled webmail. Choose on whether you
+					value proven internals and a complete out-of-the-box suite (Mailcow) or a modern
+					single binary that scales out (Stalwart).
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Is Stalwart production-ready?</h3>
+				<p>
+					Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.25 as of October 2026), and its own
+					upgrade documentation says there is no automated upgrade tool yet: minor
+					releases may require configuration changes or data migrations, so it recommends
+					reading the release notes and upgrading only when necessary. Version 1.0 is
+					planned to finalise the database schema.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>How much RAM do Stalwart and Mailcow need?</h3>
+				<p>
+					Stalwart idles at roughly 100 MB, and its documentation says 1 GB of RAM is
+					generally sufficient for 5 to 10 users. Mailcow's documented minimum is 6 GiB of
+					RAM plus 1 GiB of swap with the default configuration, with 8 GiB recommended
+					for about 5 to 10 users, because it runs SOGo, ClamAV, MariaDB and the rest of
+					its 18-service stack.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Stalwart have webmail like Mailcow?</h3>
+				<p>
+					No. Stalwart's web interface is for administration and account self-service; it
+					doesn't bundle a webmail client, so you add one yourself or rely on desktop and
+					mobile mail apps. Mailcow bundles SOGo, which provides webmail, calendar,
+					contacts and Exchange ActiveSync in one web app.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does either have a transactional sending API?</h3>
+				<p>
+					Not in the SendGrid sense. Stalwart offers JMAP, which can submit mail, plus
+					event webhooks, so an application has to integrate against a mail protocol.
+					Mailcow's API is administrative, and applications send through SMTP submission as
+					a real mailbox. Neither offers domain-scoped sending keys, per-domain rate limits
+					or delivery analytics. Vectis Mail is a self-hosted platform built to add that
+					sending API alongside mailbox hosting.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section other-alts">
+		<h2>Related comparisons</h2>
+		<p class="subtitle">See how Vectis Mail itself compares to each.</p>
+		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+			<a href="/alternatives/stalwart/" class="feature-card alt-index-card">
+				<h3>Vectis Mail vs Stalwart &rarr;</h3>
+				<p>The proven Postfix/Dovecot/Rspamd engine, a transactional API and self-rolling-back updates vs a from-scratch Rust rewrite.</p>
+			</a>
+			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
+				<h3>Vectis Mail vs Mailcow &rarr;</h3>
+				<p>A transactional sending API and atomic updates with rollback vs Mailcow's web-UI-driven, admin-only surface.</p>
+			</a>
+			<a href="/compare/iredmail-vs-mailcow/" class="feature-card alt-index-card">
+				<h3>iRedMail vs Mailcow &rarr;</h3>
+				<p>Another head-to-head: OS-native vs Docker, and OpenLDAP vs none.</p>
+			</a>
+			<a href="/compare/mailcow-vs-mail-in-a-box/" class="feature-card alt-index-card">
+				<h3>Mailcow vs Mail-in-a-Box &rarr;</h3>
+				<p>Docker groupware vs a one-command box on 1 GB of RAM.</p>
+			</a>
+		</div>
+	</section>
+
+	<aside class="alt-sources">
+		<h3>Sources</h3>
+		<ul>
+			<li>Stalwart README, system requirements, upgrade guide, milter and Enterprise documentation, and release v0.16.25 (5 October 2026) in its public repositories — retrieved 2026-10-09</li>
+			<li>Mailcow documentation (system prerequisites, identity providers) and the public mailcow-dockerized repository (docker-compose.yml, release 2026-09a) — retrieved 2026-10-08</li>
+			<li>Vectis Mail system requirements: <a href="/getting-started/installation/">/getting-started/installation</a>; architecture: <a href="/architecture/overview/">/architecture/overview</a></li>
+		</ul>
+	</aside>
+
+	</main>
+
+	<SiteFooter />
+</body>
+</html>
