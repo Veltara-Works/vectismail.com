@@ -1,0 +1,14 @@
+---
+// "Current stable release: vX.Y.Z (date)", read at build time from the same
+// releases.json the footer uses (src/lib/latest-release.ts). Redeploying after
+// a release updates it; nothing to hand-edit. Renders nothing if the lookup
+// fails, rather than a stale or made-up version.
+import { getLatestRelease, formatReleaseDate } from '../lib/latest-release'
+const latest = await getLatestRelease()
+---
+{latest && (
+	<p>
+		<strong>Current stable release:</strong>{' '}
+		<a href={latest.notesUrl}>{latest.version}</a>, released {formatReleaseDate(latest.releasedAt)}.
+	</p>
+)}
