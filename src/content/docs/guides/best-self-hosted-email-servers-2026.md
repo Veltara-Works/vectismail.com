@@ -74,6 +74,8 @@ Weighing it against Mailcow specifically? See the direct [Mailcow vs Mail-in-a-B
 - **Best for:** Mailu — simple Docker setups wanting fewer moving parts; docker-mailserver — GitOps teams who want their mail config version-controlled.
 - **The trade-off:** both are mail-plumbing first. Neither ships a transactional sending API, inbound parse-to-webhook, per-domain analytics, or atomic updates with rollback — you assemble those layers yourself.
 
+Weighing Mailu against Stalwart specifically? See the direct [Mailu vs Stalwart comparison](/compare/mailu-vs-stalwart/).
+
 ### Stalwart — the modern Exchange replacement
 
 Stalwart is an ambitious, modern mail server written in Rust, with first-class **JMAP**, groupware (calendar and contacts), built-in web interface, and **clustering** for high availability. If your goal is to replace Microsoft Exchange with something open, it is one of the strongest options in 2026.
