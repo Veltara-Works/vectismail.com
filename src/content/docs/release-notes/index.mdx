@@ -84,8 +84,9 @@ standard protocols throughout.
   the server still matches what was published, without opening a terminal.
 - **Pre-flight refuses public credentials.** `vectis preflight` fails if an
   existing `secrets.yaml` still holds a development or example credential, and
-  names the fields to replace. The installer generates random values, so this
-  catches a server assembled by hand from sample files.
+  names the fields to replace. The installer generates random values (and
+  leaves only its own marker for the first admin password), so this catches a
+  server assembled by hand from sample files.
 
 ## Licensing
 
