@@ -102,7 +102,9 @@ const captureSource = slug ? `docs:${slug}` : 'docs'
 
 	.doc-footer nav {
 		display: flex;
-		gap: 1.25rem;
+		/* Wrap on phones: eight links in one row overflow a 390px viewport. */
+		flex-wrap: wrap;
+		gap: 0.5rem 1.25rem;
 	}
 
 	.doc-footer a {

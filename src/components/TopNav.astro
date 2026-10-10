@@ -1,6 +1,8 @@
 ---
 // Persistent top navigation bar shown above Starlight's header on all doc pages.
 // Links back to the marketing pages for a consistent site-wide experience.
+// Desktop only: below 50rem the links live in the mobile menu (Sidebar.astro).
+import { siteLinks } from './site-links'
 ---
 <div class="top-nav">
 	<div class="top-nav-inner">
@@ -8,35 +10,40 @@
 			<img src="/brand/logos/vectis-mail-logo-white.webp" alt="Vectis Mail" width="149" height="28" />
 		</a>
 		<nav class="top-nav-links">
-			<a href="/features/">Features</a>
-			<a href="/pricing/">Pricing</a>
-			<a href="/alternatives/">Compare</a>
-			<a href="/getting-started/">Docs</a>
-			<a href="/notes/">Notes</a>
-			<a href="/about/">About</a>
-			<a href="/contact/">Contact</a>
+			{siteLinks.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 	</div>
 </div>
 
 <style>
 	.top-nav {
+		display: none;
+		height: var(--vm-topnav-h);
 		background: #0d1117;
 		border-bottom: 1px solid #21262d;
 		width: 100%;
 		z-index: 100;
 	}
 
+	@media (min-width: 50rem) {
+		.top-nav {
+			display: block;
+		}
+	}
+
 	.top-nav-inner {
 		max-width: 1400px;
+		height: 100%;
 		margin: 0 auto;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 0.6rem 1.5rem;
+		padding: 0 1.5rem;
 	}
 
+
 	.top-nav-logo {
+		display: flex;
 		font-size: 1rem;
 		font-weight: 700;
 		color: #e6edf3;
@@ -67,14 +74,5 @@
 	/* Highlight the active "Docs" link when on doc pages */
 	.top-nav-links a[href="/getting-started/"] {
 		color: #58a6ff;
-	}
-
-	@media (max-width: 600px) {
-		.top-nav-links {
-			gap: 0.75rem;
-		}
-		.top-nav-links a {
-			font-size: 0.8rem;
-		}
 	}
 </style>
