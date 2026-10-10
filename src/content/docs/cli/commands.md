@@ -11,6 +11,8 @@ This page documents every `vectis` CLI command, its flags, input/output, and usa
 
 Runs pre-flight checks without making any changes to the system. Validates OS, hardware, network, DNS, ports, and Docker availability.
 
+On a server that already has an `/etc/vectis/secrets.yaml` (a reinstall, or a box set up by hand), it also checks that file for development and example credentials, the `vectis_dev_*` and `CHANGE_ME*` values that are public in the repository. A match fails the check and lists the field names to replace; values are never printed. There is one exception: `api.admin_password` set to exactly `CHANGE_ME_admin_password` is allowed, because the installer leaves that marker in place so `vectis admin init` can generate the admin password. A fresh server has no `secrets.yaml` yet and passes. Run it as root so the file can be read.
+
 ```bash
 vectis preflight
 ```
@@ -42,6 +44,7 @@ Port 587:    available                 PASS
 Port 993:    available                 PASS
 SMTP out:    port 25 reachable         PASS
 Docker:      not installed (will install) PASS
+Secrets:     none yet (fresh install)  PASS
 
 Ready to install Vectis.
 Run: vectis install
@@ -505,6 +508,18 @@ vectis verify: PASS: this box runs exactly what was published for v0.1.50
 ```
 
 Optional services you haven't enabled (webmail, ClamAV, the certificate extractor) are skipped. A missing core service is a failure.
+
+The result of the most recent run is also shown to super admins on the admin dashboard, in the **Release integrity** card. The card never runs the check itself: the API reads the last result file through a read-only mount and the card displays it.
+
+| Card state | Meaning |
+|------------|---------|
+| verified | The last check passed: the server matches what was published for its version. |
+| stale | The last check passed, but it is old enough that the timer may have stopped. |
+| FAILED | The server does not match what was published. Investigate now. |
+| unverifiable | The check could not establish what this version should run (for example, no network). Not a sign of tampering. |
+| not yet | No result has been recorded. Install the timer with `sudo vectis verify install-timer`. |
+| unknown | The last result file could not be read. |
+| unavailable | The dashboard could not load the result (a network or server error). Run `vectis verify` on the host. |
 
 **Flags:**
 

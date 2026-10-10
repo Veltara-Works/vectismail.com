@@ -31,6 +31,9 @@ standard protocols throughout.
 - **Redis-backed filtering.** Rspamd shares the stack's Valkey store, so rate
   limiting and reply tracking run out of the box, and greylisting works when you
   turn it on (system-wide, or per domain on Pro).
+- **A spam classifier that stays bounded.** Learned Bayes tokens now expire:
+  the significant ones are kept, common ones last 10 days, and the rest 100
+  days, so the classifier's database no longer grows without limit.
 - **DKIM that heals itself.** Signing keys are generated, permissioned, and
   reconciled automatically across upgrades, closing the classic "unsigned mail
   after a config change" gap.
@@ -75,6 +78,15 @@ standard protocols throughout.
   binary by hash. Run it on demand, or install its timer to re-check on a
   schedule and email you if anything stops matching. Every release has its own
   signed manifest, and a published release can never be overwritten.
+- **Release integrity on the dashboard.** The admin dashboard shows the last
+  `vectis verify` result to super admins: verified, failed, unverifiable, or
+  stale if the scheduled check has stopped running. You see at a glance whether
+  the server still matches what was published, without opening a terminal.
+- **Pre-flight refuses public credentials.** `vectis preflight` fails if an
+  existing `secrets.yaml` still holds a development or example credential, and
+  names the fields to replace. The installer generates random values (and
+  leaves only its own marker for the first admin password), so this catches a
+  server assembled by hand from sample files.
 
 ## Licensing
 
