@@ -52,10 +52,41 @@
 }
 
 /* ── Starlight Overrides ────────────────────────────────────────── */
-/* TopNav.astro already shows the wordmark; hide Starlight's duplicate
-   site-title so the sidebar starts cleanly at "Getting Started". */
-.site-title {
-	display: none;
+
+/* ── Docs header ── Header.astro stacks TopNav (site-wide links) above
+   Starlight's own row (search, GitHub, theme). On desktop the header gets
+   room for both rows through --sl-nav-height, which Starlight also uses to
+   offset the sidebars, the content and the menu. Below 50rem TopNav is hidden:
+   Starlight's site title shows the brand and Sidebar.astro puts the site
+   links at the top of the mobile menu. */
+:root {
+	--vm-topnav-h: 3rem;
+	/* The brand is dark-only; Starlight's light theme would paint the bar white. */
+	--sl-color-bg-nav: var(--vm-bg-dark);
+}
+
+.vm-header-row {
+	height: 100%;
+}
+
+@media (min-width: 50rem) {
+	:root {
+		--sl-nav-height: calc(var(--vm-topnav-h) + 4rem);
+	}
+
+	header.header {
+		padding: 0;
+	}
+
+	.vm-header-row {
+		height: calc(var(--sl-nav-height) - var(--vm-topnav-h));
+		padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+	}
+
+	/* TopNav already shows the wordmark. */
+	.site-title {
+		display: none;
+	}
 }
 
 /* ── Marketing Base ─────────────────────────────────────────────── */
@@ -95,7 +126,7 @@
 }
 
 /* Desktop: links inline, hamburger hidden. The hamburger only appears at
-   <=768px (see the media query below). */
+   <=960px (see the Responsive media queries below). */
 .nav-links {
 	display: flex;
 	align-items: center;
@@ -829,11 +860,11 @@ a.alt-index-card h3 {
 }
 
 /* ── Responsive ─────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-	.hero h1 { font-size: 2.2rem; }
-	.hero p { font-size: 1.05rem; }
-	.section h2 { font-size: 1.6rem; }
-	.marketing-nav { padding: 1rem; position: relative; }
+/* The seven nav links plus the logo need ~935px; below 960px they would run
+   off the right edge (tablets in portrait), so collapse them behind the
+   hamburger toggle there rather than at the 768px phone breakpoint. */
+@media (max-width: 960px) {
+	.marketing-nav { position: relative; }
 	/* Collapse the links behind the hamburger toggle. */
 	.nav-toggle { display: flex; }
 	.nav-links {
@@ -860,6 +891,13 @@ a.alt-index-card h3 {
 	.nav-open .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 	.nav-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
 	.nav-open .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
+
+@media (max-width: 768px) {
+	.hero h1 { font-size: 2.2rem; }
+	.hero p { font-size: 1.05rem; }
+	.section h2 { font-size: 1.6rem; }
+	.marketing-nav { padding: 1rem; }
 	.pricing-card .price { font-size: 2rem; }
 	.stats-bar { gap: 1rem; }
 	.stat-item .stat-number { font-size: 1.8rem; }
