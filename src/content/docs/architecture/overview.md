@@ -57,7 +57,7 @@ Vectis runs 10 containers (9 if ClamAV is disabled):
 | **Go API** | REST API + embedded admin UI (React SPA) | frontend, data, orchestrator |
 | **Postfix** | SMTP server (inbound + outbound mail) | mail, data |
 | **Dovecot** | IMAP/POP3 server, mail storage | mail, data |
-| **Rspamd** | Spam filtering, DKIM signing, greylisting | mail, data |
+| **Rspamd** | Spam filtering (including DNS blocklist lookups through a bundled local resolver), DKIM signing, greylisting | mail, data |
 | **ClamAV** | Antivirus scanning (optional) | mail |
 | **Postgres** | Primary database | data |
 | **Valkey** | Session cache, rate limiting, Rspamd data | data |
@@ -123,6 +123,14 @@ External MTA --> Port 25 --> Postfix --> Rspamd (spam check)
 6. Dovecot stores the message in the Maildir at `/var/vectis/mail/<domain>/<user>/Maildir/`.
 7. A Postfix notification script POSTs to the API's internal endpoint.
 8. The API stores message metadata and fires webhook events.
+
+### DNS blocklists
+
+Part of Rspamd's scoring is a set of DNS lookups against public blocklists and allowlists, such as Spamhaus, URIBL and DNSWL, for the sending server and for links in the message. These services refuse queries that reach them through shared or public DNS resolvers, which is how most servers are set up. When they refuse, the check silently scores nothing.
+
+So the Rspamd container includes its own small recursive resolver (Unbound), listening only inside the container. Blocklist queries go straight from your server's own address to each list's DNS servers. If you would rather keep Rspamd on your host's resolver, set `rspamd.local_resolver: false`.
+
+Spamhaus offers its public mirrors free of charge for non-commercial use at modest volumes. If you use Vectis Mail commercially or at high volume, you may need a [Spamhaus Data Query Service](https://www.spamhaus.com/data-access/free-data-query-service/) subscription; see Spamhaus's [usage terms](https://www.spamhaus.org/organization/dnsblusage/). Whether your use qualifies is between you and Spamhaus.
 
 ### Outbound mail
 

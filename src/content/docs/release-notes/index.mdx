@@ -28,6 +28,14 @@ standard protocols throughout.
 - **DMARC enforcement.** Inbound mail that forges a domain publishing a DMARC
   `p=reject` policy is rejected at SMTP, and `p=quarantine` forgeries are marked
   as spam. On by default (`rspamd.enforce_dmarc`).
+- **Blocklist lookups that work.** Spamhaus, URIBL and DNSWL refuse queries
+  that arrive through shared or public DNS resolvers, so on most servers those
+  checks were silently scoring nothing. The spam filter now carries its own
+  local resolver, so lookups come from your server's own address and return
+  real answers. On by default; opt out with `rspamd.local_resolver: false`.
+  Spamhaus's free public mirrors are meant for non-commercial, modest-volume use;
+  see [DNS blocklists](/architecture/overview/#dns-blocklists) for what that
+  means for commercial installs.
 - **Redis-backed filtering.** Rspamd shares the stack's Valkey store, so rate
   limiting and reply tracking run out of the box, and greylisting works when you
   turn it on (system-wide, or per domain on Pro).
