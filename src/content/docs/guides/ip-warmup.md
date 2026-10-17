@@ -3,20 +3,20 @@ title: "IP Warmup for New Mail Servers"
 description: "A complete guide to IP warmup for new mail servers: why it matters, Vectis Mail's 30-day schedule, the warmup API, monitoring progress, and mistakes to avoid."
 faq:
   - q: "How long does email IP warmup take?"
-    a: "Vectis Mail's built-in warmup runs 30 days, starting at 50 messages/day and ramping to 200,000/day, holding each level for two days to establish a consistent pattern. After day 30 the warmup auto-completes and sending limits are removed."
+    a: "Vectis Mail's built-in warmup runs 30 days, starting at 50 external recipients a day and ramping to 200,000 a day, holding each level for two days to establish a consistent pattern. After day 30 the warmup completes on its own and the limit is removed."
   - q: "What happens if I send too much email from a new IP without warming up?"
     a: "Providers treat a high-volume new IP like a spammer: Gmail defers with 421 'try again later' errors (eventually bouncing them), Microsoft 365 blocks the IP and requires manual delisting, and Yahoo silently routes you to spam. Recovering a damaged reputation takes weeks to months — far longer than warming up correctly the first time."
   - q: "Do I need to warm up my IP if I'm migrating an existing mail server?"
     a: "If the IP already carries an established sending reputation, you can skip or remove warmup. Warmup matters for fresh IPs with no history; for a known-good IP you're moving over, the reputation travels with the address."
   - q: "Can I pause and resume IP warmup?"
-    a: "Avoid pausing — the schedule is designed for 30 consecutive days, and stopping for several days can cost the reputation you've built. If you must pause, resume from the day you stopped rather than restarting from day 1."
-  - q: "Do I have to warm up each IP separately?"
-    a: "Yes. If your deployment sends from multiple outbound IPs (for example, separate transactional and marketing IPs), each one builds its own reputation and needs its own warmup entry."
+    a: "There is no pause. The schedule is designed for 30 consecutive days of sending, and a gap of several days can cost the reputation you've built. Cancelling and starting again begins at day 1, so keep a warmup running once it has started."
+  - q: "What if my server moves to a new IP?"
+    a: "A Vectis Mail server sends from one IP, so one warmup runs at a time. If the server moves to a fresh IP, cancel the old warmup and start a new one for the new address."
 ---
 
 When you deploy a new mail server on a fresh IP address, major email providers (Gmail, Outlook, Yahoo) have no history for that IP. They treat unknown IPs with suspicion -- sending too much mail too quickly from an unknown IP triggers rate limiting, deferrals, or outright blocks. IP warmup is the process of gradually increasing your sending volume over 30 days to build a positive reputation.
 
-Vectis Mail has a built-in warmup system that automatically manages daily sending limits and advances the schedule for you.
+Vectis Mail has a built-in warmup system that automatically manages daily sending limits and advances the schedule for you. It counts recipients outside your server: mail between mailboxes on your own domains never leaves the server, so it doesn't count.
 
 ## Why warmup matters
 
@@ -41,7 +41,7 @@ Recovery from a damaged reputation takes weeks to months -- far longer than doin
 
 ## The Vectis warmup schedule
 
-Vectis uses a 30-day warmup ramp that starts at 50 messages per day and increases to 200,000 per day. The schedule holds each level for two days to establish a consistent pattern before increasing:
+Vectis uses a 30-day warmup ramp that starts at 50 external recipients per day and increases to 200,000 per day. A message to three outside addresses counts as three. The schedule holds each level for two days to establish a consistent pattern before increasing:
 
 | Days | Daily limit | Cumulative capacity |
 |------|-------------|-------------------|
@@ -61,24 +61,33 @@ Vectis uses a 30-day warmup ramp that starts at 50 messages per day and increase
 | 27-28 | 150,000 | 937,700 |
 | 29-30 | 200,000 | 1,337,700 |
 
-After day 30, the warmup is automatically marked as complete and sending limits are removed.
+After day 30, the warmup is automatically marked as complete and the limit is removed.
 
-### How the schedule works internally
+### How the schedule works
 
-Vectis tracks warmup state in Postgres. The warmup manager runs a check every hour:
+Vectis tracks warmup state in Postgres and checks the schedule every five minutes:
 
-1. For each active warmup IP, check if 24 hours have elapsed since the last daily reset
-2. If yes, advance to the next warmup day, update the daily limit, and reset the sent counter to zero
-3. If the IP has completed day 30, mark the warmup as inactive (complete)
+1. Each day starts 24 hours after the previous one, at the same time of day
+2. At the start of a day, the warmup moves to the next day's limit and today's count goes back to zero
+3. After day 30, the warmup completes and stops limiting
 
-Every outbound message is checked against the warmup limit before being queued for delivery. If the daily limit has been reached, the message is deferred until the next day's reset.
+The schedule moves on once a day while the server is running, whether or not you sent mail that day, so an idle day still counts as a day of the ramp. Days the server was down are different: when it comes back after several days, the schedule moves on by one day, not several.
+
+### What happens at the limit
+
+Every message is checked against the day's limit before it is accepted, whichever way it is sent:
+
+- **The send API** answers `429` with error code `WARMUP_LIMIT` and a `Retry-After` header giving the seconds until the limit resets. The message is not accepted, so your application decides when to send it again. In a batch send, the message's result carries `WARMUP_LIMIT`.
+- **Mail clients and apps sending over SMTP** (ports 587 and 465) are told `452 4.5.3` when they start sending the message (at the SMTP `DATA` command, before the body). It's a temporary refusal: the message isn't accepted, so it stays with the client, which must keep it and try again later. Most mail clients leave it in the Outbox or show an error.
+
+A message is accepted or refused as a whole. If it has more outside recipients than the day allows, split it into smaller sends.
 
 ## Starting warmup
 
 ### Via the API
 
 ```bash
-curl -X POST https://mail.example.com/api/v1/warmup \
+curl -X POST https://mail.example.com/api/v1/deliverability/warmup \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -104,13 +113,14 @@ Response:
 }
 ```
 
+Only one warmup runs at a time. Starting a second one while another is active returns `409 WARMUP_ACTIVE`.
+
 ### Via the dashboard
 
-1. Log into the Vectis admin dashboard
-2. Navigate to **Deliverability** > **IP Warmup**
-3. Click **Start Warmup**
-4. Enter the IP address and an optional label
-5. The warmup begins immediately
+1. Log into the Vectis admin dashboard as a super admin
+2. Open **Deliverability** and find the **IP warmup** card
+3. Enter the server's sending IP (the **Blocklist status** card above shows it) and an optional label
+4. Click **Start warmup**. The warmup begins immediately
 
 ## Monitoring warmup progress
 
@@ -118,7 +128,7 @@ Response:
 
 ```bash
 # List all warmup entries with status
-curl https://mail.example.com/api/v1/warmup \
+curl https://mail.example.com/api/v1/deliverability/warmup \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
@@ -133,8 +143,10 @@ Response:
       "label": "Primary mail server",
       "warmup_started": "2026-04-04T00:00:00Z",
       "warmup_day": 7,
+      "days_total": 30,
       "daily_limit": 500,
       "daily_sent": 342,
+      "next_reset_at": "2026-04-11T00:00:00Z",
       "active": true,
       "schedule_limit": 500,
       "utilization_pct": 68.4
@@ -148,20 +160,21 @@ Key fields to monitor:
 | Field | Meaning |
 |-------|---------|
 | `warmup_day` | Current day in the 30-day schedule |
-| `daily_limit` | Maximum messages allowed today |
-| `daily_sent` | Messages sent so far today |
+| `daily_limit` | External recipients allowed today |
+| `daily_sent` | External recipients sent so far today |
+| `next_reset_at` | When today's count resets and the next day's limit applies |
 | `utilization_pct` | Percentage of daily limit used |
-| `schedule_limit` | The recommended limit for the current day (matches `daily_limit` unless manually adjusted) |
+| `schedule_limit` | The schedule's limit for the current day |
 | `active` | `true` while warmup is in progress, `false` when complete |
 
 ### Via the dashboard
 
-The Deliverability section of the dashboard shows a warmup progress card with:
+The **IP warmup** card on the Deliverability page shows:
 
-- Current day and daily limit
-- A progress bar showing utilization
-- A chart of daily sends over the warmup period
-- Projected completion date
+- The current day of the 30
+- Today's external recipients against the day's limit, flagged when the limit is reached
+- When the count resets and the limit rises
+- A **Cancel warmup** button
 
 ## Best practices during warmup
 
@@ -188,22 +201,22 @@ During warmup, check daily:
 - **Bounce rate**: Should be under 2%
 - **Spam complaint rate**: Should be under 0.1%
 - **Deferral rate**: Some deferrals are normal during warmup; persistent deferrals from a specific provider indicate a problem
-- **RBL status**: Run `vectis rbl check` or check the API endpoint to ensure you are not listed on any blocklists
+- **Blocklist status**: Check the **Blocklist status** card on the Deliverability page (or `GET /api/v1/deliverability/rbl`) to make sure your IP isn't listed
 
-### Do not pause and restart
+### Keep sending every day
 
-If you pause sending for several days during warmup, you may lose the reputation you have built. The schedule is designed for 30 consecutive days. If you must pause, resume from the day you stopped -- do not restart from day 1.
+If you stop sending for several days during warmup, you may lose the reputation you have built. The schedule is designed for 30 consecutive days of steady sending. There is no pause: cancelling and starting again begins at day 1.
 
 ## Stopping or removing warmup
 
 ### Remove warmup tracking
 
 ```bash
-curl -X DELETE https://mail.example.com/api/v1/warmup/WARMUP_ID \
+curl -X DELETE https://mail.example.com/api/v1/deliverability/warmup/WARMUP_ID \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
-Removing warmup tracking immediately removes all sending limits for that IP. Only do this if:
+Removing warmup tracking immediately removes the sending limit. The dashboard's **Cancel warmup** button does the same. Only do this if:
 
 - The 30-day warmup is complete (it auto-deactivates)
 - You are migrating an IP that already has an established reputation
@@ -213,7 +226,7 @@ Removing warmup tracking immediately removes all sending limits for that IP. Onl
 
 After day 30, Vectis automatically deactivates the warmup entry for the IP. From this point:
 
-- All sending limits are removed
+- The daily limit is removed
 - The IP is considered fully warmed
 - You should continue to follow [deliverability best practices](/guides/deliverability/) to maintain your reputation
 
@@ -241,27 +254,15 @@ SPF, DKIM, and DMARC must be fully configured and passing before you start warmu
 
 If multiple domains share the same IP and one domain sends spam, all domains on that IP suffer. In Vectis, you control all domains on your server, so this is only a concern if you host mail for external parties.
 
-## Warmup for multiple IPs
+## Moving to a new IP
 
-If your deployment uses multiple outbound IPs (for example, separate IPs for transactional and marketing email), each IP must be warmed independently. Create a separate warmup entry for each:
-
-```bash
-# Transactional IP
-curl -X POST https://mail.example.com/api/v1/warmup \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -d '{"ip_address": "203.0.113.10", "label": "Transactional"}'
-
-# Marketing IP
-curl -X POST https://mail.example.com/api/v1/warmup \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -d '{"ip_address": "203.0.113.11", "label": "Marketing"}'
-```
+A Vectis Mail server sends from one IP, and the daily limit applies to all mail leaving it, so one warmup runs at a time. If the server moves to a fresh IP, cancel the old warmup and start a new one for the new address. Each IP builds its own reputation, so the new one starts from day 1.
 
 ## Frequently asked questions
 
 ### How long does email IP warmup take?
 
-Vectis Mail's built-in warmup runs 30 days, starting at 50 messages/day and ramping to 200,000/day, holding each level for two days to establish a consistent pattern. After day 30 the warmup auto-completes and sending limits are removed.
+Vectis Mail's built-in warmup runs 30 days, starting at 50 external recipients a day and ramping to 200,000 a day, holding each level for two days to establish a consistent pattern. After day 30 the warmup completes on its own and the limit is removed.
 
 ### What happens if I send too much email from a new IP without warming up?
 
@@ -273,11 +274,11 @@ If the IP already carries an established sending reputation, you can skip or rem
 
 ### Can I pause and resume IP warmup?
 
-Avoid pausing — the schedule is designed for 30 consecutive days, and stopping for several days can cost the reputation you've built. If you must pause, resume from the day you stopped rather than restarting from day 1.
+There is no pause. The schedule is designed for 30 consecutive days of sending, and a gap of several days can cost the reputation you've built. Cancelling and starting again begins at day 1, so keep a warmup running once it has started.
 
-### Do I have to warm up each IP separately?
+### What if my server moves to a new IP?
 
-Yes. If your deployment sends from multiple outbound IPs (for example, separate transactional and marketing IPs), each one builds its own reputation and needs its own warmup entry.
+A Vectis Mail server sends from one IP, so one warmup runs at a time. If the server moves to a fresh IP, cancel the old warmup and start a new one for the new address.
 
 ## Next steps
 

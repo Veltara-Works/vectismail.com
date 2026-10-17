@@ -5,7 +5,7 @@ faq:
   - q: "What's a good bounce rate and complaint rate for a self-hosted mail server?"
     a: "Keep your hard bounce rate below 2% (below 1% during IP warmup) and your spam-complaint rate below 0.1% — about one complaint per 1,000 messages. Remove hard-bouncing addresses immediately, and drop anyone who files a spam complaint from all future mail."
   - q: "Which blocklists (RBLs) does Vectis Mail monitor?"
-    a: "Vectis checks your server IP automatically against the major Real-time Blackhole Lists: Spamhaus ZEN, Barracuda BRBL, SpamCop, SORBS, and the CBL. Spamhaus ZEN is the most consequential — a listing there blocks delivery to most major providers. If you're listed, the dashboard links to each list's delisting page."
+    a: "Vectis checks your server IP automatically against the major Real-time Blackhole Lists: Spamhaus ZEN (which includes the CBL), SpamCop, Barracuda BRBL, PSBL, UCEPROTECT Level 1 and s5h.net. Spamhaus ZEN is the most consequential — a listing there blocks delivery to most major providers. If you're listed, the dashboard links to each list's delisting page."
   - q: "How do I check whether my mail server IP is blocklisted?"
     a: "Vectis monitors RBLs daily and exposes the status on the deliverability dashboard and via the /api/v1/deliverability/rbl endpoint, which can also trigger an immediate re-check. For an independent look, run your IP through mxtoolbox.com's blacklist check."
   - q: "What's the difference between a hard bounce and a soft bounce?"
@@ -113,11 +113,12 @@ The RBLs checked include:
 
 | RBL | Significance |
 |-----|-------------|
-| Spamhaus ZEN | Most widely used; listing here blocks delivery to most major providers |
+| Spamhaus ZEN | Most widely used; listing here blocks delivery to most major providers. Includes the CBL (botnet-infected IPs) |
 | Barracuda BRBL | Used by many corporate mail servers |
 | SpamCop | Complaint-driven; listings usually auto-expire |
-| SORBS | Tracks dynamic/residential IPs and open relays |
-| CBL | Tracks IPs sending spam from botnets |
+| PSBL | Passive spam trap list; listings expire on their own and can be removed instantly |
+| UCEPROTECT Level 1 | Lists single IPs seen sending to its spam traps |
+| s5h.net | Independent blocklist, checked for wider coverage |
 
 If you find yourself listed, the Vectis dashboard provides a link to the delisting page for each RBL.
 
@@ -299,7 +300,7 @@ Keep your hard bounce rate below 2% (below 1% during IP warmup) and your spam-co
 
 ### Which blocklists (RBLs) does Vectis Mail monitor?
 
-Vectis checks your server IP automatically against the major Real-time Blackhole Lists: Spamhaus ZEN, Barracuda BRBL, SpamCop, SORBS, and the CBL. Spamhaus ZEN is the most consequential — a listing there blocks delivery to most major providers. If you're listed, the dashboard links to each list's delisting page.
+Vectis checks your server IP automatically against the major Real-time Blackhole Lists: Spamhaus ZEN (which includes the CBL), SpamCop, Barracuda BRBL, PSBL, UCEPROTECT Level 1 and s5h.net. Spamhaus ZEN is the most consequential — a listing there blocks delivery to most major providers. If you're listed, the dashboard links to each list's delisting page.
 
 ### How do I check whether my mail server IP is blocklisted?
 
