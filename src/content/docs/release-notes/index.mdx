@@ -44,8 +44,9 @@ standard protocols throughout.
   that list's delisting page from the Deliverability dashboard.
 - **IP warmup that actually limits.** A new sending IP gets a 30-day ramp that
   starts at 50 recipients a day outside your server. Over the day's limit, the
-  send API answers `429` with a `Retry-After`, and mail clients are told to try
-  again later, so nothing bounces. Mail between your own domains doesn't count.
+  send API answers `429` with a `Retry-After`, and mail clients get a temporary
+  refusal: the message isn't accepted, so it stays with the sender to retry
+  rather than bouncing. Mail between your own domains doesn't count.
   Progress is on the Deliverability dashboard; see the
   [IP warmup guide](/guides/ip-warmup/).
 - **Redis-backed filtering.** Rspamd shares the stack's Valkey store, so rate

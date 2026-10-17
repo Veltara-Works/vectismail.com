@@ -71,14 +71,14 @@ Vectis tracks warmup state in Postgres and checks the schedule every five minute
 2. At the start of a day, the warmup moves to the next day's limit and today's count goes back to zero
 3. After day 30, the warmup completes and stops limiting
 
-If the server was down for a few days, the schedule moves on by one day, not several: the ramp only speeds up on days the server actually sent.
+The schedule moves on once a day while the server is running, whether or not you sent mail that day, so an idle day still counts as a day of the ramp. Days the server was down are different: when it comes back after several days, the schedule moves on by one day, not several.
 
 ### What happens at the limit
 
 Every message is checked against the day's limit before it is accepted, whichever way it is sent:
 
 - **The send API** answers `429` with error code `WARMUP_LIMIT` and a `Retry-After` header giving the seconds until the limit resets. The message is not accepted, so your application decides when to send it again. In a batch send, the message's result carries `WARMUP_LIMIT`.
-- **Mail clients and apps sending over SMTP** (ports 587 and 465) are told `452 4.5.3` at the end of the message: a temporary refusal, so nothing bounces and the client can try again later.
+- **Mail clients and apps sending over SMTP** (ports 587 and 465) are told `452 4.5.3` when they start sending the message (at the SMTP `DATA` command, before the body). It's a temporary refusal: the message isn't accepted, so it stays with the client, which must keep it and try again later. Most mail clients leave it in the Outbox or show an error.
 
 A message is accepted or refused as a whole. If it has more outside recipients than the day allows, split it into smaller sends.
 

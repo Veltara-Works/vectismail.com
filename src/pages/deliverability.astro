@@ -137,7 +137,7 @@ const dateModified = '2026-10-17'
 			</div>
 			<div class="feature-card">
 				<h3>A built-in IP warmup schedule</h3>
-				<p>A ~30-day ramp that starts low and increases volume gradually, so receivers see a steady, trustworthy sender instead of a spike. The daily limit is enforced: over it, sends are held back to retry later, never bounced. Warmup progress is tracked in the dashboard. See the <a href="/guides/ip-warmup/">IP warmup guide</a>.</p>
+				<p>A ~30-day ramp that starts low and increases volume gradually, so receivers see a steady, trustworthy sender instead of a spike. The daily limit is enforced: over it, sends are temporarily refused (the send API answers 429, mail clients get a temporary SMTP error), so your application or mail client keeps the message and retries later; nothing is queued or bounced on the server. Warmup progress is tracked in the dashboard. See the <a href="/guides/ip-warmup/">IP warmup guide</a>.</p>
 			</div>
 			<div class="feature-card">
 				<h3>RBL monitoring, automatically</h3>
