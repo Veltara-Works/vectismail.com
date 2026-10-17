@@ -1,7 +1,7 @@
 ---
 title: "SPF, DKIM & DMARC Setup: Copy-Paste Records (2026)"
 description: "SPF, DKIM and DMARC explained: how the three standards work together, copy-paste DNS records, the Gmail/Yahoo bulk-sender rules, and how to verify each."
-lastUpdated: 2026-06-21
+lastUpdated: 2026-10-17
 faq:
   - q: "What's the difference between SPF, DKIM, and DMARC?"
     a: "SPF lists which servers may send mail for your domain. DKIM cryptographically signs each message so receivers can verify it was not altered and genuinely came from your domain. DMARC ties the two together: it checks that SPF or DKIM aligns with the visible From address, and tells receivers what to do — and where to send reports — when authentication fails. You need all three for reliable inbox placement."
@@ -251,6 +251,27 @@ If you set up a `rua=` address, you will receive daily XML reports from major em
 - Which authentication methods failed and why
 
 These reports are invaluable for identifying issues and detecting spoofing attempts. The raw XML is verbose, so most people feed it into a report parser to turn it into a readable dashboard — there are several free and open-source options, or you can point `rua=` at a mailbox on your own Vectis server and review the summaries directly.
+
+### When DMARC rejects a sender you want (receiving)
+
+Everything above is about mail you send. Vectis also applies other domains' DMARC policies to mail you **receive**: a message that fails DMARC for a domain publishing `p=reject` is refused at SMTP (on by default, `rspamd.enforce_dmarc`). That is what stops mail forging banks, payment providers and your own domain.
+
+It also stops mail from a real sender whose own setup is broken. The usual case is a provider that publishes `p=reject` but sends its notices from a platform its SPF record doesn't list, without a DKIM signature. Every one of its messages fails DMARC, and nobody on your side sees them.
+
+**Spot it.** In the admin console, open **Domains**, then **Spam lists** for the domain (**DMARC rejections** without Pro), and the **DMARC exceptions** tab. The **Rejected by DMARC** card lists the mail refused for that domain in the last 24 hours, 7 days or 30 days, grouped by sender, with the IP and hostname it came from and its SPF and DKIM results. Nothing from the message itself is stored, and entries are kept for 30 days. Most of what you see there is forgery and should stay refused. A sender you recognise is the one to act on.
+
+**Best fix: the sender corrects their DNS.** Tell them which IP or host their mail came from, and that it isn't in their SPF record and isn't DKIM-signed. Once they fix it, their mail passes DMARC with no change on your side.
+
+**Meanwhile: a DMARC exception (Pro).** On the same tab, add the sender's domain and the network it sends from: an IP address, a range (at most `/24` for IPv4 or `/48` for IPv6), or an exact hostname. **Use**, next to a rejected sender, fills the form in for you to check. An exception:
+
+- applies only to the domain you add it on. A message addressed to several of your domains is let through only if every one of them has a matching exception; otherwise DMARC decides for all of them.
+- matches a hostname only if that name resolves back to the connecting IP, so a sender can't claim it with a forged reverse DNS name. Hostname suffixes such as `.example.net` aren't accepted.
+- skips only the DMARC check. SPF, DKIM, spam scoring and antivirus still run and still count.
+- doesn't help anyone else. The same domain sending from any other network is still refused.
+
+:::caution[Shared sending platforms]
+If the sender uses a shared platform, such as a registrar's or hosting company's mail cluster or a bulk-mail service, the IP or hostname you except also sends for that platform's other customers. Any of them could then send mail as that domain to your domain, and DMARC wouldn't stop it. Use the narrowest network that covers the sender (a single IP rather than a range), keep the list short, and remove the exception once the sender fixes their SPF or DKIM.
+:::
 
 ## Record TTL: what values to use
 

@@ -28,6 +28,13 @@ standard protocols throughout.
 - **DMARC enforcement.** Inbound mail that forges a domain publishing a DMARC
   `p=reject` policy is rejected at SMTP, and `p=quarantine` forgeries are marked
   as spam. On by default (`rspamd.enforce_dmarc`).
+- **DMARC rejections you can see, and exceptions for real senders.** The Spam
+  lists page shows the mail DMARC enforcement refused for each domain over the
+  last 30 days, grouped by sender, on every plan. On Pro, a sender with broken
+  SPF or DKIM can be let through with a DMARC exception tied to the network it
+  sends from (an IP, a range, or a hostname that must resolve back to it), so
+  the same domain from anywhere else is still refused. See
+  [when DMARC rejects a sender you want](/guides/dkim-spf-dmarc/#when-dmarc-rejects-a-sender-you-want-receiving).
 - **Blocklist lookups that work.** Spamhaus, URIBL and DNSWL refuse queries
   that arrive through shared or public DNS resolvers, so on most servers those
   checks were silently scoring nothing. The spam filter now carries its own
