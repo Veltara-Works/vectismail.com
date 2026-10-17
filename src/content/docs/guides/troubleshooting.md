@@ -137,6 +137,10 @@ If you use Cloudflare, make sure the mail hostname A record is DNS-only (grey cl
 dig A mail.example.com +short
 ```
 
+### Step 5: Check whether DMARC enforcement refused it
+
+If the sender's domain publishes a DMARC `p=reject` policy and their message fails SPF and DKIM alignment, Vectis refuses it at SMTP, as it does forged mail. When a genuine sender is affected, it is usually because their own SPF or DKIM is misconfigured. Open **Domains**, then **Spam lists** and the **DMARC exceptions** tab with Pro, or **DMARC rejections** without it: the **Rejected by DMARC** card shows what was refused and where it came from. See [when DMARC rejects a sender you want](/guides/dkim-spf-dmarc/#when-dmarc-rejects-a-sender-you-want-receiving) for the fix.
+
 ## Messages going to spam
 
 **Symptom**: Your email arrives but lands in the recipient's spam folder.
