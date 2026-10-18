@@ -21,7 +21,7 @@ That's when the queue holds real mail, mail your server already accepted and pro
 
 ## How we found it
 
-We were building a feature that lets `vectis config apply` recreate containers whose configuration changed. During review, an automated code reviewer asked a pointed question: *what happens to Postfix's queue when you recreate it?* We checked, and the answer wasn't good. The queue directory had never been on a volume. The new feature would recreate Postfix more often, and **every update since launch** had been recreating it too.
+We were building a feature that lets `vectis config apply` recreate containers whose configuration changed. During code review, a pointed question came up: *what happens to Postfix's queue when you recreate it?* We checked, and the answer wasn't good. The queue directory had never been on a volume. The new feature would recreate Postfix more often, and **every update since launch** had been recreating it too.
 
 We can't prove no message was ever lost during a past update. Our own production servers had empty queues when we checked, and updates usually land when nothing is deferred, but "usually" isn't a guarantee. So we fixed it properly rather than work around it.
 
