@@ -11,6 +11,8 @@ faq:
     a: "Use port 587 with STARTTLS, or port 465 with implicit TLS, and authenticate with a username and password. Port 25 is for server-to-server delivery; on a properly configured mail server it won't accept authentication or relay mail for clients."
   - q: "Can a printer or scanner send scan-to-email through a self-hosted mail server?"
     a: "Yes, if the device supports SMTP authentication and TLS 1.2 or newer on port 587 or 465. Vectis Mail requires TLS 1.2 as a minimum and doesn't relay unauthenticated mail on port 25, so older devices that only support TLS 1.0 or unauthenticated port 25 need a firmware update or a small local relay in between."
+  - q: "What does \"Relay access denied\" mean?"
+    a: "\"554 5.7.1 Relay access denied\" means the mail server refused to pass your message on to another domain because it didn't recognise you as allowed to send through it. It's the server protecting itself from being an open relay. The usual causes are sending on port 25 instead of 587 or 465, the app not logging in (SMTP authentication switched off, or the wrong username or password), or sending to a server that doesn't handle your domain. Switch the app to port 587 with STARTTLS or 465 with TLS and log in with the sending mailbox's full address and password."
   - q: "Will email sent through my own SMTP relay reach the inbox?"
     a: "It can, and the requirements are the same ones hosted relays meet on your behalf: SPF, DKIM and DMARC records for your domain, a reverse DNS (PTR) record for your server's IP, valid TLS, and a sending IP with a good reputation. A new IP needs warming up, with volume increased gradually over a few weeks, before it can handle larger sends."
   - q: "Is there a free SMTP relay?"
@@ -83,6 +85,19 @@ A relay you run is only as good as its safeguards. These are built into Vectis M
 - **Sending limits.** Per-mailbox and per-domain hourly sending rates are tracked, and a mailbox that exceeds its limit is suspended automatically, so a leaked app password can't burn your reputation overnight. Sudden spikes raise an alert.
 - **IP warmup.** A new server's IP has no reputation yet. During warmup, sends over the day's allowance are deferred with a temporary `452 4.5.3` reply, which apps and SMTP clients retry later, instead of being sent too fast. See the [IP warmup guide](/guides/ip-warmup/).
 - **DKIM signing and DMARC** for every domain, set up when you add the domain. See [DKIM, SPF and DMARC](/guides/dkim-spf-dmarc/).
+
+## "Relay access denied": what it means and how to fix it
+
+`554 5.7.1 <someone@example.org>: Relay access denied` is the most common error when pointing an app at a mail server. The server is refusing to pass your message on to *another* domain because it doesn't recognise you as someone allowed to send through it. That refusal is deliberate: a server that relays for anyone becomes a spam cannon within hours.
+
+Work through these in order:
+
+1. **Port.** Port 25 is for server-to-server delivery, and Vectis Mail (like any well-configured server) won't relay for clients there. Use **587 with STARTTLS** or **465 with TLS**.
+2. **Authentication.** Make sure the app is actually logging in: SMTP authentication switched on, username set to the **full mailbox address**, and the right password. Some plugins and devices keep authentication off by default.
+3. **Encryption.** Vectis Mail only accepts logins over TLS. An app set to "no encryption" never gets as far as logging in, then tries to send anyway.
+4. **The right server.** Check the SMTP host is your own mail server, not your domain's website host or an old provider's server that no longer handles your domain.
+
+If the error persists, the server's log shows whether the connection logged in at all, which tells you whether the problem is the credentials or the connection settings.
 
 ## Devices: printers, scanners and appliances
 
