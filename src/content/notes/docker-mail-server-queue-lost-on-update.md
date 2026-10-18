@@ -1,6 +1,6 @@
 ---
 title: "Your Docker mail server may be deleting mail every time you update it"
-description: "If Postfix's queue lives inside the container, recreating the container throws away mail you already accepted. We found this in our own stack. Here's how to check yours and how we fixed it."
+description: "If Postfix's queue lives inside the container, recreating it deletes mail you already accepted. We found this in our own stack. Here's how to check yours."
 pubDate: 2026-10-18
 excerpt: "Most of the time the mail queue is empty, which is exactly why this bug hides. It only matters on the day a remote server is down, and that's the day you lose mail."
 ---

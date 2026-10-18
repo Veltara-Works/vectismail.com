@@ -1,6 +1,6 @@
 ---
 title: "Why your spam blocklists may have quietly stopped working"
-description: "Spamhaus and URIBL refuse lookups that arrive through big shared DNS resolvers, and most mail servers never tell you. How to check yours in two commands, and how we fixed ours."
+description: "Spamhaus and URIBL refuse lookups that arrive via big shared DNS resolvers, and most mail servers never tell you. Check yours in two commands, and see our fix."
 pubDate: 2026-10-18
 excerpt: "On one of our own production mail servers, about a quarter of messages were scored with half the spam filter switched off. Nothing logged an error. Here's what was happening and how to check yours."
 ---
