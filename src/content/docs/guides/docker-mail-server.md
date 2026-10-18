@@ -1,5 +1,5 @@
 ---
-title: "Docker Mail Server: What a Production Setup Actually Needs"
+title: "Docker Mail Server: What Production Actually Needs"
 description: "Running a mail server in Docker? The containers are the easy part. Here's the state, DNS, health-check and update traps that decide whether it holds up."
 lastUpdated: 2026-10-18
 faq:

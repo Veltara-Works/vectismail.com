@@ -1,5 +1,5 @@
 ---
-title: "SMTP Relay: Send App and Device Email Through Your Own Server"
+title: "SMTP Relay: Send App Email Through Your Own Server"
 description: "What an SMTP relay is, when a hosted relay is the right call, and how to send your app, website and device email through a mail server you run yourself."
 lastUpdated: 2026-10-18
 faq:
