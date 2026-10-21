@@ -1,6 +1,7 @@
 // Build-time lookup of the latest STABLE Vectis Mail release, read from the
 // same manifest the installer and `vectis update` use. Feeds the "Latest
-// release" line in both footers, so the site shows the current version
+// release" line in both footers and the schema.org softwareVersion on the
+// features and pricing pages, so the site shows the current version
 // without anyone hand-editing dates: redeploy after a release and it updates.
 //
 // Fetched once per build (module-level promise) no matter how many pages
@@ -40,7 +41,7 @@ async function load(): Promise<LatestRelease | null> {
 
 		return { version: m.latest, releasedAt, notesUrl: RELEASE_NOTES_URL + m.latest }
 	} catch (err) {
-		console.warn(`[latest-release] omitting footer release line: ${(err as Error).message}`)
+		console.warn(`[latest-release] omitting the release line and softwareVersion: ${(err as Error).message}`)
 		return null
 	}
 }

@@ -67,14 +67,14 @@ Vectis verifies all of the above from the admin UI's Deliverability section afte
 ## Upgrade path
 
 ```bash
-# Update to the latest stable
-sudo vectis update
+# Preview the update to the latest stable release (images, config changes)
+sudo vectis update plan
 
-# Or pin a specific version
-sudo vectis update --version v0.1.12
+# Apply it
+sudo vectis update apply
 ```
 
-`vectis update` runs the 6-phase atomic orchestrator: snapshot → migrate → pull → deploy → health-check → complete. If any phase fails, the previous state is restored automatically.
+`vectis update apply` runs the 6-phase atomic orchestrator: snapshot → migrate → pull → deploy → health-check → complete. If any phase fails, the previous state is restored automatically.
 
 ## Pro license activation
 
