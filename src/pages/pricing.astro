@@ -2,8 +2,12 @@
 import "../styles/custom.css"
 import SiteFooter from "../components/SiteFooter.astro"
 import SiteNav from "../components/SiteNav.astro"
+import { getLatestRelease } from "../lib/latest-release"
 const title = 'Pricing — Vectis Mail'
 const description = "Vectis Mail pricing: free Starter (3 domains, 25 mailboxes), Pro at $39/tenant/mo with unlimited domains, and Enterprise from $499/mo with SAML SSO & SCIM."
+// softwareVersion comes from the release manifest at build time, like the footer's
+// release line; it is left out (not guessed) if the manifest can't be read.
+const release = await getLatestRelease()
 ---
 <html lang="en">
 <head>
@@ -38,7 +42,7 @@ const description = "Vectis Mail pricing: free Starter (3 domains, 25 mailboxes)
 		"operatingSystem": "Linux",
 		"description": description,
 		"url": "https://vectismail.com/pricing/",
-		"softwareVersion": "0.1.39",
+		...(release && { "softwareVersion": release.version.replace(/^v/, "") }),
 		"publisher": {
 			"@type": "Organization",
 			"name": "Veltara Works",
