@@ -13,7 +13,7 @@ Last updated: 2026-05-18
 - **Type:** Server software (you run it on your own VPS)
 - **Current version:** see the signed release manifest at https://dl.vectismail.com/releases.json (`latest`), or the "Latest release" line in the vectismail.com footer
 - **Production status:** Live since 2026-04-03 at mail.vectismail.com — Veltara Works runs every operation on it.
-- **One-line description:** A self-hosted email server with the developer experience of SendGrid and the control of Postfix. Declarative YAML config, 60+ endpoint REST API, atomic updates with rollback.
+- **One-line description:** A self-hosted email server with the developer experience of SendGrid and the control of Postfix. 60+ endpoint REST API, an admin dashboard, atomic updates with rollback, and optional config-as-code.
 
 ## Vendor
 
