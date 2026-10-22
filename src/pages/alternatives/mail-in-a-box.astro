@@ -7,7 +7,7 @@ const description = 'Vectis Mail vs Mail-in-a-Box: one-command personal email so
 const url = 'https://vectismail.com/alternatives/mail-in-a-box/'
 const ogImage = 'https://vectismail.com/og/alternatives-mail-in-a-box.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-10-06'
+const dateModified = '2026-10-22'
 ---
 <html lang="en">
 <head>
@@ -93,7 +93,7 @@ const dateModified = '2026-10-06'
 					{
 						"@type": "Question",
 						"name": "Can I run Mail-in-a-Box on something other than Ubuntu 22.04?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No — Mail-in-a-Box explicitly targets fresh Ubuntu 22.04 LTS only. No Debian, no Ubuntu 24.04, no RHEL family, no BSD. Modifying the install or running it on anything else voids the upgrade path. Vectis Mail runs on any Linux that supports Docker: Ubuntu (22.04+ or 24.04), Debian, and RHEL-family hosts are all production-tested." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No — Mail-in-a-Box explicitly targets fresh Ubuntu 22.04 LTS only. No Debian, no Ubuntu 24.04, no RHEL family, no BSD. Modifying the install or running it on anything else voids the upgrade path. Vectis Mail runs as a Docker Compose stack on a current Linux VPS; it is tested on Ubuntu 24.04 LTS, the release our own production servers run." }
 					},
 					{
 						"@type": "Question",
@@ -118,15 +118,15 @@ const dateModified = '2026-10-06'
 			Mail-in-a-Box gives you a one-command personal email box on a single Ubuntu VPS.
 			Vectis Mail is API-first, multi-domain mail infrastructure for teams and SaaS — a
 			self-hosted transactional sending API and inbound webhooks alongside your mailboxes,
-			declarative YAML config, and atomic updates with health-gated rollback. Same instinct
-			for owning your own mail, built to run in production.
+			an admin dashboard for every domain, and atomic updates with health-gated rollback. Same
+			instinct for owning your own mail, built to run in production.
 		</p>
 		<div class="hero-buttons" style="margin-top: 1.5rem;">
 			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail free</a>
 			<a href="/pricing/" class="btn-secondary">View pricing</a>
 		</div>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>22 October 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -134,7 +134,7 @@ const dateModified = '2026-10-06'
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Side-by-side, current as of July 2026.</p>
+		<p class="subtitle">Side-by-side, checked against Mail-in-a-Box's README in October 2026.</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -144,7 +144,7 @@ const dateModified = '2026-10-06'
 					<tr><th scope="row">Target user</th><td><strong>Teams, SaaS, multi-domain operators</strong></td><td>Individuals, families, single-org</td></tr>
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
 					<tr><th scope="row">Deployment model</th><td>Docker Compose</td><td>One-command shell script (OS-native)</td></tr>
-					<tr><th scope="row">Supported OS</th><td><strong>Linux (Ubuntu, Debian, RHEL family) with Docker</strong></td><td>Ubuntu 22.04 LTS only (fresh install)</td></tr>
+					<tr><th scope="row">Supported OS</th><td><strong>Current Linux with Docker; tested on Ubuntu 24.04 LTS</strong></td><td>Ubuntu 22.04 LTS only (fresh install)</td></tr>
 					<tr><th scope="row">Install difficulty</th><td>Guided installer, ~20 min</td><td>One command, ~15 min</td></tr>
 					<tr><th scope="row">Configuration model</th><td><strong>Dashboard + REST API, with every service config generated from one declarative <code>config.yaml</code></strong></td><td>Web control panel · no config-as-code</td></tr>
 					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only · no sending API</td></tr>
@@ -156,7 +156,7 @@ const dateModified = '2026-10-06'
 					<tr><th scope="row">Webmail</th><td>Roundcube</td><td>Roundcube</td></tr>
 					<tr><th scope="row">Calendar / contacts (CalDAV/CardDAV)</th><td>Not yet (Phase 4 roadmap)</td><td>Yes (Nextcloud-based)</td></tr>
 					<tr><th scope="row">Update model</th><td><strong>Atomic 6-phase orchestrator</strong> with auto-rollback</td><td>Re-run setup script (fragile if box modified)</td></tr>
-					<tr><th scope="row">Observability built in</th><td>Prometheus-format metrics + alerts; Grafana/Loki optional</td><td>Logs only · bring your own stack</td></tr>
+					<tr><th scope="row">Observability built in</th><td>Prometheus-format metrics + alerts; Grafana/Loki optional</td><td>Munin graphs + a status-checks page</td></tr>
 					<tr><th scope="row">License</th><td>Business Source License 1.1 (auto-Apache 2.0 after 4y); commercial Pro license</td><td>CC0-1.0 (public domain)</td></tr>
 					<tr><th scope="row">Pricing</th><td>$0 Starter · $39 USD/tenant/month Pro (unlimited installs)</td><td>$0 forever · donations welcome</td></tr>
 				</tbody>
@@ -175,7 +175,7 @@ const dateModified = '2026-10-06'
 				<li>You want config-as-code available: one declarative <code>config.yaml</code> applied with <code>vectis config apply</code>, alongside a dashboard and a REST API.</li>
 				<li>You want orchestrated updates with automatic rollback, not a re-run-the-setup-script model.</li>
 				<li>You want Rspamd's modern heuristics out of the box.</li>
-				<li>You're running on something other than Ubuntu 22.04 (Debian, Ubuntu 24.04, RHEL family).</li>
+				<li>You want to move off Ubuntu 22.04 to a current LTS such as Ubuntu 24.04.</li>
 			</ul>
 		</div>
 		<p style="font-size: 0.92rem; color: var(--sl-color-gray-3); margin-top: 1rem;">
@@ -212,11 +212,14 @@ const dateModified = '2026-10-06'
 			only programmatic send path.
 		</p>
 		<p>
-			Vectis Mail has 40+ endpoints covering sending (single + batch with attachments),
-			inbound webhooks (full body parsing, HMAC-signed payloads, exponential-backoff retry),
-			mailbox/alias/domain CRUD, analytics, audit logs, and admin operations. Domain-scoped
-			API keys with per-domain rate limits make Vectis usable as a real transactional
-			service: a SendGrid-shape API that you self-host.
+			That matters the day an application, not a person, needs to send. On Mail-in-a-Box your
+			app logs in over SMTP with a real mailbox's password, so every service that sends mail
+			holds a user credential, and a leaked one opens the whole mailbox. On Vectis Mail each
+			app gets its own API key, scoped to the domains it may send from and with its own rate
+			limit, and it posts JSON (single or batch, with attachments) instead of speaking SMTP.
+			Replies and inbound mail can come back to your app as HMAC-signed webhooks with retry,
+			which Mail-in-a-Box has no equivalent for. In all, 40+ REST endpoints, also covering
+			mailboxes, aliases, domains, analytics and audit logs.
 		</p>
 		<p>
 			See the <a href="/api/">API Reference</a> for the full surface.
@@ -239,13 +242,13 @@ const dateModified = '2026-10-06'
 			means modifying the box voids the supported upgrade story.
 		</p>
 		<p>
-			Vectis Mail splits the job cleanly. Domains, mailboxes, aliases and API keys are
-			managed from the admin dashboard or the REST API and take effect immediately, with no
-			restart. Stack-level settings live in one declarative <code>config.yaml</code>, which
-			the installer writes for you: <code>vectis config apply</code> diffs it against the
-			running state, regenerates the affected service configs (Postfix, Dovecot, Rspamd,
-			Traefik), and reloads only what changed. Everything is also exposed via the REST API,
-			so Ansible, Terraform or your own scripts can drive Vectis Mail as code.
+			Vectis Mail takes the opposite position to "no user-configurable setup options", without
+			asking you to hand-edit Postfix. Day-to-day changes (domains, mailboxes, aliases, API keys)
+			happen in the admin dashboard or over the API and apply at once. The settings Mail-in-a-Box
+			won't let you touch, such as spam thresholds, which services run and resource limits, sit
+			in one file the installer writes for you, and <code>vectis config apply</code> shows the
+			diff, then regenerates and reloads only the services that changed. Settings made this way
+			are carried through every update rather than fighting it.
 		</p>
 
 		<h3 class="alt-h3">Update + rollback</h3>
@@ -256,18 +259,14 @@ const dateModified = '2026-10-06'
 			you do manually.
 		</p>
 		<p>
-			Vectis Mail's orchestrator runs a 6-phase pipeline:
-		</p>
-		<ol class="alt-steps">
-			<li><strong>Snapshot</strong> — Postgres dump + Compose backup taken before any change.</li>
-			<li><strong>Migrate</strong> — forward-only SQL migrations applied with row-level locking.</li>
-			<li><strong>Pull</strong> — new container images pulled and verified.</li>
-			<li><strong>Deploy</strong> — services recreated with the new images.</li>
-			<li><strong>Health-check</strong> — Postfix, Dovecot, Rspamd, API, Traefik all probed for liveness + actual mail-handling readiness.</li>
-			<li><strong>Complete</strong> — change locked in, snapshot retained for the rollback window.</li>
-		</ol>
-		<p>
-			Any phase failure triggers automatic rollback to the snapshot. See
+			On Vectis Mail an update is one command, <code>vectis update apply</code>, and it is
+			the same whether or not you've customised the box. It snapshots the database and
+			stack first, pulls the new release's images (verified against a signed manifest),
+			recreates the services, and checks that Postfix, Dovecot, Rspamd and the API are all
+			answering before it calls the update done. If any step fails, it restores the
+			snapshot on its own. You never find out mid-upgrade
+			that a hand edit broke the setup script, and <code>vectis verify</code> confirms
+			afterwards that the box runs exactly the published release. See
 			<a href="/getting-started/installation/">Installation</a> for the full update model.
 		</p>
 
@@ -301,14 +300,16 @@ const dateModified = '2026-10-06'
 			The calendar/contacts and control-panel-config layers need manual export.
 		</p>
 		<ol class="alt-steps">
-			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Configure your domain(s) but leave DNS pointed at Mail-in-a-Box for now.</li>
-			<li><strong>Sync mailbox data</strong> with <code>imapsync</code> or <code>doveadm backup</code> — same Dovecot underneath, maildir transfers directly.</li>
-			<li><strong>Generate new DKIM keys</strong> on Vectis Mail and publish them to DNS alongside the existing Mail-in-a-Box keys. Run both in parallel during the switchover.</li>
+			<li><strong>Check who serves your DNS.</strong> Mail-in-a-Box runs its own DNS server (nsd4) and many boxes are their domain's nameserver. If yours is, move DNS hosting to your registrar or a DNS provider first, copying every record across, because the old box is about to go away.</li>
+			<li><strong>Take a final Mail-in-a-Box backup</strong> (its built-in duplicity backup), so you have a restore point that doesn't depend on the migration.</li>
+			<li><strong>Stand up Vectis Mail</strong> on a fresh Ubuntu 24.04 VPS with the <a href="/getting-started/installation/">installation guide</a>, add your domains, and leave MX pointing at Mail-in-a-Box for now.</li>
+			<li><strong>Copy the mailboxes</strong> with <code>imapsync</code> or <code>doveadm backup</code>. Both products use Dovecot, so folders and flags come across intact.</li>
+			<li><strong>Publish Vectis Mail's DKIM key</strong> next to the existing one. Mail-in-a-Box signs with the selector <code>mail</code> and Vectis Mail with <code>default</code>, so both keys stay valid through the switchover.</li>
 			<li><strong>Export Roundcube settings</strong> (per-user filters, signatures) from Mail-in-a-Box Roundcube and re-import into Vectis Mail Roundcube.</li>
 			<li><strong>Re-create domains, mailboxes, aliases, and forwards</strong> via Vectis Mail's CLI or API. The Mail-in-a-Box control panel doesn't export config-as-code, so this is a manual transcription.</li>
 			<li><strong>Export Nextcloud calendar + contacts</strong> to iCal/vCard if you use them. Vectis Mail can't import these — you'll need a separate CalDAV/CardDAV destination from this point. This is the most significant step if calendar is part of your daily use.</li>
-			<li><strong>Cut DNS over</strong>: update MX to point at the Vectis Mail server. Mail starts flowing through Vectis Mail as DNS propagates.</li>
-			<li><strong>Verify + decommission</strong>: watch logs for a few days, then decommission Mail-in-a-Box.</li>
+			<li><strong>Switch MX and SPF</strong> to the Vectis Mail server, run a final <code>imapsync</code> pass for anything that arrived meanwhile, and point mail clients at the new host.</li>
+			<li><strong>Keep the old box for a week</strong>, read-only, then switch it off once mail has been flowing cleanly through the new server.</li>
 		</ol>
 		<p>
 			Realistic timeline: an afternoon for a small personal install without calendar,
@@ -347,9 +348,9 @@ const dateModified = '2026-10-06'
 				<p>
 					No — Mail-in-a-Box explicitly targets fresh Ubuntu 22.04 LTS only. No Debian,
 					no Ubuntu 24.04, no RHEL family, no BSD. Modifying the install or running it on
-					anything else voids the upgrade path. Vectis Mail runs on any Linux that
-					supports Docker — Ubuntu (22.04+ or 24.04), Debian, and RHEL-family hosts are
-					all production-tested.
+					anything else voids the upgrade path. Vectis Mail runs as a Docker Compose stack
+					on a current Linux VPS, and it is tested on Ubuntu 24.04 LTS, the release our own
+					production servers run.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -385,11 +386,11 @@ const dateModified = '2026-10-06'
 			</a>
 			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
 				<h3>vs Mailcow &rarr;</h3>
-				<p>Same self-hosted stack, declarative YAML config, REST API, atomic updates with rollback.</p>
+				<p>Same self-hosted stack, plus a REST API, an admin dashboard for every domain and atomic updates with rollback.</p>
 			</a>
 			<a href="/alternatives/iredmail/" class="feature-card alt-index-card">
 				<h3>vs iRedMail &rarr;</h3>
-				<p>Compared with the long-running OS-native open-source mail stack: REST API, declarative YAML, Rspamd by default.</p>
+				<p>Compared with the long-running OS-native open-source mail stack: REST API, atomic updates, Rspamd by default.</p>
 			</a>
 			<a href="/alternatives/sendgrid/" class="feature-card alt-index-card">
 				<h3>vs SendGrid &rarr;</h3>
@@ -405,7 +406,7 @@ const dateModified = '2026-10-06'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Mail-in-a-Box facts per the project's published documentation and README (retrieved 2026-05-13)</li>
+			<li>Mail-in-a-Box facts per the project's published documentation and README (first retrieved 2026-05-13; re-checked 2026-10-22)</li>
 			<li>Vectis Mail architecture + API surface: <a href="/architecture/overview/">/architecture/overview</a></li>
 			<li>Vectis Mail installation + update model: <a href="/getting-started/installation/">/getting-started/installation</a></li>
 		</ul>

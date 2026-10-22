@@ -98,7 +98,7 @@ const dateModified = '2026-10-08'
 					{
 						"@type": "Question",
 						"name": "Does Vectis Mail run on BSD?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No — Vectis Mail runs on Linux only, because it ships as a Docker Compose stack. One honest scope note: if your deployment target is FreeBSD or OpenBSD, Vectis Mail isn't the fit, and there's no BSD install path planned. On Linux (Ubuntu, Debian, RHEL family) you get the full platform: the REST API, declarative YAML config, and atomic health-gated updates with rollback." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No — Vectis Mail runs on Linux only, because it ships as a Docker Compose stack. One honest scope note: if your deployment target is FreeBSD or OpenBSD, Vectis Mail isn't the fit, and there's no BSD install path planned. On Linux (tested on Ubuntu 24.04 LTS) you get the full platform: the REST API, declarative YAML config, and atomic health-gated updates with rollback." }
 					},
 					{
 						"@type": "Question",
@@ -147,7 +147,7 @@ const dateModified = '2026-10-08'
 				<tbody>
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · SpamAssassin</td></tr>
 					<tr><th scope="row">Deployment model</th><td>Docker Compose</td><td>OS-native (installer script, no containers)</td></tr>
-					<tr><th scope="row">Supported OS</th><td>Linux (Ubuntu, Debian, RHEL family)</td><td>Linux + FreeBSD + OpenBSD</td></tr>
+					<tr><th scope="row">Supported OS</th><td>Linux with Docker (tested on Ubuntu 24.04 LTS)</td><td>Linux + FreeBSD + OpenBSD</td></tr>
 					<tr><th scope="row">Configuration model</th><td><strong>Dashboard + REST API, with every service config generated from one declarative <code>config.yaml</code></strong></td><td>Files in <code>/etc</code> + service restarts</td></tr>
 					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>None (SMTP submission only)</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>No — SMTP submission with mailbox creds</td></tr>
@@ -357,7 +357,7 @@ const dateModified = '2026-10-08'
 			<div class="alt-faq-q">
 				<h3>Does Vectis Mail run on BSD?</h3>
 				<p>
-					No — Vectis Mail runs on Linux only (Ubuntu, Debian, RHEL family), because it ships
+					No — Vectis Mail runs on Linux only (tested on Ubuntu 24.04 LTS), because it ships
 					as a Docker Compose stack. One honest scope note: if your deployment target is
 					FreeBSD or OpenBSD, Vectis Mail isn’t the fit, and there’s no BSD install path
 					planned. On Linux you get the full platform — the REST API, declarative YAML config,
@@ -393,7 +393,7 @@ const dateModified = '2026-10-08'
 		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
 			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
 				<h3>vs Mailcow &rarr;</h3>
-				<p>Same self-hosted stack, declarative YAML config, REST API, atomic updates with rollback.</p>
+				<p>Same self-hosted stack, plus a REST API, an admin dashboard for every domain and atomic updates with rollback.</p>
 			</a>
 			<a href="/alternatives/mail-in-a-box/" class="feature-card alt-index-card">
 				<h3>vs Mail-in-a-Box &rarr;</h3>

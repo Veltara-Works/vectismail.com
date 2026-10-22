@@ -1,7 +1,7 @@
 ---
 title: "Self-Hosted Email vs Google Workspace & Microsoft 365"
 description: "Self-hosted email vs Google Workspace and Microsoft 365 in 2026: the per-seat math, where the lines cross, the 2025-2026 price rises, and when each option wins."
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-22
 faq:
   - q: "Is self-hosted email cheaper than Google Workspace or Microsoft 365?"
     a: "Above a handful of mailboxes, yes — often dramatically. Google Workspace and Microsoft 365 charge per user, per month, forever, so the bill scales with headcount. Self-hosted email is a flat cost (your server plus a flat licence like Vectis Mail's $39/month) regardless of mailbox count. On the common $14/user/month business plans, a fully-loaded self-hosted setup (~$59/month all-in) breaks even at about five mailboxes and saves more with every seat after that."
@@ -100,12 +100,12 @@ You pay the suite only for the seats that use the suite, and email stops being a
 
 Vectis Mail is the self-hosted side of this comparison done the modern way:
 
-- **Flat $39/month, unlimited mailboxes** within your install, three domains included — never priced per send or per seat.
+- **Never priced per seat or per send.** Starter is free (3 domains, 25 mailboxes each); Pro is a flat $39/month per tenant with unlimited domains and mailboxes.
 - **One-command install** of a proven stack (Postfix, Dovecot, Rspamd) with declarative config and atomic, auto-rollback updates.
 - **Deliverability built in** — automatic DKIM/SPF/DMARC, a built-in IP-warmup schedule, RBL monitoring, and a deliverability checker.
 - **Bundled webmail and a transactional REST API** for app-generated mail.
 
-It is **email infrastructure you own** — not a productivity suite, and we won't claim otherwise. If email is what's quietly inflating your Workspace or Microsoft 365 bill, this is how you take it back.
+It is **email infrastructure you own** — not a productivity suite, and we won't claim otherwise. If email is what's quietly inflating your Workspace or Microsoft 365 bill, this is how you take it back. Leaving one of them specifically? The head-to-heads cover the move step by step: [Vectis Mail vs Google Workspace](/alternatives/google-workspace/) and [Vectis Mail vs Microsoft 365](/alternatives/microsoft-365/).
 
 ## Frequently asked questions
 
