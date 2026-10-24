@@ -98,7 +98,7 @@ const dateModified = '2026-10-08'
 					{
 						"@type": "Question",
 						"name": "Does Vectis Mail run on BSD?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No — Vectis Mail runs on Linux only, because it ships as a Docker Compose stack. One honest scope note: if your deployment target is FreeBSD or OpenBSD, Vectis Mail isn't the fit, and there's no BSD install path planned. On Linux (tested on Ubuntu 24.04 LTS) you get the full platform: the REST API, declarative YAML config, and atomic health-gated updates with rollback." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No — Vectis Mail runs on Linux only, because it ships as a Docker Compose stack. One honest scope note: if your deployment target is FreeBSD or OpenBSD, Vectis Mail isn't the fit, and there's no BSD install path planned. On Linux (tested on Ubuntu 24.04 LTS) you get the full platform: the dashboard and REST API, and atomic health-gated updates with rollback." }
 					},
 					{
 						"@type": "Question",
@@ -121,8 +121,9 @@ const dateModified = '2026-10-08'
 			<p class="alt-lead">
 				iRedMail lays a mail stack straight onto the host and leaves you editing files in
 				<code>/etc</code> and restarting services by hand. Vectis Mail runs the same
-				Postfix/Dovecot core, but adds a REST API, declarative YAML config, and atomic,
-				health-gated updates that roll themselves back if a change fails. Same self-hosted
+				Postfix/Dovecot core, but you manage it from a dashboard and a REST API instead of
+				hand-edited files, with atomic, health-gated updates that roll themselves back if a
+				change fails. Same self-hosted
 				control — a modern operational surface on top.
 			</p>
 			<div class="hero-buttons" style="margin-top: 1.5rem;">
@@ -360,8 +361,8 @@ const dateModified = '2026-10-08'
 					No — Vectis Mail runs on Linux only (tested on Ubuntu 24.04 LTS), because it ships
 					as a Docker Compose stack. One honest scope note: if your deployment target is
 					FreeBSD or OpenBSD, Vectis Mail isn’t the fit, and there’s no BSD install path
-					planned. On Linux you get the full platform — the REST API, declarative YAML config,
-					and atomic health-gated updates with rollback.
+					planned. On Linux you get the full platform — the dashboard and REST API, and
+					atomic health-gated updates with rollback.
 				</p>
 			</div>
 			<div class="alt-faq-q">
