@@ -2,12 +2,12 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
-const title = 'Stalwart vs Mailcow (2026): Which Self-Hosted Mail Server?'
-const description = "Stalwart vs Mailcow: a pre-1.0 Rust all-in-one with JMAP and clustering vs a proven 18-service Docker stack. RAM, protocols, updates and licensing compared."
+const title = 'Stalwart vs Mailcow (2026): Which to Pick, and When'
+const description = "Pick Mailcow for proven Postfix/Dovecot plus webmail and phone sync; pick Stalwart for low RAM, JMAP and clustering if pre-1.0 is fine. Full comparison."
 const url = 'https://vectismail.com/compare/stalwart-vs-mailcow/'
 const ogImage = 'https://vectismail.com/og/compare-stalwart-vs-mailcow.png'
 const datePublished = '2026-10-09'
-const dateModified = '2026-10-09'
+const dateModified = '2026-10-24'
 ---
 <html lang="en">
 <head>
@@ -75,7 +75,12 @@ const dateModified = '2026-10-09'
 					{
 						"@type": "Question",
 						"name": "Is Stalwart production-ready?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.25 as of October 2026), and its own upgrade documentation says there is no automated upgrade tool yet: minor releases may require configuration changes or data migrations, so it recommends reading the release notes and upgrading only when necessary. Version 1.0 is planned to finalise the database schema." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.27 as of October 2026), and its own upgrade documentation says there is no automated upgrade tool yet: minor releases may require configuration changes or data migrations, so it recommends reading the release notes and upgrading only when necessary. Version 1.0 is planned to finalise the database schema." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Mailcow support JMAP?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Mailcow serves mail over IMAP and POP3 through Dovecot, which doesn't implement JMAP, and its calendar and contacts come from SOGo over CalDAV, CardDAV and Exchange ActiveSync. A JMAP feature request has been open in the mailcow repository since July 2026, with no maintainer commitment so far. If you need JMAP, Stalwart has it built in for mail, calendars and contacts. Vectis Mail doesn't ship JMAP either." }
 					},
 					{
 						"@type": "Question",
@@ -111,10 +116,10 @@ const dateModified = '2026-10-09'
 			Docker stack, with webmail and groupware included. Stalwart rewrites every protocol
 			from scratch in one Rust binary, adding JMAP, clustering and pluggable storage on a
 			fraction of the RAM, and it's still pre-1.0. Neither ships a transactional sending
-			API. If that's the gap, we're a third option, covered below.
+			API. If that's the gap, we're a third option, <a href="#vectis-mail">covered below</a>.
 		</p>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>9 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>24 October 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -122,7 +127,7 @@ const dateModified = '2026-10-09'
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Side-by-side, current as of October 2026 (Stalwart v0.16.25, Mailcow 2026-09a).</p>
+		<p class="subtitle">Side-by-side, current as of October 2026 (Stalwart v0.16.27, Mailcow 2026-10).</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -131,7 +136,7 @@ const dateModified = '2026-10-09'
 				<tbody>
 					<tr><th scope="row">Architecture</th><td>One Rust binary, every protocol in one process</td><td>Docker Compose, 18 services</td></tr>
 					<tr><th scope="row">Mail engine</th><td>Written from scratch</td><td><strong>Postfix · Dovecot</strong> (decades in production)</td></tr>
-					<tr><th scope="row">Version</th><td>Pre-1.0 (v0.16.x)</td><td>Regular dated releases (2026-09a)</td></tr>
+					<tr><th scope="row">Version</th><td>Pre-1.0 (v0.16.x)</td><td>Regular dated releases (2026-10)</td></tr>
 					<tr><th scope="row">Runs on</th><td><strong>Linux, macOS, FreeBSD, Windows, or Docker</strong></td><td>Linux with Docker (full VMs; not LXC/OpenVZ)</td></tr>
 					<tr><th scope="row">RAM, 5–10 users</th><td><strong>~1 GB</strong> (~100 MB idle)</td><td>6 GiB + 1 GiB swap minimum; 8 GiB recommended</td></tr>
 					<tr><th scope="row">Protocols</th><td><strong>SMTP · IMAP · POP3 · JMAP · CalDAV · CardDAV · WebDAV</strong></td><td>SMTP · IMAP · POP3, plus CalDAV/CardDAV via SOGo</td></tr>
@@ -149,6 +154,14 @@ const dateModified = '2026-10-09'
 					<tr><th scope="row">Pricing</th><td>Free; Enterprise is a per-mailbox subscription</td><td>Free (paid ServerCow support optional)</td></tr>
 				</tbody>
 			</table>
+		</div>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<p style="margin-bottom: 0;">
+				<strong>Want Mailcow's proven core without the 6 GiB?</strong> Vectis Mail runs the same
+				Postfix and Dovecot engine with Rspamd from 2 GB of RAM (without ClamAV), adds a transactional sending
+				API, and rolls a failed update back by itself. No JMAP or groupware.
+				<a href="#vectis-mail">See where it fits &darr;</a>
+			</p>
 		</div>
 	</section>
 
@@ -265,7 +278,7 @@ const dateModified = '2026-10-09'
 		</div>
 	</section>
 
-	<section class="section" style="padding-top: 1rem;">
+	<section class="section" id="vectis-mail" style="padding-top: 1rem;">
 		<h2>The third option: Vectis Mail</h2>
 		<p>
 			If what's missing from <em>both</em> is a transactional sending API, a proven mail
@@ -313,11 +326,22 @@ const dateModified = '2026-10-09'
 			<div class="alt-faq-q">
 				<h3>Is Stalwart production-ready?</h3>
 				<p>
-					Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.25 as of October 2026), and its own
+					Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.27 as of October 2026), and its own
 					upgrade documentation says there is no automated upgrade tool yet: minor
 					releases may require configuration changes or data migrations, so it recommends
 					reading the release notes and upgrading only when necessary. Version 1.0 is
 					planned to finalise the database schema.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Mailcow support JMAP?</h3>
+				<p>
+					No. Mailcow serves mail over IMAP and POP3 through Dovecot, which doesn't
+					implement JMAP, and its calendar and contacts come from SOGo over CalDAV, CardDAV
+					and Exchange ActiveSync. A JMAP feature request has been open in the mailcow
+					repository since July 2026, with no maintainer commitment so far. If you need
+					JMAP, Stalwart has it built in for mail, calendars and contacts. Vectis Mail
+					doesn't ship JMAP either.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -383,8 +407,9 @@ const dateModified = '2026-10-09'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Stalwart README, system requirements, upgrade guide, milter and Enterprise documentation, and release v0.16.25 (5 October 2026) in its public repositories — retrieved 2026-10-09</li>
-			<li>Mailcow documentation (system prerequisites, identity providers) and the public mailcow-dockerized repository (docker-compose.yml, release 2026-09a) — retrieved 2026-10-08</li>
+			<li>Stalwart README, system requirements, upgrade guide, milter and Enterprise documentation in its public repositories — retrieved 2026-10-09; release notes v0.16.26 and v0.16.27 (18 October 2026) — retrieved 2026-10-24</li>
+			<li>Mailcow documentation (system prerequisites, identity providers) — retrieved 2026-10-08; the public mailcow-dockerized repository (docker-compose.yml, release 2026-10 of 21 October 2026, and JMAP feature request #7314) — retrieved 2026-10-24</li>
+			<li>JMAP software list at jmap.io — retrieved 2026-10-24</li>
 			<li>Vectis Mail system requirements: <a href="/getting-started/installation/">/getting-started/installation</a>; architecture: <a href="/architecture/overview/">/architecture/overview</a></li>
 		</ul>
 	</aside>
