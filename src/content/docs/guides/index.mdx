@@ -1,0 +1,107 @@
+---
+title: Self-Hosted Email Guides
+description: "Practical guides to running your own email: whether to self-host, choosing a server, SPF, DKIM and DMARC, deliverability, migration and fixing problems."
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components'
+
+Practical guides to running your own email server, from deciding whether to self-host at all through to keeping mail out of spam folders once you do. Most apply to any self-hosted mail server; the ones that cover Vectis Mail specifically say so.
+
+## Should you self-host email?
+
+<CardGrid>
+	<LinkCard
+		title="Is self-hosting email worth it in 2026?"
+		description="What it really costs, the deliverability bar you have to clear, and when a hosted service still wins."
+		href="/guides/self-host-email-2026/"
+	/>
+	<LinkCard
+		title="Self-hosted email for small business"
+		description="Real costs against Google Workspace and Microsoft 365, the deliverability bar, and a defensible starter stack."
+		href="/guides/self-hosted-email-for-small-business/"
+	/>
+	<LinkCard
+		title="Self-hosted email vs Google Workspace & Microsoft 365"
+		description="The per-seat maths, where the lines cross, the 2025–2026 price rises, and when each option wins."
+		href="/guides/self-hosted-email-vs-google-workspace-microsoft-365/"
+	/>
+	<LinkCard
+		title="Best self-hosted email servers 2026"
+		description="Eight options compared on mailboxes, sending API and ops burden, with one clear pick."
+		href="/guides/best-self-hosted-email-servers-2026/"
+	/>
+</CardGrid>
+
+## Setting up and running a mail server
+
+<CardGrid>
+	<LinkCard
+		title="Docker mail server: what production actually needs"
+		description="The containers are the easy part. The state, DNS, health-check and update traps that decide whether it holds up."
+		href="/guides/docker-mail-server/"
+	/>
+	<LinkCard
+		title="SPF, DKIM & DMARC setup"
+		description="How the three standards work together, copy-paste DNS records, the Gmail and Yahoo sender rules, and how to verify each."
+		href="/guides/dkim-spf-dmarc/"
+	/>
+	<LinkCard
+		title="Migrate to self-hosted email with zero downtime"
+		description="The dual-send overlap, imapsync mailbox sync, SPF, DKIM and DMARC, and the MX cutover."
+		href="/guides/migrate-to-self-hosted-email/"
+	/>
+	<LinkCard
+		title="SMTP relay: send app email through your own server"
+		description="When a hosted relay is the right call, and how to send app, website and device email through a server you run."
+		href="/guides/self-hosted-smtp-relay/"
+	/>
+	<LinkCard
+		title="TLS certificates"
+		description="How Vectis Mail issues and renews certificates for the web, SMTP and IMAP, and how to bring your own."
+		href="/guides/tls-certificates/"
+	/>
+	<LinkCard
+		title="Cloudflare integration"
+		description="Running Vectis Mail with Cloudflare DNS: which records must stay DNS-only, and the mistakes to avoid."
+		href="/guides/cloudflare/"
+	/>
+	<LinkCard
+		title="Webmail (Roundcube)"
+		description="The built-in webmail in Vectis Mail: logging in, reading and sending mail, and per-user Sieve filters."
+		href="/guides/webmail/"
+	/>
+</CardGrid>
+
+## Deliverability
+
+<CardGrid>
+	<LinkCard
+		title="Email deliverability best practices"
+		description="DNS authentication, IP reputation, bounce handling and blocklist monitoring for a self-hosted mail server."
+		href="/guides/deliverability/"
+	/>
+	<LinkCard
+		title="IP warmup for new mail servers"
+		description="Why a new sending IP needs warming up, Vectis Mail's 30-day schedule, and the mistakes to avoid."
+		href="/guides/ip-warmup/"
+	/>
+</CardGrid>
+
+## Fixing problems
+
+<CardGrid>
+	<LinkCard
+		title="Troubleshooting Vectis Mail"
+		description="Diagnose delivery failures, spam classification, TLS and login errors, DNS issues, and queue problems."
+		href="/guides/troubleshooting/"
+	/>
+	<LinkCard
+		title="Where are Mailcow's DKIM keys?"
+		description="Modern mailcow keeps DKIM keys in Redis, not on disk. Where they live, how to back them up, and how to fix signing."
+		href="/guides/mailcow-dkim-keys/"
+	/>
+</CardGrid>
+
+## Getting started with Vectis Mail
+
+Ready to run your own? The [installation guide](/getting-started/installation/) takes a fresh Ubuntu server to a working mail server, and the [comparison pages](/alternatives/) show how Vectis Mail stacks up against the other options.

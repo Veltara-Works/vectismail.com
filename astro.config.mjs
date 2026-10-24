@@ -101,6 +101,7 @@ export default defineConfig({
 				{
 					label: 'Guides',
 					items: [
+						{ label: 'All Guides', slug: 'guides' },
 						{ label: 'Should You Self-Host Email?', slug: 'guides/self-host-email-2026' },
 						{ label: 'Self-Hosted Email for Small Business', slug: 'guides/self-hosted-email-for-small-business' },
 						{ label: 'Best Self-Hosted Email Servers 2026', slug: 'guides/best-self-hosted-email-servers-2026' },
@@ -114,6 +115,7 @@ export default defineConfig({
 						{ label: 'Deliverability', slug: 'guides/deliverability' },
 						{ label: 'SMTP Relay on Your Own Server', slug: 'guides/self-hosted-smtp-relay' },
 						{ label: 'Cloudflare Integration', slug: 'guides/cloudflare' },
+						{ label: 'Webmail (Roundcube)', slug: 'guides/webmail' },
 						{ label: 'Troubleshooting', slug: 'guides/troubleshooting' },
 					],
 				},

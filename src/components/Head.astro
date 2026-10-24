@@ -59,12 +59,16 @@ if (found) {
 			})
 		}
 	}
-	items.push({
-		'@type': 'ListItem',
-		position: items.length + 1,
-		name: found.link.label,
-		item: new URL(found.link.href, SITE).toString(),
-	})
+	// A group's index page (e.g. /guides/) is also the group's crumb; don't list it twice.
+	const linkUrl = new URL(found.link.href, SITE).toString()
+	if (items[items.length - 1].item !== linkUrl) {
+		items.push({
+			'@type': 'ListItem',
+			position: items.length + 1,
+			name: found.link.label,
+			item: linkUrl,
+		})
+	}
 }
 
 const breadcrumb = {
@@ -90,7 +94,8 @@ const articleAuthor = isNarrative
 
 const techArticle = {
 	'@context': 'https://schema.org',
-	'@type': 'TechArticle',
+	// The /guides/ hub lists articles rather than being one.
+	'@type': slug === 'guides' ? 'CollectionPage' : 'TechArticle',
 	headline: data.title,
 	description: data.description ?? 'Vectis Mail documentation',
 	url: pageUrl,
