@@ -2,8 +2,8 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
-const title = 'Stalwart vs Mailcow (2026): Which to Pick, and When'
-const description = "Pick Mailcow for proven Postfix/Dovecot plus webmail and phone sync; pick Stalwart 1.0 for JMAP, clustering and a far lighter footprint. Full comparison."
+const title = 'Stalwart vs Mailcow (2026): RAM, JMAP and Upgrades Compared'
+const description = "Stalwart vs Mailcow side by side: mail engine, RAM, webmail, JMAP, ActiveSync, upgrades and licence, plus a self-hosted option with a sending API."
 const url = 'https://vectismail.com/compare/stalwart-vs-mailcow/'
 const ogImage = 'https://vectismail.com/og/compare-stalwart-vs-mailcow.png'
 const datePublished = '2026-10-09'
@@ -69,8 +69,8 @@ const dateModified = '2026-11-01'
 				"mainEntity": [
 					{
 						"@type": "Question",
-						"name": "Is Stalwart or Mailcow better?",
-						"acceptedAnswer": { "@type": "Answer", "text": "They make opposite bets. Mailcow assembles long-proven components (Postfix, Dovecot, Rspamd, SOGo, ClamAV) into an 18-service Docker stack with webmail, groupware and phone sync included. Stalwart reimplements every protocol in one Rust binary, adding JMAP, clustering and pluggable storage on a fraction of the RAM, though it has no bundled webmail and only reached 1.0 in October 2026. Choose on whether you value proven internals and a complete out-of-the-box suite (Mailcow) or a modern single binary that scales out (Stalwart)." }
+						"name": "What's the difference between Stalwart and Mailcow?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Mailcow packages Postfix, Dovecot, Rspamd, SOGo and ClamAV into an 18-service Docker stack with webmail, groupware and Exchange ActiveSync included, and documents a minimum of 6 GiB of RAM plus 1 GiB of swap. Stalwart implements every protocol itself in one Rust binary, with JMAP, clustering and pluggable storage, no bundled webmail or ActiveSync, and a 1.0 release from October 2026." }
 					},
 					{
 						"@type": "Question",
@@ -135,17 +135,17 @@ const dateModified = '2026-11-01'
 				</thead>
 				<tbody>
 					<tr><th scope="row">Architecture</th><td>One Rust binary, every protocol in one process</td><td>Docker Compose, 18 services</td></tr>
-					<tr><th scope="row">Mail engine</th><td>Written from scratch</td><td><strong>Postfix · Dovecot</strong> (decades in production)</td></tr>
-					<tr><th scope="row">Version</th><td><strong>1.0</strong> (October 2026), semantic versioning</td><td>Regular dated releases (2026-10)</td></tr>
-					<tr><th scope="row">Runs on</th><td><strong>Linux, macOS, FreeBSD, Windows, or Docker</strong></td><td>Linux with Docker (full VMs; not LXC/OpenVZ)</td></tr>
-					<tr><th scope="row">RAM</th><td><strong>No stated minimum</strong>; default limits about 1.4 GiB on a 2 GiB host</td><td>6 GiB + 1 GiB swap minimum; 8 GiB recommended</td></tr>
-					<tr><th scope="row">Protocols</th><td><strong>SMTP · IMAP · POP3 · JMAP · CalDAV · CardDAV · WebDAV</strong></td><td>SMTP · IMAP · POP3, plus CalDAV/CardDAV via SOGo</td></tr>
-					<tr><th scope="row">Webmail</th><td>Not bundled</td><td><strong>SOGo</strong></td></tr>
-					<tr><th scope="row">Exchange ActiveSync</th><td>No</td><td><strong>Yes (SOGo)</strong></td></tr>
+					<tr><th scope="row">Mail engine</th><td>Written from scratch</td><td>Postfix · Dovecot (decades in production)</td></tr>
+					<tr><th scope="row">Version</th><td>1.0 (October 2026), semantic versioning</td><td>Regular dated releases (2026-10)</td></tr>
+					<tr><th scope="row">Runs on</th><td>Linux, macOS, FreeBSD, Windows, or Docker</td><td>Linux with Docker (full VMs; not LXC/OpenVZ)</td></tr>
+					<tr><th scope="row">RAM</th><td>No stated minimum; default limits about 1.4 GiB on a 2 GiB host</td><td>6 GiB + 1 GiB swap minimum; 8 GiB recommended</td></tr>
+					<tr><th scope="row">Protocols</th><td>SMTP · IMAP · POP3 · JMAP · CalDAV · CardDAV · WebDAV</td><td>SMTP · IMAP · POP3, plus CalDAV/CardDAV via SOGo</td></tr>
+					<tr><th scope="row">Webmail</th><td>Not bundled</td><td>SOGo</td></tr>
+					<tr><th scope="row">Exchange ActiveSync</th><td>No</td><td>Yes (SOGo)</td></tr>
 					<tr><th scope="row">Antispam</th><td>Built-in filter (classifier, Pyzor; AI-assisted on Enterprise)</td><td>Rspamd</td></tr>
-					<tr><th scope="row">Antivirus</th><td>Via milter (run ClamAV yourself)</td><td><strong>ClamAV bundled</strong></td></tr>
-					<tr><th scope="row">Storage</th><td><strong>Pluggable: RocksDB, PostgreSQL, MySQL, SQLite, FoundationDB, S3, Azure, Redis</strong> (read replicas and sharding on Enterprise)</td><td>MariaDB + Dovecot mail storage</td></tr>
-					<tr><th scope="row">Clustering / HA</th><td><strong>Built in (multi-node, Kubernetes, Swarm)</strong></td><td>Single host</td></tr>
+					<tr><th scope="row">Antivirus</th><td>Via milter (run ClamAV yourself)</td><td>ClamAV bundled</td></tr>
+					<tr><th scope="row">Storage</th><td>Pluggable: RocksDB, PostgreSQL, MySQL, SQLite, FoundationDB, S3, Azure, Redis (read replicas and sharding on Enterprise)</td><td>MariaDB + Dovecot mail storage</td></tr>
+					<tr><th scope="row">Clustering / HA</th><td>Built in (multi-node, Kubernetes, Swarm)</td><td>Single host</td></tr>
 					<tr><th scope="row">Directory / SSO</th><td>LDAP, OIDC, SQL; SCIM on Enterprise</td><td>LDAP, OIDC, Keycloak</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td>No (JMAP submission + event webhooks)</td><td>No (SMTP submission)</td></tr>
 					<tr><th scope="row">Upgrades</th><td>Manual; minor releases may need config changes or migrations</td><td>Manual <code>update.sh</code></td></tr>
@@ -157,7 +157,7 @@ const dateModified = '2026-11-01'
 		</div>
 		<div class="feature-card" style="margin-top: 1.5rem;">
 			<p style="margin-bottom: 0;">
-				<strong>Want Mailcow's proven core without the 6 GiB?</strong> Vectis Mail runs the same
+				<strong>Want Postfix and Dovecot without the 6 GiB?</strong> Vectis Mail runs the same
 				Postfix and Dovecot engine with Rspamd from 2 GB of RAM (without ClamAV), adds a transactional sending
 				API, and rolls a failed update back by itself. No JMAP or groupware.
 				<a href="#vectis-mail">See where it fits &darr;</a>
@@ -168,19 +168,17 @@ const dateModified = '2026-11-01'
 	<section class="section" style="padding-top: 1rem;">
 		<h2>How they differ</h2>
 
-		<h3 class="alt-h3">Proven components vs a clean rewrite</h3>
+		<h3 class="alt-h3">Assembled components vs a single binary</h3>
 		<p>
-			This is the real decision. Mailcow doesn't implement mail protocols itself: it
-			packages Postfix, Dovecot, Rspamd, SOGo, ClamAV and MariaDB, components with decades
-			of production hardening between them, into one managed Docker stack. Every strange
-			edge case in SMTP and IMAP has long since been hit and fixed upstream.
+			Mailcow doesn't implement mail protocols itself: it packages Postfix, Dovecot, Rspamd,
+			SOGo, ClamAV and MariaDB, each maintained as its own upstream project, into one
+			Docker stack.
 		</p>
 		<p>
 			Stalwart takes the opposite approach: SMTP, IMAP, POP3, JMAP, CalDAV, CardDAV and
-			WebDAV, all reimplemented from scratch in memory-safe Rust and shipped as a single
-			binary, with a published security audit. That buys a coherent design and very modest
-			resource use. The cost is a younger codebase: version 1.0 shipped in October 2026, with
-			a new database layout that existing v0.16 servers have to migrate to.
+			WebDAV, all implemented from scratch in Rust and shipped as a single binary, with a
+			published security audit. Version 1.0 shipped in October 2026, with a new database
+			layout that existing v0.16 servers have to migrate to.
 		</p>
 
 		<h3 class="alt-h3">Hardware</h3>
@@ -195,8 +193,8 @@ const dateModified = '2026-11-01'
 
 		<h3 class="alt-h3">Protocols and clients</h3>
 		<p>
-			Stalwart is the more protocol-complete server: JMAP for mail, calendars and contacts,
-			plus CalDAV, CardDAV and WebDAV file storage, all built in. Mailcow covers SMTP, IMAP
+			Stalwart implements JMAP for mail, calendars and contacts, plus CalDAV, CardDAV and
+			WebDAV file storage, all built in. Mailcow covers SMTP, IMAP
 			and POP3 through Postfix and Dovecot, and gets calendar, contacts and Exchange
 			ActiveSync from SOGo.
 		</p>
@@ -218,7 +216,7 @@ const dateModified = '2026-11-01'
 
 		<h3 class="alt-h3">Scale and storage</h3>
 		<p>
-			If you need more than one machine, this is Stalwart's strongest ground. It clusters
+			Stalwart clusters
 			natively, coordinates through peer-to-peer or Kafka, NATS or Redis, runs on Kubernetes
 			or Docker Swarm, and stores data in your choice of RocksDB, PostgreSQL, MySQL, SQLite,
 			FoundationDB, S3-compatible or Azure storage; read replicas and sharded storage are
@@ -259,29 +257,6 @@ const dateModified = '2026-11-01'
 		</p>
 	</section>
 
-	<section class="section" style="padding-top: 1rem;">
-		<h2>Who each is best for</h2>
-		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.5rem;">
-			<div class="feature-card">
-				<h3>Choose Stalwart if</h3>
-				<ul style="margin-bottom: 0;">
-					<li>You want JMAP, or CalDAV/CardDAV/WebDAV built into the server itself.</li>
-					<li>You need clustering, high availability or a specific storage backend.</li>
-					<li>RAM is tight, or you want to run outside Docker or Linux.</li>
-					<li>You're happy to read release notes and back up before each minor upgrade (and to migrate, if you're on v0.16).</li>
-				</ul>
-			</div>
-			<div class="feature-card">
-				<h3>Choose Mailcow if</h3>
-				<ul style="margin-bottom: 0;">
-					<li>You want the proven Postfix and Dovecot core rather than a rewrite.</li>
-					<li>Your users need webmail and phone sync (ActiveSync) on day one.</li>
-					<li>You want Rspamd and ClamAV preconfigured.</li>
-					<li>You have 6–8 GiB of RAM for a single, self-contained host.</li>
-				</ul>
-			</div>
-		</div>
-	</section>
 
 	<section class="section" id="vectis-mail" style="padding-top: 1rem;">
 		<h2>The third option: Vectis Mail</h2>
@@ -300,9 +275,8 @@ const dateModified = '2026-11-01'
 			</ul>
 		</div>
 		<p style="margin-top: 1rem;">
-			To be equally clear about where Vectis Mail doesn't fit: it's Docker-only and
-			single-node, and it doesn't ship JMAP, calendar, contacts or ActiveSync today. If
-			groupware or a multi-node cluster is the core requirement, it isn't your answer. See
+			Vectis Mail's scope: it's Docker-only and single-node, and doesn't ship JMAP,
+			calendar, contacts or ActiveSync. See
 			the dedicated <a href="/alternatives/stalwart/">Vectis Mail vs Stalwart</a> and
 			<a href="/alternatives/mailcow/">Vectis Mail vs Mailcow</a> comparisons for the full
 			detail on each.
@@ -317,16 +291,13 @@ const dateModified = '2026-11-01'
 		<h2>Frequently asked questions</h2>
 		<div class="alt-faq">
 			<div class="alt-faq-q">
-				<h3>Is Stalwart or Mailcow better?</h3>
+				<h3>What's the difference between Stalwart and Mailcow?</h3>
 				<p>
-					They make opposite bets. Mailcow assembles long-proven components (Postfix,
-					Dovecot, Rspamd, SOGo, ClamAV) into an 18-service Docker stack with webmail,
-					groupware and phone sync included. Stalwart reimplements every protocol in one
-					Rust binary, adding JMAP, clustering and pluggable storage on a fraction of the
-					RAM, though it has no bundled webmail and only reached 1.0 in October 2026.
-					Choose on whether you
-					value proven internals and a complete out-of-the-box suite (Mailcow) or a modern
-					single binary that scales out (Stalwart).
+					Mailcow packages Postfix, Dovecot, Rspamd, SOGo and ClamAV into an 18-service Docker
+					stack with webmail, groupware and Exchange ActiveSync included, and documents a
+					minimum of 6 GiB of RAM plus 1 GiB of swap. Stalwart implements every protocol
+					itself in one Rust binary, with JMAP, clustering and pluggable storage, no bundled
+					webmail or ActiveSync, and a 1.0 release from October 2026.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -409,7 +380,7 @@ const dateModified = '2026-11-01'
 			</a>
 			<a href="/compare/mailu-vs-stalwart/" class="feature-card alt-index-card">
 				<h3>Mailu vs Stalwart &rarr;</h3>
-				<p>A light proven Docker stack vs a Rust all-in-one.</p>
+				<p>A Docker stack on Postfix, Dovecot and Rspamd vs a Rust all-in-one.</p>
 			</a>
 		</div>
 	</section>
