@@ -2,12 +2,12 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
-const title = 'Mailu vs Stalwart (2026): Which Self-Hosted Mail Server?'
-const description = "Mailu vs Stalwart: a lightweight Docker stack on proven Postfix, Dovecot and Rspamd vs a pre-1.0 Rust all-in-one with JMAP and clustering, compared."
+const title = 'Mailu vs Stalwart (2026): Which Self-Hosted Server to Pick'
+const description = "Pick Mailu for proven Postfix, Dovecot and Rspamd with webmail on 1 GB of RAM; pick Stalwart 1.0 for JMAP, built-in calendars and clustering."
 const url = 'https://vectismail.com/compare/mailu-vs-stalwart/'
 const ogImage = 'https://vectismail.com/og/compare-mailu-vs-stalwart.png'
 const datePublished = '2026-10-09'
-const dateModified = '2026-10-09'
+const dateModified = '2026-11-01'
 ---
 <html lang="en">
 <head>
@@ -70,12 +70,12 @@ const dateModified = '2026-10-09'
 					{
 						"@type": "Question",
 						"name": "Is Mailu or Stalwart better?",
-						"acceptedAnswer": { "@type": "Answer", "text": "They suit different priorities. Mailu packages proven components (Postfix, Dovecot, Rspamd) as a lightweight Docker Compose stack with webmail, an admin UI and a REST API, configured through a web setup wizard and MIT-licensed. Stalwart reimplements every protocol in one Rust binary, adding JMAP, built-in CalDAV/CardDAV/WebDAV and native clustering, but it is still pre-1.0 and ships no webmail. Choose Mailu for a small, conventional, proven stack; choose Stalwart for JMAP, built-in groupware or multi-node scale." }
+						"acceptedAnswer": { "@type": "Answer", "text": "They suit different priorities. Mailu packages proven components (Postfix, Dovecot, Rspamd) as a lightweight Docker Compose stack with webmail, an admin UI and a REST API, configured through a web setup wizard and MIT-licensed. Stalwart reimplements every protocol in one Rust binary, adding JMAP, built-in CalDAV/CardDAV/WebDAV and native clustering, but it ships no webmail and only reached 1.0 in October 2026. Choose Mailu for a small, conventional, proven stack; choose Stalwart for JMAP, built-in groupware or multi-node scale." }
 					},
 					{
 						"@type": "Question",
 						"name": "How much RAM do Mailu and Stalwart need?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Both are light. Mailu's documented minimum is 1 GB of RAM plus 1 GB of swap without antivirus, or 3 GB plus 1 GB of swap with ClamAV. Stalwart idles at roughly 100 MB, and its documentation says 1 GB is generally sufficient for 5 to 10 users; antivirus means running ClamAV separately as a milter, which needs its own memory." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Mailu's documented minimum is 1 GB of RAM plus 1 GB of swap without antivirus, or 3 GB plus 1 GB of swap with ClamAV. Stalwart 1.0's documentation no longer quotes a minimum: memory use is set by cache limits that scale with the host and fill only as accounts are used. On a 2 GiB host its default limits add up to about 1.4 GiB, not counting two large-account caches that stay empty on small servers, and each limit can be lowered. Antivirus on Stalwart means running ClamAV separately as a milter, which needs its own memory." }
 					},
 					{
 						"@type": "Question",
@@ -85,12 +85,27 @@ const dateModified = '2026-10-09'
 					{
 						"@type": "Question",
 						"name": "Is Stalwart production-ready?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Stalwart describes itself as feature complete, but it is still pre-1.0 (v0.16.25 as of October 2026). Its own upgrade documentation says there is no automated upgrade tool yet: minor releases may require configuration changes or data migrations, so it recommends reading the release notes and upgrading only when necessary." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Stalwart reached version 1.0 on 26 October 2026 (v1.0.1 followed on 28 October) and now follows semantic versioning: its upgrade guide says patch releases need no further review, while minor releases can change behaviour, so read their notes and back up the data stores first. Existing v0.16 servers can't upgrade in place: 1.0 uses a new database layout, and data moves across with the stalwart-migrate tool, which copies while 0.16 keeps serving and needs downtime only for the final pass." }
 					},
 					{
 						"@type": "Question",
 						"name": "Does either have a transactional sending API?",
 						"acceptedAnswer": { "@type": "Answer", "text": "Not in the SendGrid sense. Mailu's REST API manages configuration (domains, users, aliases), and applications send through SMTP submission as a real mailbox. Stalwart offers JMAP, which can submit mail, plus event webhooks. Neither offers domain-scoped sending keys, per-domain rate limits or delivery analytics. Vectis Mail is a self-hosted platform built to add that sending API alongside mailbox hosting." }
+					},
+					{
+						"@type": "Question",
+						"name": "Does Stalwart support ActiveSync?",
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Stalwart syncs mail over IMAP, POP3 and JMAP, and calendars and contacts over CalDAV, CardDAV and JMAP, but it doesn't implement Exchange ActiveSync, and neither does Mailu. Phones and desktop apps connect over IMAP plus CalDAV/CardDAV instead: iOS and macOS support both natively, while Android usually needs a DAV sync app such as DAVx5." }
+					},
+					{
+						"@type": "Question",
+						"name": "Can Stalwart replace Dovecot and Postfix?",
+						"acceptedAnswer": { "@type": "Answer", "text": "Yes, that is its design. Stalwart implements SMTP (Postfix's job) and IMAP and POP3 (Dovecot's job), plus JMAP and the DAV protocols, in one Rust process, with its own spam filter in place of Rspamd. Mailu takes the other route: it runs the real Postfix, Dovecot and Rspamd in separate containers. The trade-off is one modern binary to run versus components with decades of production history." }
+					},
+					{
+						"@type": "Question",
+						"name": "What do you need to self-host Mailu?",
+						"acceptedAnswer": { "@type": "Answer", "text": "A Linux server with Docker and Docker Compose, at least 1 GB of RAM plus 1 GB of swap (3 GB plus swap with ClamAV), a domain whose DNS you control, and a host where port 25 is open in both directions, which many home connections and some cloud providers block. Mailu's web setup wizard generates the docker-compose.yml and mailu.env; after starting the stack, you publish the MX, SPF, DKIM and DMARC records its admin interface shows for each domain." }
 					}
 				]
 			}
@@ -110,11 +125,11 @@ const dateModified = '2026-10-09'
 			packages Postfix, Dovecot and Rspamd as a small Docker Compose stack with webmail,
 			an admin UI and a REST API, set up through a web wizard. Stalwart rewrites every
 			protocol from scratch in one Rust binary, adding JMAP, built-in groupware and
-			clustering, and it's still pre-1.0. Neither ships a transactional sending API. If
-			that's the gap, we're a third option, covered below.
+			clustering, and it reached version 1.0 in October 2026. Neither ships a transactional
+			sending API. If that's the gap, we're a third option, <a href="#vectis-mail">covered below</a>.
 		</p>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>9 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>1 November 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -122,7 +137,7 @@ const dateModified = '2026-10-09'
 
 	<section class="section" style="padding-top: 2rem;">
 		<h2>At a glance</h2>
-		<p class="subtitle">Side-by-side, current as of October 2026 (Mailu 2024.06.61, Stalwart v0.16.25).</p>
+		<p class="subtitle">Side-by-side, current as of October 2026 (Mailu 2024.06.67, Stalwart v1.0.1).</p>
 		<div class="compare-table-wrap">
 			<table class="compare-table">
 				<thead>
@@ -131,24 +146,32 @@ const dateModified = '2026-10-09'
 				<tbody>
 					<tr><th scope="row">Architecture</th><td>Docker Compose stack, generated by a web setup wizard</td><td>One Rust binary, every protocol in one process</td></tr>
 					<tr><th scope="row">Mail engine</th><td><strong>Postfix · Dovecot · Rspamd</strong></td><td>Written from scratch</td></tr>
-					<tr><th scope="row">Version</th><td>2024.06 series, still receiving patch releases</td><td>Pre-1.0 (v0.16.x)</td></tr>
+					<tr><th scope="row">Version</th><td>2024.06 series, still receiving patch releases</td><td>1.0 (October 2026), semantic versioning</td></tr>
 					<tr><th scope="row">Runs on</th><td>Linux with Docker; Kubernetes via a community Helm chart</td><td><strong>Linux, macOS, FreeBSD, Windows, or Docker</strong></td></tr>
-					<tr><th scope="row">RAM minimum</th><td>1 GB + 1 GB swap; 3 GB + 1 GB swap with ClamAV</td><td>~1 GB for 5–10 users (~100 MB idle)</td></tr>
+					<tr><th scope="row">RAM minimum</th><td>1 GB + 1 GB swap; 3 GB + 1 GB swap with ClamAV</td><td>No stated minimum; default limits about 1.4 GiB on a 2 GiB host</td></tr>
 					<tr><th scope="row">Protocols</th><td>SMTP · IMAP · POP3; CalDAV/CardDAV via optional Radicale</td><td><strong>SMTP · IMAP · POP3 · JMAP · CalDAV · CardDAV · WebDAV</strong></td></tr>
 					<tr><th scope="row">Webmail</th><td><strong>Roundcube or SnappyMail</strong></td><td>Not bundled</td></tr>
 					<tr><th scope="row">Exchange ActiveSync</th><td>No</td><td>No</td></tr>
-					<tr><th scope="row">Antispam</th><td><strong>Rspamd</strong> (autolearn, greylisting, DMARC)</td><td>Built-in filter (classifier, Pyzor; LLM on Enterprise)</td></tr>
+					<tr><th scope="row">Antispam</th><td><strong>Rspamd</strong> (autolearn, greylisting, DMARC)</td><td>Built-in filter (classifier, Pyzor; AI-assisted on Enterprise)</td></tr>
 					<tr><th scope="row">Antivirus</th><td>Optional ClamAV container</td><td>Via milter (run ClamAV yourself)</td></tr>
 					<tr><th scope="row">Admin API</th><td>REST API covering everything the admin UI does</td><td>Management API (JMAP-based)</td></tr>
 					<tr><th scope="row">Clustering / HA</th><td>Single host</td><td><strong>Built in (multi-node, Kubernetes, Swarm)</strong></td></tr>
 					<tr><th scope="row">Directory / SSO</th><td>Built-in accounts</td><td><strong>LDAP, OIDC, SQL</strong>; SCIM on Enterprise</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td>No (SMTP submission)</td><td>No (JMAP submission + event webhooks)</td></tr>
-					<tr><th scope="row">Upgrades</th><td>Read the changelog, pull new images, recreate</td><td>Manual; minor releases may need config changes or migrations</td></tr>
+					<tr><th scope="row">Upgrades</th><td>Read the changelog, pull new images, recreate</td><td>Semantic versioning: read minor-release notes and back up first; v0.16 → 1.0 needs <code>stalwart-migrate</code></td></tr>
 					<tr><th scope="row">Automatic rollback</th><td>No</td><td>No</td></tr>
 					<tr><th scope="row">License</th><td><strong>MIT</strong></td><td>AGPL-3.0 + proprietary Enterprise license</td></tr>
 					<tr><th scope="row">Pricing</th><td>Free</td><td>Free; Enterprise is a per-mailbox subscription</td></tr>
 				</tbody>
 			</table>
+		</div>
+		<div class="feature-card" style="margin-top: 1.5rem;">
+			<p style="margin-bottom: 0;">
+				<strong>Like Mailu's proven core, but need to send from your apps?</strong> Vectis Mail
+				runs the same Postfix and Dovecot engine with Rspamd from 2 GB of RAM (without ClamAV), adds
+				a transactional sending API, and rolls a failed update back by itself. No JMAP or groupware.
+				<a href="#vectis-mail">See where it fits &darr;</a>
+			</p>
 		</div>
 	</section>
 
@@ -162,8 +185,8 @@ const dateModified = '2026-10-09'
 			an nginx front end, with Redis for state. Stalwart implements SMTP, IMAP, POP3, JMAP
 			and the DAV protocols itself, in memory-safe Rust, as a single binary with a published
 			security audit. That gives a coherent design and very modest resource use; the cost is
-			a younger codebase that is still pre-1.0, with its roadmap's next milestone being to
-			finalise the database schema.
+			a younger codebase, which reached version 1.0 in October 2026 with a new database
+			layout that existing v0.16 servers have to migrate to.
 		</p>
 
 		<h3 class="alt-h3">Setup and footprint</h3>
@@ -172,8 +195,9 @@ const dateModified = '2026-10-09'
 			1 GB of swap without antivirus, or 3 GB with ClamAV enabled. You configure it through
 			a web setup wizard that generates a <code>docker-compose.yml</code> and a
 			<code>mailu.env</code>, choosing optional pieces such as antivirus, webmail, CalDAV and
-			full-text search. Stalwart idles at around 100 MB and documents 1 GB as comfortable for
-			5 to 10 users. It installs as a single binary on Linux, macOS, FreeBSD or Windows, or
+			full-text search. Stalwart 1.0 no longer quotes a minimum: its memory use is set by cache
+			limits that scale with the host, and on a 2 GiB host the defaults come to about 1.4 GiB,
+			excluding large-account caches that stay empty on small servers. It installs as a single binary on Linux, macOS, FreeBSD or Windows, or
 			as a Docker container, and is configured from its web admin.
 		</p>
 
@@ -213,10 +237,11 @@ const dateModified = '2026-10-09'
 		<h3 class="alt-h3">Upgrades</h3>
 		<p>
 			Mailu upgrades by checking the changelog for compose and environment changes, then
-			pulling new images and recreating the containers. Stalwart's documentation says there
-			is no automated upgrade tool yet: patch releases are safe, but minor releases may require
-			configuration changes or data migrations, so it recommends reading the release notes
-			first and upgrading only when necessary. Neither takes a pre-update snapshot, runs a
+			pulling new images and recreating the containers. Stalwart now follows semantic
+			versioning: patch releases need no review, but minor releases can change behaviour, so
+			its guide says to read the notes and back up the data stores first. Moving an existing
+			v0.16 server to 1.0 is a one-off migration with the <code>stalwart-migrate</code> tool,
+			not an in-place upgrade. Neither takes a pre-update snapshot, runs a
 			health-check gate or rolls back on failure.
 		</p>
 
@@ -224,8 +249,11 @@ const dateModified = '2026-10-09'
 		<p>
 			Mailu is MIT-licensed throughout, with no paid edition. Stalwart is dual-licensed: the
 			AGPL-3.0 core is free, and a proprietary Enterprise edition, priced per mailbox, adds
-			multi-tenancy, SCIM provisioning, LLM spam filtering, mail undelete, read replicas and
-			sharded storage, live telemetry and priority support.
+			multi-tenancy and branding, SCIM provisioning, AI-assisted spam filtering, archiving and
+			mail undelete, masked email, read replicas and sharded storage, and live telemetry, with
+			premium support included from 150 mailboxes. Since October 2026 Stalwart develops new
+			features and keeps its test suites in private repositories; the complete source of every
+			release is still published under the AGPL-3.0.
 		</p>
 
 		<h3 class="alt-h3">Programmatic sending</h3>
@@ -256,13 +284,13 @@ const dateModified = '2026-10-09'
 					<li>You want JMAP, or CalDAV/CardDAV/WebDAV built into the server itself.</li>
 					<li>You need clustering, LDAP/OIDC directories or a specific storage backend.</li>
 					<li>You want to run outside Docker, or on macOS, FreeBSD or Windows.</li>
-					<li>You're comfortable with pre-1.0 software and reading release notes before each upgrade.</li>
+					<li>You're happy to read release notes and back up before each minor upgrade (and to migrate, if you're on v0.16).</li>
 				</ul>
 			</div>
 		</div>
 	</section>
 
-	<section class="section" style="padding-top: 1rem;">
+	<section class="section" id="vectis-mail" style="padding-top: 1rem;">
 		<h2>The third option: Vectis Mail</h2>
 		<p>
 			If what's missing from <em>both</em> is a transactional sending API, or an update you
@@ -302,19 +330,21 @@ const dateModified = '2026-10-09'
 					Dovecot, Rspamd) as a lightweight Docker Compose stack with webmail, an admin UI
 					and a REST API, configured through a web setup wizard and MIT-licensed. Stalwart
 					reimplements every protocol in one Rust binary, adding JMAP, built-in
-					CalDAV/CardDAV/WebDAV and native clustering, but it is still pre-1.0 and ships
-					no webmail. Choose Mailu for a small, conventional, proven stack; choose
+					CalDAV/CardDAV/WebDAV and native clustering, but it ships no webmail and only
+					reached 1.0 in October 2026. Choose Mailu for a small, conventional, proven stack; choose
 					Stalwart for JMAP, built-in groupware or multi-node scale.
 				</p>
 			</div>
 			<div class="alt-faq-q">
 				<h3>How much RAM do Mailu and Stalwart need?</h3>
 				<p>
-					Both are light. Mailu's documented minimum is 1 GB of RAM plus 1 GB of swap
-					without antivirus, or 3 GB plus 1 GB of swap with ClamAV. Stalwart idles at
-					roughly 100 MB, and its documentation says 1 GB is generally sufficient for 5 to
-					10 users; antivirus means running ClamAV separately as a milter, which needs its
-					own memory.
+					Mailu's documented minimum is 1 GB of RAM plus 1 GB of swap without antivirus, or 3
+					GB plus 1 GB of swap with ClamAV. Stalwart 1.0's documentation no longer quotes a
+					minimum: memory use is set by cache limits that scale with the host and fill only as
+					accounts are used. On a 2 GiB host its default limits add up to about 1.4 GiB, not
+					counting two large-account caches that stay empty on small servers, and each limit
+					can be lowered. Antivirus on Stalwart means running ClamAV separately as a milter,
+					which needs its own memory.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -328,11 +358,12 @@ const dateModified = '2026-10-09'
 			<div class="alt-faq-q">
 				<h3>Is Stalwart production-ready?</h3>
 				<p>
-					Stalwart describes itself as feature complete, but it is still pre-1.0
-					(v0.16.25 as of October 2026). Its own upgrade documentation says there is no
-					automated upgrade tool yet: minor releases may require configuration changes or
-					data migrations, so it recommends reading the release notes and upgrading only
-					when necessary.
+					Stalwart reached version 1.0 on 26 October 2026 (v1.0.1 followed on 28 October) and
+					now follows semantic versioning: its upgrade guide says patch releases need no
+					further review, while minor releases can change behaviour, so read their notes and
+					back up the data stores first. Existing v0.16 servers can't upgrade in place: 1.0
+					uses a new database layout, and data moves across with the stalwart-migrate tool,
+					which copies while 0.16 keeps serving and needs downtime only for the final pass.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -344,6 +375,37 @@ const dateModified = '2026-10-09'
 					Neither offers domain-scoped sending keys, per-domain rate limits or delivery
 					analytics. Vectis Mail is a self-hosted platform built to add that sending API
 					alongside mailbox hosting.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Does Stalwart support ActiveSync?</h3>
+				<p>
+					No. Stalwart syncs mail over IMAP, POP3 and JMAP, and calendars and contacts over
+					CalDAV, CardDAV and JMAP, but it doesn't implement Exchange ActiveSync, and neither
+					does Mailu. Phones and desktop apps connect over IMAP plus CalDAV/CardDAV instead:
+					iOS and macOS support both natively, while Android usually needs a DAV sync app such
+					as DAVx5.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>Can Stalwart replace Dovecot and Postfix?</h3>
+				<p>
+					Yes, that is its design. Stalwart implements SMTP (Postfix's job) and IMAP and POP3
+					(Dovecot's job), plus JMAP and the DAV protocols, in one Rust process, with its own
+					spam filter in place of Rspamd. Mailu takes the other route: it runs the real
+					Postfix, Dovecot and Rspamd in separate containers. The trade-off is one modern
+					binary to run versus components with decades of production history.
+				</p>
+			</div>
+			<div class="alt-faq-q">
+				<h3>What do you need to self-host Mailu?</h3>
+				<p>
+					A Linux server with Docker and Docker Compose, at least 1 GB of RAM plus 1 GB of
+					swap (3 GB plus swap with ClamAV), a domain whose DNS you control, and a host where
+					port 25 is open in both directions, which many home connections and some cloud
+					providers block. Mailu's web setup wizard generates the docker-compose.yml and
+					mailu.env; after starting the stack, you publish the MX, SPF, DKIM and DMARC records
+					its admin interface shows for each domain.
 				</p>
 			</div>
 		</div>
@@ -375,8 +437,8 @@ const dateModified = '2026-10-09'
 	<aside class="alt-sources">
 		<h3>Sources</h3>
 		<ul>
-			<li>Mailu README, documentation (compose requirements, API, upgrading, Kubernetes), setup compose template and release 2024.06.61 in its public repository — retrieved 2026-10-09</li>
-			<li>Stalwart README, system requirements, upgrade guide, milter and Enterprise documentation, and release v0.16.25 (5 October 2026) in its public repositories — retrieved 2026-10-09</li>
+			<li>Mailu README, documentation (compose requirements, API, upgrading, Kubernetes), setup compose template and release 2024.06.61 in its public repository — retrieved 2026-10-09; releases through 2024.06.67 (23 October 2026) — retrieved 2026-11-01</li>
+			<li>Stalwart README, system requirements, upgrade guide, milter and Enterprise documentation, and release v0.16.25 (5 October 2026) in its public repositories — retrieved 2026-10-09; release notes v1.0.0 and v1.0.1, upgrade, 0.16 migration and memory-sizing documentation, Enterprise page and the October 2026 development-model post — retrieved 2026-11-01</li>
 			<li>Vectis Mail system requirements: <a href="/getting-started/installation/">/getting-started/installation</a>; architecture: <a href="/architecture/overview/">/architecture/overview</a></li>
 		</ul>
 	</aside>
