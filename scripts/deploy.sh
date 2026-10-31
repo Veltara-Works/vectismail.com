@@ -34,7 +34,9 @@ echo "$BUILD_ID" > dist/build-id.txt
 
 echo "▶ Deploying to Cloudflare Pages…"
 # --commit-message is passed explicitly to avoid wrangler's git-derived UTF-8 gotcha.
-npx wrangler pages deploy dist --commit-message="$COMMIT_MSG"
+# --no-install: use the wrangler pinned in package.json (run `npm ci` first);
+# never let npx fetch whatever version is newest.
+npx --no-install wrangler pages deploy dist --commit-message="$COMMIT_MSG"
 
 # Wait for the production origin to switch over before purging. Pages takes
 # ~30s to propagate after wrangler returns; a purge inside that window lets
