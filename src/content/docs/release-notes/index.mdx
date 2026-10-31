@@ -43,6 +43,11 @@ standard protocols throughout.
   Spamhaus's free public mirrors are meant for non-commercial, modest-volume use;
   see [DNS blocklists](/architecture/overview/#dns-blocklists) for what that
   means for commercial installs.
+- **Your own Spamhaus key.** A business can add its own Spamhaus Data Query
+  Service key to `secrets.yaml`, and spam filtering and the blocklist check then
+  query Spamhaus through that account instead of the public mirrors. Until a key
+  is set, the Deliverability page, `vectis config validate` and the startup log
+  say so. See [using your own Spamhaus DQS key](/architecture/overview/#using-your-own-spamhaus-dqs-key).
 - **Blocklist monitoring for your own IP.** Every six hours, Vectis checks your
   server's sending IP against six major blocklists (Spamhaus ZEN, SpamCop,
   Barracuda, PSBL, UCEPROTECT, s5h.net) through its own resolver. Each result is
@@ -89,6 +94,11 @@ standard protocols throughout.
   from the admin UI, plus off-host synchronisation so a single host failure is
   never a single point of data loss.
 - Hardened, atomic restore so a recovery can't leave the system half-restored.
+- **Mail keeps running through Docker upgrades.** New installs turn on
+  Docker's live-restore, so upgrading the Docker packages no longer stops and
+  restarts the mail containers. On an existing server, add
+  `"live-restore": true` to `/etc/docker/daemon.json` and run
+  `systemctl reload docker`; the containers keep running.
 
 ## Security & supply chain
 
@@ -110,6 +120,9 @@ standard protocols throughout.
   `vectis verify` result to super admins: verified, failed, unverifiable, or
   stale if the scheduled check has stopped running. You see at a glance whether
   the server still matches what was published, without opening a terminal.
+- **No internal addresses in forwarded mail.** Delivered mail no longer carries
+  an extra `Received` header naming the server's internal container address,
+  which a mailbox filter that forwards mail elsewhere used to pass on.
 - **No logins on port 25.** Port 25 is for server-to-server mail and no longer
   accepts SMTP authentication. Mail clients and webmail send on 587 (STARTTLS)
   or 465 (TLS), where sending limits and suspensions always apply. If a client

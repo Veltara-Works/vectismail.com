@@ -179,26 +179,27 @@ Validates `config.yaml` and `secrets.yaml` without making any changes.
 
 ```bash
 vectis config validate
+vectis config validate --json
 ```
 
-**Example error output:**
+**Example output, valid with a warning:**
 
 ```
-Configuration validation failed:
-
-  config.yaml:14  Invalid domain name: "not a domain"
-                  Domain must be a valid FQDN (e.g., example.com)
-
-  config.yaml:28  Unknown ClamAV profile: "turbo"
-                  Valid profiles: none, dev, small, production, enterprise
-
-  secrets.yaml:   Missing required key: db_password
-                  Add db_password to secrets.yaml
-
-3 errors found.
+Configuration is valid, with 1 warning(s):
+  - rspamd.spamhaus_dqs_key: no Spamhaus DQS key: spam filtering queries Spamhaus's public mirrors, ...
 ```
 
-**Exit codes:** `0` = valid, `1` = validation errors.
+**Example output, with errors:**
+
+```
+Configuration has 2 validation error(s):
+  - api.secret: must be at least 32 characters long
+  - rspamd.spamhaus_dqs_key: must be the key from your Spamhaus DQS account (16-63 letters and digits); it is ignored until fixed
+```
+
+Warnings never change the exit code. With `--json`, the result is `{"valid": …, "errors": […], "warnings": […]}`, each entry with a `field` and a `message`.
+
+**Exit codes:** `0` = valid (warnings allowed), `1` = a file is missing, unreadable or not valid YAML, `2` = validation errors.
 
 ---
 
