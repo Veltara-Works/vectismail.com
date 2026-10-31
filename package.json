@@ -15,11 +15,17 @@
     "astro": "7.3.5",
     "sharp": "^0.35.5"
   },
+  "devDependencies": {
+    "wrangler": "4.153.0"
+  },
   "overrides": {
     "vite": "~8.1.6",
     "js-yaml": "^4.2.0",
     "postcss": "^8.5.15",
     "devalue": "^5.8.1",
-    "postcss-selector-parser": "^7.1.6"
+    "postcss-selector-parser": "^7.1.6",
+    "unifont": {
+      "undici": "8.12.2"
+    }
   }
 }
