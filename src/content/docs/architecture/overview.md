@@ -130,7 +130,24 @@ Part of Rspamd's scoring is a set of DNS lookups against public blocklists and a
 
 So the Rspamd container includes its own small recursive resolver (Unbound), listening only inside the container. Blocklist queries go straight from your server's own address to each list's DNS servers. If you would rather keep Rspamd on your host's resolver, set `rspamd.local_resolver: false`.
 
-Spamhaus offers its public mirrors free of charge for non-commercial use at modest volumes. If you use Vectis Mail commercially or at high volume, you may need a [Spamhaus Data Query Service](https://www.spamhaus.com/data-access/free-data-query-service/) subscription; see Spamhaus's [usage terms](https://www.spamhaus.org/organization/dnsblusage/). Whether your use qualifies is between you and Spamhaus.
+Spamhaus offers its public mirrors free of charge for non-commercial use at modest volumes. If you use Vectis Mail commercially or at high volume, you need your own [Spamhaus Data Query Service](https://www.spamhaus.com/data-access/free-data-query-service/) (DQS) key, free or paid depending on your eligibility; see Spamhaus's [usage terms](https://www.spamhaus.org/organization/dnsblusage/). Whether your use qualifies is between you and Spamhaus.
+
+#### Using your own Spamhaus DQS key
+
+From v0.1.60, add the key to `/etc/vectis/secrets.yaml`:
+
+```yaml
+rspamd:
+  spamhaus_dqs_key: "your-dqs-key"
+```
+
+Then run `vectis config validate`, `vectis config apply` (which reloads Rspamd) and `docker restart vectis-api` (the blocklist monitor reads the key at startup).
+
+With a key, Rspamd's Spamhaus ZEN and DBL lookups and the blocklist monitor's Spamhaus check go to your DQS account instead of the public mirrors. Scores and symbols are unchanged. The key stays out of the database, the logs and the admin dashboard; the generated Rspamd file that holds it is written with owner-only (0600) permissions.
+
+The key must be 16 to 63 letters and digits. `vectis config validate` reports anything else as an error, and a malformed key is ignored, so Spamhaus is queried through the public mirrors until you fix it. Without a key, the Blocklist status card on the Deliverability page, `vectis config validate` and the API's startup log show a notice saying so.
+
+Older versions reject a `secrets.yaml` that contains the `rspamd:` section, so add it only after the server runs v0.1.60 or later.
 
 ### Outbound mail
 
