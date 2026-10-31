@@ -70,14 +70,9 @@ The honest framing: self-hosting trades convenience for sovereignty. For some pe
 
 ## Where to start if you want to try
 
-Self-hosting your own inbound mail is a small industry with several mature options. We make one of them — [Vectis Mail](/) — but it isn't the only good answer. Worth evaluating:
+[Vectis Mail](/) is what we build: Postfix, Dovecot and Rspamd installed by one guided command, managed from an admin dashboard and a REST API, with atomic updates that roll back on failure. The [installation guide](/getting-started/installation/) goes from a fresh VPS to a working mailbox.
 
-- **[Mail-in-a-Box](https://mailinabox.email/)** — the original "one-script install" project. Mature, opinionated, single-tenant.
-- **[Mailcow](https://mailcow.email/)** — Docker-based, German-built, large community, very mature admin UI.
-- **[Stalwart](https://stalw.art/)** — newer, Rust-built, modern protocol coverage (JMAP), single binary.
-- **Vectis Mail** — what we build. Declarative YAML config, REST API, atomic version updates, designed for solo operators and small teams who want infrastructure they can describe in source control.
-
-Whichever you pick, the underlying point holds: deciding what happens to mail addressed to your domain is a decision you can take back. The question Corby-Tuech's essay raises is whether you'd rather make that decision once, in source, or let it be made for you a thousand times a day by a classifier you can't read.
+Whatever you run, the underlying point holds: deciding what happens to mail addressed to your domain is a decision you can take back. The question Corby-Tuech's essay raises is whether you'd rather make that decision once, in source, or let it be made for you a thousand times a day by a classifier you can't read.
 
 ---
 

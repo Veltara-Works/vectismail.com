@@ -1,14 +1,14 @@
 ---
 title: "Self-Hosted Email vs Google Workspace & Microsoft 365"
-description: "Self-hosted email vs Google Workspace and Microsoft 365 in 2026: the per-seat math, where the lines cross, the 2025-2026 price rises, and when each option wins."
-lastUpdated: 2026-10-22
+description: "Self-hosted email vs Google Workspace and Microsoft 365 in 2026: the per-seat math, where the lines cross, the 2025-2026 price rises, and what changes when you self-host."
+lastUpdated: 2026-11-01
 faq:
   - q: "Is self-hosted email cheaper than Google Workspace or Microsoft 365?"
     a: "Above a handful of mailboxes, yes — often dramatically. Google Workspace and Microsoft 365 charge per user, per month, forever, so the bill scales with headcount. Self-hosted email is a flat cost (your server plus a flat licence like Vectis Mail's $39/month) regardless of mailbox count. On the common $14/user/month business plans, a fully-loaded self-hosted setup (~$59/month all-in) breaks even at about five mailboxes and saves more with every seat after that."
   - q: "Does self-hosted email replace Google Workspace or Microsoft 365 entirely?"
-    a: "No — and this is the honest part. Workspace and Microsoft 365 are full productivity suites: email plus Docs/Sheets/Slides or Word/Excel/PowerPoint, Drive/OneDrive, Meet/Teams, shared calendars and more. Self-hosted email replaces the email layer, not the whole suite. If your team lives in those documents and meetings every day, that is real value you would be giving up. The cost argument is strongest when email is the main thing driving your per-seat bill, or when you keep a few suite seats for power users and move the rest of your mailboxes off the per-seat meter."
+    a: "No — and this is the honest part. Workspace and Microsoft 365 are full productivity suites: email plus Docs/Sheets/Slides or Word/Excel/PowerPoint, Drive/OneDrive, Meet/Teams, shared calendars and more. Self-hosted email replaces the email layer, not the whole suite. The cost argument is strongest when email is the main thing driving your per-seat bill, or when you keep a few suite seats for power users and move the rest of your mailboxes off the per-seat meter."
   - q: "How many mailboxes do I need before self-hosting pays off?"
-    a: "On the entry plans (~$7/user/month) the lines cross at roughly eight to nine mailboxes once you include a VPS. On the standard business plans (~$14/user/month) it is about five. Below that, a hosted suite is usually the more economical and lower-effort choice. The more mailboxes, shared inboxes, and role accounts you run, the further self-hosting pulls ahead — because none of them add to the bill."
+    a: "On the entry plans (~$7/user/month) the lines cross at roughly eight to nine mailboxes once you include a VPS. On the standard business plans (~$14/user/month) it is about five. Below that, the per-seat bill is small, so the saving is too. The more mailboxes, shared inboxes, and role accounts you run, the further self-hosting pulls ahead — because none of them add to the bill."
   - q: "Can I keep Google Docs or Microsoft Office but self-host just my email?"
     a: "Yes, and it is a common pattern. You can move your mailboxes to a self-hosted server while keeping a smaller number of Workspace or Microsoft 365 seats for the people who genuinely need Docs, Teams, or Excel. You only pay the suite for the seats that use the suite, and your email stops being a per-user charge. This hybrid is often the cheapest sensible setup for a growing team."
   - q: "Will self-hosted email land in the inbox as reliably as Google or Microsoft?"
@@ -79,14 +79,12 @@ Self-hosting email is not free of trade-offs, and pretending otherwise would be 
 - **You carry the ops.** Patching, backups, monitoring, and the occasional 2 a.m. issue are yours. A good platform shrinks this to roughly half an hour a week at steady state, but it is not zero.
 - **Deliverability is on you.** Google and Microsoft manage IP reputation invisibly. Self-hosted, you own a clean IP, correct authentication, and a warmup period. Modern stacks automate most of it — [see our deliverability guide](/guides/deliverability/) — but the responsibility shifts to you.
 
-## When each option makes sense
+## When self-hosting your email makes sense
 
-| Stay on Google Workspace / Microsoft 365 if… | Self-host your email if… |
-|----------------------------------------------|--------------------------|
-| Your team lives in Docs/Sheets/Teams daily | Email is the main thing driving your per-seat bill |
-| You want zero infrastructure responsibility | You run many mailboxes, shared inboxes, or role accounts |
-| You have fewer than ~5 mailboxes | Data residency, sovereignty, or no-lock-in matters |
-| You need the suite's compliance/eDiscovery tooling | You have (or can rent) basic technical capacity |
+- Email is the main thing driving your per-seat bill.
+- You run many mailboxes, shared inboxes, or role accounts.
+- Data residency, sovereignty, or avoiding lock-in matters.
+- You have (or can rent) basic technical capacity.
 
 For most small teams the answer isn't all-or-nothing.
 
@@ -115,11 +113,11 @@ Above a handful of mailboxes, yes — often dramatically. Google Workspace and M
 
 ### Does self-hosted email replace Google Workspace or Microsoft 365 entirely?
 
-No — and this is the honest part. Workspace and Microsoft 365 are full productivity suites: email plus Docs/Sheets/Slides or Word/Excel/PowerPoint, Drive/OneDrive, Meet/Teams, shared calendars and more. Self-hosted email replaces the email layer, not the whole suite. If your team lives in those documents and meetings every day, that is real value you would be giving up. The cost argument is strongest when email is the main thing driving your per-seat bill, or when you keep a few suite seats for power users and move the rest of your mailboxes off the per-seat meter.
+No — and this is the honest part. Workspace and Microsoft 365 are full productivity suites: email plus Docs/Sheets/Slides or Word/Excel/PowerPoint, Drive/OneDrive, Meet/Teams, shared calendars and more. Self-hosted email replaces the email layer, not the whole suite. The cost argument is strongest when email is the main thing driving your per-seat bill, or when you keep a few suite seats for power users and move the rest of your mailboxes off the per-seat meter.
 
 ### How many mailboxes do I need before self-hosting pays off?
 
-On the entry plans (~$7/user/month) the lines cross at roughly eight to nine mailboxes once you include a VPS. On the standard business plans (~$14/user/month) it is about five. Below that, a hosted suite is usually the more economical and lower-effort choice. The more mailboxes, shared inboxes, and role accounts you run, the further self-hosting pulls ahead — because none of them add to the bill.
+On the entry plans (~$7/user/month) the lines cross at roughly eight to nine mailboxes once you include a VPS. On the standard business plans (~$14/user/month) it is about five. Below that, the per-seat bill is small, so the saving is too. The more mailboxes, shared inboxes, and role accounts you run, the further self-hosting pulls ahead — because none of them add to the bill.
 
 ### Can I keep Google Docs or Microsoft Office but self-host just my email?
 

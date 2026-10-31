@@ -7,7 +7,7 @@ const description = 'Self-hosted Microsoft 365 / Exchange Online alternative for
 const url = 'https://vectismail.com/alternatives/microsoft-365/'
 const ogImage = 'https://vectismail.com/og/alternatives-microsoft-365.png'
 const datePublished = '2026-06-21'
-const dateModified = '2026-07-07'
+const dateModified = '2026-11-01'
 ---
 <html lang="en">
 <head>
@@ -131,7 +131,7 @@ const dateModified = '2026-07-07'
 			<a href="/pricing/" class="btn-secondary">View pricing</a>
 		</div>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>1 November 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -271,7 +271,7 @@ const dateModified = '2026-07-07'
 			<li><strong>Stand up Vectis Mail</strong> on a fresh VPS following the <a href="/getting-started/installation/">installation guide</a>. Add your domain(s) and publish the DKIM/SPF/DMARC records it generates — but leave MX pointed at Microsoft for now.</li>
 			<li><strong>Create the mailboxes</strong> in Vectis Mail to match your existing users (or import them via the API for larger lists).</li>
 			<li><strong>Sync mail with <code>imapsync</code></strong>: copy each Exchange Online mailbox into Vectis Mail over IMAP. Run an initial pass days ahead, then a final delta sync at cutover.</li>
-			<li><strong>Export calendar / contacts</strong> if you use them — Vectis Mail doesn't host calendaring yet (Phase 4 roadmap), so keep that on a suite or another tool. This is the step to plan around.</li>
+			<li><strong>Export calendar / contacts</strong> if you use them — Vectis Mail doesn't host calendaring yet (Phase 4 roadmap), so plan where calendar and contacts will live before cut-over. This is the step to plan around.</li>
 			<li><strong>Warm your sending IP</strong> if you send volume. A fresh VPS IP has no reputation; follow the <a href="/deliverability/">dual-send warmup playbook</a> so there's no day-one deliverability gap.</li>
 			<li><strong>Cut MX over</strong> to the Vectis Mail server once mailboxes are synced. Mail flows through Vectis Mail as DNS propagates.</li>
 			<li><strong>Verify and decommission</strong>: watch logs for a few days, then drop the Exchange Online email licences you no longer need.</li>
