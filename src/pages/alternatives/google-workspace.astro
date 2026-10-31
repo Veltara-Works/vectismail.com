@@ -83,7 +83,7 @@ const dateModified = '2026-11-01'
 					{
 						"@type": "Question",
 						"name": "Is there a self-hosted alternative to Google Workspace?",
-						"acceptedAnswer": { "@type": "Answer", "text": "For the email half, yes — Vectis Mail. It is a self-hosted email server (Postfix, Dovecot, Rspamd) you run on your own VPS, with full IMAP/SMTP mailboxes on your domain, a REST API, inbound webhooks, and DKIM/SPF/DMARC configured by default. Pricing is flat: $0 self-hosted Starter, or $39/month per tenant for Pro, never per user and never per email. The honest caveat: Vectis Mail replaces Gmail and your mail server, not the whole Workspace suite. It does not include Docs, Sheets, Slides, Drive, Meet, or Calendar. If your team lives in those apps, keep them or pair Vectis Mail alongside — Vectis is for organisations that want to own their email and reclaim it from per-seat cloud billing." }
+						"acceptedAnswer": { "@type": "Answer", "text": "For the email half, yes — Vectis Mail. It is a self-hosted email server (Postfix, Dovecot, Rspamd) you run on your own VPS, with full IMAP/SMTP mailboxes on your domain, a REST API, inbound webhooks, and DKIM/SPF/DMARC configured by default. Pricing is flat: $0 self-hosted Starter, or $39/month per tenant for Pro, never per user and never per email. The honest caveat: Vectis Mail replaces Gmail and your mail server, not the whole Workspace suite. It does not include Docs, Sheets, Slides, Drive, Meet, or Calendar. Vectis is for organisations that want to own their email and take it off per-seat cloud billing." }
 					},
 					{
 						"@type": "Question",
@@ -282,8 +282,8 @@ const dateModified = '2026-11-01'
 
 		<h3 class="alt-h3">Admin, API, and full control</h3>
 		<p>
-			Workspace gives you a polished admin console for a managed service. Vectis Mail
-			gives you the keys to the stack: a React admin UI, a 40+ endpoint REST API
+			Workspace's admin console manages a hosted service. Vectis Mail gives you the keys
+			to the stack: a React admin UI, a 40+ endpoint REST API
 			(sending, mailboxes, domains, webhooks, analytics) with domain-scoped keys, a
 			single declarative <code>config.yaml</code> as the source of truth, and
 			atomic updates with automatic rollback. You can tune Postfix, write custom
