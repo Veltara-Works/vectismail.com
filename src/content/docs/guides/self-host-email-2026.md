@@ -8,7 +8,7 @@ faq:
   - q: "Will Gmail block self-hosted email by default?"
     a: "No. Gmail accepts mail from any properly authenticated sender (SPF/DKIM/DMARC, a clean PTR, and TLS). The 2024 bulk-sender rules apply at 5,000+ messages/day to Gmail addresses and you must comply with those, but a small self-hosted server sending to Gmail recipients works fine without any special arrangement."
   - q: "What VPS provider should I use for self-hosting email?"
-    a: "Look for one that lets you set a custom PTR record, has outbound port 25 unblocked, and uses IPs that aren't on residential blocklists. Hetzner, OVH, BinaryLane, DigitalOcean (with a port-25 ticket), Vultr, and Linode all work. Avoid AWS EC2 (port 25 is blocked by default and the unblock process is painful) and most consumer cloud platforms."
+    a: "Look for one that lets you set a custom PTR record, documents a way to lift the outbound port 25 block, and uses IPs that aren't on residential blocklists. Most providers block outbound port 25 on new servers. BinaryLane, Hetzner, Vultr, Linode, Scaleway and AWS document how to lift it; DigitalOcean and Google Cloud document no request process. Our port 25 guide covers each provider's steps."
   - q: "Can I self-host email behind Cloudflare?"
     a: "Yes for the website and the API, but not for the mail records themselves. MX records and your mail server's A/AAAA record must be DNS-only (grey cloud), not proxied (orange cloud). Cloudflare doesn't proxy SMTP, IMAP, or POP3 traffic, so the orange cloud actively breaks mail delivery."
   - q: "How much does it cost to self-host email for a small SaaS in 2026?"
@@ -223,7 +223,7 @@ No. Gmail accepts mail from any properly authenticated sender (SPF/DKIM/DMARC + 
 
 ### What VPS provider should I use for self-hosting email?
 
-Look for: (a) the ability to set a custom PTR record, (b) outbound port 25 unblocked, (c) IPs not on residential blocklists. Hetzner, OVH, BinaryLane, DigitalOcean (with port 25 ticket), Vultr, and Linode all work. Avoid AWS EC2 (port 25 blocked by default and the unblock process is painful) and most consumer cloud platforms.
+Look for: (a) the ability to set a custom PTR record, (b) a documented way to lift the outbound port 25 block, (c) IPs not on residential blocklists. Most providers block outbound port 25 on new servers. BinaryLane, Hetzner, Vultr, Linode, Scaleway and AWS document how to lift it; DigitalOcean and Google Cloud document no request process. See [Port 25 blocked? How to get it unblocked](/guides/port-25-blocked/) for each provider's steps.
 
 ### Can I self-host email behind Cloudflare?
 

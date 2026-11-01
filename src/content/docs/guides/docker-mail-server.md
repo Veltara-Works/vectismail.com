@@ -90,7 +90,7 @@ Vectis Mail's updates run snapshot → migrate → pull → deploy → health ch
 
 ## Host requirements Docker doesn't change
 
-- **Port 25, inbound and outbound.** Many VPS providers block outbound 25 by default; ask them to lift it before you start.
+- **Port 25, inbound and outbound.** Many VPS providers block outbound 25 by default; get it lifted before you start. See [how to get port 25 unblocked](/guides/port-25-blocked/).
 - **Reverse DNS (PTR)** for your IP, matching your mail hostname.
 - **SPF, DKIM and DMARC** records for every domain. See our [DKIM, SPF and DMARC guide](/guides/dkim-spf-dmarc/).
 - **Memory:** 2 GB is workable without antivirus; 4 GB is comfortable. ClamAV alone needs more than 1 GB. Set per-container memory limits so one service can't take the host down.

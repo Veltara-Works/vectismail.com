@@ -91,7 +91,7 @@ The installer looks this up for you and, if it resolves, pre-fills your mail-ser
 
 ### 4. Request port 25 unblock
 
-Most VPS providers block outbound port 25 by default to prevent spam abuse. Without it, your server can send to itself but not to anyone else. Check your provider's documentation for "SMTP unblock" or "port 25 unblock" — usually a one-time support request.
+Most VPS providers block outbound port 25 on new servers to prevent spam. Without it, your server receives mail but can't deliver to other domains, and ports 587 and 465 can't stand in for it. On some providers lifting it is a setting (BinaryLane: **Network → Port Blocking** in mPanel); on others it's a support request reviewed case by case, sometimes only after your account has some history. See **[Port 25 blocked? How to get it unblocked](/guides/port-25-blocked/)** for how to test for it, each major provider's process, and a request template. `vectis preflight` reports whether it's open.
 
 ### System requirements
 
