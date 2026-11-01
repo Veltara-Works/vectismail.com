@@ -158,7 +158,7 @@ This step **only puts the binary on disk** — it doesn't start anything. The ne
 
 ### What if I want to run it non-interactively?
 
-Pipe the script with no TTY (e.g. unattended cloud-init), and it'll skip the prompts. It writes the detected PTR if there is one. If there isn't, it leaves a placeholder and tells you to re-run the installer in a terminal (or set `hostname` and `tls.email` in `/etc/vectis/config.yaml`). The next step (`vectis install`) will refuse to proceed if it finds the placeholder.
+Pipe the script with no TTY (e.g. unattended cloud-init), and it'll skip the prompts. It writes the detected PTR if there is one. If there isn't, it leaves a placeholder and tells you to re-run the installer in a terminal (or set `hostname` and `tls.email` in `/etc/vectis/config.yaml` and `api.admin_email` in `/etc/vectis/secrets.yaml`). The next step (`vectis install`) will refuse to proceed if it finds the placeholder.
 
 ## Preflight
 

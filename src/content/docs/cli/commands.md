@@ -59,7 +59,7 @@ OS:          Ubuntu 24.04 LTS          PASS
 CPU:         1 vCPU                    FAIL  Minimum 2 vCPU required
 RAM:         2 GB                      FAIL  Minimum 4 GB recommended (2 GB without ClamAV)
 Port 80:     in use by apache2         FAIL  Stop apache2: sudo systemctl stop apache2 && sudo systemctl disable apache2
-SMTP out:    port 25 blocked           FAIL  Your provider blocks outbound mail. How to get it lifted: https://vectismail.com/guides/port-25-blocked/
+SMTP out:    port 25 blocked           FAIL  Connection timed out. Usually the provider blocks it (or check this server's firewall): https://vectismail.com/guides/port-25-blocked/
 
 2 checks failed, 2 warnings. Fix the above issues before installing.
 ```

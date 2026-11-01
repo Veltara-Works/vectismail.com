@@ -40,7 +40,7 @@ SMTP out:      port 25 reachable            ✓
 or, when blocked:
 
 ```
-SMTP out:      port 25 blocked              ! Your provider blocks outbound mail. How to get it lifted: https://vectismail.com/guides/port-25-blocked/
+SMTP out:      port 25 blocked              ! Connection timed out. Usually the provider blocks it (or check this server's firewall): https://vectismail.com/guides/port-25-blocked/
 ```
 
 Without Vectis, connect to any large mail server on port 25:
