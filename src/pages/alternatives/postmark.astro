@@ -7,7 +7,7 @@ const description = 'Vectis Mail vs Postmark: self-hosted transactional API + ma
 const url = 'https://vectismail.com/alternatives/postmark/'
 const ogImage = 'https://vectismail.com/og/alternatives-postmark.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-07-07'
+const dateModified = '2026-11-02'
 ---
 <html lang="en">
 <head>
@@ -83,7 +83,7 @@ const dateModified = '2026-07-07'
 					{
 						"@type": "Question",
 						"name": "Is Vectis Mail a drop-in replacement for Postmark?",
-						"acceptedAnswer": { "@type": "Answer", "text": "On the transactional sending + inbound parse + webhook surfaces, yes. The migration is mechanical: swap the Postmark SDK call for an HTTP POST, re-map webhook field names, re-create templates, regenerate DKIM keys, update DNS. Vectis Mail also adds mailbox hosting (IMAP/POP3 + webmail) in the same product, which Postmark doesn't. Handy if you've been running Postmark alongside a separate mail server. One scope note: Vectis Mail routes all outbound through one Postfix queue, so if you rely on separate transactional and marketing sender reputations you'll set that up with separate domains or installs — configuration work rather than a built-in stream feature." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Not byte for byte: Vectis Mail has its own JSON API. It covers the same transactional sending, inbound parse and webhook jobs, and the migration is mechanical: swap the Postmark SDK call for an HTTP POST, re-map webhook field names, re-create templates, regenerate DKIM keys, update DNS. Vectis Mail also adds mailbox hosting (IMAP/POP3 + webmail) in the same product, which Postmark doesn't. Handy if you've been running Postmark alongside a separate mail server. One scope note: Vectis Mail routes all outbound through one Postfix queue, so if you rely on separate transactional and marketing sender reputations you'll set that up with separate domains or installs — configuration work rather than a built-in stream feature." }
 					},
 					{
 						"@type": "Question",
@@ -336,8 +336,8 @@ const dateModified = '2026-07-07'
 			<div class="alt-faq-q">
 				<h3>Is Vectis Mail a drop-in replacement for Postmark?</h3>
 				<p>
-					On the transactional sending + inbound parse + webhook surfaces, yes. The
-					migration is mechanical: swap the Postmark SDK call for an HTTP POST,
+					Not byte for byte: Vectis Mail has its own JSON API. It covers the same
+					transactional sending, inbound parse and webhook jobs, and the migration is mechanical: swap the Postmark SDK call for an HTTP POST,
 					re-map webhook field names, re-create templates, regenerate DKIM keys, update
 					DNS. Vectis Mail also adds mailbox hosting (IMAP/POP3 + webmail) in the same
 					product, which Postmark doesn't — handy if you've been running Postmark
@@ -416,7 +416,7 @@ const dateModified = '2026-07-07'
 			</a>
 			<a href="/alternatives/sendgrid/" class="feature-card alt-index-card">
 				<h3>vs SendGrid &rarr;</h3>
-				<p>Same API surface, no per-email pricing. Flat $0–$39/mo covers unlimited sending volume.</p>
+				<p>A REST sending API, no per-email pricing. Flat $0–$39/mo covers unlimited sending volume.</p>
 			</a>
 		</div>
 	</section>
