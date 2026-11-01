@@ -93,7 +93,7 @@ const dateModified = '2026-11-01'
 					{
 						"@type": "Question",
 						"name": "How do Vectis Mail and Mailcow compare on container count?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail runs 10 containers by default (9 without ClamAV); Roundcube webmail adds one, and the optional Loki, Promtail and Grafana observability stack adds three. Mailcow's compose stack defines 18 services, SOGo webmail included. Fewer containers means less coordination overhead during updates and a smaller blast radius when something breaks." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail runs 10 containers by default, Roundcube webmail included; ClamAV adds one, and the optional Loki, Promtail and Grafana observability stack adds three. Mailcow's compose stack defines 18 services, SOGo webmail included. Fewer containers means less coordination overhead during updates and a smaller blast radius when something breaks." }
 					},
 					{
 						"@type": "Question",
@@ -320,7 +320,7 @@ const dateModified = '2026-11-01'
 			<div class="alt-faq-q">
 				<h3>How do Vectis Mail and Mailcow compare on container count?</h3>
 				<p>
-					Vectis Mail runs 10 containers by default (9 without ClamAV); Roundcube webmail
+					Vectis Mail runs 10 containers by default, Roundcube webmail included; ClamAV
 					adds one, and the optional Loki, Promtail and Grafana observability stack adds
 					three. Mailcow's compose stack defines 18 services, SOGo webmail included (per its published
 					<code>docker-compose.yml</code>, retrieved 8 October 2026). Fewer containers means
