@@ -1,6 +1,6 @@
 ---
 title: "Port 25 Blocked on Your VPS? How to Get It Unblocked"
-description: "Most VPS providers block outbound port 25 on new servers. How to test for the block, and how to get it lifted at BinaryLane, Hetzner, Vultr, Linode, AWS and others."
+description: "Most VPS providers block outbound port 25 on new servers. How to test for it, and how to get it lifted at BinaryLane, Hetzner, Vultr, Linode, AWS and more."
 lastUpdated: 2026-11-01
 faq:
   - q: "Why is port 25 blocked on my new VPS?"
@@ -150,6 +150,28 @@ Thank you,
 3. Send a test message to an outside address and check the headers for SPF, DKIM and DMARC `pass`. The [deliverability guide](/guides/deliverability/) covers what to check next.
 
 If you're choosing a provider for a new mail server, look for three things before you buy: a documented way to lift the port 25 block, a custom PTR record, and a clean IP range. The [installation guide](/getting-started/installation/) lists the other prerequisites.
+
+## Frequently asked questions
+
+### Why is port 25 blocked on my new VPS?
+
+Providers block outbound port 25 on new servers to stop compromised or abusive machines from sending spam. It's a default, not a judgement about you. Most providers lift it on request once your account is verified or has some history.
+
+### Can I use port 587 or 465 instead of port 25?
+
+Not for a mail server. Ports 587 and 465 are for submitting mail to your own provider with a login. When your server delivers mail to Gmail, Outlook or any other domain, it connects to that domain's mail server on port 25. There is no other port for server-to-server delivery.
+
+### How do I check whether outbound port 25 is blocked?
+
+Run `vectis preflight`, which reports 'SMTP out: port 25 reachable' or 'port 25 blocked'. Without Vectis, run `nc -vz -w 10 gmail-smtp-in.l.google.com 25`. A '220' greeting or 'succeeded' means it's open. A timeout means it's blocked.
+
+### Does the block stop my server receiving email?
+
+No. The block is on outbound connections. Other servers can still deliver to your server on port 25, so inbound mail works. What stops working is your server delivering mail to other domains.
+
+### Which providers block outbound port 25?
+
+As of November 2026, by their own documentation: BinaryLane, Hetzner Cloud, DigitalOcean, Vultr, Scaleway, AWS EC2 and Google Cloud block it by default, as do Linode for some accounts and Azure for most subscription types. BinaryLane, Hetzner, Vultr, Linode, Scaleway and AWS document a way to lift it. DigitalOcean and Google Cloud document no request process.
 
 ## Sources
 
