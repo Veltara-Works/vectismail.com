@@ -1,10 +1,10 @@
 ---
 title: "Self-Hosted Email for Small Business: The 2026 Guide"
 description: "Self-hosted email for small business in 2026: real costs vs Google Workspace and Microsoft 365, the deliverability bar, and a defensible starter stack."
-lastUpdated: 2026-06-16
+lastUpdated: 2026-11-01
 faq:
   - q: "Is self-hosted email a good idea for a small business in 2026?"
-    a: "For many small businesses, yes — especially if you have 5+ mailboxes, send your own transactional email, or care about data residency. A modern self-hosted stack lands in the inbox at rates comparable to SaaS and costs a flat ~$25–50/month regardless of headcount, versus per-seat pricing that climbs with every hire. The honest exception: if nobody on the team can manage a Linux VPS and you can't tolerate a few hours of downtime while you learn, stay on managed email."
+    a: "For many small businesses, yes — especially if you have 5+ mailboxes, send your own transactional email, or care about data residency. A modern self-hosted stack lands in the inbox at rates comparable to SaaS and costs a flat ~$25–50/month regardless of headcount, versus per-seat pricing that climbs with every hire. It does need someone who can look after a Linux VPS, and time for a learning curve in the first month."
   - q: "How much does self-hosted email cost for a small business?"
     a: "Roughly $25–50/month all-in for a typical small business: a 4 GB VPS ($20–40), a domain with DNS ($1–2/month amortised), free Let's Encrypt TLS, and object-storage backups ($1–5). That's a flat cost whether you have 5 mailboxes or 50 — unlike Google Workspace (from $7.20/user/month) or Microsoft 365 Business (from $6/user/month), which scale linearly with headcount."
   - q: "Self-hosted email vs Google Workspace for a small team — which is cheaper?"
@@ -16,12 +16,12 @@ faq:
   - q: "What happens to our email if the person who set it up leaves?"
     a: "This is the right question to ask, and it's a configuration choice, not a fate. Use a tool with declarative config (your whole setup in version-controlled files), automated off-site backups, and a documented restore, so the system isn't trapped in one person's head. Avoid hand-rolled Postfix/Dovecot setups for exactly this reason: they're hard to hand over. Self-hosting should not mean one-person-dependency."
   - q: "Do we need a separate service for transactional and marketing email?"
-    a: "Not for transactional. A self-hosted stack with a sending API handles your app's receipts, password resets, and notifications on the same infrastructure as your team mailboxes — no separate SendGrid bill. For high-volume cold outreach or large marketing blasts, a dedicated provider with a managed IP pool is still the safer choice; reputation on those send patterns is fragile and best isolated."
+    a: "Not for transactional. A self-hosted stack with a sending API handles your app's receipts, password resets, and notifications on the same infrastructure as your team mailboxes — no separate SendGrid bill. High-volume cold outreach and large marketing blasts are a different send pattern: keep them off the IPs your team mailboxes use, because reputation on those patterns is fragile."
   - q: "Can a small business self-host email behind Cloudflare?"
     a: "Your website and API can sit behind Cloudflare's proxy, but the mail records cannot. MX records and the mail server's A/AAAA record must be DNS-only (grey cloud) — Cloudflare doesn't proxy SMTP/IMAP, so the orange cloud breaks mail delivery. See the Cloudflare guide for the exact record setup."
 ---
 
-**Short answer.** Self-hosting email is a good fit for a small business in 2026 if you have **more than about 4–6 mailboxes**, send your **own transactional email**, or have **data-residency** requirements — because flat infrastructure pricing beats per-seat SaaS quickly, and a modern stack reaches the inbox just as reliably. Stay on Google Workspace or Microsoft 365 if **nobody on the team can look after a Linux VPS**, you need the bundled docs/calendar/video suite, or a few hours of email downtime during the learning curve would genuinely hurt the business.
+**Short answer.** Self-hosting email is a good fit for a small business in 2026 if you have **more than about 4–6 mailboxes**, send your **own transactional email**, or have **data-residency** requirements — because flat infrastructure pricing beats per-seat SaaS quickly, and a modern stack reaches the inbox just as reliably. It does take **someone who can look after a Linux VPS**, and it replaces your email, not a docs/calendar/video suite.
 
 This guide is the small-business-specific companion to our broader [decision guide](/guides/self-host-email-2026/): the same honest framing, but with the numbers, risks, and trade-offs that actually matter when it's *your* team's email on the line.
 
@@ -29,13 +29,13 @@ This guide is the small-business-specific companion to our broader [decision gui
 
 | Your situation | Self-host? |
 |---|---|
-| 1–4 mailboxes, no transactional email | **Probably not** — Workspace/M365 is cheap enough and zero-ops at this size |
+| 1–4 mailboxes, no transactional email | **Smaller saving** — the per-seat bill is low at this size |
 | 5–50 mailboxes | **Yes** — flat pricing beats per-seat, and the ops load stays small |
 | You send your own app/transactional email | **Yes** — one stack for mailboxes *and* a sending API, no separate provider |
 | Data residency / sovereignty matters (clients, sector, region) | **Yes** — one of the strongest cases for a small business |
-| No Linux operations capacity on the team | **No** — this is the real dealbreaker, modern tooling or not |
-| You rely heavily on the bundled Docs/Sheets/Teams suite | **No** — you're buying the suite, not the mailbox |
-| High-volume cold outreach is core to the business | **No** — use a dedicated managed-IP provider for that send pattern |
+| No Linux operations capacity on the team | **Not without help** — someone has to run the server, in-house or contracted |
+| You rely heavily on the bundled Docs/Sheets/Teams suite | **Mailboxes only** — self-hosting replaces email, not Docs/Sheets/Teams |
+| High-volume cold outreach is core to the business | **Not for that traffic** — cold outreach needs separate sending infrastructure |
 
 ## The economics: where the crossover actually is
 
@@ -45,13 +45,13 @@ Small-business email pricing is per-seat on the incumbents, and that's the whole
 |---|---|---|---|---|
 | Google Workspace Business Starter | ~$7.20/user/mo | ~$432/yr | ~$1,296/yr | ~$2,592/yr |
 | Microsoft 365 Business Basic | ~$6/user/mo | ~$360/yr | ~$1,080/yr | ~$2,160/yr |
-| Self-hosted (Vectis Mail or similar) | flat infrastructure | ~$300–600/yr | ~$300–600/yr | ~$300–600/yr |
+| Self-hosted (Vectis Mail) | flat infrastructure | ~$300–600/yr | ~$300–600/yr | ~$300–600/yr |
 
 The self-hosted line is flat because you're paying for a **server, not seats**. A single 4 GB VPS comfortably runs mailboxes for a small team; adding the tenth or thirtieth mailbox costs nothing extra. The crossover where self-hosting wins on price alone lands around **4–6 mailboxes** — and that's *before* you count the transactional email you'd otherwise pay SendGrid, Postmark, or Mailgun to send.
 
 That last point is the one small businesses most often miss. If your product sends receipts, password resets, or notifications, you're typically running **two** email bills: a per-seat mailbox provider *and* a per-email API. A self-hosted stack with a built-in [sending API](/api/sending/) collapses those into one flat cost.
 
-**What self-hosting doesn't save you:** your time. Budget about 30 minutes a week at steady state, plus a real learning curve in the first month. If your team's time is worth more than the few thousand dollars a year you'd save at small scale, that's a legitimate reason to stay on SaaS — and we'd rather you knew that up front.
+**What self-hosting doesn't save you:** your time. Budget about 30 minutes a week at steady state, plus a real learning curve in the first month. Weigh that time against the few thousand dollars a year you'd save at small scale.
 
 ## Deliverability: the part everyone worries about
 
@@ -90,17 +90,15 @@ That's a flat ~$25–50/month for mailboxes *and* transactional sending, with no
 
 ### Where Vectis Mail fits
 
-[Vectis Mail](/) is built for exactly this case: a self-hosted platform with **declarative config**, a **sending API** alongside team mailboxes, **automatic DKIM signing**, antispam and webmail included, and **scheduled off-site backups** built in — so a small business gets a system it owns, at flat pricing, without the one-person-dependency of a hand-rolled stack. If you're weighing the alternatives, our [comparison pages](/alternatives/) lay out where it wins and where another tool might suit you better.
+[Vectis Mail](/) is built for exactly this case: a self-hosted platform with **declarative config**, a **sending API** alongside team mailboxes, **automatic DKIM signing**, antispam and webmail included, and **scheduled off-site backups** built in — so a small business gets a system it owns, at flat pricing, without the one-person-dependency of a hand-rolled stack. Our [comparison pages](/alternatives/) show how it compares with each alternative.
 
 If you're still deciding whether self-hosting is right at all, start with the [2026 decision guide](/guides/self-host-email-2026/). If you've decided and want the build, the [installation guide](/getting-started/installation/) takes about half an hour.
 
-## When a small business should *not* self-host
+## What self-hosting asks of a small business
 
-We'd rather lose the sign-up than mis-sell. Stay on Google Workspace or Microsoft 365 if:
+- **Someone who can manage a Linux VPS**, in-house or contracted.
+- **Email only** — self-hosting replaces your mailboxes, not Docs/Sheets/Meet or Teams/SharePoint.
+- **A learning curve** — budget time in the first month, and test a restore before you depend on it.
+- **At 1–3 people with no transactional email, the saving is small**, because the per-seat bill already is.
 
-- **No one can manage a Linux VPS**, and hiring or contracting for it would cost more than the SaaS bill saves.
-- **You live in the bundled suite** — if Docs/Sheets/Meet or Teams/SharePoint is core to how you work, you're buying the suite, and the mailbox is incidental.
-- **Email downtime is existential** — if a few hours offline during a learning curve would genuinely damage the business, the managed SLA is worth paying for until you've built operational confidence.
-- **You're 1–3 people with no transactional email** — at that size the per-seat cost is low and zero-ops is worth more than the saving.
-
-For everyone else — the 5-to-50-person teams sending their own mail, watching per-seat costs climb, or with data-residency on the line — self-hosting in 2026 is a flat-cost, inbox-reliable, genuinely ownable option. The trick is choosing tooling that keeps it that way.
+For 5-to-50-person teams sending their own mail, watching per-seat costs climb, or with data residency on the line, self-hosting in 2026 is a flat-cost, inbox-reliable option you own. The trick is choosing tooling that keeps it that way.

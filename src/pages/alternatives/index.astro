@@ -6,7 +6,7 @@ const title = 'Vectis Mail alternatives — side-by-side comparisons'
 const description = "Honest side-by-side comparisons of Vectis Mail vs Proton, Google Workspace, Microsoft 365, Migadu, SendGrid, Postmark, Mailcow, iRedMail, Mox and Stalwart."
 const url = 'https://vectismail.com/alternatives/'
 const ogImage = 'https://vectismail.com/og/default.png'
-const dateModified = '2026-10-08'
+const dateModified = '2026-11-01'
 
 type Alt = {
 	href: string
@@ -69,7 +69,7 @@ const live: Alt[] = [
 	{
 		href: '/alternatives/mail-in-a-box/',
 		title: 'vs Mail-in-a-Box',
-		tagline: 'One-command personal email sovereignty vs API-first multi-domain infrastructure. When each is the right fit.',
+		tagline: 'A one-command single-server box vs API-first multi-domain infrastructure with a sending API.',
 		bullets: [
 			'Single-org one-command install vs multi-domain + API',
 			'Bundled CalDAV/CardDAV vs Phase-4 roadmap',
@@ -197,7 +197,7 @@ const upcoming: { title: string; tagline: string }[] = []
 					{
 						"@type": "Question",
 						"name": "Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what is the difference?",
-						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are mature multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is one-command personal email sovereignty on a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-domain operators." }
+						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is a one-command mail server for a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-domain operators." }
 					},
 					{
 						"@type": "Question",
@@ -234,7 +234,7 @@ const upcoming: { title: string; tagline: string }[] = []
 			<a href="/pricing/" class="btn-secondary">View pricing</a>
 		</div>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>8 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>1 November 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>

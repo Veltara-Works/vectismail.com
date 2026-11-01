@@ -7,7 +7,7 @@ const description = 'Self-hosted alternative to Google Workspace email: flat pri
 const url = 'https://vectismail.com/alternatives/google-workspace/'
 const ogImage = 'https://vectismail.com/og/alternatives-google-workspace.png'
 const datePublished = '2026-06-21'
-const dateModified = '2026-07-07'
+const dateModified = '2026-11-01'
 ---
 <html lang="en">
 <head>
@@ -83,7 +83,7 @@ const dateModified = '2026-07-07'
 					{
 						"@type": "Question",
 						"name": "Is there a self-hosted alternative to Google Workspace?",
-						"acceptedAnswer": { "@type": "Answer", "text": "For the email half, yes — Vectis Mail. It is a self-hosted email server (Postfix, Dovecot, Rspamd) you run on your own VPS, with full IMAP/SMTP mailboxes on your domain, a REST API, inbound webhooks, and DKIM/SPF/DMARC configured by default. Pricing is flat: $0 self-hosted Starter, or $39/month per tenant for Pro, never per user and never per email. The honest caveat: Vectis Mail replaces Gmail and your mail server, not the whole Workspace suite. It does not include Docs, Sheets, Slides, Drive, Meet, or Calendar. If your team lives in those apps, keep them or pair Vectis Mail alongside — Vectis is for organisations that want to own their email and reclaim it from per-seat cloud billing." }
+						"acceptedAnswer": { "@type": "Answer", "text": "For the email half, yes — Vectis Mail. It is a self-hosted email server (Postfix, Dovecot, Rspamd) you run on your own VPS, with full IMAP/SMTP mailboxes on your domain, a REST API, inbound webhooks, and DKIM/SPF/DMARC configured by default. Pricing is flat: $0 self-hosted Starter, or $39/month per tenant for Pro, never per user and never per email. The honest caveat: Vectis Mail replaces Gmail and your mail server, not the whole Workspace suite. It does not include Docs, Sheets, Slides, Drive, Meet, or Calendar. Vectis is for organisations that want to own their email and take it off per-seat cloud billing." }
 					},
 					{
 						"@type": "Question",
@@ -93,7 +93,7 @@ const dateModified = '2026-07-07'
 					{
 						"@type": "Question",
 						"name": "Does Vectis Mail replace Google Docs, Sheets, and Meet?",
-						"acceptedAnswer": { "@type": "Answer", "text": "No — and this is the key honesty point. Vectis Mail is email only. It does not include Docs, Sheets, Slides, Drive, Meet, or Calendar, and it does not try to. Google Workspace is a full productivity suite; Vectis Mail replaces the email server inside it. If your organisation depends on real-time collaborative documents or Google Meet, you have three honest options: keep Workspace for everyone, keep the suite apps and move only mailboxes to Vectis Mail, or pair Vectis Mail with separate document and video tools (Nextcloud, OnlyOffice, Jitsi). Choose Vectis Mail when email sovereignty and flat pricing matter more than a single bundled suite." }
+						"acceptedAnswer": { "@type": "Answer", "text": "No. Vectis Mail is email only: it does not include Docs, Sheets, Slides, Drive, Meet or Calendar. It replaces the email server inside Workspace, with mailboxes on your own domain, Roundcube webmail and standard IMAP/SMTP, at a flat price rather than per seat." }
 					},
 					{
 						"@type": "Question",
@@ -131,7 +131,7 @@ const dateModified = '2026-07-07'
 			<a href="/pricing/" class="btn-secondary">View pricing</a>
 		</div>
 		<div class="alt-meta" style="margin-top: 1.25rem;">
-			<span>Last updated <time datetime={dateModified}>7 July 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>1 November 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -282,8 +282,8 @@ const dateModified = '2026-07-07'
 
 		<h3 class="alt-h3">Admin, API, and full control</h3>
 		<p>
-			Workspace gives you a polished admin console for a managed service. Vectis Mail
-			gives you the keys to the stack: a React admin UI, a 40+ endpoint REST API
+			Workspace's admin console manages a hosted service. Vectis Mail gives you the keys
+			to the stack: a React admin UI, a 40+ endpoint REST API
 			(sending, mailboxes, domains, webhooks, analytics) with domain-scoped keys, a
 			single declarative <code>config.yaml</code> as the source of truth, and
 			atomic updates with automatic rollback. You can tune Postfix, write custom
@@ -340,8 +340,7 @@ const dateModified = '2026-07-07'
 					DKIM/SPF/DMARC configured by default. Pricing is flat: <a href="/pricing/">$0
 					self-hosted Starter, or $39/month per tenant for Pro</a> — never per user,
 					never per email. The honest caveat: it replaces Gmail and your mail server,
-					not the whole suite. No Docs, Sheets, Slides, Drive, Meet, or Calendar. If
-					your team lives in those, keep them or pair Vectis Mail alongside.
+					not the whole suite. No Docs, Sheets, Slides, Drive, Meet, or Calendar.
 				</p>
 			</div>
 			<div class="alt-faq-q">
@@ -359,14 +358,10 @@ const dateModified = '2026-07-07'
 			<div class="alt-faq-q">
 				<h3>Does Vectis Mail replace Google Docs, Sheets, and Meet?</h3>
 				<p>
-					No — and this is the point. Vectis Mail is <strong>email only</strong>. No
-					Docs, Sheets, Slides, Drive, Meet, or Calendar, and it doesn't try to be
-					them. Google Workspace is a full productivity suite; Vectis Mail replaces the
-					email server inside it. If you depend on real-time collaborative documents or
-					Google Meet, either keep Workspace for everyone, keep the suite and move only
-					mailboxes to Vectis Mail, or pair Vectis Mail with separate document/video
-					tools (Nextcloud, OnlyOffice, Jitsi). Choose Vectis Mail when email
-					sovereignty and flat pricing outweigh a single bundled suite.
+					No. Vectis Mail is email only: it does not include Docs, Sheets, Slides, Drive, Meet
+					or Calendar. It replaces the email server inside Workspace, with mailboxes on your
+					own domain, Roundcube webmail and standard IMAP/SMTP, at a flat price rather than
+					per seat.
 				</p>
 			</div>
 			<div class="alt-faq-q">

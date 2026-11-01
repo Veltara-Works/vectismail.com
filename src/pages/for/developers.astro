@@ -7,7 +7,7 @@ const description = "Vectis Mail for developers: self-hosted email with a real R
 const url = 'https://vectismail.com/for/developers/'
 const ogImage = 'https://vectismail.com/og/for-developers.png'
 const datePublished = '2026-05-13'
-const dateModified = '2026-10-06'
+const dateModified = '2026-11-01'
 ---
 <html lang="en">
 <head>
@@ -114,7 +114,7 @@ const dateModified = '2026-10-06'
 			Source-available under BSL 1.1; free to self-host and modify.
 		</p>
 		<div class="alt-meta">
-			<span>Last updated <time datetime={dateModified}>6 October 2026</time></span>
+			<span>Last updated <time datetime={dateModified}>1 November 2026</time></span>
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
@@ -223,24 +223,24 @@ const dateModified = '2026-10-06'
 	</section>
 
 	<section class="section">
-		<h2>Where Vectis Mail isn't the right fit for developers</h2>
-		<p class="subtitle">What's painful or missing for the solo-dev case.</p>
+		<h2>Before you start</h2>
+		<p class="subtitle">What to plan for when you self-host your app's email.</p>
 		<div class="feature-grid" style="margin-top: 1.25rem;">
 			<div class="feature-card">
-				<h3>You need pre-warmed IPs from day one</h3>
-				<p>Self-hosting puts you on a fresh IP. Reputation builds over 2–4 weeks of gradual volume. If you're launching tomorrow and need password resets in inboxes immediately, start on SendGrid or Postmark; the managed providers ride a shared pre-warmed pool. Migrate to Vectis Mail later when reputation has built.</p>
+				<h3>A fresh IP needs warming</h3>
+				<p>Self-hosting puts you on a fresh IP, and reputation builds over 2–4 weeks of gradual volume. The <a href="/deliverability/">dual-send plan</a> warms the new IP while your current provider keeps sending, so you never switch over cold.</p>
 			</div>
 			<div class="feature-card">
-				<h3>You really don't want to operate any infrastructure</h3>
-				<p>Vectis Mail is one VPS to keep running, one update command to run periodically, one set of backups to verify occasionally. If you want zero infrastructure to think about, managed SaaS is the right call. Vectis Mail is for people who'd rather operate a server than operate a vendor relationship.</p>
+				<h3>You run one server</h3>
+				<p>Vectis Mail is one VPS to keep running, one update command to run periodically (it snapshots first and rolls back on failure), and one set of backups to verify occasionally.</p>
 			</div>
 			<div class="feature-card">
 				<h3>You need calendar / contacts (CalDAV / CardDAV)</h3>
-				<p>Vectis Mail doesn't yet ship calendar / contacts; that's a Phase 4 roadmap item. If you need full Google Workspace / Exchange-replacement personal infrastructure today, pair Vectis Mail with a separate CalDAV server (Radicale, Baikal) or stay on Mail-in-a-Box for the bundled Nextcloud groupware.</p>
+				<p>Vectis Mail doesn't yet ship calendar / contacts; that's a Phase 4 roadmap item. If you need calendar and contacts today, pair Vectis Mail with a separate CalDAV/CardDAV server.</p>
 			</div>
 			<div class="feature-card">
 				<h3>You're going to ignore IP warmup</h3>
-				<p>Sending 100K cold emails on day one will get your IP block-listed. Vectis Mail can't protect you from that, and neither can SendGrid. If you're not going to run a warmup schedule, you'll have a bad time on any self-hosted setup.</p>
+				<p>Sending 100K cold emails on day one will get your IP block-listed. Vectis Mail can't protect you from that, and no provider can. If you're not going to run a warmup schedule, you'll have a bad time on any self-hosted setup.</p>
 			</div>
 		</div>
 	</section>
