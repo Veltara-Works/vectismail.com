@@ -2,6 +2,8 @@
 import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
+import InstallVideo from "../../components/InstallVideo.astro"
+import { installVideoSchema } from "../../data/install-video"
 const title = 'Stalwart Alternative — Vectis Mail vs Stalwart'
 const description = "Vectis Mail vs Stalwart: a platform on the proven Postfix/Dovecot/Rspamd stack with a transactional API, self-rolling-back updates, and a support SLA."
 const url = 'https://vectismail.com/alternatives/stalwart/'
@@ -38,6 +40,7 @@ const dateModified = '2026-11-01'
 
 	<meta name="theme-color" content="#0C0C0D" />
 
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(installVideoSchema)} />
 	<script is:inline type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@graph": [
@@ -134,6 +137,12 @@ const dateModified = '2026-11-01'
 			<span>·</span>
 			<span>By the Vectis Mail team</span>
 		</div>
+	</section>
+
+	<section class="section video-section">
+		<h2>The whole install, uncut</h2>
+		<p class="subtitle">One command on a fresh Ubuntu VPS, in real time: TLS, DNS, a first mailbox and a send test.</p>
+		<InstallVideo />
 	</section>
 
 	<section class="section" style="padding-top: 2rem;">

@@ -1,5 +1,6 @@
 ---
 import Default from '@astrojs/starlight/components/Head.astro'
+import { installVideoSchema } from '../data/install-video'
 
 type SidebarLink = { type: 'link'; label: string; href: string; isCurrent: boolean }
 type SidebarGroup = { type: 'group'; label: string; entries: SidebarEntry[] }
@@ -78,6 +79,7 @@ const breadcrumb = {
 }
 
 const data = route.entry.data as typeof route.entry.data & {
+	installVideo?: boolean
 	howToName?: string
 	howToSteps?: Array<{ name: string; url: string; text?: string }>
 	faq?: Array<{ q: string; a: string }>
@@ -160,6 +162,9 @@ const faqPage = data.faq && data.faq.length > 0 ? {
 )}
 {howTo && (
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(howTo)} />
+)}
+{data.installVideo && (
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(installVideoSchema)} />
 )}
 {faqPage && (
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(faqPage)} />
