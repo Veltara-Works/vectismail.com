@@ -148,16 +148,17 @@ When the script finishes you'll see:
 
   The binary is in place but nothing is running yet. Next steps:
 
-    1. Review /etc/vectis/config.yaml (hostname: mail.example.com)
-    2. vectis preflight    # verify system + ports + DNS
-    3. vectis install      # deploy containers, run migrations, create admin
+    Mail hostname: mail.example.com
+
+    1. vectis preflight    # check OS, memory, ports and outbound port 25
+    2. vectis install      # start the mail server (about a minute)
 ```
 
 This step **only puts the binary on disk** — it doesn't start anything. The next two steps do.
 
 ### What if I want to run it non-interactively?
 
-Pipe the script with no TTY (e.g. unattended cloud-init), and it'll skip the prompts. It writes the detected PTR if there is one, or leaves the placeholder for you to edit `/etc/vectis/config.yaml` by hand. The next step (`vectis install`) will refuse to proceed if it finds the placeholder.
+Pipe the script with no TTY (e.g. unattended cloud-init), and it'll skip the prompts. It writes the detected PTR if there is one. If there isn't, it leaves a placeholder and tells you to re-run the installer in a terminal (or set `hostname` and `tls.email` in `/etc/vectis/config.yaml`). The next step (`vectis install`) will refuse to proceed if it finds the placeholder.
 
 ## Preflight
 
@@ -175,7 +176,9 @@ This checks OS version, CPU/RAM, port availability (25, 80, 443, 465, 587, 993, 
 vectis install
 ```
 
-This is the heavy lift — about 11 steps over 1-3 minutes depending on your network speed. It generates service configs, writes the docker-compose file, pulls all images, brings Postgres up first and waits for it to be healthy, runs database migrations, creates the initial admin account, then starts the rest of the stack.
+This is the heavy lift: 12 steps, usually 1–3 minutes depending on your network speed. It generates service configs, writes the docker-compose file, pulls all images, brings Postgres up first and waits for it to be healthy, runs database migrations, creates the initial admin account, then starts the rest of the stack.
+
+Each step prints one line. Docker's own output is shown only if a step fails (its last 20 lines, so you can see why); add `--verbose` to watch it live.
 
 When it finishes you'll see:
 
