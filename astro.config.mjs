@@ -113,6 +113,7 @@ export default defineConfig({
 						{ label: 'TLS Certificates', slug: 'guides/tls-certificates' },
 						{ label: 'IP Warmup', slug: 'guides/ip-warmup' },
 						{ label: 'Deliverability', slug: 'guides/deliverability' },
+						{ label: 'Port 25 Blocked? Get It Unblocked', slug: 'guides/port-25-blocked' },
 						{ label: 'SMTP Relay on Your Own Server', slug: 'guides/self-hosted-smtp-relay' },
 						{ label: 'Cloudflare Integration', slug: 'guides/cloudflare' },
 						{ label: 'Webmail (Roundcube)', slug: 'guides/webmail' },

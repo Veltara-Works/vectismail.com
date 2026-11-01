@@ -67,7 +67,7 @@ telnet gmail-smtp-in.l.google.com 25
 nc -zv gmail-smtp-in.l.google.com 25
 ```
 
-If the connection times out, contact your VPS provider to unblock port 25. This is the single most common issue with new mail servers.
+If the connection times out, outbound port 25 is blocked: this is the single most common issue with new mail servers. [Port 25 blocked? How to get it unblocked](/guides/port-25-blocked/) covers each major provider's process and what to put in the request.
 
 ### Step 3: Check DNS authentication
 
