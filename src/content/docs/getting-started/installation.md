@@ -116,7 +116,7 @@ From **v0.1.13**, Vectis applies per-container memory ceilings keyed off a `reso
 | `production` | ~6.7 GB | ~8.0 GB | ~10 GB | Multi-domain 8 GB VPS |
 | `enterprise` | ~13.5 GB | ~16.5 GB | ~19.5 GB | High-volume 16 GB+ |
 
-"Base" is `postgres` + `valkey` + `api` + `orchestrator` + `traefik` + `postfix` + `dovecot` + `rspamd` — the always-on services. Each optional service (webmail, observability stack, ClamAV, pgbouncer, cert-extractor) adds its own profile-scaled ceiling on top.
+"Base" is `postgres` + `valkey` + `api` + `orchestrator` + `traefik` + `postfix` + `dovecot` + `rspamd` — the always-on services. Each optional service (webmail, observability stack, ClamAV, pgbouncer, cert-extractor) adds its own profile-scaled ceiling on top. Webmail and cert-extractor are on by default for new installs. These are ceilings, not typical use: a fresh `small` install with webmail uses about 1 GB.
 
 To switch profile after install: edit `/etc/vectis/config.yaml`, change `resources.profile`, then `vectis update apply`. The brief container restart that follows picks up the new ceilings.
 

@@ -3,21 +3,33 @@ title: Webmail (Roundcube)
 description: "Access the built-in Roundcube webmail that ships with Vectis Mail: log in, read and send mail in the browser, and manage per-user Sieve filters."
 ---
 
-Vectis ships with [Roundcube](https://roundcube.net/) webmail enabled by
-default. End users sign in with their normal mailbox credentials — no
-extra configuration required.
+Vectis ships with [Roundcube](https://roundcube.net/) webmail, on by default
+for new installs from v0.1.62. End users sign in with their normal mailbox
+credentials, with no extra configuration.
 
 ## Where it lives
 
-After install, webmail is available at:
+After install, webmail is available at `/webmail/` on your mail hostname:
 
 ```
-https://webmail.<your-mail-domain>
+https://mail.example.com/webmail/
 ```
 
-For example, on a Vectis install with hostname `mail.example.com` the
-webmail URL is `https://webmail.example.com`. TLS is provisioned
-automatically by Traefik (Let's Encrypt).
+It uses the same TLS certificate as the admin UI, so no extra DNS record is
+needed.
+
+## Turning it on or off
+
+The setting is in `/etc/vectis/config.yaml`:
+
+```yaml
+webmail:
+  enabled: true
+```
+
+Installs from before v0.1.62 have it off unless you turned it on. Change the
+value, then run `vectis config apply`. The container uses about 50 MB of RAM
+when idle.
 
 ## Signing in
 
@@ -53,13 +65,10 @@ overlay (logos, accent colour).
 
 ## Operator notes
 
-- Webmail runs in two containers: `vectis-webmail` (Roundcube PHP-FPM)
-  and `vectis-webmail-nginx` (the static + FastCGI front-end). Both are
-  managed by the orchestrator; no manual restarts needed for routine
+- Webmail runs in one container, `vectis-webmail` (Roundcube on Apache). It is
+  managed by the orchestrator; no manual restarts are needed for routine
   upgrades.
-- Roundcube's database lives in a Postgres schema dedicated to the
-  webmail role; user mail data itself stays in the Dovecot maildirs.
-- If webmail returns a blank page or `502`, check `docker logs
-  vectis-webmail-nginx` first — the nginx container fronts both
-  static assets and the FastCGI socket and surfaces upstream
-  connection issues clearly.
+- Roundcube keeps its own settings in an SQLite database in the `webmail-data`
+  volume; user mail stays in the Dovecot maildirs.
+- If webmail returns a blank page or `502`, check `docker logs vectis-webmail`
+  first.
