@@ -8,6 +8,7 @@ export const collections = {
 		loader: docsLoader(),
 		schema: docsSchema({
 			extend: z.object({
+				installVideo: z.boolean().optional(),
 				howToName: z.string().optional(),
 				howToSteps: z
 					.array(

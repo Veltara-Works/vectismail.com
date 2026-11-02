@@ -1,4 +1,5 @@
 ---
+installVideo: true
 title: "Best Self-Hosted Email Servers 2026: 8 Compared, 1 Pick"
 description: "Which self-hosted email server should you actually run in 2026? A straight comparison of 8 options — mailboxes, sending API, ops burden — with one clear pick."
 lastUpdated: 2026-11-01
@@ -33,6 +34,11 @@ The rest of this guide sets out how the eight compare, from each project's publi
 | An agency running mail for many client domains | **Vectis Mail** | Per-domain keys, DKIM and analytics; flat per-tenant, never per email |
 | A team that just needs mail (calendar already in Google/MS) | **Vectis Mail** | Mail you own, with an API and updates that roll back on failure |
 | An individual or family who wants a free, owned mailbox | **Vectis Mail** (Starter) | $0, up to 3 domains and 25 mailboxes each |
+
+Here is Vectis Mail installing on a fresh server, uncut:
+
+<button type="button" class="video-thumb yt-lite" data-yt="pEeCGl_vTWY" data-yt-title="Self-Hosted Email Server in One Command (Uncut Install)" aria-label="Play: Self-Hosted Email Server in One Command (Uncut Install)"><img src="/media/install-uncut-poster.webp" width="1280" height="720" alt="Terminal running the Vectis Mail one-command installer on a fresh server" loading="lazy" /><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
+<script src="/video-embed.js" defer></script>
 
 ## The landscape
 

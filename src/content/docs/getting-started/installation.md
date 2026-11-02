@@ -1,4 +1,5 @@
 ---
+installVideo: true
 title: Installation
 description: "Step-by-step guide to installing Vectis Mail on a fresh Ubuntu VPS — one command to a working, TLS-secured mail server with mailboxes and a sending API."
 howToName: Install Vectis Mail on a fresh Ubuntu VPS
@@ -33,6 +34,11 @@ This guide walks through a fresh install on a clean Ubuntu 24.04 VPS. The full p
 4. **[Install](#install)** — run `vectis install` to deploy the stack, run database migrations, and create the admin account.
 5. **[Publish DNS records](#publish-dns-records)** — A record at your registrar; PTR at your VPS provider.
 6. **[Verify the install](#verifying-the-install)** — `vectis status` plus a successful login at `https://your-mail-host/admin`.
+
+Watch the whole install, uncut, in real time:
+
+<button type="button" class="video-thumb yt-lite" data-yt="pEeCGl_vTWY" data-yt-title="Self-Hosted Email Server in One Command (Uncut Install)" aria-label="Play: Self-Hosted Email Server in One Command (Uncut Install)"><img src="/media/install-uncut-poster.webp" width="1280" height="720" alt="Terminal running the Vectis Mail one-command installer on a fresh server" loading="lazy" /><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
+<script src="/video-embed.js" defer></script>
 
 ## Prerequisites
 

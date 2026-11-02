@@ -1,0 +1,10 @@
+---
+import { installVideo } from '../data/install-video'
+---
+<button type="button" class="video-thumb yt-lite" data-yt={installVideo.id} data-yt-title={installVideo.title} aria-label={`Play: ${installVideo.title}`}>
+	<img src={installVideo.poster} width="1280" height="720" alt="Terminal running the Vectis Mail one-command installer on a fresh server" loading="lazy" />
+	<span class="video-play" aria-hidden="true">
+		<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+	</span>
+</button>
+<script is:inline src="/video-embed.js" defer></script>

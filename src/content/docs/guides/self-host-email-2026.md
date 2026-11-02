@@ -1,4 +1,5 @@
 ---
+installVideo: true
 title: "Is Self-Hosting Email Worth It in 2026? Costs, Pros & Cons"
 description: "Is self-hosting email worth it in 2026? What it really costs (about $25–50/month for a small SaaS), the deliverability bar to clear, and what self-hosting asks of you."
 lastUpdated: 2026-11-01
@@ -40,6 +41,11 @@ Want the head-to-head of the servers themselves — Mailcow, iRedMail, Mail-in-a
 | Run cold outreach at scale | **No** — bad fit; reputation is fragile and you don't control the IP pool effectively |
 | Operate in healthcare/finance with strict data residency | **Yes** — one of the strongest cases left in 2026 |
 | Have zero Linux operations capacity | **No** — even with modern tooling, this is the dealbreaker |
+
+Here is what the install looks like on a fresh server, uncut:
+
+<button type="button" class="video-thumb yt-lite" data-yt="pEeCGl_vTWY" data-yt-title="Self-Hosted Email Server in One Command (Uncut Install)" aria-label="Play: Self-Hosted Email Server in One Command (Uncut Install)"><img src="/media/install-uncut-poster.webp" width="1280" height="720" alt="Terminal running the Vectis Mail one-command installer on a fresh server" loading="lazy" /><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
+<script src="/video-embed.js" defer></script>
 
 ## The economic question, with real numbers
 

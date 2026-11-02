@@ -1042,3 +1042,15 @@ a.alt-index-card h3 {
 	.video-thumb:hover .video-play { transition: none; transform: none; }
 	.video-thumb:hover .video-play { transform: translate(-50%, -50%); }
 }
+
+/* Install video: click-to-play YouTube embed */
+.yt-frame {
+	display: block;
+	width: 100%;
+	max-width: 960px;
+	aspect-ratio: 16 / 9;
+	margin: 0 auto;
+	border: 1px solid var(--vm-border);
+	border-radius: 12px;
+}
+.yt-lite { margin-block: 1.5rem; }
