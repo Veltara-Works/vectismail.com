@@ -55,7 +55,7 @@ For data privacy specifically, see https://vectismail.com/privacy/.
 
 ## 5. Product security baseline (Vectis Mail install)
 
-These are the defaults you get when you `vectis apply` a fresh install. You control all of them on your own server.
+These are the defaults you get when you install with `vectis install`. You control all of them on your own server.
 
 ### Authentication
 
@@ -101,7 +101,7 @@ Postfix and Dovecot **cannot** write to the database. Compromise of those proces
 
 ## 8. Update model (atomic, rollback-safe)
 
-- `vectis apply` runs a 6-phase pipeline: **snapshot → migrate → pull → deploy → health-check → complete.**
+- `vectis update apply` runs a 6-phase pipeline: **snapshot → migrate → pull → deploy → health-check → complete.**
 - Each phase has a defined rollback path.
 - Database migrations are forward-only; rollback = restore from the `snapshot` phase pg_dump.
 - An advisory lock prevents concurrent `apply` operations.

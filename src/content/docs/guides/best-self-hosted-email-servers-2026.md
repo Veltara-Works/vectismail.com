@@ -90,7 +90,7 @@ Mox is a single Go binary that runs a complete mail server, MIT-licensed, with *
 
 ### Vectis Mail — the managed stack you own
 
-Vectis Mail takes a different stance: orchestrate the **proven components** (Postfix, Dovecot, Rspamd) the internet already runs on, and put a modern surface over them. Your entire stack lives in one declarative `config.yaml`; updates run as a six-phase pipeline that snapshots first and **rolls back automatically** if a health check fails. A 40+ endpoint **REST API** handles transactional sending, batch sending, and inbound parse-to-webhook, alongside full IMAP/POP3 mailboxes, Rspamd and optional ClamAV filtering, bundled Roundcube webmail, and an admin dashboard. Pricing is flat per tenant — **never per email, never per seat** — with paid Pro and Enterprise tiers (the latter adds SAML SSO, compliance tooling, and a support SLA).
+Vectis Mail takes a different stance: orchestrate the **proven components** (Postfix, Dovecot, Rspamd) the internet already runs on, and put a modern surface over them. One command installs it and you run it from an admin dashboard; updates run as a six-phase pipeline that snapshots first and **rolls back automatically** if a health check fails. A 40+ endpoint **REST API** handles transactional sending, batch sending, and inbound parse-to-webhook, alongside full IMAP/POP3 mailboxes, Rspamd and optional ClamAV filtering, bundled Roundcube webmail, and an admin dashboard. Pricing is flat per tenant — **never per email, never per seat** — with paid Pro and Enterprise tiers (the latter adds SAML SSO, compliance tooling, and a support SLA).
 
 - **Best for:** teams, SaaS products, and agencies that want a transactional API *and* mailbox hosting on one stack, with managed-software operations on internals they trust.
 - **The trade-off:** Vectis Mail is Linux + Docker only, and it doesn't ship calendar or contacts.
@@ -99,7 +99,7 @@ Vectis Mail takes a different stance: orchestrate the **proven components** (Pos
 
 | | Underlying MTA | Config model | Transactional send API | Mailboxes (IMAP/POP3) | Built-in groupware | Managed updates + rollback | Commercial support |
 |---|---|---|---|---|---|---|---|
-| **Vectis Mail** | Postfix/Dovecot | Declarative YAML + API | Yes — 40+ endpoints | Yes | No (by design) | Yes — atomic, auto-rollback | Pro + Enterprise SLA |
+| **Vectis Mail** | Postfix/Dovecot | Dashboard + API | Yes — 40+ endpoints | Yes | No (by design) | Yes — atomic, auto-rollback | Pro + Enterprise SLA |
 | **Mailcow** | Postfix/Dovecot | Web UI | Administrative only | Yes | Yes (SOGo) | Manual | ServerCow contracts |
 | **iRedMail** | Postfix/Dovecot | Install scripts | No | Yes | Via add-on | Manual | Paid editions |
 | **Mail-in-a-Box** | Postfix/Dovecot | One-command, opinionated | No | Yes | Yes (Nextcloud) | Manual | Community |

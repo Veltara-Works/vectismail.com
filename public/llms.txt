@@ -1,6 +1,6 @@
 # Vectis Mail
 
-> Self-hosted, declarative email platform. Packages Postfix, Dovecot, Rspamd, Traefik, Postgres, and Valkey into a single deployment managed through one YAML config file and a REST API. Modern alternative to Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark, and Mailgun — combines the control of self-hosting with the developer ergonomics of transactional email SaaS.
+> Self-hosted email platform. Packages Postfix, Dovecot, Rspamd, Traefik, Postgres, and Valkey into a single deployment: one command installs it, and you run it from an admin dashboard and a REST API. Modern alternative to Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark, and Mailgun — combines the control of self-hosting with the developer ergonomics of transactional email SaaS.
 
 For the long-form, full-content reference (architecture, features, pricing, install flow, REST API examples, license model, vs-alternatives matrix, all inlined for LLM context windows), see [llms-full.txt](https://vectismail.com/llms-full.txt).
 
@@ -8,7 +8,7 @@ For the long-form, full-content reference (architecture, features, pricing, inst
 
 - Source-available under BSL 1.1 (auto-Apache 2.0 after 4y); Pro features gated via license key (ValidonX).
 - 14 containers by default (10 if observability and ClamAV disabled).
-- Single declarative config: `config.yaml` + `vectis apply`.
+- One-command install, then an admin dashboard and Setup Wizard. Optional config as code: `config.yaml` + `vectis config apply`.
 - REST API: 60+ endpoints (sending, webhooks, domains, mailboxes, analytics, admin).
 - Inbound webhooks: HMAC-SHA256 signed, retry-with-backoff.
 - Atomic update orchestrator: 6-phase pipeline with automatic rollback.
@@ -72,8 +72,8 @@ See also (machine-readable files for AI agents and programmatic buyers):
 
 ## Competitive comparisons
 
-- [vs Mailcow](https://vectismail.com/alternatives/mailcow/): same self-hosted philosophy, declarative config, REST API, atomic updates.
-- [vs iRedMail](https://vectismail.com/alternatives/iredmail/): modern declarative surface vs the long-running OS-native open-source mail stack.
+- [vs Mailcow](https://vectismail.com/alternatives/mailcow/): same self-hosted philosophy, admin dashboard, REST API, atomic updates.
+- [vs iRedMail](https://vectismail.com/alternatives/iredmail/): admin dashboard and REST API vs the long-running OS-native open-source mail stack.
 - [vs Mail-in-a-Box](https://vectismail.com/alternatives/mail-in-a-box/): a one-command single-server box vs API-first multi-domain infrastructure with a sending API.
 - [vs Stalwart](https://vectismail.com/alternatives/stalwart/): the proven Postfix/Dovecot/Rspamd engine with a transactional API and SLA, not a from-scratch rewrite.
 - [vs Mox](https://vectismail.com/alternatives/mox/): the multi-tenant platform you graduate to from a single-binary personal mail server.

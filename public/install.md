@@ -19,39 +19,37 @@ Last updated: 2026-05-18
 - **Docker:** version 24+ with Docker Compose v2
 - **Network:** ports 25, 80, 443, 465, 587, 993, 995 open inbound; outbound 25, 53, 80, 443
 - **DNS control** required (for MX, SPF, DKIM, DMARC, ACME challenge)
-- **Cloudflare** account optional — used for DNS-01 ACME if you proxy your domain through CF (recommended for TLS automation)
 
-## 10-line install on a fresh Ubuntu VPS
+## Install on a fresh Ubuntu VPS
 
 ```bash
-# 1. Download the installer (does NOT install — just unpacks the binary + templates)
-curl -fsSL https://dl.vectismail.com/install.sh | bash
+# 1. Download Vectis and install Docker. Asks for the mail hostname and admin email,
+#    detected from reverse DNS where possible, and generates every secret.
+curl -fsSL https://get.vectismail.com | sudo bash
 
-# 2. Edit your config (domains, MX, SMTP smarthost if any)
-sudo nano /etc/vectis/config.yaml
+# 2. Check the OS, memory, ports and outbound port 25
+sudo vectis preflight
 
-# 3. Run the install — this is the step that actually deploys containers
+# 3. Start the mail server (12 steps, usually 1-3 minutes)
 sudo vectis install
 
-# 4. Create your first mailbox (or use the admin UI)
-sudo vectis mailbox add admin@yourdomain.com
-
-# 5. Visit the admin UI at https://mail.yourdomain.com and log in
+# 4. Open the admin URL it prints, log in and follow the Setup Wizard
 ```
 
-The `install.sh` downloads the Vectis binary + config templates. The `vectis install` step is what actually:
+`vectis install`:
 
-1. Sets up `/var/vectis/`, `/etc/vectis/`, and `/var/lib/vectis/`
-2. Generates Postfix, Dovecot, Rspamd, Traefik configs from your `config.yaml`
-3. Pulls Docker images from `ghcr.io/veltara-works/vectis-*`
-4. Generates DKIM keys for every domain in your config
-5. Starts the 14-container stack via Docker Compose
-6. Runs database migrations to initialise Postgres
-7. Health-checks every service and reports status
+1. Generates Postfix, Dovecot, Rspamd and Traefik configs
+2. Pulls signed images from `ghcr.io/veltara-works/vectis-*`
+3. Starts Postgres and runs database migrations
+4. Creates the admin account and prints its password once
+5. Starts the rest of the stack (10 containers by default)
+6. Obtains a Let's Encrypt certificate once DNS resolves
+
+The Setup Wizard then adds your first domain, generates its DKIM key, shows the DNS records, verifies them, creates a mailbox and checks deliverability.
 
 ## DNS records you'll need to add
 
-For each domain you put in `config.yaml`, the `vectis install` step prints the DNS records you must publish. Typical:
+For each domain you add, the Setup Wizard shows the DNS records to publish. Typical:
 
 | Record type | Host | Value | Required for |
 |---|---|---|---|
