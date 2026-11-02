@@ -1,8 +1,8 @@
 # Vectis Mail — Complete Reference
 
-> Self-hosted, declarative email platform. Packages Postfix, Dovecot, Rspamd,
-> Traefik, Postgres, and Valkey into a single deployment managed through one
-> YAML config file and a REST API. Modern alternative to Mailcow, iRedMail,
+> Self-hosted email platform. Packages Postfix, Dovecot, Rspamd,
+> Traefik, Postgres, and Valkey into a single deployment: one command installs
+> it, and you run it from an admin dashboard and a REST API. Modern alternative to Mailcow, iRedMail,
 > Mail-in-a-Box, SendGrid, Postmark, and Mailgun — combines the control of
 > self-hosting with the developer ergonomics of transactional email SaaS.
 
@@ -19,7 +19,8 @@ all the standard mail components (Postfix MTA, Dovecot IMAP, Rspamd spam
 filtering, ClamAV antivirus, Traefik reverse proxy, Postgres, Valkey) plus a
 Go-based control plane and a React admin UI into a coherent platform with:
 
-- **Declarative configuration.** A single `config.yaml` describes the server.
+- **Installer and dashboard first.** The installer writes `config.yaml` for you;
+  editing it is optional, for stack-level settings.
   Domains and mailboxes live in Postgres, not config files — no Postfix or
   Dovecot reload is needed when you add a domain or rotate a password.
 - **REST API and webhooks.** Sending API for outbound mail, inbound webhooks
@@ -395,7 +396,7 @@ entitlements cached in Postgres).
 
 | Vs | Pick Vectis Mail when |
 |---|---|
-| **Mailcow** | You want the same self-hosted mail stack but with a declarative YAML config, REST API, and atomic update orchestrator instead of edit-files-and-pray + manual `mailcow.sh update`. |
+| **Mailcow** | You want the same self-hosted mail stack but with an admin dashboard, REST API, and atomic update orchestrator instead of edit-files-and-pray + manual `mailcow.sh update`. |
 | **iRedMail** | You want a modern Go control plane + React admin UI instead of the legacy PHP admin and shell-script management surface. |
 | **Mail-in-a-Box** | You want production-shaped infrastructure (Docker, RBAC, atomic updates, MFA) instead of a single-script home-server setup. |
 | **SendGrid / Postmark / Mailgun** | Your monthly bill is climbing past $200 and the per-email model feels misaligned with your costs. Vectis ships the same sending API and inbound webhook flow at a flat $0–29/month. |

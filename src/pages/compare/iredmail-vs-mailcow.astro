@@ -90,7 +90,7 @@ const dateModified = '2026-11-01'
 					{
 						"@type": "Question",
 						"name": "What's a third option if neither iRedMail nor Mailcow fits?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is a Docker-based self-hosted mail platform (same Postfix/Dovecot/Rspamd core) built around a declarative config.yaml, a 40+ endpoint REST API for sending and inbound webhooks, and atomic updates with automatic rollback. It doesn't run on BSD and doesn't yet ship calendar/contacts — so it's not a fit for every case either, but it's worth a look if the gap in both iRedMail and Mailcow is 'no API' or 'no safe update story'." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail is a Docker-based self-hosted mail platform (same Postfix/Dovecot/Rspamd core) built around an admin dashboard, a 40+ endpoint REST API for sending and inbound webhooks, and atomic updates with automatic rollback. It doesn't run on BSD and doesn't yet ship calendar/contacts — so it's not a fit for every case either, but it's worth a look if the gap in both iRedMail and Mailcow is 'no API' or 'no safe update story'." }
 					}
 				]
 			}
@@ -235,7 +235,7 @@ const dateModified = '2026-11-01'
 		</p>
 		<div class="feature-card" style="margin-top: 1.5rem;">
 			<ul style="margin-bottom: 0;">
-				<li>Domains, mailboxes and API keys managed from a dashboard or the REST API, with no restarts; stack settings in one declarative <code>config.yaml</code> that <code>vectis config apply</code> diffs against the running state, regenerating only what changed.</li>
+				<li>Domains, mailboxes and API keys managed from a dashboard or the REST API, with no restarts; stack settings in one <code>config.yaml</code> that <code>vectis config apply</code> diffs against the running state, regenerating only what changed.</li>
 				<li>A 40+ endpoint REST API: transactional sending (single + batch, attachments), inbound webhooks (HMAC-signed, retry-with-backoff), mailbox/domain/alias CRUD, analytics, audit logs.</li>
 				<li>Atomic 6-phase updates (snapshot, migrate, pull, deploy, health-check, complete) with automatic rollback on any phase failure.</li>
 				<li>Domain-scoped API keys with per-domain rate limits — the multi-tenant pattern neither iRedMail nor Mailcow ships out of the box.</li>
@@ -299,7 +299,7 @@ const dateModified = '2026-11-01'
 				<h3>What's a third option if neither iRedMail nor Mailcow fits?</h3>
 				<p>
 					Vectis Mail is a Docker-based self-hosted mail platform (same
-					Postfix/Dovecot/Rspamd core) built around a declarative <code>config.yaml</code>,
+					Postfix/Dovecot/Rspamd core) built around an admin dashboard,
 					a 40+ endpoint REST API for sending and inbound webhooks, and atomic updates
 					with automatic rollback. It doesn't run on BSD and doesn't yet ship
 					calendar/contacts — so it's not a fit for every case either, but it's worth a
@@ -320,7 +320,7 @@ const dateModified = '2026-11-01'
 			</a>
 			<a href="/alternatives/mailcow/" class="feature-card alt-index-card">
 				<h3>Vectis Mail vs Mailcow &rarr;</h3>
-				<p>Declarative config and a transactional sending API vs Mailcow's web-UI-driven, admin-only surface.</p>
+				<p>A REST API and a transactional sending API vs Mailcow's web-UI-driven, admin-only surface.</p>
 			</a>
 			<a href="/guides/best-self-hosted-email-servers-2026/" class="feature-card alt-index-card">
 				<h3>Best self-hosted email servers (2026) &rarr;</h3>

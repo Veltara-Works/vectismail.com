@@ -99,7 +99,7 @@ You pay the suite only for the seats that use the suite, and email stops being a
 Vectis Mail is the self-hosted side of this comparison done the modern way:
 
 - **Never priced per seat or per send.** Starter is free (3 domains, 25 mailboxes each); Pro is a flat $39/month per tenant with unlimited domains and mailboxes.
-- **One-command install** of a proven stack (Postfix, Dovecot, Rspamd) with declarative config and atomic, auto-rollback updates.
+- **One-command install** of a proven stack (Postfix, Dovecot, Rspamd) with an admin dashboard and atomic, auto-rollback updates.
 - **Deliverability built in** — automatic DKIM/SPF/DMARC, a built-in IP-warmup schedule, RBL monitoring, and a deliverability checker.
 - **Bundled webmail and a transactional REST API** for app-generated mail.
 

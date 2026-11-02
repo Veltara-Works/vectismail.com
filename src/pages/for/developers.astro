@@ -3,7 +3,7 @@ import '../../styles/custom.css'
 import SiteFooter from "../../components/SiteFooter.astro"
 import SiteNav from "../../components/SiteNav.astro"
 const title = 'Vectis Mail for Developers — Self-Hosted Email API'
-const description = "Vectis Mail for developers: self-hosted email with a real REST API and declarative YAML, on a ~$20 VPS. Free Starter tier, source-available under BSL 1.1."
+const description = "Vectis Mail for developers: self-hosted email with a real REST API and a one-command install, on a ~$20 VPS. Free Starter tier, source-available under BSL 1.1."
 const url = 'https://vectismail.com/for/developers/'
 const ogImage = 'https://vectismail.com/og/for-developers.png'
 const datePublished = '2026-05-13'
@@ -134,7 +134,7 @@ const dateModified = '2026-11-01'
 			</div>
 			<div class="feature-card">
 				<h3>3. No Postfix wizardry</h3>
-				<p>Domains, mailboxes and API keys come from the dashboard or the REST API and take effect immediately. Stack-level settings live in one declarative <code>config.yaml</code>: <code>vectis config apply</code> generates the Postfix, Dovecot, Rspamd and Traefik configs and reloads only what changed. Audit the generated configs if you want, but you never write them.</p>
+				<p>Domains, mailboxes and API keys come from the dashboard or the REST API and take effect immediately. Stack-level settings live in one <code>config.yaml</code>: <code>vectis config apply</code> generates the Postfix, Dovecot, Rspamd and Traefik configs and reloads only what changed. Audit the generated configs if you want, but you never write them.</p>
 			</div>
 			<div class="feature-card">
 				<h3>4. Source-available, no licensing lock-in</h3>
@@ -209,7 +209,7 @@ const dateModified = '2026-11-01'
 		<h3 class="alt-h3">Homelab / personal infrastructure</h3>
 		<p>
 			You want to run your own email because it's there to run. Vectis Mail fits the
-			homelab pattern: one server, Docker Compose, declarative config, one update
+			homelab pattern: one server, Docker Compose, one config file, one update
 			command. Pair with a personal Nextcloud or other self-hosted tools on the same VPS
 			if you've got headroom.
 		</p>

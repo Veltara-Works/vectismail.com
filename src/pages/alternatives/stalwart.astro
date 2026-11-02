@@ -72,7 +72,7 @@ const dateModified = '2026-11-01'
 				"@type": "Product",
 				"image": ogImage,
 				"name": "Vectis Mail",
-				"description": "Self-hosted, declarative email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
+				"description": "Self-hosted email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
 				"url": "https://vectismail.com/",
 				"brand": { "@type": "Brand", "name": "Vectis Mail" },
 				"offers": [
@@ -106,7 +106,7 @@ const dateModified = '2026-11-01'
 					{
 						"@type": "Question",
 						"name": "Why choose Vectis Mail over Stalwart?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Because the engine is proven, not rewritten — Postfix and Dovecot have delivered the internet's mail for over two decades, with Rspamd the modern standard for spam filtering, where Stalwart reimplements every protocol from scratch. Because a single config.yaml and atomic updates that roll themselves back beat a binary swap and a prayer. Because you get a real transactional API, bundled webmail, IP-warmup tracking and per-domain analytics. And because there's a vendor and a support SLA behind it (Pro at $39/tenant/month, Enterprise from $499), not just a forum." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Because the engine is proven, not rewritten — Postfix and Dovecot have delivered the internet's mail for over two decades, with Rspamd the modern standard for spam filtering, where Stalwart reimplements every protocol from scratch. Because a one-command install and atomic updates that roll themselves back beat a binary swap and a prayer. Because you get a real transactional API, bundled webmail, IP-warmup tracking and per-domain analytics. And because there's a vendor and a support SLA behind it (Pro at $39/tenant/month, Enterprise from $499), not just a forum." }
 					}
 				]
 			}
@@ -123,7 +123,7 @@ const dateModified = '2026-11-01'
 		<h1>Stalwart alternative.<br/><span>Proven email infrastructure, not a rewrite.</span></h1>
 		<p class="alt-lead">
 			Stalwart reimplements email from the ground up in Rust. Vectis Mail runs the engine the
-			internet already trusts — Postfix, Dovecot, Rspamd — and wraps it in a declarative API,
+			internet already trusts — Postfix, Dovecot, Rspamd — and wraps it in a REST API,
 			updates that automatically roll themselves back, and a support line with an SLA. When
 			what you're choosing is where your company's mail lives, a brand-new codebase is a cost
 			you carry, not a feature you use.
@@ -156,7 +156,7 @@ const dateModified = '2026-11-01'
 				<tbody>
 					<tr><th scope="row">Mail engine</th><td><strong>Postfix · Dovecot · Rspamd — battle-tested, production-hardened stack</strong></td><td>From-scratch Rust reimplementation</td></tr>
 					<tr><th scope="row">Updates</th><td><strong>Atomic 6-phase orchestrator — auto-rollback on any failure</strong></td><td>Binary / package upgrade</td></tr>
-					<tr><th scope="row">Configuration</th><td><strong>Dashboard + REST API, with every service config generated from one declarative <code>config.yaml</code></strong></td><td>TOML files + web admin</td></tr>
+					<tr><th scope="row">Configuration</th><td><strong>Dashboard + REST API, with every service config generated from one <code>config.yaml</code></strong></td><td>TOML files + web admin</td></tr>
 					<tr><th scope="row">Transactional sending</th><td><strong>Domain-scoped API keys · batch · attachments · per-domain analytics</strong></td><td>JMAP + admin API (build it yourself)</td></tr>
 					<tr><th scope="row">Webmail</th><td><strong>Roundcube bundled, ready on day one</strong></td><td>Not bundled today — add and run your own</td></tr>
 					<tr><th scope="row">Antispam + antivirus</th><td><strong>Rspamd + ClamAV</strong></td><td>Built-in classifier; AV via integration</td></tr>
@@ -202,7 +202,7 @@ const dateModified = '2026-11-01'
 		</p>
 		<p>
 			Vectis Mail keeps that boring, proven engine and puts the modern surface — Go API, React
-			admin, declarative config, orchestrated updates — <em>around</em> it. You get the
+			admin, one-command install, orchestrated updates — <em>around</em> it. You get the
 			developer experience without betting your mail flow on a young reimplementation of
 			protocols that took two decades to harden.
 		</p>
@@ -316,7 +316,7 @@ const dateModified = '2026-11-01'
 			<div class="alt-faq-q">
 				<h3>Why choose Vectis Mail over Stalwart?</h3>
 				<p>
-					Because the engine is proven, not rewritten; because a single <code>config.yaml</code>
+					Because the engine is proven, not rewritten; because a one-command install
 					and atomic updates that roll themselves back beat a binary swap and a prayer; because
 					you get a real transactional API, bundled webmail, IP-warmup tracking and per-domain
 					analytics; and because there's a vendor and a support SLA behind it — Pro at

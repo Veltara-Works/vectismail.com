@@ -5,7 +5,7 @@ import SiteNav from "../../components/SiteNav.astro"
 import InstallVideo from "../../components/InstallVideo.astro"
 import { installVideoSchema } from "../../data/install-video"
 const title = 'Mailcow Alternative — Vectis Mail vs Mailcow'
-const description = "The self-hosted Mailcow alternative for operators: declarative YAML config, a Go REST API, and atomic updates with health-gated rollback. Own your mail stack."
+const description = "The self-hosted Mailcow alternative for operators: a one-command install, a Go REST API, and atomic updates with health-gated rollback. Own your mail stack."
 const url = 'https://vectismail.com/alternatives/mailcow/'
 const ogImage = 'https://vectismail.com/og/alternatives-mailcow.png'
 const datePublished = '2026-05-12'
@@ -72,7 +72,7 @@ const dateModified = '2026-11-01'
 				"@type": "Product",
 				"image": ogImage,
 				"name": "Vectis Mail",
-				"description": "Self-hosted, declarative email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
+				"description": "Self-hosted email platform. Postfix/Dovecot/Rspamd/Traefik packaged with a Go API, React admin UI, and atomic update orchestrator.",
 				"url": "https://vectismail.com/",
 				"brand": { "@type": "Brand", "name": "Vectis Mail" },
 				"offers": [
@@ -86,7 +86,7 @@ const dateModified = '2026-11-01'
 					{
 						"@type": "Question",
 						"name": "What are the best mailcow alternatives?",
-						"acceptedAnswer": { "@type": "Answer", "text": "The leading self-hosted mailcow alternatives are Vectis Mail (the same Postfix/Dovecot/Rspamd core with a declarative config, a 40+ endpoint REST API, inbound webhooks and flat per-tenant pricing), iRedMail (OS-native, no Docker), Mailu and docker-mailserver (lighter Docker stacks without mailcow's full UI), Mail-in-a-Box (single-server simplicity for individuals), and the from-scratch MTAs Stalwart (JMAP and clustering) and Mox (single-binary). If you like mailcow's self-hosted control but want a transactional API and mailbox hosting on one declarative, self-updating platform, Vectis Mail is the closest fit; the best self-hosted email servers guide compares all of them by buyer type." }
+						"acceptedAnswer": { "@type": "Answer", "text": "The leading self-hosted mailcow alternatives are Vectis Mail (the same Postfix/Dovecot/Rspamd core with an admin dashboard, a 40+ endpoint REST API, inbound webhooks and flat per-tenant pricing), iRedMail (OS-native, no Docker), Mailu and docker-mailserver (lighter Docker stacks without mailcow's full UI), Mail-in-a-Box (single-server simplicity for individuals), and the from-scratch MTAs Stalwart (JMAP and clustering) and Mox (single-binary). If you like mailcow's self-hosted control but want a transactional API and mailbox hosting on one self-updating platform, Vectis Mail is the closest fit; the best self-hosted email servers guide compares all of them by buyer type." }
 					},
 					{
 						"@type": "Question",
@@ -124,7 +124,7 @@ const dateModified = '2026-11-01'
 		<p class="alt-lead">
 			Both are self-hosted Docker stacks on the same Postfix/Dovecot/Rspamd core.
 			The difference is the operating model: Vectis Mail runs from an admin dashboard and a
-			Go REST API, generates every service config from one declarative <code>config.yaml</code>,
+			Go REST API, generates every service config from one <code>config.yaml</code>,
 			and ships atomic updates with health-gated rollback — where Mailcow leans on a bash env
 			file, a web UI, and a manual <code>update.sh</code>. Same self-hosted control, driven as
 			code whenever you want it.
@@ -157,7 +157,7 @@ const dateModified = '2026-11-01'
 				<tbody>
 					<tr><th scope="row">Mail stack</th><td>Postfix · Dovecot · Rspamd</td><td>Postfix · Dovecot · Rspamd</td></tr>
 					<tr><th scope="row">Container count (default)</th><td><strong>10</strong> (including webmail)</td><td>18</td></tr>
-					<tr><th scope="row">Configuration model</th><td><strong>Dashboard + REST API, with every service config generated from one declarative <code>config.yaml</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
+					<tr><th scope="row">Configuration model</th><td><strong>Dashboard + REST API, with every service config generated from one <code>config.yaml</code></strong></td><td>Bash <code>mailcow.conf</code> + web UI</td></tr>
 					<tr><th scope="row">REST API</th><td><strong>40+ endpoints</strong> (sending, webhooks, domains, mailboxes, analytics)</td><td>Minimal admin API only</td></tr>
 					<tr><th scope="row">Transactional sending API</th><td><strong>Yes</strong> — domain-scoped keys, batch, attachments</td><td>SMTP submission with mailbox creds</td></tr>
 					<tr><th scope="row">Inbound webhooks</th><td><strong>Yes</strong> — HMAC-signed, retry-with-backoff</td><td>No</td></tr>
@@ -201,7 +201,7 @@ const dateModified = '2026-11-01'
 		<p>
 			Vectis Mail splits the job cleanly. Domains, mailboxes, aliases and API keys are
 			managed from the admin dashboard or the REST API and take effect immediately, with no
-			restart. Stack-level settings live in one declarative <code>config.yaml</code>, which
+			restart. Stack-level settings live in one <code>config.yaml</code>, which
 			the installer writes for you: <code>vectis config apply</code> diffs it against the
 			running state, regenerates the affected service configs (Postfix, Dovecot, Rspamd,
 			Traefik), and reloads only what changed. Everything is also exposed via the REST API,
@@ -304,14 +304,14 @@ const dateModified = '2026-11-01'
 				<h3>What are the best mailcow alternatives?</h3>
 				<p>
 					The leading self-hosted mailcow alternatives are <strong>Vectis Mail</strong>
-					(the same Postfix/Dovecot/Rspamd core with declarative config, a 40+ endpoint REST
+					(the same Postfix/Dovecot/Rspamd core with an admin dashboard, a 40+ endpoint REST
 					API, inbound webhooks and flat per-tenant pricing), <a href="/alternatives/iredmail/">iRedMail</a>
 					(OS-native, no Docker), Mailu and docker-mailserver (lighter Docker stacks without
 					mailcow's full UI), <a href="/alternatives/mail-in-a-box/">Mail-in-a-Box</a>
 					(single-server simplicity), and the from-scratch MTAs <a href="/alternatives/stalwart/">Stalwart</a>
 					(JMAP and clustering) and <a href="/alternatives/mox/">Mox</a> (single-binary).
 					If you like mailcow's self-hosted control but want a transactional API and mailbox
-					hosting on one declarative, self-updating platform, Vectis Mail is the closest fit —
+					hosting on one self-updating platform, Vectis Mail is the closest fit —
 					the <a href="/guides/best-self-hosted-email-servers-2026/">best self-hosted email servers guide</a>
 					compares all of them by buyer type.
 				</p>

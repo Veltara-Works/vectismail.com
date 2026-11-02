@@ -83,7 +83,7 @@ const release = await getLatestRelease()
 		"additionalProperty": [
 			{ "@type": "PropertyValue", "name": "Container count", "value": "10 by default, including webmail; up to 14 with ClamAV and the optional Grafana/Loki/Promtail stack enabled" },
 			{ "@type": "PropertyValue", "name": "API endpoints", "value": "40+ REST endpoints across sending, mailboxes, domains, analytics, admin" },
-			{ "@type": "PropertyValue", "name": "Configuration model", "value": "Declarative single-file YAML (config.yaml) + Postgres-backed domain/mailbox catalog" },
+			{ "@type": "PropertyValue", "name": "Configuration model", "value": "Admin dashboard + REST API; domains and mailboxes in Postgres, stack settings in config.yaml" },
 			{ "@type": "PropertyValue", "name": "Update model", "value": "Atomic orchestrator with snapshot + rollback; cross-version self-heal" },
 			{ "@type": "PropertyValue", "name": "License", "value": "Business Source License 1.1; each version converts to Apache 2.0 four years after release" }
 		]
@@ -96,7 +96,7 @@ const release = await getLatestRelease()
 
 	<section class="hero" style="margin-bottom: 0.75rem;">
 		<h1>Every feature you need.<br/><span>Nothing you don't.</span></h1>
-		<p>Vectis Mail replaces Mailcow, iRedMail, and external email APIs with a single, declarative platform &mdash; built on proven components, updated atomically with rollback, and priced flat per tenant, never per email.</p>
+		<p>Vectis Mail replaces Mailcow, iRedMail, and external email APIs with a single platform &mdash; built on proven components, updated atomically with rollback, and priced flat per tenant, never per email.</p>
 		<div class="hero-buttons">
 			<a href="/getting-started/installation/" class="btn-primary">Install Vectis Mail</a>
 			<a href="/pricing/" class="btn-secondary">View Pricing</a>
@@ -164,7 +164,7 @@ const release = await getLatestRelease()
 				</thead>
 				<tbody>
 					<tr><td>Time to production</td><td>Minutes (single command)</td><td>Days to weeks</td><td>Hours</td><td>Minutes</td></tr>
-					<tr><td>Configuration model</td><td>Declarative YAML + REST API</td><td>Manual config files</td><td>Web UI</td><td>Dashboard + API</td></tr>
+					<tr><td>Configuration model</td><td>Dashboard + REST API</td><td>Manual config files</td><td>Web UI</td><td>Dashboard + API</td></tr>
 					<tr><td>REST API for sending</td><td>Yes — 40+ endpoints</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
 					<tr><td>Inbound webhooks (parsed)</td><td>Yes — HMAC-signed</td><td>Bring your own</td><td>Partial</td><td>Yes</td></tr>
 					<tr><td>Mailbox hosting (IMAP/POP3)</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No (transactional only)</td></tr>

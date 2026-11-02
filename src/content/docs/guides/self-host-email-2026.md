@@ -160,7 +160,7 @@ What does a defensible self-host setup look like today? Here's the core stack �
 | Container runtime | **Docker** or **Podman** | Compose-based deploys are 2026-standard |
 | Config & API | **Stack-specific** | This is the differentiator |
 
-The differentiator in 2026 is the **management layer on top** — declarative config, REST API, atomic updates, webhook fan-out for transactional events, observability. This is what separates a 2010-era "I configured Postfix by hand" setup from a 2026-era platform.
+The differentiator in 2026 is the **management layer on top** — admin dashboard, REST API, atomic updates, webhook fan-out for transactional events, observability. This is what separates a 2010-era "I configured Postfix by hand" setup from a 2026-era platform.
 
 ### The five things that bite self-hosters in 2026
 
@@ -206,7 +206,7 @@ Realistic timeline: a long weekend for a small team; 1–2 weeks for a 100-perso
 
 ## How Vectis Mail fits
 
-Vectis Mail is the self-host platform we build. It's source-available (BSL 1.1), API-first, and explicitly designed around the 2026 stack described above — Postfix + Dovecot + Rspamd + Traefik, all orchestrated under a single declarative configuration file with atomic updates and pg_dump-backed rollback.
+Vectis Mail is the self-host platform we build. It's source-available (BSL 1.1), API-first, and explicitly designed around the 2026 stack described above — Postfix + Dovecot + Rspamd + Traefik, all set up by one installer and run from an admin dashboard, with atomic updates and pg_dump-backed rollback.
 
 If you're weighing self-hosting in 2026, the relevant Vectis pages are:
 
@@ -215,7 +215,7 @@ If you're weighing self-hosting in 2026, the relevant Vectis pages are:
 - **[For SaaS founders](/for/saas/)**, **[For agencies](/for/agencies/)**, **[For developers](/for/developers/)**, **[For enterprises](/for/enterprises/)** — audience-specific use cases.
 - **[Alternatives](/alternatives/)** — direct comparisons against Mailcow, iRedMail, Mail-in-a-Box, SendGrid, Postmark.
 
-Vectis Mail isn't the only self-host option, and we say plainly where each alternative fits on our [comparison pages](/alternatives/) — we'd rather you read the honest head-to-head than take our word for it. But if what you want is a transactional API *and* real mailboxes on one declarative stack you own, with updates that snapshot and roll themselves back, that's the specific gap we built Vectis Mail to fill — and it starts free.
+Vectis Mail isn't the only self-host option, and we say plainly where each alternative fits on our [comparison pages](/alternatives/) — we'd rather you read the honest head-to-head than take our word for it. But if what you want is a transactional API *and* real mailboxes on one stack you own, with updates that snapshot and roll themselves back, that's the specific gap we built Vectis Mail to fill — and it starts free.
 
 ## FAQ
 

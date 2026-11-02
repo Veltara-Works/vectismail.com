@@ -22,7 +22,7 @@ const live: Alt[] = [
 		tagline: 'Same self-hosted stack, plus a REST API, an admin dashboard for every domain and atomic updates with rollback.',
 		bullets: [
 			'10 vs 18 containers by default',
-			'Declarative config + 40+ endpoint REST API',
+			'Admin dashboard + 40+ endpoint REST API',
 			'Atomic 6-phase updates with auto-rollback',
 		],
 	},
@@ -32,7 +32,7 @@ const live: Alt[] = [
 		tagline: 'The proven Postfix/Dovecot/Rspamd engine with a transactional API and a support SLA — not a from-scratch rewrite of every protocol.',
 		bullets: [
 			'A 20-year-proven engine, not a young reimplementation',
-			'Declarative config + updates that roll themselves back',
+			'Admin dashboard + updates that roll themselves back',
 			'A real transactional API and bundled webmail',
 		],
 	},
@@ -192,12 +192,12 @@ const upcoming: { title: string; tagline: string }[] = []
 					{
 						"@type": "Question",
 						"name": "Which Vectis Mail alternative comparison should I read first?",
-						"acceptedAnswer": { "@type": "Answer", "text": "Start with the comparison that matches what you're running today. If you operate a Mailcow stack and want a more declarative surface, read /alternatives/mailcow/. If you're paying SendGrid or Postmark per email and want flat pricing on a self-hosted stack, read /alternatives/sendgrid/ or /alternatives/postmark/. If you outgrew Mail-in-a-Box's single-server model and need multi-domain + API, read /alternatives/mail-in-a-box/. If iRedMail's OS-native install feels dated and you want REST API + atomic updates, read /alternatives/iredmail/." }
+						"acceptedAnswer": { "@type": "Answer", "text": "Start with the comparison that matches what you're running today. If you operate a Mailcow stack and want a REST API and updates that roll back, read /alternatives/mailcow/. If you're paying SendGrid or Postmark per email and want flat pricing on a self-hosted stack, read /alternatives/sendgrid/ or /alternatives/postmark/. If you outgrew Mail-in-a-Box's single-server model and need multi-domain + API, read /alternatives/mail-in-a-box/. If iRedMail's OS-native install feels dated and you want REST API + atomic updates, read /alternatives/iredmail/." }
 					},
 					{
 						"@type": "Question",
 						"name": "Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what is the difference?",
-						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is a one-command mail server for a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML config, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-domain operators." }
+						"acceptedAnswer": { "@type": "Answer", "text": "All four are self-hosted email platforms but they target different operators. Mailcow and iRedMail are multi-domain mail servers: Mailcow ships as Docker Compose, iRedMail installs OS-native. Mail-in-a-Box is a one-command mail server for a single Ubuntu VPS. Vectis Mail targets a fourth slot: API-first, one-command install, atomic updates with rollback, and a 40+ endpoint REST API designed for agencies, SaaS, and multi-domain operators." }
 					},
 					{
 						"@type": "Question",
@@ -280,7 +280,7 @@ const upcoming: { title: string; tagline: string }[] = []
 			</div>
 			<div class="feature-card">
 				<h3>Vectis Mail vs Mailcow vs iRedMail vs Mail-in-a-Box — what's different?</h3>
-				<p>All four are self-hosted email platforms targeting different operators. Mailcow ships as Docker Compose, iRedMail installs OS-native, Mail-in-a-Box is one-command personal sovereignty on a single VPS. Vectis Mail targets a fourth slot: API-first, declarative YAML, atomic updates with rollback, and a 40+ endpoint REST API for agencies, SaaS, and multi-domain operators.</p>
+				<p>All four are self-hosted email platforms targeting different operators. Mailcow ships as Docker Compose, iRedMail installs OS-native, Mail-in-a-Box is one-command personal sovereignty on a single VPS. Vectis Mail targets a fourth slot: API-first, one-command install, atomic updates with rollback, and a 40+ endpoint REST API for agencies, SaaS, and multi-domain operators.</p>
 			</div>
 			<div class="feature-card">
 				<h3>Vectis Mail vs SendGrid vs Postmark — are these even comparable?</h3>

@@ -39,7 +39,7 @@ Last updated: 2026-05-18
 - **14 containers by default** (10 if observability and ClamAV disabled)
 - **Four Docker networks** with strict separation: `frontend`, `mail`, `data`, `orchestrator`
 - **Three Postgres roles** with least privilege: `vectis_postfix` (RO), `vectis_dovecot` (RO), `vectis_api` (full)
-- **One declarative YAML** (`config.yaml`) defines the entire mail stack
+- **One-command install**: the installer writes `config.yaml` and generates every secret; editing it is optional
 - **Domains live in Postgres**, not config files — no Postfix/Dovecot reload when adding domains or mailboxes
 - **6-phase atomic update orchestrator** with automatic rollback on failure: snapshot → migrate → pull → deploy → health-check → complete
 

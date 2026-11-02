@@ -14,7 +14,7 @@ faq:
   - q: "How much time does it take to run a self-hosted email server?"
     a: "Setup with a modern installer is 30–90 minutes including DNS propagation. At steady state, budget about 30 minutes a week: checking backups ran, glancing at deliverability, and applying updates. The real time cost is the first incident on a new stack — which is why automated backups and a tested restore matter more than anything else for a small team."
   - q: "What happens to our email if the person who set it up leaves?"
-    a: "This is the right question to ask, and it's a configuration choice, not a fate. Use a tool with declarative config (your whole setup in version-controlled files), automated off-site backups, and a documented restore, so the system isn't trapped in one person's head. Avoid hand-rolled Postfix/Dovecot setups for exactly this reason: they're hard to hand over. Self-hosting should not mean one-person-dependency."
+    a: "This is the right question to ask, and it's a configuration choice, not a fate. Use a tool that keeps your setup in one place someone else can read, with automated off-site backups, and a documented restore, so the system isn't trapped in one person's head. Avoid hand-rolled Postfix/Dovecot setups for exactly this reason: they're hard to hand over. Self-hosting should not mean one-person-dependency."
   - q: "Do we need a separate service for transactional and marketing email?"
     a: "Not for transactional. A self-hosted stack with a sending API handles your app's receipts, password resets, and notifications on the same infrastructure as your team mailboxes — no separate SendGrid bill. High-volume cold outreach and large marketing blasts are a different send pattern: keep them off the IPs your team mailboxes use, because reputation on those patterns is fragile."
   - q: "Can a small business self-host email behind Cloudflare?"
@@ -71,11 +71,11 @@ For a small business sending normal volumes of legitimate mail to clients and co
 
 It isn't deliverability. It's **continuity** — what happens when the person who set it up is on holiday, or leaves. This is the question that should drive your tooling choice:
 
-- **Declarative configuration.** Your entire setup should live in version-controlled config files, not in undocumented changes made by hand on a server at 11pm. Anyone competent should be able to read the config and understand the system.
+- **Your setup kept in one place.** It should live in the tool, not in undocumented changes made by hand on a server at 11pm. Anyone competent should be able to open it and understand the system.
 - **Automated, off-site backups — with a tested restore.** Backups you've never restored are a hope, not a plan. The first thing to verify on any new mail stack is that a restore actually works.
 - **No one-person-dependency.** Self-hosting should not mean the business's email is hostage to a single employee's memory. The tooling, not heroics, should hold the knowledge.
 
-Hand-rolled Postfix and Dovecot setups fail this test badly — they're powerful but notoriously hard to hand over. This is the strongest argument for using a managed, declarative self-hosting platform rather than assembling the stack yourself: the goal is a system the *business* owns, not one a person does.
+Hand-rolled Postfix and Dovecot setups fail this test badly — they're powerful but notoriously hard to hand over. This is the strongest argument for using a managed self-hosting platform rather than assembling the stack yourself: the goal is a system the *business* owns, not one a person does.
 
 ## A defensible starter stack for a small business
 
@@ -90,7 +90,7 @@ That's a flat ~$25–50/month for mailboxes *and* transactional sending, with no
 
 ### Where Vectis Mail fits
 
-[Vectis Mail](/) is built for exactly this case: a self-hosted platform with **declarative config**, a **sending API** alongside team mailboxes, **automatic DKIM signing**, antispam and webmail included, and **scheduled off-site backups** built in — so a small business gets a system it owns, at flat pricing, without the one-person-dependency of a hand-rolled stack. Our [comparison pages](/alternatives/) show how it compares with each alternative.
+[Vectis Mail](/) is built for exactly this case: a self-hosted platform with a **one-command install and admin dashboard**, a **sending API** alongside team mailboxes, **automatic DKIM signing**, antispam and webmail included, and **scheduled off-site backups** built in — so a small business gets a system it owns, at flat pricing, without the one-person-dependency of a hand-rolled stack. Our [comparison pages](/alternatives/) show how it compares with each alternative.
 
 If you're still deciding whether self-hosting is right at all, start with the [2026 decision guide](/guides/self-host-email-2026/). If you've decided and want the build, the [installation guide](/getting-started/installation/) takes about half an hour.
 
