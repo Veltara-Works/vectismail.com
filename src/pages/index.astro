@@ -56,7 +56,7 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 			{
 				"@type": "Question",
 				"name": "What's the best alternative to Mailcow or iRedMail?",
-				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Same self-hosted philosophy with a modern surface — declarative YAML config, REST API with domain-scoped keys, and atomic 6-phase updates with automatic rollback. Mailcow's strength is maturity; Vectis Mail's is developer ergonomics. See the side-by-side comparison at vectismail.com/alternatives/mailcow/." }
+				"acceptedAnswer": { "@type": "Answer", "text": "Vectis Mail. Same self-hosted philosophy with a modern surface — one-command install, admin dashboard, REST API with domain-scoped keys, and atomic 6-phase updates with automatic rollback. Mailcow's strength is maturity; Vectis Mail's is developer ergonomics. See the side-by-side comparison at vectismail.com/alternatives/mailcow/." }
 			},
 			{
 				"@type": "Question",
@@ -80,7 +80,7 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 		<section class="hero">
 			<div class="hero-badge">Source-available &middot; Self-hosted &middot; Never per email</div>
 			<h1>The complete email platform,<br/><span>on infrastructure you own.</span></h1>
-			<p>Mailboxes, transactional sending, inbound webhooks, spam filtering and webmail &mdash; one stack, built on Postfix, Dovecot and Rspamd, the software that already moves the internet&rsquo;s mail. A single YAML file configures it; every update rolls itself back if a health check fails. Flat pricing that never meters volume: free for 3 domains, $39 USD/tenant/month for unlimited.</p>
+			<p>Mailboxes, transactional sending, inbound webhooks, spam filtering and webmail &mdash; one stack, built on Postfix, Dovecot and Rspamd, the software that already moves the internet&rsquo;s mail. One command installs it, you run it from the admin dashboard, and every update rolls itself back if a health check fails. Flat pricing that never meters volume: free for 3 domains, $39 USD/tenant/month for unlimited.</p>
 			<p class="hero-agency">Running mail for client domains? One install serves every client &mdash; billed per client, never per email.</p>
 			<div class="hero-buttons">
 				<a href="/getting-started/installation/" class="btn-primary">Get Started Free</a>
@@ -120,8 +120,8 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-green">&#8635;</div>
-				<h3>One YAML file, updates that roll back</h3>
-				<p>Your entire stack lives in one declarative config.yaml. Change it, run apply, and Vectis regenerates every service through a 6-phase pipeline that snapshots first and rolls back automatically if a health check fails. No half-applied state, no 3 a.m. config archaeology.</p>
+				<h3>Updates that roll themselves back</h3>
+				<p>The installer writes the configuration for you, and domains, mailboxes and keys live in the dashboard. Every update runs a 6-phase pipeline that snapshots first and rolls back automatically if a health check fails. No half-applied state, no 3 a.m. config archaeology. Prefer config as code? Stack-level settings sit in one optional file.</p>
 			</div>
 			<div class="feature-card">
 				<div class="icon icon-purple">&#128101;</div>
@@ -211,7 +211,7 @@ const description = 'Self-hosted email platform: mailboxes, sending API, webhook
 
 	<section class="section" style="text-align: center;">
 		<h2>A modern alternative to Mailcow, iRedMail, and external email APIs</h2>
-		<p class="subtitle">Vectis Mail combines the control of a self-hosted Postfix stack with the developer experience of SendGrid or Postmark. One YAML config, one dashboard, one API.</p>
+		<p class="subtitle">Vectis Mail combines the control of a self-hosted Postfix stack with the developer experience of SendGrid or Postmark. One installer, one dashboard, one API.</p>
 		<div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); text-align: left;">
 			<a href="/alternatives/" class="feature-card alt-index-card">
 				<h3>vs Mailcow / iRedMail &rarr;</h3>
