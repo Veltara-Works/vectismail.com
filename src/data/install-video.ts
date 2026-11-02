@@ -22,6 +22,6 @@ export const installVideoSchema = {
 	uploadDate: installVideo.uploadDate,
 	duration: installVideo.duration,
 	embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
-	contentUrl: `https://www.youtube.com/watch?v=${id}`,
+	url: `https://www.youtube.com/watch?v=${id}`,
 	publisher: { '@type': 'Organization', name: 'Vectis Mail', url: 'https://vectismail.com/' },
 }
