@@ -4,8 +4,8 @@ document.querySelectorAll('.yt-lite').forEach((btn) => {
 		const frame = document.createElement('iframe');
 		frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(btn.dataset.yt) + '?autoplay=1&rel=0';
 		frame.title = btn.dataset.ytTitle || 'Video';
+		// `fullscreen` in allow covers it; also setting allowFullscreen logs a console warning.
 		frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-		frame.allowFullscreen = true;
 		frame.className = 'yt-frame';
 		btn.replaceWith(frame);
 	});
