@@ -21,7 +21,7 @@ The effects were widespread:
 
 ([ABC](https://www.abc.net.au/news/2026-11-14/microsoft-says-sorry-for-global-outage-and-details-recovery/107385540), [ACS Information Age](https://ia.acs.org.au/article/2026/major-microsoft-outage-hits-outlook--teams-more.html))
 
-The cost is still being counted. An early estimate from Anderson Economic Group, a Michigan research firm, put lost productivity at close to US$7 billion. It estimated that as many as 26 million users on Thursday and 51 million on Friday had their work disrupted badly enough to cause an economic loss. The firm's president called the figure "a starting point, with all the limitations on what we know" and expected the cost to rise ([CNN](https://edition.cnn.com/2026/11/12/business/live-news/microsoft-global-outage-intl-hnk)).
+The cost is still being counted. An early estimate from Anderson Economic Group, a Michigan research firm, put lost productivity at close to US$7 billion. It estimated that as many as 26 million users on Thursday and 51 million on Friday had their work disrupted badly enough to cause an economic loss. The firm's president called the figure "a starting point, with all the limitations on what we know" and expected the cost to rise ([CNN](https://edition.cnn.com/2026/11/12/business/live-news/microsoft-global-outage-intl-hnk?post-id=cmwf6e7el00003b6txhzlcvvg)).
 
 Microsoft said it was not a cyberattack, apologised, and [attributed it](https://www.abc.net.au/news/2026-11-14/microsoft-says-sorry-for-global-outage-and-details-recovery/107385540) to "an issue during an earlier network capacity upgrade that surfaced following a recent network change". It has promised a full post-incident report.
 
