@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
 import { lastmodByPath } from './scripts/sitemap-lastmod.mjs';
+import externalLinks from './src/plugins/external-links.mjs';
 
 const LASTMOD = lastmodByPath();
 
@@ -15,6 +16,9 @@ export default defineConfig({
 	// (PSI mobile penalty ~750ms per click before this was set).
 	trailingSlash: 'always',
 	integrations: [
+		// Markdown links to other sites open in a new tab (notes + docs), the
+		// same way the hand-built .astro pages already do. See the plugin.
+		externalLinks(),
 		// Explicit sitemap so we can filter out non-indexable pages
 		// (e.g. /account/billing/done/ — the post-Stripe-portal landing
 		// page is already noindex but should also be excluded from the
