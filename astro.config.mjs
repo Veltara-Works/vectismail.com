@@ -15,6 +15,11 @@ export default defineConfig({
 	// src/ must use the trailing-slash form to avoid the 308 round-trip
 	// (PSI mobile penalty ~750ms per click before this was set).
 	trailingSlash: 'always',
+	// Starlight forced `where` scoping site-wide until 0.43, which now defers to
+	// Astro's default (`attribute`). Attribute selectors are more specific than
+	// `:where()`, which would change how our styles apply on every page, not just
+	// the docs. Keep the scoping the site was built and tested with.
+	scopedStyleStrategy: 'where',
 	integrations: [
 		// Markdown links to other sites open in a new tab (notes + docs), the
 		// same way the hand-built .astro pages already do. See the plugin.
